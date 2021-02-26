@@ -331,7 +331,24 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""KeyboardMouseScheme"",
+            ""bindingGroup"": ""KeyboardMouseScheme"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // ActionMap
         m_ActionMap = asset.FindActionMap("ActionMap", throwIfNotFound: true);
@@ -504,6 +521,15 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         }
     }
     public ActionMapActions @ActionMap => new ActionMapActions(this);
+    private int m_KeyboardMouseSchemeSchemeIndex = -1;
+    public InputControlScheme KeyboardMouseSchemeScheme
+    {
+        get
+        {
+            if (m_KeyboardMouseSchemeSchemeIndex == -1) m_KeyboardMouseSchemeSchemeIndex = asset.FindControlSchemeIndex("KeyboardMouseScheme");
+            return asset.controlSchemes[m_KeyboardMouseSchemeSchemeIndex];
+        }
+    }
     public interface IActionMapActions
     {
         void OnEAction(InputAction.CallbackContext context);
