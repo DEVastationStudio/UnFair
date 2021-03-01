@@ -10,8 +10,8 @@ public class MiraScript : MonoBehaviour
     void Update()
     {
         //Opcion 1
-        //Vector3 pos = (_mousePoint.transform.position - _mira.transform.position);
-        //_mira.transform.position += pos.normalized * pos.magnitude * Time.deltaTime * 2;
+        Vector3 pos = (_mousePoint.transform.position - _mira.transform.position);
+        _mira.transform.position += pos.normalized * pos.magnitude * Time.deltaTime * 2;
 
         //Opcion 2
     }
