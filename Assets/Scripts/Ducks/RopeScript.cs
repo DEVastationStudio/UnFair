@@ -58,7 +58,7 @@ public class RopeScript : MonoBehaviour {
 		BuildRope();
 	}
  
-	void Update()
+	/*void Update()
 	{
 		// Put rope control here!
  
@@ -72,7 +72,7 @@ public class RopeScript : MonoBehaviour {
 		{
 			BuildRope();
 		}
-	}
+	}*/
 	void LateUpdate()
 	{
 		// Does rope exist? If so, update its position
@@ -159,6 +159,7 @@ public class RopeScript : MonoBehaviour {
 		limit_setter = ph.swing1Limit;
 		limit_setter.limit = swing1Limit;
 		ph.swing1Limit = limit_setter;
+		ph.enableProjection = true;
 		//ph.breakForce = ropeBreakForce; <--------------- TODO
  
 		joints[n].transform.position = segmentPos[n];
