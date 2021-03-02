@@ -5,8 +5,12 @@ using UnityEngine.InputSystem;
 
 public class PistolaScript : MonoBehaviour
 {
+    [Header("Interfaz de disparo")]
     [SerializeField] private GameObject _mira;
     [SerializeField] private GameObject _mousePoint;
+
+    [Header("Otros Scripts")]
+    [SerializeField] private UIGeneral _uiManager;
 
     private Vector2 pos;
 
@@ -21,6 +25,7 @@ public class PistolaScript : MonoBehaviour
         Physics.Raycast(Camera.main.ScreenPointToRay(_mira.transform.position), out hit, 100);
         if (hit.collider != null && hit.transform.tag == "Diana")
         {
+            _uiManager.IncreasePuntuacion(10);
             Destroy(hit.transform.gameObject);
         }
     }

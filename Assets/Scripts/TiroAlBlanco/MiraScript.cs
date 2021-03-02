@@ -14,5 +14,6 @@ public class MiraScript : MonoBehaviour
         _mira.transform.position += pos.normalized * pos.magnitude * Time.deltaTime * 2;
 
         //Opcion 2
+
     }
 }
