@@ -7,7 +7,7 @@ public class RodController : MonoBehaviour
 {
     public GameObject rodTip;
     public Vector3 positionOffset;
-    private int _initialHeight;
+    private float _initialHeight;
     private const int _heightOffset = 1;
     private float _height;
     private bool _mouseDown;
@@ -17,6 +17,7 @@ public class RodController : MonoBehaviour
         positionOffset = transform.position - rodTip.transform.position;
         positionOffset.y = 0;
         _height = 0;
+        _initialHeight = transform.position.y;
     }
 
 
