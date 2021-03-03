@@ -17,7 +17,7 @@ public partial class UIGeneral : MonoBehaviour
     #endregion Variables
 
     #region Metodos
-    private void Start()
+    public void InitUI()
     {
         StartTimer();
         ResetPuntuacion();
