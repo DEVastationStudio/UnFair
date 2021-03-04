@@ -12,8 +12,18 @@ public class ShootingMinigameManager : MonoBehaviour
     #region Metodos
     private void Start()
     {
-        _uiGeneral.InitUI();
+        _uiGeneral.FasePreGame();
+    }
+
+    public void StartGame() 
+    {
+        _uiGeneral.FaseGame();
         _spawnerDianas.SpawnInit();
+    }
+
+    public void RestartGame() 
+    {
+        _uiGeneral.FasePreGame();
     }
     #endregion Metodos
 }

@@ -28,6 +28,8 @@ public partial class UIGeneral : MonoBehaviour
             yield return new WaitForSeconds(1);
             actualTime--;
         }
+        faseActual = Fases.POSTGAME;
+        FasePostGame();
     }
     #endregion Metodos
 }

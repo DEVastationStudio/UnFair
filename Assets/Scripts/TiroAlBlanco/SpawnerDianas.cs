@@ -47,11 +47,10 @@ public class SpawnerDianas : MonoBehaviour
         }
     }
 
-    public void DestroyTarget(GameObject target) 
+    public void DestroyTarget(int targetPos) 
     {
         numDianas--;
-        targetsInUse[target.GetComponent<Diana>()._pos] = false;
-        Destroy(target);
+        targetsInUse[targetPos] = false;
     }
 
     private void Spawn(Vector3 pos, GameObject target, int posInArray)
