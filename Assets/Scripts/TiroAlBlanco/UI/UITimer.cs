@@ -22,12 +22,14 @@ public partial class UIGeneral : MonoBehaviour
 
     IEnumerator TimerUpdate()
     {
-        while (_timeForLevel >= 0)
+        while (actualTime >= 0)
         {
             _timerText.text = "Time: " + actualTime;
             yield return new WaitForSeconds(1);
             actualTime--;
         }
+        faseActual = Fases.POSTGAME;
+        FasePostGame();
     }
     #endregion Metodos
 }

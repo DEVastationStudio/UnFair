@@ -16,7 +16,10 @@ public partial class UIGeneral : MonoBehaviour
     }
     public void IncreasePuntuacion(int points) 
     {
-        _puntuacionActual += points;
+        if (_puntuacionActual + points < 0)
+            _puntuacionActual = 0;
+        else 
+            _puntuacionActual += points;
         _puntuacionText.text = "Score: " + _puntuacionActual;
     }
     #endregion Metodos

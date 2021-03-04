@@ -5,11 +5,58 @@ using UnityEngine;
 public class FloatingObject : MonoBehaviour
 {
     public Rigidbody rigidBody;
+
+    private float _waterHeight;
+    private bool _inWater;
+    private bool _magnetized;
+    private GameObject _magnet;
+
+    void Start() {
+        _waterHeight = 0;
+        _inWater = true;
+    }    
     void FixedUpdate()
     {
-        if (transform.position.y < 0)
+        if (_inWater)
         {
-            rigidBody.AddForce(new Vector3(0, Mathf.Abs(Physics.gravity.y) * (Mathf.Clamp(-transform.position.y, 0, 1) * 3), 0), ForceMode.Acceleration);
+            //TO-DO: Move this line to a singleton or the water object or wherever
+            _waterHeight = (Mathf.Cos(transform.position.y) + Mathf.Cos(transform.position.x + (5 * Time.timeSinceLevelLoad)) + Mathf.Cos(transform.position.z + (5 * Time.timeSinceLevelLoad)))*0.1f;
+
+            if (transform.position.y < _waterHeight)
+            {
+                //Floating force
+                rigidBody.AddForce(new Vector3(0, Mathf.Abs(Physics.gravity.y) * (Mathf.Clamp(_waterHeight-transform.position.y, 0, 1) * 3), 0), ForceMode.Acceleration);
+                
+                //Spin force
+                Vector3 cross = Vector3.Cross(transform.position, Vector3.up);
+                cross.y = 0;
+                Vector3 pos = -transform.position;
+                pos.y = 0;
+                rigidBody.AddForce(cross, ForceMode.Force);
+                rigidBody.AddForce(pos, ForceMode.Force);
+                Debug.DrawRay(transform.position, Vector3.Cross(transform.position, Vector3.up));
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.tag == "Magnet" && _inWater && !_magnetized)
+        {
+            _inWater = false;
+            _magnetized = true;
+            _magnet = other.gameObject;
+            rigidBody.constraints = RigidbodyConstraints.FreezeAll;
+            transform.parent = _magnet.transform;
+            other.tag = "Untagged";
+            transform.localPosition = new Vector3(0,-2.4f,0);
+        }
+        else if (other.tag == "Basket" && _magnetized)
+        {
+            _magnetized = false;
+            rigidBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+            transform.parent = null;
+            _magnet.tag = "Magnet";
+            _magnet = null;
         }
     }
 }

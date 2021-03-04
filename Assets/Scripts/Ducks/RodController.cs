@@ -11,6 +11,8 @@ public class RodController : MonoBehaviour
     private const int _heightOffset = 1;
     private float _height;
     private bool _mouseDown;
+    public BoxCollider magnetHitbox;
+    public GameObject magnet;
 
     void Start()
     {
@@ -28,7 +30,8 @@ public class RodController : MonoBehaviour
         Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 10));
 
         //Read Mouse Down
-        _mouseDown = Mouse.current.leftButton.isPressed;
+        _mouseDown = Mouse.current.leftButton.isPressed && magnet.tag == "Magnet";
+        magnetHitbox.enabled = _mouseDown && _height >= 1;
         if (_mouseDown && _height < 1)
         {
             _height = Mathf.Min(_height + 2 * Time.deltaTime, 1);
