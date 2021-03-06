@@ -1361,6 +1361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c82048af609b2114b84e064fa6b7be91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  input: {fileID: 1381642523}
   rodTip: {fileID: 1574706726}
   positionOffset: {x: 0, y: 0, z: 0}
   magnetHitbox: {fileID: 1690188175}

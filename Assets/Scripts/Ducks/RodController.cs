@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class RodController : MonoBehaviour
 {
+    [SerializeField] private PlayerInput input;
     public GameObject rodTip;
     public Vector3 positionOffset;
     private float _initialHeight;
@@ -35,7 +36,6 @@ public class RodController : MonoBehaviour
             _mousePos = rodTip.transform.position + new Vector3(_gamepadCoords.x, 0, _gamepadCoords.y);
         }
         //Read Mouse Down
-        _mouseDown = Mouse.current.leftButton.isPressed && magnet.tag == "Magnet";
         magnetHitbox.enabled = _mouseDown && _height >= 1;
         if (_mouseDown && _height < 1)
         {
@@ -53,17 +53,23 @@ public class RodController : MonoBehaviour
 
     private void OnLook(InputValue value)
     {
-        Vector2 pos = value.Get<Vector2>();
+        if (input.currentControlScheme.Equals("KeyboardMouseScheme"))
+        {
+            Vector2 pos = value.Get<Vector2>();
 
-        _mousePos = Camera.main.ScreenToWorldPoint(new Vector3(pos.x, pos.y, 10));
-        _isGamepad = false;
+            _mousePos = Camera.main.ScreenToWorldPoint(new Vector3(pos.x, pos.y, 10));
+            _isGamepad = false;
+        }
+        else
+        {
+            _gamepadCoords = value.Get<Vector2>();
+            _isGamepad = true;
+            print(_gamepadCoords);
+        }
     }
-    private void OnLookGamepad(InputValue value)
+
+    private void OnMouseLeftAction(InputValue value)
     {
-        _gamepadCoords = value.Get<Vector2>();
-        if (Mathf.Abs(_gamepadCoords.x) <= 0.2) _gamepadCoords.x = 0;
-        if (Mathf.Abs(_gamepadCoords.y) <= 0.2) _gamepadCoords.y = 0;
-        _isGamepad = true;
-        print(_gamepadCoords);
+        _mouseDown = ((value.Get<float>()==1) && magnet.tag == "Magnet");
     }
 }

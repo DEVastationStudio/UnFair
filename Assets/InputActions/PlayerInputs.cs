@@ -48,7 +48,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""id"": ""80a6d4dc-7a4a-4b9a-9ddd-072bec23f1cc"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=2)""
                 },
                 {
                     ""name"": ""Mouse Right Action"",
@@ -103,14 +103,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""176a288d-6e1a-447f-883c-92b7019f1454"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Look (Gamepad)"",
-                    ""type"": ""Button"",
-                    ""id"": ""3d178d89-214d-49a4-bedb-e96c4c66b8b4"",
-                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -552,7 +544,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Look (Gamepad)"",
+                    ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -602,7 +594,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         m_ActionMap_SAction = m_ActionMap.FindAction("S Action", throwIfNotFound: true);
         m_ActionMap_DAction = m_ActionMap.FindAction("D Action", throwIfNotFound: true);
         m_ActionMap_Look = m_ActionMap.FindAction("Look", throwIfNotFound: true);
-        m_ActionMap_LookGamepad = m_ActionMap.FindAction("Look (Gamepad)", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -663,7 +654,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
     private readonly InputAction m_ActionMap_SAction;
     private readonly InputAction m_ActionMap_DAction;
     private readonly InputAction m_ActionMap_Look;
-    private readonly InputAction m_ActionMap_LookGamepad;
     public struct ActionMapActions
     {
         private @PlayerInputs m_Wrapper;
@@ -679,7 +669,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         public InputAction @SAction => m_Wrapper.m_ActionMap_SAction;
         public InputAction @DAction => m_Wrapper.m_ActionMap_DAction;
         public InputAction @Look => m_Wrapper.m_ActionMap_Look;
-        public InputAction @LookGamepad => m_Wrapper.m_ActionMap_LookGamepad;
         public InputActionMap Get() { return m_Wrapper.m_ActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -722,9 +711,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Look.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLook;
-                @LookGamepad.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLookGamepad;
-                @LookGamepad.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLookGamepad;
-                @LookGamepad.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLookGamepad;
             }
             m_Wrapper.m_ActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -762,9 +748,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
-                @LookGamepad.started += instance.OnLookGamepad;
-                @LookGamepad.performed += instance.OnLookGamepad;
-                @LookGamepad.canceled += instance.OnLookGamepad;
             }
         }
     }
@@ -800,6 +783,5 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         void OnSAction(InputAction.CallbackContext context);
         void OnDAction(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
-        void OnLookGamepad(InputAction.CallbackContext context);
     }
 }

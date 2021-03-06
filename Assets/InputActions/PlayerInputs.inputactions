@@ -35,7 +35,7 @@
                     "id": "80a6d4dc-7a4a-4b9a-9ddd-072bec23f1cc",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press(behavior=2)"
                 },
                 {
                     "name": "Mouse Right Action",
@@ -90,14 +90,6 @@
                     "type": "Value",
                     "id": "176a288d-6e1a-447f-883c-92b7019f1454",
                     "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Look (Gamepad)",
-                    "type": "Button",
-                    "id": "3d178d89-214d-49a4-bedb-e96c4c66b8b4",
-                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -539,7 +531,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Look (Gamepad)",
+                    "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
