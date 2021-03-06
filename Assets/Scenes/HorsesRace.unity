@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 76769493}
   - component: {fileID: 76769492}
   m_Layer: 5
-  m_Name: ComboText (1)
+  m_Name: TimeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -877,7 +877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f7f17e078de2846aa0962bda1a8876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeText: {fileID: 0}
+  timeText: {fileID: 76769492}
 --- !u!4 &1512164815
 Transform:
   m_ObjectHideFlags: 0
@@ -1230,6 +1230,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7527432703894263002, guid: 05d165e592327934aafec4acdda29870,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590807488265271470, guid: 05d165e592327934aafec4acdda29870,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05d165e592327934aafec4acdda29870, type: 3}
 --- !u!1001 &2976957183248375733
@@ -1294,10 +1304,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2621212788577688995, guid: 6ed04c9f706fbd14a9efba6a9908f83c,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7725192857784514195, guid: 6ed04c9f706fbd14a9efba6a9908f83c,
         type: 3}
       propertyPath: m_Name
       value: Escenario
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4596945431360783777, guid: 6ed04c9f706fbd14a9efba6a9908f83c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6ed04c9f706fbd14a9efba6a9908f83c, type: 3}
