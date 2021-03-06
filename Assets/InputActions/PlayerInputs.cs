@@ -43,14 +43,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Enter Action"",
-                    ""type"": ""Button"",
-                    ""id"": ""62cba363-2fa7-4ce0-aba9-d4d954b9f84e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""Mouse Left Action"",
                     ""type"": ""Button"",
                     ""id"": ""80a6d4dc-7a4a-4b9a-9ddd-072bec23f1cc"",
@@ -102,6 +94,22 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""name"": ""D Action"",
                     ""type"": ""Button"",
                     ""id"": ""aab910ec-2c39-4f46-b466-f6f19104a363"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""176a288d-6e1a-447f-883c-92b7019f1454"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Look (Gamepad)"",
+                    ""type"": ""Button"",
+                    ""id"": ""3d178d89-214d-49a4-bedb-e96c4c66b8b4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -176,17 +184,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9e757850-6293-43ae-bca3-275307aa3de9"",
-                    ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyboardMouseScheme"",
-                    ""action"": ""Enter Action"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""74f81612-a5ec-4e81-beb8-388d95c7e89e"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
@@ -198,11 +195,33 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""35a2affc-fe3a-4f7f-af12-ca59b142dc9f"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamepadScheme"",
+                    ""action"": ""Mouse Left Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""5a9fd79f-5892-44b5-b373-68e70389d062"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardMouseScheme"",
+                    ""action"": ""Mouse Right Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e746f2d3-edcd-4305-9fdf-943ac9f6bcae"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamepadScheme"",
                     ""action"": ""Mouse Right Action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -313,6 +332,61 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardMouseScheme"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Joystick"",
+                    ""id"": ""c85b428c-578a-4c61-b570-1bdf290e098f"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""bf32b43e-9f7c-45d0-a73c-0d45387224c3"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamepadScheme"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""5dc587b0-def4-4e74-8c5c-9a75e4475c6a"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamepadScheme"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""33d36818-9e03-492c-a4eb-2f460885b032"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamepadScheme"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""16f197cd-0429-4dec-97b8-e8f87682e5c0"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamepadScheme"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -448,6 +522,39 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""action"": ""D Action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9e757850-6293-43ae-bca3-275307aa3de9"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouseScheme"",
+                    ""action"": ""Space Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""05d9f662-7524-4ab6-8480-717b1d1eb49d"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouseScheme"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c2f71391-efee-4051-abd3-2720aed2df0d"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look (Gamepad)"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -487,7 +594,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         m_ActionMap_EAction = m_ActionMap.FindAction("E Action", throwIfNotFound: true);
         m_ActionMap_EscAction = m_ActionMap.FindAction("Esc Action", throwIfNotFound: true);
         m_ActionMap_SpaceAction = m_ActionMap.FindAction("Space Action", throwIfNotFound: true);
-        m_ActionMap_EnterAction = m_ActionMap.FindAction("Enter Action", throwIfNotFound: true);
         m_ActionMap_MouseLeftAction = m_ActionMap.FindAction("Mouse Left Action", throwIfNotFound: true);
         m_ActionMap_MouseRightAction = m_ActionMap.FindAction("Mouse Right Action", throwIfNotFound: true);
         m_ActionMap_Movement = m_ActionMap.FindAction("Movement", throwIfNotFound: true);
@@ -495,6 +601,8 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         m_ActionMap_AAction = m_ActionMap.FindAction("A Action", throwIfNotFound: true);
         m_ActionMap_SAction = m_ActionMap.FindAction("S Action", throwIfNotFound: true);
         m_ActionMap_DAction = m_ActionMap.FindAction("D Action", throwIfNotFound: true);
+        m_ActionMap_Look = m_ActionMap.FindAction("Look", throwIfNotFound: true);
+        m_ActionMap_LookGamepad = m_ActionMap.FindAction("Look (Gamepad)", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -547,7 +655,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
     private readonly InputAction m_ActionMap_EAction;
     private readonly InputAction m_ActionMap_EscAction;
     private readonly InputAction m_ActionMap_SpaceAction;
-    private readonly InputAction m_ActionMap_EnterAction;
     private readonly InputAction m_ActionMap_MouseLeftAction;
     private readonly InputAction m_ActionMap_MouseRightAction;
     private readonly InputAction m_ActionMap_Movement;
@@ -555,6 +662,8 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
     private readonly InputAction m_ActionMap_AAction;
     private readonly InputAction m_ActionMap_SAction;
     private readonly InputAction m_ActionMap_DAction;
+    private readonly InputAction m_ActionMap_Look;
+    private readonly InputAction m_ActionMap_LookGamepad;
     public struct ActionMapActions
     {
         private @PlayerInputs m_Wrapper;
@@ -562,7 +671,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         public InputAction @EAction => m_Wrapper.m_ActionMap_EAction;
         public InputAction @EscAction => m_Wrapper.m_ActionMap_EscAction;
         public InputAction @SpaceAction => m_Wrapper.m_ActionMap_SpaceAction;
-        public InputAction @EnterAction => m_Wrapper.m_ActionMap_EnterAction;
         public InputAction @MouseLeftAction => m_Wrapper.m_ActionMap_MouseLeftAction;
         public InputAction @MouseRightAction => m_Wrapper.m_ActionMap_MouseRightAction;
         public InputAction @Movement => m_Wrapper.m_ActionMap_Movement;
@@ -570,6 +678,8 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         public InputAction @AAction => m_Wrapper.m_ActionMap_AAction;
         public InputAction @SAction => m_Wrapper.m_ActionMap_SAction;
         public InputAction @DAction => m_Wrapper.m_ActionMap_DAction;
+        public InputAction @Look => m_Wrapper.m_ActionMap_Look;
+        public InputAction @LookGamepad => m_Wrapper.m_ActionMap_LookGamepad;
         public InputActionMap Get() { return m_Wrapper.m_ActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -588,9 +698,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @SpaceAction.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnSpaceAction;
                 @SpaceAction.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnSpaceAction;
                 @SpaceAction.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnSpaceAction;
-                @EnterAction.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnEnterAction;
-                @EnterAction.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnEnterAction;
-                @EnterAction.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnEnterAction;
                 @MouseLeftAction.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnMouseLeftAction;
                 @MouseLeftAction.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnMouseLeftAction;
                 @MouseLeftAction.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnMouseLeftAction;
@@ -612,6 +719,12 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @DAction.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnDAction;
                 @DAction.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnDAction;
                 @DAction.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnDAction;
+                @Look.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLook;
+                @Look.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLook;
+                @Look.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLook;
+                @LookGamepad.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLookGamepad;
+                @LookGamepad.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLookGamepad;
+                @LookGamepad.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLookGamepad;
             }
             m_Wrapper.m_ActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -625,9 +738,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @SpaceAction.started += instance.OnSpaceAction;
                 @SpaceAction.performed += instance.OnSpaceAction;
                 @SpaceAction.canceled += instance.OnSpaceAction;
-                @EnterAction.started += instance.OnEnterAction;
-                @EnterAction.performed += instance.OnEnterAction;
-                @EnterAction.canceled += instance.OnEnterAction;
                 @MouseLeftAction.started += instance.OnMouseLeftAction;
                 @MouseLeftAction.performed += instance.OnMouseLeftAction;
                 @MouseLeftAction.canceled += instance.OnMouseLeftAction;
@@ -649,6 +759,12 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @DAction.started += instance.OnDAction;
                 @DAction.performed += instance.OnDAction;
                 @DAction.canceled += instance.OnDAction;
+                @Look.started += instance.OnLook;
+                @Look.performed += instance.OnLook;
+                @Look.canceled += instance.OnLook;
+                @LookGamepad.started += instance.OnLookGamepad;
+                @LookGamepad.performed += instance.OnLookGamepad;
+                @LookGamepad.canceled += instance.OnLookGamepad;
             }
         }
     }
@@ -676,7 +792,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         void OnEAction(InputAction.CallbackContext context);
         void OnEscAction(InputAction.CallbackContext context);
         void OnSpaceAction(InputAction.CallbackContext context);
-        void OnEnterAction(InputAction.CallbackContext context);
         void OnMouseLeftAction(InputAction.CallbackContext context);
         void OnMouseRightAction(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
@@ -684,5 +799,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         void OnAAction(InputAction.CallbackContext context);
         void OnSAction(InputAction.CallbackContext context);
         void OnDAction(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
+        void OnLookGamepad(InputAction.CallbackContext context);
     }
 }
