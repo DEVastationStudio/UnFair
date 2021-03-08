@@ -1,12 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class DucksGameManager : MonoBehaviour
 {
     public Duck duckPrefab;
-    public int playerScore;
-    public int aiScore;
+    private int _playerScore, _aiScore;
+    public TMP_Text pScoreText, aScoreText;
+    public int playerScore
+    {
+        get { return _playerScore; }
+        set { OnPlayerScoreUpdate(value); _playerScore = value; }
+    }
+    public int aiScore
+    {
+        get { return _aiScore; }
+        set { OnAiScoreUpdate(value); _aiScore = value; }
+    }
+
 
     void Start()
     {
@@ -42,5 +55,14 @@ public class DucksGameManager : MonoBehaviour
                 duck.type = Duck.Type.NORMAL;
             }
         }
+    }
+
+    private void OnPlayerScoreUpdate(int value)
+    {
+        pScoreText.text = "Player: " + value;
+    }
+    private void OnAiScoreUpdate(int value)
+    {
+        aScoreText.text = "Opponent: " + value;
     }
 }
