@@ -11,7 +11,7 @@ public class FloatingObject : MonoBehaviour
     private bool _magnetized;
     private GameObject _magnet;
 
-    void Start() {
+    protected virtual void Start() {
         _waterHeight = 0;
         _inWater = true;
     }    
@@ -32,8 +32,8 @@ public class FloatingObject : MonoBehaviour
                 cross.y = 0;
                 Vector3 pos = -transform.position;
                 pos.y = 0;
-                rigidBody.AddForce(cross, ForceMode.Force);
-                rigidBody.AddForce(pos, ForceMode.Force);
+                rigidBody.AddForce(cross/4, ForceMode.Force);
+                rigidBody.AddForce(pos/4, ForceMode.Force);
                 Debug.DrawRay(transform.position, Vector3.Cross(transform.position, Vector3.up));
             }
         }
@@ -53,10 +53,22 @@ public class FloatingObject : MonoBehaviour
         else if (other.tag == "Basket" && _magnetized)
         {
             _magnetized = false;
-            rigidBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+            rigidBody.constraints = RigidbodyConstraints.None;
             transform.parent = null;
             _magnet.tag = "Magnet";
             _magnet = null;
+            OnBasketEnter(true);
+        }
+        else if (other.tag == "RivalBasket" && _magnetized)
+        {
+            _magnetized = false;
+            rigidBody.constraints = RigidbodyConstraints.None;
+            transform.parent = null;
+            _magnet.tag = "Magnet";
+            _magnet = null;
+            OnBasketEnter(false);
         }
     }
+
+    protected virtual void OnBasketEnter(bool player) {}
 }

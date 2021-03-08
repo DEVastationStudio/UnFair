@@ -39,16 +39,16 @@ public class RodController : MonoBehaviour
         magnetHitbox.enabled = _mouseDown && _height >= 1;
         if (_mouseDown && _height < 1)
         {
-            _height = Mathf.Min(_height + 2 * Time.deltaTime, 1);
+            _height = Mathf.Min(_height + 1 * Time.deltaTime, 1);
         }
         else if (!_mouseDown && _height > 0)
         {
-            _height = Mathf.Max(_height - 2 * Time.deltaTime, 0);
+            _height = Mathf.Max(_height - 1 * Time.deltaTime, 0);
         }
 
         //Move rod
         Vector3 newPos = new Vector3(_mousePos.x, _initialHeight - _height, _mousePos.z) + positionOffset;
-        transform.position = Vector3.MoveTowards(transform.position, newPos, 5 * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, newPos, 8 * Time.deltaTime);
     }
 
     private void OnLook(InputValue value)
