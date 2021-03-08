@@ -360,7 +360,7 @@ RectTransform:
   - {fileID: 1159373352}
   - {fileID: 1362173403}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -458,7 +458,7 @@ Transform:
   m_LocalScale: {x: 26.284193, y: 2.2935574, z: 1.4495053}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &453181624
 GameObject:
@@ -643,7 +643,7 @@ Transform:
   m_LocalScale: {x: 26.284193, y: 2.2935574, z: 1.2109295}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &809512143
 GameObject:
@@ -679,7 +679,88 @@ Transform:
   - {fileID: 108468556}
   - {fileID: 321045699}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &894907342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 894907345}
+  - component: {fileID: 894907344}
+  - component: {fileID: 894907343}
+  m_Layer: 0
+  m_Name: Rod Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &894907343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894907342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: f5ccf1c30f1f1354f800adbaf04368e5,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: ActionMap
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &894907344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894907342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c82048af609b2114b84e064fa6b7be91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: {fileID: 894907343}
+  rodTip: {fileID: 1574706726}
+  positionOffset: {x: 0, y: 0, z: 0}
+  magnetHitbox: {fileID: 1690188175}
+  magnet: {fileID: 1690188174}
+--- !u!4 &894907345
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894907342}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1381642521}
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1159373351
 GameObject:
@@ -859,7 +940,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1213766390
 GameObject:
@@ -1035,7 +1116,7 @@ Transform:
   m_LocalScale: {x: 26.284166, y: 2.2935574, z: 1.6101462}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1362173402
 GameObject:
@@ -1183,7 +1264,6 @@ GameObject:
   - component: {fileID: 1381642519}
   - component: {fileID: 1381642518}
   - component: {fileID: 1381642522}
-  - component: {fileID: 1381642523}
   m_Layer: 0
   m_Name: Rod
   m_TagString: Untagged
@@ -1263,8 +1343,8 @@ Transform:
   m_LocalScale: {x: 0.2, y: 0.2, z: 6.37}
   m_Children:
   - {fileID: 1574706733}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 894907345}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1381642522
 MonoBehaviour:
@@ -1275,45 +1355,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1381642517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c82048af609b2114b84e064fa6b7be91, type: 3}
+  m_Script: {fileID: 11500000, guid: dfd73708ba2f0554286fb4ca109521c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 1381642523}
-  rodTip: {fileID: 1574706726}
-  positionOffset: {x: 0, y: 0, z: 0}
-  magnetHitbox: {fileID: 1690188175}
-  magnet: {fileID: 1690188174}
---- !u!114 &1381642523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1381642517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: f5ccf1c30f1f1354f800adbaf04368e5,
-    type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: ActionMap
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &1407587583
 GameObject:
   m_ObjectHideFlags: 0
@@ -1995,7 +2039,7 @@ Transform:
   m_Children:
   - {fileID: 1464128593}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1690188179
 Rigidbody:
@@ -2104,7 +2148,7 @@ Transform:
   m_LocalScale: {x: 26.284166, y: 2.2935574, z: 1.4329228}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1942569382
 GameObject:
@@ -2189,7 +2233,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2016057156
 GameObject:
@@ -2376,5 +2420,5 @@ Transform:
   m_LocalScale: {x: 2.2935596, y: 2.2935574, z: 2.2935574}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

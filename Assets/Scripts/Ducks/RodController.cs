@@ -31,9 +31,9 @@ public class RodController : MonoBehaviour
     void Update()
     {
         //Read Mouse Position
-        if (_isGamepad)
+        if (_isGamepad && _gamepadCoords.magnitude != 0)
         {
-            _mousePos = rodTip.transform.position + new Vector3(_gamepadCoords.x, 0, _gamepadCoords.y);
+            _mousePos = transform.position - positionOffset + new Vector3(_gamepadCoords.x, 0, _gamepadCoords.y);
         }
         //Read Mouse Down
         magnetHitbox.enabled = _mouseDown && _height >= 1;
