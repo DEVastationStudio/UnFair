@@ -26,23 +26,24 @@ public class SpawnerDianas : MonoBehaviour
 
     public void SpawnNewTarget(int type) 
     {
+        Debug.Log((type == 1)?"Spawneando una diana dorada":"Spawneando una diana normal");
+        int i = Random.Range(0, _spawnPoints.Count - 1);
+        while (targetsInUse[i] && _spawnPoints.Count > numDianas)
+        {
+            if (i + 1 >= _spawnPoints.Count)
+                i = 0;
+            else
+                i++;
+        }
+        if (targetsInUse[i])
+            return;
         switch (type) 
         {
             case 0:
-                int i = Random.Range(0, _spawnPoints.Count-1);
-                while (targetsInUse[i] && _spawnPoints.Count > numDianas) 
-                {
-                    if (i + 1 >= _spawnPoints.Count)
-                        i = 0;
-                    else
-                        i++;
-                }
-                if (targetsInUse[i])
-                    break;
-                else 
-                {
-                    Spawn(_spawnPoints[i].transform.position, _possibleTargets[0], i);
-                }
+                Spawn(_spawnPoints[i].transform.position, _possibleTargets[0], i);
+                break;
+            case 1:
+                Spawn(_spawnPoints[i].transform.position, _possibleTargets[1], i);
                 break;
         }
     }
