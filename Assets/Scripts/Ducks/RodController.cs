@@ -17,6 +17,7 @@ public class RodController : MonoBehaviour
     private Vector3 _mousePos;
     private bool _isGamepad;
     private Vector2 _gamepadCoords;
+    public DucksGameManager gameManager;
 
     void Start()
     {
@@ -47,8 +48,11 @@ public class RodController : MonoBehaviour
         }
 
         //Move rod
-        Vector3 newPos = new Vector3(_mousePos.x, _initialHeight - _height, _mousePos.z) + positionOffset;
-        transform.position = Vector3.MoveTowards(transform.position, newPos, 8 * Time.deltaTime);
+        if (!gameManager.gameOver)
+        {
+            Vector3 newPos = new Vector3(_mousePos.x, _initialHeight - _height, _mousePos.z) + positionOffset;
+            transform.position = Vector3.MoveTowards(transform.position, newPos, 8 * Time.deltaTime);
+        }
     }
 
     private void OnLook(InputValue value)
@@ -57,19 +61,18 @@ public class RodController : MonoBehaviour
         {
             Vector2 pos = value.Get<Vector2>();
 
-            _mousePos = Camera.main.ScreenToWorldPoint(new Vector3(pos.x, pos.y, 10));
+            _mousePos = Camera.main.ScreenToWorldPoint(new Vector3(pos.x, pos.y, 30));
             _isGamepad = false;
         }
         else
         {
             _gamepadCoords = value.Get<Vector2>();
             _isGamepad = true;
-            print(_gamepadCoords);
         }
     }
 
     private void OnMouseLeftAction(InputValue value)
     {
-        _mouseDown = ((value.Get<float>()==1) && magnet.tag == "Magnet");
+        _mouseDown = ((value.Get<float>() == 1) && magnet.tag == "Magnet" && !gameManager.gameOver);
     }
 }

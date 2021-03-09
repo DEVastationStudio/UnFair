@@ -8,7 +8,7 @@ public class DucksGameManager : MonoBehaviour
 {
     public Duck duckPrefab;
     private int _playerScore, _aiScore;
-    public TMP_Text pScoreText, aScoreText;
+    public TMP_Text pScoreText, aScoreText, timerText;
     public int playerScore
     {
         get { return _playerScore; }
@@ -19,6 +19,9 @@ public class DucksGameManager : MonoBehaviour
         get { return _aiScore; }
         set { OnAiScoreUpdate(value); _aiScore = value; }
     }
+
+    private float _actualTime;
+    public bool gameOver;
 
 
     void Start()
@@ -64,5 +67,23 @@ public class DucksGameManager : MonoBehaviour
     private void OnAiScoreUpdate(int value)
     {
         aScoreText.text = "Opponent: " + value;
+    }
+
+    public void StartGame()
+    {
+        _actualTime = 30;
+        StartCoroutine(TimerUpdate());
+    }
+
+    private IEnumerator TimerUpdate()
+    {
+        while (_actualTime >= 0)
+        {
+            timerText.text = "Time: " + _actualTime;
+            yield return new WaitForSeconds(1);
+            _actualTime--;
+        }
+        //Finish game
+        gameOver = true;
     }
 }
