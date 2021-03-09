@@ -20,10 +20,12 @@ public class PlayerHorse : MonoBehaviour
     private int correctSequence;
     private bool combCreated;
     private int endedCombos;
-    [SerializeField] private TextMeshProUGUI comboText;
+    [SerializeField] private TextMeshProUGUI[] comboText;
+    private bool endedCurrentCombo;
     #region UnityMethods
     void Start()
     {
+        endedCurrentCombo = false;
         endedCombos = 0;
         currentTime = 0.0f;
         combCreated = false;
@@ -38,10 +40,11 @@ public class PlayerHorse : MonoBehaviour
         {
             if (combCreated && Keyboard.current.anyKey.wasPressedThisFrame)
             {
-                if (!(Keyboard.current[Key.W].wasPressedThisFrame || Keyboard.current[Key.A].wasPressedThisFrame || Keyboard.current[Key.S].wasPressedThisFrame || Keyboard.current[Key.D].wasPressedThisFrame || Keyboard.current[Key.E].wasPressedThisFrame || Keyboard.current[Key.Space].wasPressedThisFrame))
+                if (!(Keyboard.current[Key.W].wasPressedThisFrame || Keyboard.current[Key.A].wasPressedThisFrame || Keyboard.current[Key.S].wasPressedThisFrame || Keyboard.current[Key.D].wasPressedThisFrame || Keyboard.current[Key.E].wasPressedThisFrame || Keyboard.current[Key.Space].wasPressedThisFrame || Keyboard.current[Key.UpArrow].wasPressedThisFrame || Keyboard.current[Key.DownArrow].wasPressedThisFrame
+                || Keyboard.current[Key.LeftArrow].wasPressedThisFrame || Keyboard.current[Key.RightArrow].wasPressedThisFrame))
                 {
                     //Debug.Log("Tecla ajena al conjunto de teclas creadas para el minijuego");
-                    ResetCorrect();
+                    ResetCorrect(false);
                     return;
                 }
             }
@@ -55,7 +58,7 @@ public class PlayerHorse : MonoBehaviour
                 || Gamepad.current[GamepadButton.DpadUp].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadLeft].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadDown].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadRight].wasReleasedThisFrame || Gamepad.current[GamepadButton.South].wasReleasedThisFrame || Gamepad.current[GamepadButton.East].wasReleasedThisFrame))
                 {
                     Debug.Log("Tecla ajena al conjunto de teclas creadas para el minijuego - MANDO");
-                    ResetCorrect();
+                    ResetCorrect(false);
                     return;
                 }
             }
@@ -66,7 +69,7 @@ public class PlayerHorse : MonoBehaviour
         if (currentTime >= timeForKeys)
         {
             //Debug.Log("Mucho tiempo entre tecla y tecla");
-            ResetCorrect();
+            ResetCorrect(false);
         }
     }
 
@@ -106,13 +109,13 @@ public class PlayerHorse : MonoBehaviour
 
     private void GenerateCombination()
     {
-        int keys = Random.Range(3, 6);
+        int keys = 3;//Random.Range(3, 6);
         comb = new string[keys];
         string temp = "";
         //Debug.Log("Combinación a realizar");
         for (int i = 0; i < comb.Length; i++)
         {
-            temp = (string)availableKeys[Random.Range(0, 6)];
+            temp = (string)availableKeys[Random.Range(0, availableKeys.Length)];
 
             if (i >= 2)
             {
@@ -122,7 +125,7 @@ public class PlayerHorse : MonoBehaviour
                     string aux;
                     do
                     {
-                        aux = (string)availableKeys[Random.Range(0, 6)];
+                        aux = (string)availableKeys[Random.Range(0, availableKeys.Length)];
                     }
                     while (!aux.Equals(temp));
                     temp = aux;
@@ -134,25 +137,35 @@ public class PlayerHorse : MonoBehaviour
         ShowCombo();
         combCreated = true;
         endedCombos = 0;
-        ResetCorrect();
+        ResetCorrect(false);
     }
     private void ShowCombo()
     {
-        //REVISAR
         string auxText = "";
         for (int i = 0; i < comb.Length; i++)
         {
-            if (i < comb.Length - 1)
+            switch (comb[i].ToString())
             {
-                auxText += comb[i] + " + ";
+                case "A":
+                    auxText += "←";
+                    break;
+                case "W":
+                    auxText += "↑";
+                    break;
+                case "S":
+                    auxText += "↓";
+                    break;
+                case "D":
+                    auxText += "→";
+                    break;
+                case "Space":
+                    auxText += "Space";
+                    break;
             }
-            else
-            {
-                auxText += comb[i];
-            }
-
+            comboText[i].color = Color.white;
+            comboText[i].text = auxText;
+            auxText = "";
         }
-        comboText.text = auxText;
     }
     private void CombinationManagement(string keyPressed)
     {
@@ -161,11 +174,12 @@ public class PlayerHorse : MonoBehaviour
         {
             if (comb[posComb].Equals(keyPressed))
             {
+                comboText[posComb].color = Color.red;
                 correctSequence++;
                 currentTime = 0.0f;
                 if (correctSequence == comb.Length)
                 {
-                    Move();
+                    ComboFinished();
                 }
                 else
                 {
@@ -174,20 +188,24 @@ public class PlayerHorse : MonoBehaviour
             }
             else
             {
-                ResetCorrect();
+                ResetCorrect(false);
             }
         }
     }
 
-    private void Move()
+    private void ComboFinished()
     {
         endedCombos++;
-        ResetCorrect();
+        ResetCorrect(true);
+    }
+
+    private void Move()
+    {
         //Debug.Log("combinacion correcta");
-        mov = Random.Range(0.1f, 0.2f);
+        mov = Random.Range(0.2f, 0.3f);
         auxPos = (Vector3.forward * mov);
         newPos = new Vector3(transform.position.x + auxPos.x, transform.position.y + auxPos.y, transform.position.z + auxPos.z);
-        transform.position = Vector3.MoveTowards(transform.position, newPos, 1);
+        transform.position = Vector3.MoveTowards(transform.position, newPos, 0.75f);
         if (endedCombos > 2 || Random.Range(0, 99) > 65)
         {
             combCreated = false;
@@ -195,11 +213,31 @@ public class PlayerHorse : MonoBehaviour
         }
     }
 
-    private void ResetCorrect()
+    private void ResetCorrect(bool ended)
     {
+        StopCoroutine(ResetShowedText());
+        StartCoroutine(ResetShowedText());
         //Debug.Log("Secuencia reseteada");
         correctSequence = 0;
         posComb = 0;
         currentTime = 0.0f;
+        if (ended)
+        {
+            endedCurrentCombo = true;
+        }
+    }
+
+    private IEnumerator ResetShowedText()
+    {
+        yield return new WaitForSeconds(0.25f);
+        for (int i = 0; i < comboText.Length; i++)
+        {
+            comboText[i].color = Color.white;
+        }
+        if (endedCurrentCombo)
+        {
+            endedCurrentCombo = false;
+            Move();
+        }
     }
 }

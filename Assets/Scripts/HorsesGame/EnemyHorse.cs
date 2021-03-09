@@ -7,11 +7,10 @@ public class EnemyHorse : MonoBehaviour
     private float mov;
     private Vector3 newPos;
     private Vector3 aux;
-    private bool move;
 
     void Start()
     {
-        move = false;
+
     }
 
 
@@ -23,14 +22,12 @@ public class EnemyHorse : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float rand = Random.Range(0.0f,15.0f);
-        if (rand<12f)
+        float rand = Random.Range(0.0f, 15.0f);
+        if (rand < 14.25f)
         {
             return;
         }
-            move = false;
-            transform.position = Vector3.MoveTowards(transform.position, newPos, 0.05f);
-
+        transform.position = Vector3.MoveTowards(transform.position, newPos, Random.Range(0.05f, 0.08f));
     }
 
     private void GetPos()

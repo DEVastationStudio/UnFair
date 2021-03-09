@@ -418,6 +418,17 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""bbcbf9dd-ab28-4afa-9346-f53060d163da"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouseScheme"",
+                    ""action"": ""A Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""84c184df-c6bb-4ebd-a6d5-c52f979dde47"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
@@ -445,6 +456,17 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamepadScheme"",
+                    ""action"": ""W Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d9a38f3-5f1e-4abd-b520-7cfa76377fef"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouseScheme"",
                     ""action"": ""W Action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -484,6 +506,17 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""a04c66ca-5a60-4dfb-bd3d-de14489e81f2"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouseScheme"",
+                    ""action"": ""S Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""1fe6ef79-cd32-423c-b664-0853309d192d"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
@@ -511,6 +544,17 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamepadScheme"",
+                    ""action"": ""D Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""90f4819f-3f8a-4dc0-ba85-bb4d2b4adb47"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouseScheme"",
                     ""action"": ""D Action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
