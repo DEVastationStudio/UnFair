@@ -8,6 +8,12 @@ using UnityEngine.UI;
 
 public class PlayerHorse : MonoBehaviour
 {
+    private enum Scheme
+    {
+        KeyboardMouse,
+        Gamepad
+    };
+    private Scheme previousScheme;
     [SerializeField] private PlayerInput input;
     private float mov;
     [SerializeField] private float timeForKeys = 1.5f;
@@ -22,9 +28,18 @@ public class PlayerHorse : MonoBehaviour
     private int endedCombos;
     [SerializeField] private TextMeshProUGUI[] comboText;
     private bool endedCurrentCombo;
+    private bool nonArrowKey;
     #region UnityMethods
     void Start()
     {
+        if(input.currentControlScheme.Equals("KeyboardMouseScheme"))
+        {
+            previousScheme = Scheme.KeyboardMouse;
+        }else if(input.currentControlScheme.Equals("GamepadScheme"))
+        {
+            previousScheme = Scheme.Gamepad;
+        }
+        nonArrowKey = false;
         endedCurrentCombo = false;
         endedCombos = 0;
         currentTime = 0.0f;
@@ -38,6 +53,12 @@ public class PlayerHorse : MonoBehaviour
     {
         if (input.currentControlScheme.Equals("KeyboardMouseScheme"))
         {
+            if (!endedCurrentCombo && nonArrowKey && previousScheme == Scheme.Gamepad)
+            {
+                Debug.Log("De mando a teclado");
+                previousScheme = Scheme.KeyboardMouse;
+                ChangedSchemeText();
+            }
             if (combCreated && Keyboard.current.anyKey.wasPressedThisFrame)
             {
                 if (!(Keyboard.current[Key.W].wasPressedThisFrame || Keyboard.current[Key.A].wasPressedThisFrame || Keyboard.current[Key.S].wasPressedThisFrame || Keyboard.current[Key.D].wasPressedThisFrame || Keyboard.current[Key.E].wasPressedThisFrame || Keyboard.current[Key.Space].wasPressedThisFrame || Keyboard.current[Key.UpArrow].wasPressedThisFrame || Keyboard.current[Key.DownArrow].wasPressedThisFrame
@@ -52,10 +73,16 @@ public class PlayerHorse : MonoBehaviour
         }
         else if (input.currentControlScheme.Equals("GamepadScheme"))
         {
+            if (!endedCurrentCombo && nonArrowKey && previousScheme == Scheme.KeyboardMouse)
+            {
+                Debug.Log("De teclado a mando");
+                previousScheme = Scheme.Gamepad;
+                ChangedSchemeText();
+            }
             if (combCreated && Gamepad.current.wasUpdatedThisFrame)
             {
                 if (!(Gamepad.current[GamepadButton.DpadUp].wasPressedThisFrame || Gamepad.current[GamepadButton.DpadLeft].wasPressedThisFrame || Gamepad.current[GamepadButton.DpadDown].wasPressedThisFrame || Gamepad.current[GamepadButton.DpadRight].wasPressedThisFrame || Gamepad.current[GamepadButton.South].wasPressedThisFrame || Gamepad.current[GamepadButton.East].wasPressedThisFrame
-                || Gamepad.current[GamepadButton.DpadUp].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadLeft].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadDown].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadRight].wasReleasedThisFrame || Gamepad.current[GamepadButton.South].wasReleasedThisFrame || Gamepad.current[GamepadButton.East].wasReleasedThisFrame))
+                || Gamepad.current[GamepadButton.DpadUp].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadLeft].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadDown].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadRight].wasReleasedThisFrame || Gamepad.current[GamepadButton.South].wasReleasedThisFrame || Gamepad.current[GamepadButton.East].wasReleasedThisFrame || Gamepad.current[GamepadButton.LeftStick].wasPressedThisFrame || Gamepad.current[GamepadButton.LeftStick].wasReleasedThisFrame))
                 {
                     Debug.Log("Tecla ajena al conjunto de teclas creadas para el minijuego - MANDO");
                     ResetCorrect(false);
@@ -141,6 +168,7 @@ public class PlayerHorse : MonoBehaviour
     }
     private void ShowCombo()
     {
+        nonArrowKey = false;
         string auxText = "";
         for (int i = 0; i < comb.Length; i++)
         {
@@ -159,7 +187,15 @@ public class PlayerHorse : MonoBehaviour
                     auxText += "→";
                     break;
                 case "Space":
-                    auxText += "Space";
+                    if (input.currentControlScheme.Equals("KeyboardMouseScheme"))
+                    {
+                        auxText += "Space";
+                    }
+                    else if (input.currentControlScheme.Equals("GamepadScheme"))
+                    {
+                        auxText += "Circle";
+                    }
+                    nonArrowKey = true;
                     break;
             }
             comboText[i].color = Color.white;
@@ -224,6 +260,21 @@ public class PlayerHorse : MonoBehaviour
         if (ended)
         {
             endedCurrentCombo = true;
+        }
+    }
+
+    private void ChangedSchemeText()
+    {
+        for (int i = 0; i < comboText.Length; i++)
+        {
+            if (comboText[i].text.Equals("Circle"))
+            {
+                comboText[i].text = "Space";
+            }
+            else if (comboText[i].text.Equals("Space"))
+            {
+                comboText[i].text = "Circle";
+            }
         }
     }
 
