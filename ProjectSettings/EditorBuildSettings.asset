@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Feria.unity
+    guid: 766b0803708dee647991ae3f19d76d16
+  - enabled: 1
+    path: Assets/Scenes/TiroAlBlanco.unity
+    guid: 6b65fb29053462d43b415e4f59f6c054
+  - enabled: 1
+    path: Assets/Scenes/HorsesRace.unity
+    guid: 28ea8015f491f884b8f6ecfdade3c1f3
+  - enabled: 1
+    path: Assets/Scenes/Ducks.unity
+    guid: 3fc31b520a7041f4c8e0857ce57638f9
   m_configObjects: {}
