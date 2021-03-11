@@ -47,7 +47,7 @@
 
                 float displacement = (cos(worldPos.y) + cos(worldPos.x + (5 * _Time.y)) + cos(worldPos.z + (5 * _Time.y)));
 
-                worldPos.y = worldPos.y + (displacement * 0.1);
+                worldPos.y = worldPos.y + (displacement * 0.3);
 
                 o.pos = mul(UNITY_MATRIX_VP, worldPos);
 

@@ -20,7 +20,7 @@ public class FloatingObject : MonoBehaviour
         if (_inWater)
         {
             //TO-DO: Move this line to a singleton or the water object or wherever
-            _waterHeight = (Mathf.Cos(transform.position.y) + Mathf.Cos(transform.position.x + (5 * Time.timeSinceLevelLoad)) + Mathf.Cos(transform.position.z + (5 * Time.timeSinceLevelLoad)))*0.1f;
+            _waterHeight = (Mathf.Cos(transform.position.y) + Mathf.Cos(transform.position.x + (5 * Time.timeSinceLevelLoad)) + Mathf.Cos(transform.position.z + (5 * Time.timeSinceLevelLoad)))*0.3f;
 
             if (transform.position.y < _waterHeight)
             {
@@ -48,7 +48,7 @@ public class FloatingObject : MonoBehaviour
             rigidBody.constraints = RigidbodyConstraints.FreezeAll;
             transform.parent = _magnet.transform;
             other.tag = "Untagged";
-            transform.localPosition = new Vector3(0,-2.4f,0);
+            transform.localPosition = new Vector3(0,-1.8f,0);
         }
         else if (other.tag == "Basket" && _magnetized)
         {
