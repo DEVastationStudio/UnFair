@@ -29,6 +29,7 @@ public class PlayerHorse : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] comboText;
     private bool endedCurrentCombo;
     private bool nonArrowKey;
+    private bool restartingComboText;
     #region UnityMethods
     void Start()
     {
@@ -39,6 +40,7 @@ public class PlayerHorse : MonoBehaviour
         {
             previousScheme = Scheme.Gamepad;
         }
+        restartingComboText  = false;
         nonArrowKey = false;
         endedCurrentCombo = false;
         endedCombos = 0;
@@ -205,7 +207,7 @@ public class PlayerHorse : MonoBehaviour
     }
     private void CombinationManagement(string keyPressed)
     {
-        if (!combCreated) { return; }
+        if (!combCreated || restartingComboText) { return; }
         if (posComb < comb.Length)
         {
             if (comb[posComb].Equals(keyPressed))
@@ -221,6 +223,10 @@ public class PlayerHorse : MonoBehaviour
                 {
                     posComb++;
                 }
+            }
+            else if(posComb==0)
+            {
+                //no need to reset the sequence cause correct didnt started
             }
             else
             {
@@ -242,7 +248,7 @@ public class PlayerHorse : MonoBehaviour
         auxPos = (Vector3.forward * mov);
         newPos = new Vector3(transform.position.x + auxPos.x, transform.position.y + auxPos.y, transform.position.z + auxPos.z);
         transform.position = Vector3.MoveTowards(transform.position, newPos, 0.75f);
-        if (endedCombos > 2 || Random.Range(0, 99) > 65)
+        if (endedCombos >= 2 || Random.Range(0, 99) > 63)
         {
             combCreated = false;
             GenerateCombination();
@@ -251,6 +257,7 @@ public class PlayerHorse : MonoBehaviour
 
     private void ResetCorrect(bool ended)
     {
+        restartingComboText = true;
         StopCoroutine(ResetShowedText());
         StartCoroutine(ResetShowedText());
         //Debug.Log("Secuencia reseteada");
@@ -290,5 +297,6 @@ public class PlayerHorse : MonoBehaviour
             endedCurrentCombo = false;
             Move();
         }
+        restartingComboText = false;
     }
 }
