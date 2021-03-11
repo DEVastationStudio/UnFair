@@ -21,27 +21,31 @@ public class PlayerHorse : MonoBehaviour
     private Vector3 newPos;
     private Vector3 auxPos;
     public string[] comb;
-    [SerializeField] private string[] availableKeys;
+    private string[] availableKeys;
     private int posComb;
     private int correctSequence;
     private bool combCreated;
     private int endedCombos;
     [SerializeField] private TextMeshProUGUI[] comboText;
     private bool endedCurrentCombo;
-    private bool nonArrowKey;
     private bool restartingComboText;
     #region UnityMethods
+
+    void Awake()
+    {
+        availableKeys = new string[] { "Left", "Up", "Down", "Right", "Space" }; //this array maybe shoyuld be changed out of this script in order to have the possibility of rebinding keys
+    }
     void Start()
     {
-        if(input.currentControlScheme.Equals("KeyboardMouseScheme"))
+        if (input.currentControlScheme.Equals("KeyboardMouseScheme"))
         {
             previousScheme = Scheme.KeyboardMouse;
-        }else if(input.currentControlScheme.Equals("GamepadScheme"))
+        }
+        else if (input.currentControlScheme.Equals("GamepadScheme"))
         {
             previousScheme = Scheme.Gamepad;
         }
-        restartingComboText  = false;
-        nonArrowKey = false;
+        restartingComboText = false;
         endedCurrentCombo = false;
         endedCombos = 0;
         currentTime = 0.0f;
@@ -55,7 +59,7 @@ public class PlayerHorse : MonoBehaviour
     {
         if (input.currentControlScheme.Equals("KeyboardMouseScheme"))
         {
-            if (!endedCurrentCombo && nonArrowKey && previousScheme == Scheme.Gamepad)
+            if (!endedCurrentCombo && previousScheme == Scheme.Gamepad)
             {
                 Debug.Log("De mando a teclado");
                 previousScheme = Scheme.KeyboardMouse;
@@ -75,7 +79,7 @@ public class PlayerHorse : MonoBehaviour
         }
         else if (input.currentControlScheme.Equals("GamepadScheme"))
         {
-            if (!endedCurrentCombo && nonArrowKey && previousScheme == Scheme.KeyboardMouse)
+            if (!endedCurrentCombo && previousScheme == Scheme.KeyboardMouse)
             {
                 Debug.Log("De teclado a mando");
                 previousScheme = Scheme.Gamepad;
@@ -84,7 +88,7 @@ public class PlayerHorse : MonoBehaviour
             if (combCreated && Gamepad.current.wasUpdatedThisFrame)
             {
                 if (!(Gamepad.current[GamepadButton.DpadUp].wasPressedThisFrame || Gamepad.current[GamepadButton.DpadLeft].wasPressedThisFrame || Gamepad.current[GamepadButton.DpadDown].wasPressedThisFrame || Gamepad.current[GamepadButton.DpadRight].wasPressedThisFrame || Gamepad.current[GamepadButton.South].wasPressedThisFrame || Gamepad.current[GamepadButton.East].wasPressedThisFrame
-                || Gamepad.current[GamepadButton.DpadUp].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadLeft].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadDown].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadRight].wasReleasedThisFrame || Gamepad.current[GamepadButton.South].wasReleasedThisFrame || Gamepad.current[GamepadButton.East].wasReleasedThisFrame || Gamepad.current[GamepadButton.LeftStick].wasPressedThisFrame || Gamepad.current[GamepadButton.LeftStick].wasReleasedThisFrame))
+                || Gamepad.current[GamepadButton.DpadUp].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadLeft].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadDown].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadRight].wasReleasedThisFrame || Gamepad.current[GamepadButton.South].wasReleasedThisFrame || Gamepad.current[GamepadButton.East].wasReleasedThisFrame))
                 {
                     Debug.Log("Tecla ajena al conjunto de teclas creadas para el minijuego - MANDO");
                     ResetCorrect(false);
@@ -112,22 +116,22 @@ public class PlayerHorse : MonoBehaviour
 
     private void OnAAction(InputValue value)
     {
-        CombinationManagement("A");
+        CombinationManagement("Left");
     }
 
     private void OnDAction(InputValue value)
     {
-        CombinationManagement("D");
+        CombinationManagement("Right");
     }
 
     private void OnWAction(InputValue value)
     {
-        CombinationManagement("W");
+        CombinationManagement("Up");
     }
 
     private void OnSAction(InputValue value)
     {
-        CombinationManagement("S");
+        CombinationManagement("Down");
     }
 
     private void OnEAction(InputValue value)
@@ -170,22 +174,21 @@ public class PlayerHorse : MonoBehaviour
     }
     private void ShowCombo()
     {
-        nonArrowKey = false;
         string auxText = "";
         for (int i = 0; i < comb.Length; i++)
         {
             switch (comb[i].ToString())
             {
-                case "A":
+                case "Left":
                     auxText += "←";
                     break;
-                case "W":
+                case "Up":
                     auxText += "↑";
                     break;
-                case "S":
+                case "Down":
                     auxText += "↓";
                     break;
-                case "D":
+                case "Right":
                     auxText += "→";
                     break;
                 case "Space":
@@ -197,7 +200,6 @@ public class PlayerHorse : MonoBehaviour
                     {
                         auxText += "Circle";
                     }
-                    nonArrowKey = true;
                     break;
             }
             comboText[i].color = Color.white;
@@ -224,7 +226,7 @@ public class PlayerHorse : MonoBehaviour
                     posComb++;
                 }
             }
-            else if(posComb==0)
+            else if (posComb == 0)
             {
                 //no need to reset the sequence cause correct didnt started
             }
