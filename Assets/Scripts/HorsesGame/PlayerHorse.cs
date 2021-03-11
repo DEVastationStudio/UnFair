@@ -246,7 +246,7 @@ public class PlayerHorse : MonoBehaviour
     private void Move()
     {
         //Debug.Log("combinacion correcta");
-        mov = Random.Range(0.2f, 0.3f);
+        mov = Random.Range(0.25f, 0.33f);
         auxPos = (Vector3.forward * mov);
         newPos = new Vector3(transform.position.x + auxPos.x, transform.position.y + auxPos.y, transform.position.z + auxPos.z);
         transform.position = Vector3.MoveTowards(transform.position, newPos, 0.75f);
