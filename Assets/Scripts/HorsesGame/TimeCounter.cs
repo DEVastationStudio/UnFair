@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TimeCounter : MonoBehaviour
 {
-    private string minutes; 
+    private string minutes;
     private string seconds;
     private string miliseconds;
     private float timeSpent;
@@ -20,8 +20,8 @@ public class TimeCounter : MonoBehaviour
     {
         timeSpent += Time.deltaTime;
         seconds = (Mathf.Floor(timeSpent) % 60).ToString("00");
-        minutes = Mathf.Floor(timeSpent/60).ToString("00");
+        minutes = Mathf.Floor(timeSpent / 60).ToString("00");
         //miliseconds = Mathf.Floor((timeSpent*100) % 100).ToString("00");
-        timeText.text = minutes + " : " +seconds;
+        timeText.text = minutes + " : " + seconds;
     }
 }

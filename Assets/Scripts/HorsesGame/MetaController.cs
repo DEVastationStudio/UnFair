@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MetaController : MonoBehaviour
 {
+    [SerializeField] private HUD_Manager hUD_Manager;
     private int playerPos;
     private bool playerFinished;
     void Start()
@@ -14,16 +15,19 @@ public class MetaController : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if(playerFinished){return;}
-        if(other.CompareTag("Player"))
+    private void OnTriggerEnter(Collider other)
+    {
+        if (playerFinished) { return; }
+        if (other.CompareTag("Player"))
         {
             Debug.Log("Llegaste a la meta en posición: " + playerPos);
             playerFinished = true;
-        }else if(other.CompareTag("RivalHorse"))
+            hUD_Manager.RaceFinished(playerPos);
+        }
+        else if (other.CompareTag("RivalHorse"))
         {
             playerPos++;
             Debug.Log("Rival llegó");
