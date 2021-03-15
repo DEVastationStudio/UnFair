@@ -29,11 +29,13 @@ public class PlayerHorse : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] comboText;
     private bool endedCurrentCombo;
     private bool restartingComboText;
+    private bool gameStarted;
     #region UnityMethods
 
     void Awake()
     {
         availableKeys = new string[] { "Left", "Up", "Down", "Right", "Space" }; //this array maybe shoyuld be changed out of this script in order to have the possibility of rebinding keys
+        gameStarted = false;
     }
     void Start()
     {
@@ -57,6 +59,7 @@ public class PlayerHorse : MonoBehaviour
 
     void Update()
     {
+        if (!gameStarted) { return; }
         if (input.currentControlScheme.Equals("KeyboardMouseScheme"))
         {
             if (!endedCurrentCombo && previousScheme == Scheme.Gamepad)
@@ -139,7 +142,14 @@ public class PlayerHorse : MonoBehaviour
         CombinationManagement("E");
     }
     #endregion KeysActions
-
+    public void StartGame()
+    {
+        gameStarted = true;
+    }
+    public void EndGame()
+    {
+        gameStarted = false;
+    }
     private void GenerateCombination()
     {
         int keys = 3;//Random.Range(3, 6);
@@ -209,7 +219,7 @@ public class PlayerHorse : MonoBehaviour
     }
     private void CombinationManagement(string keyPressed)
     {
-        if (!combCreated || restartingComboText) { return; }
+        if (!combCreated || restartingComboText || !gameStarted) { return; }
         if (posComb < comb.Length)
         {
             if (comb[posComb].Equals(keyPressed))

@@ -53,13 +53,18 @@ Así mismo, el jugador podrá entablar conversación con los distintos personaje
 ## Tiro al blanco:
 
 ### 1. Concepto
-Varias dianas se mueven por la pantalla, hay que conseguir dispararlas.
+Dianas aparecen en pantalla según son destruidas dejando siempre en pantalla 3 dianas a las que disparar. Cuando se acierta el jugador obtiene puntos, en cambio si falla se le resta una cantidad de puntos. Cada cierto tiempo una de esas dianas aparece dorada la cual da mas puntos y dura x tiempo en pantalla. Todo esto ocurre mientras hay una cuenta atrás.
  
 ### 2. Cómo ganar
 El juego se completa al alcanzar un número de puntos. Los puntos aumentan conforme se acierta a dar dianas. Según la puntuación obtenida se conseguirán 1, 2 o 3 estrellas. 
 
 ### 3. IA
 Movimiento de las dianas y que sean más torpes si eres malillo.
+
+### 4. Ejemplos
+* https://www.youtube.com/watch?v=RsqLO3gWJp0 [Variedad de dianas]
+* https://www.youtube.com/watch?v=_R1yR1hbcNM [Tipos de tiro al blanco]
+* https://www.youtube.com/watch?v=_R1yR1hbcNM [Reloj en el min 7:13]
 
 ## Pesca de patos:
 
