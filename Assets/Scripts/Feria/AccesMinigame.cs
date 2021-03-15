@@ -18,15 +18,28 @@ public class AccesMinigame : MonoBehaviour
     private void Start()
     {
         _player = FindObjectOfType<PlayerController>();
+        Debug.Log("Se ejecuta esto");
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        Debug.Log("Colisión");
+        _player._isNearMinigame = true;
+        _player.SetScene(_scene);
+        _infoUI.SetActive(true);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Se triggea");
         _player._isNearMinigame = true;
         _player.SetScene(_scene);
         _infoUI.SetActive(true);
     }
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log("Ya no");
         _player._isNearMinigame = false;
         _infoUI.SetActive(false);
     }

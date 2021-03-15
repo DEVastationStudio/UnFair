@@ -1063,7 +1063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faseActual: 0
-  _timeForLevel: 30
+  _timeForLevel: 1
   _timerText: {fileID: 1228685820}
   _puntuacionText: {fileID: 792264332}
   _puntuacionFinalTxt: {fileID: 22633907}
@@ -1722,7 +1722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &963067456
 RectTransform:
   m_ObjectHideFlags: 0
