@@ -19,6 +19,10 @@ public partial class PlayerController : MonoBehaviour
     private void Move()
     {
         transform.position = new Vector3(transform.position.x + _dir.y * Time.deltaTime * _velocity, transform.position.y, transform.position.z - _dir.x * Time.deltaTime * _velocity);
+        if (_dir.x > 0 && _sprite.flipX)
+            _sprite.flipX = false;
+        else if (_dir.x < 0 && !_sprite.flipX)
+            _sprite.flipX = true;
     }
 
     #endregion Metodos
