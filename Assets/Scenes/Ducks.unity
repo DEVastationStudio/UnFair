@@ -2345,7 +2345,13 @@ MonoBehaviour:
   timerText: {fileID: 230506675}
   titleText: {fileID: 1466782520}
   menu: {fileID: 1063059640}
+  duckMask:
+    serializedVersion: 2
+    m_Bits: 256
+  startGameButton: {fileID: 2124532536}
   gameOver: 0
+  totalDucks: 100
+  gameStarted: 0
 --- !u!4 &1172530605
 Transform:
   m_ObjectHideFlags: 0
@@ -5070,7 +5076,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2124532537}
   m_OnClick:
     m_PersistentCalls:

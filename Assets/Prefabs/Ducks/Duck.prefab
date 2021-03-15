@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5950351324030407429}
   - component: {fileID: 5950351324030407450}
   - component: {fileID: 5950351324030407451}
+  - component: {fileID: 6373847414294606773}
   m_Layer: 8
   m_Name: Duck
   m_TagString: Untagged
@@ -125,5 +126,18 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 48
   m_CollisionDetection: 0
+--- !u!135 &6373847414294606773
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5950351324030407448}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.025
+  m_Center: {x: 0.0000052507967, y: -0.0038076644, z: 0.004130975}
