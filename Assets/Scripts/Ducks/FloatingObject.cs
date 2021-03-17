@@ -6,16 +6,16 @@ public class FloatingObject : MonoBehaviour
 {
     public Rigidbody rigidBody;
 
-    private float _waterHeight;
-    private bool _inWater;
-    private bool _magnetized;
-    private GameObject _magnet;
+    protected float _waterHeight;
+    protected bool _inWater;
+    protected bool _magnetized;
+    protected GameObject _magnet;
 
     protected virtual void Start() {
         _waterHeight = 0;
         _inWater = true;
     }    
-    void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (_inWater)
         {
@@ -26,15 +26,6 @@ public class FloatingObject : MonoBehaviour
             {
                 //Floating force
                 rigidBody.AddForce(new Vector3(0, Mathf.Abs(Physics.gravity.y) * (Mathf.Clamp(_waterHeight-transform.position.y, 0, 1) * 3), 0), ForceMode.Acceleration);
-                
-                //Spin force
-                Vector3 cross = Vector3.Cross(transform.position, Vector3.up);
-                cross.y = 0;
-                Vector3 pos = -transform.position;
-                pos.y = 0;
-                rigidBody.AddForce(cross/4, ForceMode.Force);
-                rigidBody.AddForce(pos/4, ForceMode.Force);
-                Debug.DrawRay(transform.position, Vector3.Cross(transform.position, Vector3.up));
             }
         }
     }

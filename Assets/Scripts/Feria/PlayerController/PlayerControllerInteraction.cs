@@ -19,7 +19,10 @@ public partial class PlayerController : MonoBehaviour
     }
     private void StartMinigame()
     {
-        SceneManager.LoadScene(_scene);
+        if (_fadeController != null)
+            _fadeController.Fade(_scene);
+        else
+            SceneManager.LoadScene(_scene);
     }
 
     #endregion Metodos

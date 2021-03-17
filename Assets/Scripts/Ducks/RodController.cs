@@ -31,6 +31,8 @@ public class RodController : MonoBehaviour
 
     void Update()
     {
+        if (!gameManager.gameStarted) return;
+        
         //Read Mouse Position
         if (_isGamepad && _gamepadCoords.magnitude != 0)
         {

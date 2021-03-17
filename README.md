@@ -70,10 +70,25 @@ Movimiento de las dianas y que sean más torpes si eres malillo.
 
 ### 1. Concepto
 En una charca hay patos. El juego es “multijugador”, es decir se juega contra otro NPC.
+Hay cinco tipos de patos:
+
+1. Pato normal: Otorga un punto a quien lo pesque
+2. Pato verde: Otorga dos puntos al pescador controlado por el jugador
+3. Pato rojo: Otorga dos puntos al pescador controlado por la IA
+4. Pato dorado: Otorga cinco puntos a quien lo pesque
+5. Pato negro: Quita dos puntos a quien lo pesque
+
 ### 2. Cómo ganar
-Se gana consiguiendo más patos que el otro jugador. Según la puntuación obtenida se conseguirán 1, 2 o 3 estrellas.
+Se gana consiguiendo más patos que el otro jugador. Los requisitos para obtener cada una de las estrellas son los siguientes:
+
+* Conseguir más puntos que el otro jugador (requisito mínimo para obtener más estrellas)
+* Conseguir por lo menos cinco puntos más que el otro jugador
+* Conseguir no pescar patos rojos y negros
+
 ### 3. IA
-Movimiento de los patos, IA del NPC.
+La IA controla el movimiento de la caña enemiga, e intenta buscar el mejor pato para pescar.
+
+Para conseguirlo, comprueba los patos más cercanos y escoge el mejor, teniendo en cuenta tanto el tipo de pato como la distancia al imán.
 
 ## Carrera de caballos:
 

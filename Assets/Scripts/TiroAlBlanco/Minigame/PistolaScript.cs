@@ -21,10 +21,19 @@ public class PistolaScript : MonoBehaviour
     #endregion Variables
 
     #region Metodos
+    private void Update()
+    {
+        PointerUpdate();
+    }
+
     void OnLook(InputValue value) 
     {
-        if (_gameManager._uiGeneral.faseActual != UIGeneral.Fases.GAME) return;
         _pos = value.Get<Vector2>();
+    }
+
+    private void PointerUpdate() 
+    {
+        if (_gameManager._uiGeneral.faseActual != UIGeneral.Fases.GAME) return;
         if (input.currentControlScheme.Equals("KeyboardMouseScheme"))
             _mousePoint.transform.position = new Vector3(_pos.x, _pos.y, _mousePoint.transform.position.z);
         else if (input.currentControlScheme.Equals("GamepadScheme"))

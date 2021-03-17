@@ -34,6 +34,22 @@ public class Duck : FloatingObject
         }
         _renderer.material = _material;
     }
+    protected override void FixedUpdate() {
+        
+        base.FixedUpdate();
+            
+        if (_gameManager.gameStarted && _inWater && transform.position.y < _waterHeight)
+        {
+            //Spin force
+            Vector3 cross = Vector3.Cross(transform.position, Vector3.up);
+            cross.y = 0;
+            Vector3 pos = -transform.position;
+            pos.y = 0;
+            rigidBody.AddForce(cross/4, ForceMode.Force);
+            rigidBody.AddForce(pos/4, ForceMode.Force);
+            Debug.DrawRay(transform.position, Vector3.Cross(transform.position, Vector3.up));
+        }
+    }
 
     protected override void OnBasketEnter(bool player)
     {

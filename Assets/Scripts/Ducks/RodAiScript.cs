@@ -76,16 +76,16 @@ public class RodAiScript : MonoBehaviour
                             modifier = 1;
                             break;
                         case Duck.Type.AI:
-                            modifier = 0.5f;
+                            modifier = 0.05f;
                             break;
                         case Duck.Type.GOLD:
-                            modifier = 0.1f;
+                            modifier = 0.001f;
                             break;
                         case Duck.Type.PLAYER:
-                            modifier = 5f;
+                            modifier = 500f;
                             break;
                         case Duck.Type.BLACK:
-                            modifier = 20;
+                            modifier = 2000;
                             break;
                     }
 
@@ -104,7 +104,8 @@ public class RodAiScript : MonoBehaviour
                     }
                 }
 
-                _targetPos = nearDucks[chosenDuck].transform.position;
+                //if (nearDucks[chosenDuck].type != Duck.Type.BLACK) //Not yet
+                    _targetPos = nearDucks[chosenDuck].transform.position;
             }
 
         }

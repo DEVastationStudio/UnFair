@@ -9,6 +9,7 @@ public partial class PlayerController : MonoBehaviour
     [Header("Movement variables")]
     [SerializeField] private float _velocity;
     [SerializeField] private SpriteRenderer _sprite;
+    [SerializeField] private FadeController _fadeController;
 
     #endregion Variables
 
