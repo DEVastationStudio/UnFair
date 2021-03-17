@@ -60,7 +60,7 @@ public class SpawnerDianas : MonoBehaviour
         targetsInUse[posInArray] = true;
         aux = Instantiate(target, pos, Quaternion.identity);
         aux.GetComponent<Diana>()._pos = posInArray;
-        aux.transform.localEulerAngles = new Vector3(-90, 0, 0);
+        aux.transform.localEulerAngles = new Vector3(0, -180, 0);
         numDianas++;
     }
     #endregion Metodos
