@@ -11,6 +11,9 @@ public partial class PlayerController : MonoBehaviour
     [SerializeField] private SpriteRenderer _sprite;
     [SerializeField] private FadeController _fadeController;
 
+    [Header("Interfaz")]
+    [SerializeField] private UIManager _uiManager;
+
     #endregion Variables
 
     #region Metodos

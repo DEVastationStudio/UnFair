@@ -549,6 +549,107 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""UIMap"",
+            ""id"": ""80da7698-ee51-418b-a171-0f58513e437e"",
+            ""actions"": [
+                {
+                    ""name"": ""MovementUI"",
+                    ""type"": ""Value"",
+                    ""id"": ""82b658c4-9105-4c7b-9d3e-b2a63087b794"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""MouseRightActionUI"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e67b0be-c10c-42bf-9161-ac68ad19bd4c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""Arrows"",
+                    ""id"": ""cfc45ab9-0f0d-4c87-963d-c7c5dfec2512"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementUI"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""ae801b79-d75f-4e2f-97e8-695c01cb5d64"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouseScheme"",
+                    ""action"": ""MovementUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""d54d83de-069f-4d9a-b5ee-b202b53aaf84"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouseScheme"",
+                    ""action"": ""MovementUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""8516239e-45af-439d-920c-610542333c50"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouseScheme"",
+                    ""action"": ""MovementUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""d4352d00-0988-43ce-ba4e-3c8a9624b6a6"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouseScheme"",
+                    ""action"": ""MovementUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc890a50-ec8a-466c-9f7f-452cb0b5654e"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamepadScheme"",
+                    ""action"": ""MovementUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2f91e30e-1f62-4faf-80cb-f401e3bd8f34"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamepadScheme"",
+                    ""action"": ""MouseRightActionUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -594,6 +695,10 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         m_ActionMap_SAction = m_ActionMap.FindAction("S Action", throwIfNotFound: true);
         m_ActionMap_DAction = m_ActionMap.FindAction("D Action", throwIfNotFound: true);
         m_ActionMap_Look = m_ActionMap.FindAction("Look", throwIfNotFound: true);
+        // UIMap
+        m_UIMap = asset.FindActionMap("UIMap", throwIfNotFound: true);
+        m_UIMap_MovementUI = m_UIMap.FindAction("MovementUI", throwIfNotFound: true);
+        m_UIMap_MouseRightActionUI = m_UIMap.FindAction("MouseRightActionUI", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -752,6 +857,47 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         }
     }
     public ActionMapActions @ActionMap => new ActionMapActions(this);
+
+    // UIMap
+    private readonly InputActionMap m_UIMap;
+    private IUIMapActions m_UIMapActionsCallbackInterface;
+    private readonly InputAction m_UIMap_MovementUI;
+    private readonly InputAction m_UIMap_MouseRightActionUI;
+    public struct UIMapActions
+    {
+        private @PlayerInputs m_Wrapper;
+        public UIMapActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @MovementUI => m_Wrapper.m_UIMap_MovementUI;
+        public InputAction @MouseRightActionUI => m_Wrapper.m_UIMap_MouseRightActionUI;
+        public InputActionMap Get() { return m_Wrapper.m_UIMap; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIMapActions set) { return set.Get(); }
+        public void SetCallbacks(IUIMapActions instance)
+        {
+            if (m_Wrapper.m_UIMapActionsCallbackInterface != null)
+            {
+                @MovementUI.started -= m_Wrapper.m_UIMapActionsCallbackInterface.OnMovementUI;
+                @MovementUI.performed -= m_Wrapper.m_UIMapActionsCallbackInterface.OnMovementUI;
+                @MovementUI.canceled -= m_Wrapper.m_UIMapActionsCallbackInterface.OnMovementUI;
+                @MouseRightActionUI.started -= m_Wrapper.m_UIMapActionsCallbackInterface.OnMouseRightActionUI;
+                @MouseRightActionUI.performed -= m_Wrapper.m_UIMapActionsCallbackInterface.OnMouseRightActionUI;
+                @MouseRightActionUI.canceled -= m_Wrapper.m_UIMapActionsCallbackInterface.OnMouseRightActionUI;
+            }
+            m_Wrapper.m_UIMapActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @MovementUI.started += instance.OnMovementUI;
+                @MovementUI.performed += instance.OnMovementUI;
+                @MovementUI.canceled += instance.OnMovementUI;
+                @MouseRightActionUI.started += instance.OnMouseRightActionUI;
+                @MouseRightActionUI.performed += instance.OnMouseRightActionUI;
+                @MouseRightActionUI.canceled += instance.OnMouseRightActionUI;
+            }
+        }
+    }
+    public UIMapActions @UIMap => new UIMapActions(this);
     private int m_KeyboardMouseSchemeSchemeIndex = -1;
     public InputControlScheme KeyboardMouseSchemeScheme
     {
@@ -783,5 +929,10 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         void OnSAction(InputAction.CallbackContext context);
         void OnDAction(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+    }
+    public interface IUIMapActions
+    {
+        void OnMovementUI(InputAction.CallbackContext context);
+        void OnMouseRightActionUI(InputAction.CallbackContext context);
     }
 }
