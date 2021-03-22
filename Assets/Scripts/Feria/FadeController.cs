@@ -6,17 +6,27 @@ using UnityEngine.SceneManagement;
 
 public class FadeController : MonoBehaviour
 {
+    public static FadeController instance;
     public Image fade;
     private Color _fullColor = new Color(0,0,0,1);
     private Color _emptyColor = new Color(0,0,0,0);
     void Start()
     {
-        StartCoroutine(FadeIn());
+        if (instance == null)
+        {
+            instance = this;
+            StartCoroutine(FadeIn());
+            //DontDestroyOnLoad(this);
+        }
+        else
+        {
+            Destroy(instance.gameObject);
+        }
     }
 
-    public void Fade(string scene)
+    public static void Fade(string scene)
     {
-        StartCoroutine(FadeOut(scene));
+        instance.StartCoroutine(instance.FadeOut(scene));
     }
 
     private IEnumerator FadeOut(string scene)
