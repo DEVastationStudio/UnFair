@@ -574,7 +574,8 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    1: USE_NEW_INPUT;TMP_PRESENT;USE_TIMELINE;USE_CINEMACHINE
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}
