@@ -11,6 +11,8 @@ TagManager:
   - RivalHorse
   - DianaDorada
   - RivalBasket
+  - Canica
+  - Obstacle
   layers:
   - Default
   - TransparentFX

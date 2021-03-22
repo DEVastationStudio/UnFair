@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 8696825875677470041}
   m_Layer: 0
   m_Name: Muros
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4552e376688d35f4ca2750739e1aa00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  power: 303.8
 --- !u!1 &2378994274044759443
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +161,7 @@ GameObject:
   - component: {fileID: 8364246300315669713}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -630,7 +631,7 @@ GameObject:
   - component: {fileID: 3960253166844051656}
   m_Layer: 0
   m_Name: Muros (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -721,6 +722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4552e376688d35f4ca2750739e1aa00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  power: 303.8
 --- !u!1 &6147708731255371186
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,7 +738,7 @@ GameObject:
   - component: {fileID: 3220116787385824114}
   m_Layer: 0
   m_Name: Muros (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -827,6 +829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4552e376688d35f4ca2750739e1aa00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  power: 303.8
 --- !u!1 &6413803015744213619
 GameObject:
   m_ObjectHideFlags: 0
