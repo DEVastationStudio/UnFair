@@ -2351,7 +2351,8 @@ MonoBehaviour:
   pScoreText: {fileID: 1159373353}
   aScoreText: {fileID: 1362173404}
   timerText: {fileID: 230506675}
-  titleText: {fileID: 1466782520}
+  titleText: {fileID: 610380578}
+  endGameText: {fileID: 1466782520}
   menu: {fileID: 1063059640}
   duckMask:
     serializedVersion: 2
@@ -2360,6 +2361,7 @@ MonoBehaviour:
   gameOver: 0
   totalDucks: 100
   gameStarted: 0
+  noBadDucks: 0
 --- !u!4 &1172530605
 Transform:
   m_ObjectHideFlags: 0

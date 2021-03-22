@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 3516401645622996352}
   - component: {fileID: 532303537359168037}
   - component: {fileID: 2344097728112023279}
+  - component: {fileID: -8112852489106395008}
+  - component: {fileID: 1420922709433942487}
   m_Layer: 0
   m_Name: DianaDorada
-  m_TagString: Untagged
+  m_TagString: DianaDorada
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,3 +81,32 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-8112852489106395008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4289419189925803834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9959a17e2a2e9d49a773cf0da17e0e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _points: 50
+  _pos: 0
+  _hit: 0
+--- !u!64 &1420922709433942487
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4289419189925803834}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2534964839176971238, guid: 83914df6b40702e448e7ada8eede91a3, type: 3}

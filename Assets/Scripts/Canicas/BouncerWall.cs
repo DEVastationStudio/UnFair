@@ -19,6 +19,7 @@ public class BouncerWall : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Canica"))
         {
+            Debug.Log("Loco");
             Rigidbody rigidbody = other.gameObject.GetComponent<Rigidbody>();
             Vector3 direction = other.contacts[0].normal;
             if (rigidbody != null)

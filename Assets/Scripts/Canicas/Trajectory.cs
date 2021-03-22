@@ -6,18 +6,16 @@ using UnityEngine.SceneManagement;
 public class Trajectory : MonoBehaviour
 {
     [SerializeField] int maxIterations;
-    Scene normalScene;
-    Scene predictionScene;
+    private Scene normalScene;
+    private Scene predictionScene;
+    private PhysicsScene normalPhyScene;
+    private PhysicsScene predictionPhyScene;
+    private LineRenderer pathLine;
+    private GameObject ballCopy;
+    [SerializeField] private GameObject[] obstacles;
+    private List<GameObject> predictionObstacles = new List<GameObject>();
 
-    PhysicsScene normalPhyScene;
-    PhysicsScene predictionPhyScene;
-
-    LineRenderer pathLine;
-
-    GameObject ballCopy;
-
-
-    void Start()
+    void Awake()
     {
         Physics.autoSimulation = false;
 
@@ -27,8 +25,12 @@ public class Trajectory : MonoBehaviour
         CreateSceneParameters parameters = new CreateSceneParameters(LocalPhysicsMode.Physics3D);
         predictionScene = SceneManager.CreateScene("Trajectory", parameters);
         predictionPhyScene = predictionScene.GetPhysicsScene();
+        CreatePredicObstacles();
 
         pathLine = GetComponent<LineRenderer>();
+    }
+    void Start()
+    {
     }
 
     void Update()
@@ -44,7 +46,41 @@ public class Trajectory : MonoBehaviour
         }
     }
 
-    public void pathCreation(GameObject ball, Vector3 currentPos, Vector3 force)
+    private void CreatePredicObstacles()
+    {
+        for (int i = 0; i < obstacles.Length; i++)
+        {
+            if (obstacles[i].gameObject.GetComponent<Collider>() != null)
+            {
+                GameObject fakeT = Instantiate(obstacles[i].gameObject);
+                fakeT.transform.position = obstacles[i].transform.position;
+                fakeT.transform.rotation = obstacles[i].transform.rotation;
+                Renderer fakeR = fakeT.GetComponent<Renderer>();
+                if (fakeR)
+                {
+                    fakeR.enabled = false;
+                }
+                SceneManager.MoveGameObjectToScene(fakeT, predictionScene);
+                predictionObstacles.Add(fakeT);
+            }
+
+        }
+        /*foreach(Transform t in obstacles.transform){
+            if(t.gameObject.GetComponent<Collider>() != null){
+                GameObject fakeT = Instantiate(t.gameObject);
+                fakeT.transform.position = t.position;
+                fakeT.transform.rotation = t.rotation;
+                Renderer fakeR = fakeT.GetComponent<Renderer>();
+                if(fakeR){
+                    fakeR.enabled = false;
+                }
+                SceneManager.MoveGameObjectToScene(fakeT, predictionScene);
+                dummyObstacles.Add(fakeT);
+            }
+        }*/
+    }
+
+    public void PathCreation(GameObject ball, Vector3 currentPos, Vector3 force)
     {
         if (normalPhyScene.IsValid() && predictionPhyScene.IsValid())
         {
@@ -69,6 +105,5 @@ public class Trajectory : MonoBehaviour
         }
 
     }
-
 
 }
