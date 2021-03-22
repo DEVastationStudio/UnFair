@@ -19,9 +19,9 @@ public class SpawnerDianas : MonoBehaviour
         //Hay que cambiarlo una vez esten hechas las dianas y diseño del nivel
         numDianas = 0;
         targetsInUse = new bool[_spawnPoints.Count];
-        Spawn(_spawnPoints[2].transform.position, _possibleTargets[0], 2);
-        Spawn(_spawnPoints[4].transform.position, _possibleTargets[0], 2);
-        Spawn(_spawnPoints[6].transform.position, _possibleTargets[0], 2);
+        SpawnNewTarget(1);
+        SpawnNewTarget(1);
+        SpawnNewTarget(1);
     }
 
     public void SpawnNewTarget(int type) 
