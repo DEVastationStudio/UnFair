@@ -9,7 +9,7 @@ public class DucksGameManager : MonoBehaviour
 {
     public Duck duckPrefab;
     private int _playerScore, _aiScore;
-    public TMP_Text pScoreText, aScoreText, timerText, titleText;
+    public TMP_Text pScoreText, aScoreText, timerText, titleText, endGameText;
     public GameObject menu;
     public LayerMask duckMask;
     public Button startGameButton;
@@ -31,9 +31,12 @@ public class DucksGameManager : MonoBehaviour
 
     private int _goldDucks, _blackDucks, _greenDucks, _redDucks;
     public bool gameStarted;
+    public bool noBadDucks;
 
     void Start()
     {
+        titleText.text += "\nStars: " + GameProgress.GetStars(3);
+        noBadDucks = true;
         _goldDucks  = Mathf.RoundToInt(totalDucks*0.1f);
         _blackDucks = _goldDucks + Mathf.RoundToInt(totalDucks*0.12f);
         _greenDucks = _blackDucks + Mathf.RoundToInt(totalDucks*0.3f);
@@ -115,7 +118,26 @@ public class DucksGameManager : MonoBehaviour
         }
         //Finish game
         gameOver = true;
-        titleText.text = "Score: " + _playerScore + "/" + _aiScore;
+        endGameText.text = "Score: " + _playerScore + "/" + _aiScore;
+
+        //Calculate stars
+        int stars = 0;
+        if (_playerScore > _aiScore)
+        {
+            stars = 1;
+            int difference = Mathf.Abs(_playerScore-_aiScore);
+            if (noBadDucks && difference >= 5)
+            {
+                stars = 3;
+            }
+            else if (noBadDucks || difference >= 5)
+            {
+                stars = 2;
+            }
+        }
+        GameProgress.SetStars(3, stars);
+
+        endGameText.text += "\nStars: " + GameProgress.GetStars(3);
         menu.SetActive(true);
     }
 

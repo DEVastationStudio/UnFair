@@ -74,5 +74,10 @@ public class Duck : FloatingObject
                 _gameManager.aiScore += 2;
                 break;
         }
+
+        if (player && (type == Type.BLACK || type == Type.AI))
+        {
+            _gameManager.noBadDucks = false;
+        }
     }
 }
