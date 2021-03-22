@@ -19,8 +19,8 @@ public partial class PlayerController : MonoBehaviour
     }
     private void StartMinigame()
     {
-        if (_fadeController != null)
-            _fadeController.Fade(_scene);
+        if (FadeController.instance != null)
+            FadeController.Fade(_scene);
         else
             SceneManager.LoadScene(_scene);
     }

@@ -18,6 +18,8 @@ public class RodController : MonoBehaviour
     private bool _isGamepad;
     private Vector2 _gamepadCoords;
     public DucksGameManager gameManager;
+    public BoxCollider rodBounds;
+    private Bounds _bounds;
 
     void Start()
     {
@@ -26,6 +28,9 @@ public class RodController : MonoBehaviour
         _height = 0;
         _initialHeight = transform.position.y;
         _isGamepad = false;
+
+        _bounds = rodBounds.bounds;
+        rodBounds.enabled = false;
     }
 
 
@@ -53,6 +58,10 @@ public class RodController : MonoBehaviour
         if (!gameManager.gameOver)
         {
             Vector3 newPos = new Vector3(_mousePos.x, _initialHeight - _height, _mousePos.z) + positionOffset;
+
+            newPos.x = Mathf.Clamp(newPos.x, _bounds.min.x, _bounds.max.x);
+            newPos.z = Mathf.Clamp(newPos.z, _bounds.min.z, _bounds.max.z);
+
             transform.position = Vector3.MoveTowards(transform.position, newPos, 8 * Time.deltaTime);
         }
     }
