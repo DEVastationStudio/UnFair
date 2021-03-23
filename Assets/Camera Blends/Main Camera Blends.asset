@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Main Camera Blends
   m_EditorClassIdentifier: 
   m_CustomBlends:
-  - m_From: CM vcam2
-    m_To: CM vcam1
+  - m_From: Noria VC2
+    m_To: Player VC1
     m_Blend:
       m_Style: 1
       m_Time: 1
@@ -24,8 +24,8 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - m_From: CM vcam1
-    m_To: CM vcam2
+  - m_From: Player VC1
+    m_To: Noria VC2
     m_Blend:
       m_Style: 1
       m_Time: 1
@@ -35,8 +35,8 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - m_From: CM vcam3
-    m_To: '**ANY CAMERA**'
+  - m_From: TitleScreen VC3
+    m_To: Player VC1
     m_Blend:
       m_Style: 1
       m_Time: 4
