@@ -28,6 +28,8 @@ public class Trajectory : MonoBehaviour
         CreatePredicObstacles();
 
         pathLine = GetComponent<LineRenderer>();
+
+        FadeController.FinishLoad();
     }
     void Start()
     {

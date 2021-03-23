@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class DucksGameManager : MonoBehaviour
 {
@@ -51,8 +50,12 @@ public class DucksGameManager : MonoBehaviour
         float radius;
         Vector3 pos;
         bool freeSpace;
+
+        int attempts;
+
         for (int i = 0; i < totalDucks; i++)
         {
+            attempts = 0;
             freeSpace = false;
             while (!freeSpace)
             {
@@ -85,11 +88,23 @@ public class DucksGameManager : MonoBehaviour
                     }
                     freeSpace = true;
                 }
+                else
+                {
+                    attempts++;
+                    if (attempts%20 == 0)
+                    {
+                        yield return null;
+                    }
+                    if (attempts > 200)
+                    {
+                        break;
+                    }
+                }
                 //yield return null;
             }
         }
         startGameButton.interactable = true;
-        yield return null;
+        FadeController.FinishLoad();
     }
 
     private void OnPlayerScoreUpdate(int value)
@@ -143,6 +158,6 @@ public class DucksGameManager : MonoBehaviour
 
     public void ResetScene()
     {
-        SceneManager.LoadScene("Ducks");
+        FadeController.Fade("Ducks");
     }
 }

@@ -55,6 +55,7 @@ public class PlayerHorse : MonoBehaviour
         GenerateCombination();
         posComb = 0;
         correctSequence = 0;
+        FadeController.FinishLoad();
     }
 
     void Update()

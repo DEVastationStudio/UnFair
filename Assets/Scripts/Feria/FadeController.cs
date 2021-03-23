@@ -10,17 +10,24 @@ public class FadeController : MonoBehaviour
     public Image fade;
     private Color _fullColor = new Color(0,0,0,1);
     private Color _emptyColor = new Color(0,0,0,0);
-    void Start()
+    public Image loading;
+    private int _loadingStage;
+
+    public Vector3 lastPlayerPosition;
+
+    public PlayerController player;
+    public bool storedPlayerPosition;
+
+    void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            StartCoroutine(FadeIn());
-            //DontDestroyOnLoad(this);
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
-            Destroy(instance.gameObject);
+            Destroy(this.gameObject);
         }
     }
 
@@ -28,31 +35,65 @@ public class FadeController : MonoBehaviour
     {
         instance.StartCoroutine(instance.FadeOut(scene));
     }
+    public static void FinishLoad(bool skipLoading = false)
+    {
+        instance.StartCoroutine(instance.FadeIn(skipLoading));
+    }
 
     private IEnumerator FadeOut(string scene)
     {
-        fade.enabled = true;
-        float elapsedTime = 0;
-        while (elapsedTime < 0.5f)
+        
+        if (scene != "Feria" && player != null)
         {
-            fade.color = Color.Lerp(_emptyColor, _fullColor, elapsedTime*2);
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            lastPlayerPosition = player.gameObject.transform.position;
+            storedPlayerPosition = true;
         }
-        fade.color = _fullColor;
-        SceneManager.LoadScene(scene);
+
+        yield return FadeImageOut(fade);
+        yield return FadeImageOut(loading);
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadSceneAsync(scene);
     }
 
-    private IEnumerator FadeIn()
+    private IEnumerator FadeIn(bool skipLoading = false)
     {
-        fade.enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        if (!skipLoading) yield return FadeImageIn(loading);
+        yield return FadeImageIn(fade);
+    }
+    private IEnumerator FadeImageOut(Image image)
+    {
+        image.enabled = true;
         float elapsedTime = 0;
+        Color tempColor;
         while (elapsedTime < 0.5f)
         {
-            fade.color = Color.Lerp(_fullColor, _emptyColor, elapsedTime*2);
+            //image.color = Color.Lerp(_emptyColor, _fullColor, elapsedTime*2);
+            tempColor = image.color;
+            tempColor.a = Mathf.Lerp(0, 1, elapsedTime*2);
+            image.color = tempColor;
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        fade.enabled = false;
+        tempColor = image.color;
+        tempColor.a = 1;
+        image.color = tempColor;
+    }
+
+    private IEnumerator FadeImageIn(Image image)
+    {
+        image.enabled = true;
+        float elapsedTime = 0;
+        Color tempColor;
+        while (elapsedTime < 0.5f)
+        {
+            //image.color = Color.Lerp(_fullColor, _emptyColor, elapsedTime*2);
+            tempColor = image.color;
+            tempColor.a = Mathf.Lerp(1, 0, elapsedTime*2);
+            image.color = tempColor;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        image.enabled = false;
     }
 }

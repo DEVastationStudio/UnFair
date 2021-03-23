@@ -7,6 +7,6 @@ public class GoBackToFair : MonoBehaviour
 {
     public void GoToFair() 
     {
-        SceneManager.LoadScene("Feria");
+        FadeController.Fade("Feria");
     }
 }

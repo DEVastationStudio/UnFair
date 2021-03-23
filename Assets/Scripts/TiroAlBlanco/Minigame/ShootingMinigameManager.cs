@@ -15,6 +15,7 @@ public class ShootingMinigameManager : MonoBehaviour
     {
         _pistolaScript._probDianaDorada = 110;
         _uiGeneral.FasePreGame();
+        FadeController.FinishLoad();
     }
 
     public void StartGame() 
