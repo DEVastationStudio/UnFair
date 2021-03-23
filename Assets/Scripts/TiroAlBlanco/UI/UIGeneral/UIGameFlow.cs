@@ -42,11 +42,20 @@ public partial class UIGeneral : MonoBehaviour
         _PostGameContainer.SetActive(true);
         Diana[] DianasRestantes = FindObjectsOfType<Diana>();
         if (_puntuacionActual >= _estrella3)
+        {
+            GameProgress.SetStars(1,3);
             _estrellasConseguidasTxt.text = "3 Stars";
+        }
         else if (_puntuacionActual >= _estrella2)
+        {
+            GameProgress.SetStars(1, 2);
             _estrellasConseguidasTxt.text = "2 Stars";
+        }
         else if (_puntuacionActual >= _estrella1)
+        {
+            GameProgress.SetStars(1, 1);
             _estrellasConseguidasTxt.text = "1 Star";
+        }
         else _estrellasConseguidasTxt.text = "No Stars";
 
         _puntuacionFinalTxt.text = "Score: " + _puntuacionActual;
