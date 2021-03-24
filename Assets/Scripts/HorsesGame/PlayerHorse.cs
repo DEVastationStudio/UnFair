@@ -30,12 +30,14 @@ public class PlayerHorse : MonoBehaviour
     private bool endedCurrentCombo;
     private bool restartingComboText;
     private bool gameStarted;
+    private bool comboFailed;
     #region UnityMethods
 
     void Awake()
     {
         availableKeys = new string[] { "Left", "Up", "Down", "Right", "Space" }; //this array maybe shoyuld be changed out of this script in order to have the possibility of rebinding keys
         gameStarted = false;
+        comboFailed = false;
     }
     void Start()
     {
@@ -281,6 +283,15 @@ public class PlayerHorse : MonoBehaviour
         {
             endedCurrentCombo = true;
         }
+        else
+        {
+            comboFailed = true;
+        }
+    }
+
+    public bool GetComboFailed()
+    {
+        return comboFailed;
     }
 
     private void ChangedSchemeText()

@@ -5,6 +5,7 @@ using UnityEngine;
 public class MetaController : MonoBehaviour
 {
     [SerializeField] private HUD_Manager hUD_Manager;
+    [SerializeField] private TimeCounter timeCounter;
     private int playerPos;
     private bool playerFinished;
     void Start()
@@ -23,6 +24,7 @@ public class MetaController : MonoBehaviour
         if (playerFinished) { return; }
         if (other.CompareTag("Player"))
         {
+            timeCounter.DeactivateTimer();
             Debug.Log("Llegaste a la meta en posición: " + playerPos);
             playerFinished = true;
             hUD_Manager.RaceFinished(playerPos);
