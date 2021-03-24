@@ -14,6 +14,7 @@ public class FadeController : MonoBehaviour
     private int _loadingStage;
 
     public Vector3 lastPlayerPosition;
+    public Vector2 lastPlayerDirection;
 
     public PlayerController player;
     public bool storedPlayerPosition;
@@ -46,6 +47,7 @@ public class FadeController : MonoBehaviour
         if (scene != "Feria" && player != null)
         {
             lastPlayerPosition = player.gameObject.transform.position;
+            lastPlayerDirection = player.lastDir;
             storedPlayerPosition = true;
         }
 

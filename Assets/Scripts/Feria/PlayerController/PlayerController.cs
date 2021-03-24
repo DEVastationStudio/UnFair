@@ -12,12 +12,16 @@ public partial class PlayerController : MonoBehaviour
 
     [Header("Interfaz")]
     [SerializeField] private UIManager _uiManager;
+    [SerializeField] private GameObject _titleScreen;
 
     [Header("Cameras")]
     [SerializeField] private GameObject _titleCamera;
     [SerializeField] private GameObject _gameCamera;
     [SerializeField] private GameObject  _dummyCamera;
-    [SerializeField] private GameObject _titleScreen;
+    [SerializeField] private Camera _mainCamera;
+
+    [Header("Animator")]
+    [SerializeField] private Animator _animator;
 
     #endregion Variables
 
@@ -32,10 +36,12 @@ public partial class PlayerController : MonoBehaviour
     }
     private IEnumerator LoadGameScene()
     {
+        lastDir = new Vector2(0,1);
         FadeController.instance.player = this;
         if (FadeController.instance.storedPlayerPosition)
         {
             transform.position = FadeController.instance.lastPlayerPosition;
+            lastDir = FadeController.instance.lastPlayerDirection;
             yield return new WaitForSeconds(0.5f);
             _titleCamera.SetActive(false);
             _dummyCamera.SetActive(true);
