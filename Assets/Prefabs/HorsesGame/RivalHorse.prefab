@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5091743755382195846}
   m_Layer: 0
   m_Name: RivalHorse
-  m_TagString: Untagged
+  m_TagString: RivalHorse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

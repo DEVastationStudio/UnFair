@@ -4134,6 +4134,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2647280139205412708, guid: e1b84c2ebc29bcb438bb8bc067f18061,
+        type: 3}
+      propertyPath: hUD_Manager
+      value: 
+      objectReference: {fileID: 1512164816}
+    - target: {fileID: 2647280139205412708, guid: e1b84c2ebc29bcb438bb8bc067f18061,
+        type: 3}
+      propertyPath: timeCounter
+      value: 
+      objectReference: {fileID: 1512164814}
     - target: {fileID: 5128431173890580430, guid: e1b84c2ebc29bcb438bb8bc067f18061,
         type: 3}
       propertyPath: m_Name
