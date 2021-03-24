@@ -77,7 +77,7 @@ public class PlayerHorse : MonoBehaviour
                 || Keyboard.current[Key.LeftArrow].wasPressedThisFrame || Keyboard.current[Key.RightArrow].wasPressedThisFrame))
                 {
                     //Debug.Log("Tecla ajena al conjunto de teclas creadas para el minijuego");
-                    ResetCorrect(false);
+                    ResetCorrect(false, true);
                     return;
                 }
             }
@@ -97,7 +97,7 @@ public class PlayerHorse : MonoBehaviour
                 || Gamepad.current[GamepadButton.DpadUp].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadLeft].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadDown].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadRight].wasReleasedThisFrame || Gamepad.current[GamepadButton.South].wasReleasedThisFrame || Gamepad.current[GamepadButton.East].wasReleasedThisFrame))
                 {
                     Debug.Log("Tecla ajena al conjunto de teclas creadas para el minijuego - MANDO");
-                    ResetCorrect(false);
+                    ResetCorrect(false, true);
                     return;
                 }
             }
@@ -108,7 +108,7 @@ public class PlayerHorse : MonoBehaviour
         if (currentTime >= timeForKeys)
         {
             //Debug.Log("Mucho tiempo entre tecla y tecla");
-            ResetCorrect(false);
+            ResetCorrect(false, true);
         }
     }
 
@@ -183,7 +183,7 @@ public class PlayerHorse : MonoBehaviour
         ShowCombo();
         combCreated = true;
         endedCombos = 0;
-        ResetCorrect(false);
+        ResetCorrect(false, false);
     }
     private void ShowCombo()
     {
@@ -245,7 +245,7 @@ public class PlayerHorse : MonoBehaviour
             }
             else
             {
-                ResetCorrect(false);
+                ResetCorrect(false, true);
             }
         }
     }
@@ -253,7 +253,7 @@ public class PlayerHorse : MonoBehaviour
     private void ComboFinished()
     {
         endedCombos++;
-        ResetCorrect(true);
+        ResetCorrect(true, false);
     }
 
     private void Move()
@@ -270,7 +270,7 @@ public class PlayerHorse : MonoBehaviour
         }
     }
 
-    private void ResetCorrect(bool ended)
+    private void ResetCorrect(bool ended, bool failedCombo)
     {
         restartingComboText = true;
         StopCoroutine(ResetShowedText());
@@ -282,8 +282,7 @@ public class PlayerHorse : MonoBehaviour
         if (ended)
         {
             endedCurrentCombo = true;
-        }
-        else
+        }else if (failedCombo) 
         {
             comboFailed = true;
         }
