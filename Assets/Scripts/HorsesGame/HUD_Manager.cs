@@ -81,7 +81,7 @@ public class HUD_Manager : MonoBehaviour
 
         if (stars > 0)
         {
-            starsEndedGameText.text = "You got " + stars;
+            starsEndedGameText.text = "You got " + stars + " stars";
             if (stars > GameProgress.GetStars(2))
             {
                 GameProgress.SetStars(2, stars);
@@ -94,7 +94,7 @@ public class HUD_Manager : MonoBehaviour
     }
     public void ResetGame()
     {
-        SceneManager.LoadScene("HorsesRace");
+        FadeController.Fade("HorsesRace");
     }
 
     string FormatTime()
