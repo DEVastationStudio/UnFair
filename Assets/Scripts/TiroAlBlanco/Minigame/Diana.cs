@@ -11,7 +11,7 @@ public class Diana : MonoBehaviour
 
     private void Start()
     {
-        if (transform.tag == "DianaDorada")
+        if (transform.tag == "DianaDorada" || transform.tag == "Reloj")
         {
             _gameManager = FindObjectOfType<ShootingMinigameManager>();
             StartCoroutine(DianaDorada());

@@ -31,5 +31,11 @@ public partial class UIGeneral : MonoBehaviour
         faseActual = Fases.POSTGAME;
         FasePostGame();
     }
+
+    public void AddTime(int t) 
+    {
+        actualTime += t;
+        _timerText.text = "Time: " + actualTime;
+    }
     #endregion Metodos
 }

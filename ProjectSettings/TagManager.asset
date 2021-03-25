@@ -13,6 +13,7 @@ TagManager:
   - RivalBasket
   - Canica
   - Obstacle
+  - Reloj
   layers:
   - Default
   - TransparentFX

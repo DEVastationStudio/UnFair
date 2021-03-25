@@ -18,6 +18,7 @@ public class PistolaScript : MonoBehaviour
     private Vector2 _pos;
     private bool _disparo;
     [HideInInspector] public int _probDianaDorada;
+    [HideInInspector] public int _probReloj;
     #endregion Variables
 
     #region Metodos
@@ -54,22 +55,31 @@ public class PistolaScript : MonoBehaviour
             _gameManager._spawnerDianas.DestroyTarget(diana.GetComponent<Diana>()._pos);
             _gameManager._uiGeneral.IncreasePuntuacion(diana.GetComponent<Diana>()._points);
             Destroy(diana);
-            if (Random.Range(0, 100) > _probDianaDorada)
+            if (Random.Range(0, 100) > _probReloj) 
+            {
+                _probReloj = 110;
+                CallSpawnRetard(2);
+            }
+            else if (Random.Range(0, 100) > _probDianaDorada)
             {
                 _probDianaDorada = 110;
                 CallSpawnRetard(1);
             }
             else 
             {
-                _probDianaDorada--;
+                _probDianaDorada-=5; 
+                _probReloj -= 2;
                 CallSpawnRetard(0);
             }
         }
-        else if (hit.collider != null && hit.transform.tag == "DianaDorada") 
+        else if (hit.collider != null && (hit.transform.tag == "DianaDorada" || hit.transform.tag == "Reloj")) 
         {
             GameObject diana = hit.transform.gameObject;
             _gameManager._spawnerDianas.DestroyTarget(diana.GetComponent<Diana>()._pos);
-            _gameManager._uiGeneral.IncreasePuntuacion(diana.GetComponent<Diana>()._points);
+            if(hit.transform.tag == "DianaDorada")
+                _gameManager._uiGeneral.IncreasePuntuacion(diana.GetComponent<Diana>()._points);
+            else
+                _gameManager._uiGeneral.AddTime(5);
             Destroy(diana);
             CallSpawnRetard(0);
         }

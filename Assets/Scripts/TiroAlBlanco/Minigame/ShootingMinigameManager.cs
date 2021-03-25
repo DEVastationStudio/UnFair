@@ -13,7 +13,8 @@ public class ShootingMinigameManager : MonoBehaviour
     #region Metodos
     private void Start()
     {
-        _pistolaScript._probDianaDorada = 110;
+        _pistolaScript._probDianaDorada = 110; 
+        _pistolaScript._probReloj = 110;
         _uiGeneral.FasePreGame();
         FadeController.FinishLoad();
     }
