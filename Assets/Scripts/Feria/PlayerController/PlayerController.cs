@@ -50,6 +50,10 @@ public partial class PlayerController : MonoBehaviour
             _gameCamera.SetActive(true);
             _titleScreen.SetActive(false);
         }
+        else 
+        {
+            _uiManager._playerInput.SwitchCurrentActionMap("UIMap");
+        }
         yield return null;
         FadeController.FinishLoad();
     }

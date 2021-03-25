@@ -34,16 +34,13 @@ public partial class PlayerController : MonoBehaviour
                 totalStars += GameProgress.GetStars(i);
             }
             if (totalStars >= 8 && !allGameWins)
-                SceneManager.LoadScene(_scene);
+                FadeController.Fade(_scene);
             else
                 _uiManager.OpenNoriaNotAvailable();
         }
         else
         {
-            if (FadeController.instance != null)
-                FadeController.Fade(_scene);
-            else
-                SceneManager.LoadScene(_scene);
+            FadeController.Fade(_scene);
         }
     }
 

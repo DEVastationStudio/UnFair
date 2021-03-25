@@ -901,7 +901,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 337370051}
         m_MethodName: GoToFair
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1813,7 +1813,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1037006136}
         m_MethodName: GoToFair
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5341,6 +5341,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6808544849791928551, guid: 4700b75196ea73b478a0a22f2d2f21e4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -49.500122
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4700b75196ea73b478a0a22f2d2f21e4, type: 3}

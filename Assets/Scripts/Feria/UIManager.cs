@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
 {
     #region Variables
     [Header("Player")]
-    [SerializeField] PlayerInput _playerInput;
+    [SerializeField] public PlayerInput _playerInput;
 
     [Header("Pause menu")]
     [SerializeField] private GameObject _basePauseMenu;
@@ -39,7 +39,6 @@ public class UIManager : MonoBehaviour
         _titleScreen.SetActive(false);
         _virtualCameras[0].SetActive(true);
         StartCoroutine(WaitXSeconds(4));
-        
     }
     public void OpenPauseMenu() { 
 
