@@ -99,7 +99,7 @@ public class HUD_Manager : MonoBehaviour
 
     string FormatTime()
     {
-        return ((Mathf.Floor(raceTime) % 60).ToString("00") + " : " + (Mathf.Floor(raceTime / 60).ToString("00")));
+        return ((Mathf.Floor(raceTime / 60).ToString("00")) + " : " + (Mathf.Floor(raceTime) % 60).ToString("00"));
     }
     void CalculateStars(int position)
     {
