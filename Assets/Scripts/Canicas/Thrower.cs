@@ -15,34 +15,40 @@ public class Thrower : MonoBehaviour
     Quaternion currentRot;
     private Trajectory trajectory;
     private int test = 0;
+    private int rotation;
+    /*private bool leftRotation;
+    private bool rightRotation;*/
 
 
     void Start()
     {
+        rotation = 0;
         trajectory = FindObjectOfType<Trajectory>();
         currentPos = transform.position;
         currentRot = transform.rotation;
         CreatePrediction();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        //poner como rotar y moverse para poder cambiar hacia donde va la pelota y eso
+        Rotate();
         if (currentRot != transform.rotation)
         {
             CreatePrediction();
         }
 
-        if (currentPos != transform.position)
+        /*if (currentPos != transform.position)
         {
             CreatePrediction();
-        }
+        }*/
 
         currentRot = transform.rotation;
-        //pulsar para disparar
 
     }
-
+    private void Rotate()
+    {
+        transform.Rotate(0, rotationSpeed * rotation, 0.0f);
+    }
     public Vector3 CalculateForce()
     {
         return transform.forward * power;
@@ -59,17 +65,24 @@ public class Thrower : MonoBehaviour
         trajectory.PathCreation(ballPref, firePoint.transform.position, CalculateForce());
     }
 
-
     private void OnSpaceAction(InputValue value)
     {
         ThrowBall();
     }
 
-    private void OnAAction(InputValue value)
+    private void OnMovement(InputValue value)
     {
-    }
-
-    private void OnDAction(InputValue value)
-    {
+        if (value.Get<Vector2>().x < -0.2f)
+        {
+            rotation = -1;
+        }
+        else if (value.Get<Vector2>().x > 0.2f)
+        {
+            rotation = 1;
+        }
+        else
+        {
+            rotation = 0;
+        }
     }
 }
