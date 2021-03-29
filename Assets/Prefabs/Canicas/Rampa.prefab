@@ -252,6 +252,7 @@ GameObject:
   - component: {fileID: 6912690070444828941}
   - component: {fileID: 8885184956251242718}
   - component: {fileID: 8084150714842431668}
+  - component: {fileID: 3679051921338147513}
   m_Layer: 0
   m_Name: Cylinder (4)
   m_TagString: Untagged
@@ -334,6 +335,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &3679051921338147513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2663989424938505539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df83fd1631f80b468393ff5498e7c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points: 0
+  hudMarbles: {fileID: 0}
 --- !u!1 &3289805687546215761
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,6 +361,7 @@ GameObject:
   - component: {fileID: 3629204407046819777}
   - component: {fileID: 1780309985650109410}
   - component: {fileID: 212771593212792314}
+  - component: {fileID: 8672096583234792442}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -428,6 +444,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &8672096583234792442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289805687546215761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df83fd1631f80b468393ff5498e7c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points: 0
+  hudMarbles: {fileID: 0}
 --- !u!1 &4667632900622986981
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,6 +470,7 @@ GameObject:
   - component: {fileID: 8305010546589545372}
   - component: {fileID: 3767408950641530571}
   - component: {fileID: 1998956552409981916}
+  - component: {fileID: 5213740233791115713}
   m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Untagged
@@ -522,6 +553,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &5213740233791115713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4667632900622986981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df83fd1631f80b468393ff5498e7c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points: 0
+  hudMarbles: {fileID: 0}
 --- !u!1 &5466553606515254772
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,6 +579,7 @@ GameObject:
   - component: {fileID: 1909606725805529298}
   - component: {fileID: 3119822239082930757}
   - component: {fileID: 1889254527535817255}
+  - component: {fileID: 5327152788954440320}
   m_Layer: 0
   m_Name: Cylinder (2)
   m_TagString: Untagged
@@ -616,6 +662,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &5327152788954440320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5466553606515254772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df83fd1631f80b468393ff5498e7c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points: 0
+  hudMarbles: {fileID: 0}
 --- !u!1 &6133608778645052938
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,6 +902,7 @@ GameObject:
   - component: {fileID: 4525617295252829587}
   - component: {fileID: 3853619690859134020}
   - component: {fileID: 5394562161434699089}
+  - component: {fileID: 3382585643447980478}
   m_Layer: 0
   m_Name: Cylinder (3)
   m_TagString: Untagged
@@ -924,6 +985,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &3382585643447980478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6413803015744213619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df83fd1631f80b468393ff5498e7c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points: 0
+  hudMarbles: {fileID: 0}
 --- !u!1 &6594260686293727350
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,6 +1011,7 @@ GameObject:
   - component: {fileID: 6816502771461114186}
   - component: {fileID: 829086625643389481}
   - component: {fileID: 2821057749713606948}
+  - component: {fileID: 5016035440669782212}
   m_Layer: 0
   m_Name: Cylinder (5)
   m_TagString: Untagged
@@ -1018,3 +1094,17 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &5016035440669782212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6594260686293727350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df83fd1631f80b468393ff5498e7c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points: 0
+  hudMarbles: {fileID: 0}

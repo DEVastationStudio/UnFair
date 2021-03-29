@@ -10,6 +10,7 @@ public class Thrower : MonoBehaviour
     [SerializeField] private GameObject firePoint;
     [SerializeField] private float power;
     [SerializeField] private float rotationSpeed;
+    [SerializeField] private int ballsLeft;
 
     private Vector3 currentPos;
     Quaternion currentRot;
@@ -56,6 +57,7 @@ public class Thrower : MonoBehaviour
 
     void ThrowBall()
     {
+        ballsLeft--;
         GameObject ball = Instantiate(ballPref, firePoint.transform.position, Quaternion.identity);
         ball.GetComponent<Rigidbody>().AddForce(CalculateForce(), ForceMode.Impulse);
     }
@@ -67,7 +69,14 @@ public class Thrower : MonoBehaviour
 
     private void OnSpaceAction(InputValue value)
     {
-        ThrowBall();
+        if (ballsLeft > 0)
+        {
+            ThrowBall();
+        }
+        else
+        {
+            Debug.Log("Te has quedado sin pelotas");
+        }
     }
 
     private void OnMovement(InputValue value)
@@ -84,5 +93,10 @@ public class Thrower : MonoBehaviour
         {
             rotation = 0;
         }
+    }
+
+    public int GetBallsLeft()
+    {
+        return ballsLeft;
     }
 }
