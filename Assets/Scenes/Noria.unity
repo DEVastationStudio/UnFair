@@ -276,6 +276,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FadeController
       objectReference: {fileID: 0}
+    - target: {fileID: 1035944151629041989, guid: 4700b75196ea73b478a0a22f2d2f21e4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1035944151629041990, guid: 4700b75196ea73b478a0a22f2d2f21e4,
         type: 3}
       propertyPath: m_Pivot.x
@@ -800,6 +805,7 @@ GameObject:
   - component: {fileID: 1700874346}
   - component: {fileID: 1700874348}
   - component: {fileID: 1700874347}
+  - component: {fileID: 1700874349}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -863,6 +869,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700874345}
   m_CullTransparentMesh: 0
+--- !u!114 &1700874349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700874345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7667800fefbe95b4099f721f55323154, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1713461928
 GameObject:
   m_ObjectHideFlags: 0
