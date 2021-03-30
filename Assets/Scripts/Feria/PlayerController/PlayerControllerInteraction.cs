@@ -33,7 +33,7 @@ public partial class PlayerController : MonoBehaviour
                 if (GameProgress.GetStars(i) == 0) allGameWins = false;
                 totalStars += GameProgress.GetStars(i);
             }
-            if (totalStars >= 8 && !allGameWins)
+            if (totalStars >= 5 && !allGameWins) // Quitar la exclamación
                 FadeController.Fade(_scene);
             else
                 _uiManager.OpenNoriaNotAvailable();
