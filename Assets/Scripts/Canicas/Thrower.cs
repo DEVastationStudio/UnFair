@@ -11,11 +11,10 @@ public class Thrower : MonoBehaviour
     [SerializeField] private float power;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private int ballsLeft;
-
+    private bool canThrow;
     private Vector3 currentPos;
     Quaternion currentRot;
     private Trajectory trajectory;
-    private int test = 0;
     private int rotation;
     /*private bool leftRotation;
     private bool rightRotation;*/
@@ -24,6 +23,7 @@ public class Thrower : MonoBehaviour
     void Start()
     {
         rotation = 0;
+        canThrow = true;
         trajectory = FindObjectOfType<Trajectory>();
         currentPos = transform.position;
         currentRot = transform.rotation;
@@ -49,6 +49,9 @@ public class Thrower : MonoBehaviour
     private void Rotate()
     {
         transform.Rotate(0, rotationSpeed * rotation, 0.0f);
+        Vector3 currentRot = transform.localEulerAngles;
+        currentRot.y = Mathf.Clamp(((currentRot.y > 180) ? currentRot.y - 360 : currentRot.y), -50.0f, 50.0f);
+        transform.localRotation = Quaternion.Euler(currentRot);
     }
     public Vector3 CalculateForce()
     {
@@ -69,14 +72,19 @@ public class Thrower : MonoBehaviour
 
     private void OnSpaceAction(InputValue value)
     {
-        if (ballsLeft > 0)
+        if (canThrow)
         {
-            ThrowBall();
+            if (ballsLeft > 0)
+            {
+                canThrow = false;
+                ThrowBall();
+            }
+            else
+            {
+                Debug.Log("Te has quedado sin pelotas");
+            }
         }
-        else
-        {
-            Debug.Log("Te has quedado sin pelotas");
-        }
+
     }
 
     private void OnMovement(InputValue value)
@@ -98,5 +106,10 @@ public class Thrower : MonoBehaviour
     public int GetBallsLeft()
     {
         return ballsLeft;
+    }
+
+    public void SetCanThrow()
+    {
+        canThrow = true;
     }
 }

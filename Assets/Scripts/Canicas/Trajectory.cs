@@ -95,7 +95,7 @@ public class Trajectory : MonoBehaviour
             ballCopy.transform.position = currentPos;
             ballCopy.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
             pathLine.positionCount = 0;
-            pathLine.positionCount = maxIterations;//luego cambiar esto a lo qaue ha salkido de una que mal qesceiboi adjhaesjhfgszgjkbhdhkjfhjksdfghbkjsdkf
+            pathLine.positionCount = maxIterations;//luego cambiar esto a lo que ha salido de una
 
             for (int i = 0; i < maxIterations; i++)
             {

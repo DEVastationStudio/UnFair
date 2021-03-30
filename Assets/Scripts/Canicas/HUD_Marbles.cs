@@ -12,20 +12,28 @@ public class HUD_Marbles : MonoBehaviour
     [SerializeField] private GameObject postGameCanvas;
     [SerializeField] private TextMeshProUGUI finalScoreText;
     [SerializeField] private TextMeshProUGUI finalTimeText;
+    [SerializeField] private TextMeshProUGUI preStarsObtainedText;
+    [SerializeField] private TextMeshProUGUI postStarsObtainedText;
     private int score;
     private bool gameStarted;
     private string minutes;
     private string seconds;
     //private string miliseconds;
     private float timeSpent;
+    private bool failedBall;
+    private int stars;
+
     void Start()
     {
         inGameCanvas.SetActive(false);
         postGameCanvas.SetActive(false);
         preGameCanvas.SetActive(true);
         gameStarted = false;
+        failedBall = false;
         score = 0;
+        stars = 0;
         timeSpent = 0.0f;
+        preStarsObtainedText.text = "Stars obtained: " + GameProgress.GetStars(4);
     }
 
     void Update()
@@ -53,9 +61,24 @@ public class HUD_Marbles : MonoBehaviour
         gameStarted = false;
         inGameCanvas.SetActive(false);
         postGameCanvas.SetActive(true);
-        finalScoreText.text = "Score: " + score;
-        finalTimeText.text = ((Mathf.Floor(timeSpent / 60).ToString("00")) + " : " + (Mathf.Floor(timeSpent) % 60).ToString("00"));
         preGameCanvas.SetActive(false);
+        finalScoreText.text = "Score: " + score;
+        CalculateStars();
+        if (stars > 0)
+        {
+            if (stars > GameProgress.GetStars(4))
+            {
+                GameProgress.SetStars(4, stars);
+            }
+            postStarsObtainedText.text = "You got " + stars + " stars";
+
+        }
+        else
+        {
+            postStarsObtainedText.text = "Sorry you got no star ;(";
+        }
+
+        finalTimeText.text = ((Mathf.Floor(timeSpent / 60).ToString("00")) + " : " + (Mathf.Floor(timeSpent) % 60).ToString("00"));
     }
 
     public void ResetGame()
@@ -67,5 +90,18 @@ public class HUD_Marbles : MonoBehaviour
     {
         score += holeScore;
         scoreText.text = "Score: " + score.ToString();
+    }
+
+    public void SetFailBall()
+    {
+        failedBall = true;
+    }
+
+    private void CalculateStars()
+    {
+        if (!failedBall && score >= 50) { stars = 3; }
+        else if (score >= 50) { stars = 2; }
+        else if (score > 0) { stars = 1; }
+        else { stars = 0; }
     }
 }

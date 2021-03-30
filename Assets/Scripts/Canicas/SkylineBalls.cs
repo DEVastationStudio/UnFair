@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MarbleHoles : MonoBehaviour
+public class SkylineBalls : MonoBehaviour
 {
-    [SerializeField] private int points;
-    [SerializeField] private HUD_Marbles hudMarbles;
-    [SerializeField] private Thrower thrower;
-
+    private HUD_Marbles hud;
+    private Thrower thrower;
     void Start()
     {
-
+        hud = FindObjectOfType<HUD_Marbles>();
+        thrower = FindObjectOfType<Thrower>();
     }
 
     void Update()
@@ -22,9 +21,9 @@ public class MarbleHoles : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Canica"))
         {
-            hudMarbles.AddScore(this.points);
             Destroy(other.gameObject);
-            if (thrower.GetBallsLeft() <= 0)
+            hud.SetFailBall();
+             if (thrower.GetBallsLeft() <= 0)
             {
                 StopCoroutine(FinishGame());
                 StartCoroutine(FinishGame());
@@ -32,11 +31,11 @@ public class MarbleHoles : MonoBehaviour
             thrower.SetCanThrow();
         }
     }
-
+    
     private IEnumerator FinishGame()
     {
         yield return new WaitForSeconds(0.35f);
-        hudMarbles.EndGame();        
+        hud.EndGame();        
         StopCoroutine(FinishGame());        
     }
 }
