@@ -60,6 +60,7 @@ public class HUD_Marbles : MonoBehaviour
 
     public void EndGame()
     {
+        Physics.autoSimulation = true;
         gameStarted = false;
         inGameCanvas.SetActive(false);
         postGameCanvas.SetActive(true);
