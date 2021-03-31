@@ -923,7 +923,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 126.85
+  m_fontSize: 210.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1377,7 +1377,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score: 999'
+  m_text: 'Score: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2097,6 +2097,8 @@ MonoBehaviour:
   postGameCanvas: {fileID: 193018454}
   finalScoreText: {fileID: 375120629}
   finalTimeText: {fileID: 217046493}
+  preStarsObtainedText: {fileID: 1747909607}
+  postStarsObtainedText: {fileID: 242662422}
 --- !u!4 &1279387236
 Transform:
   m_ObjectHideFlags: 0
@@ -3665,11 +3667,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '1xStar -> xxxxxxxxxxx
+  m_text: '1xStar -> Get in at least one ball in a hole
 
-    2xStar -> xxxxxxxxxxx
+    2xStar -> Get at least
+    50 score
 
-    3xStar -> xxxxxxxxxxx'
+    3xStar -> Get in all balls in holes'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4335,7 +4338,7 @@ PrefabInstance:
     - target: {fileID: 5327152788954440320, guid: 2c433efb32e8dfb4d9ee588be80cfb8f,
         type: 3}
       propertyPath: points
-      value: 15
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5327152788954440320, guid: 2c433efb32e8dfb4d9ee588be80cfb8f,
         type: 3}
