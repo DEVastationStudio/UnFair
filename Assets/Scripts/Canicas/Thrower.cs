@@ -11,20 +11,24 @@ public class Thrower : MonoBehaviour
     [SerializeField] private float power;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private int ballsLeft;
+    private HUD_Marbles hud;
     private bool canThrow;
     private Vector3 currentPos;
     Quaternion currentRot;
     private Trajectory trajectory;
     private int rotation;
+    private bool gameStarted;
     /*private bool leftRotation;
     private bool rightRotation;*/
 
 
     void Start()
     {
+        gameStarted = false;
         rotation = 0;
         canThrow = true;
         trajectory = FindObjectOfType<Trajectory>();
+        hud = FindObjectOfType<HUD_Marbles>();
         currentPos = transform.position;
         currentRot = transform.rotation;
         CreatePrediction();
@@ -32,6 +36,7 @@ public class Thrower : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!gameStarted) { return; }
         Rotate();
         if (currentRot != transform.rotation)
         {
@@ -45,6 +50,11 @@ public class Thrower : MonoBehaviour
 
         currentRot = transform.rotation;
 
+    }
+
+    public void SetGameStarted()
+    {
+        gameStarted = true;
     }
     private void Rotate()
     {
@@ -72,6 +82,7 @@ public class Thrower : MonoBehaviour
 
     private void OnSpaceAction(InputValue value)
     {
+        if (!gameStarted) { return; }
         if (canThrow)
         {
             if (ballsLeft > 0)
@@ -89,6 +100,7 @@ public class Thrower : MonoBehaviour
 
     private void OnMovement(InputValue value)
     {
+        if (!gameStarted) { return; }
         if (value.Get<Vector2>().x < -0.2f)
         {
             rotation = -1;

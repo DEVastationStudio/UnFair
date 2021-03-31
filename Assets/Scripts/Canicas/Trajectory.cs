@@ -33,6 +33,7 @@ public class Trajectory : MonoBehaviour
     }
     void Start()
     {
+        FadeController.FinishLoad();
     }
 
     void Update()

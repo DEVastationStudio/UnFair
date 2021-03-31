@@ -14,6 +14,7 @@ public class HUD_Marbles : MonoBehaviour
     [SerializeField] private TextMeshProUGUI finalTimeText;
     [SerializeField] private TextMeshProUGUI preStarsObtainedText;
     [SerializeField] private TextMeshProUGUI postStarsObtainedText;
+    [SerializeField] private Thrower thrower;
     private int score;
     private bool gameStarted;
     private string minutes;
@@ -54,6 +55,7 @@ public class HUD_Marbles : MonoBehaviour
         inGameCanvas.SetActive(true);
         postGameCanvas.SetActive(false);
         gameStarted = true;
+        thrower.SetGameStarted();
     }
 
     public void EndGame()
