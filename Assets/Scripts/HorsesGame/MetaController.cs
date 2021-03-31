@@ -31,7 +31,9 @@ public class MetaController : MonoBehaviour
         }
         else if (other.CompareTag("RivalHorse"))
         {
-            playerPos++;
+            playerPos++;            
+            playerFinished = true;
+            hUD_Manager.RaceFinished(playerPos);
             Debug.Log("Rival llegó");
         }
     }

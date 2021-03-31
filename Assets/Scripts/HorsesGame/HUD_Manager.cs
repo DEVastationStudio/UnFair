@@ -88,7 +88,14 @@ public class HUD_Manager : MonoBehaviour
                 break;
 
         }
-        positionText.text = "You finished at " + position + "" + ordinal;
+        if (position > 1)
+        {
+            positionText.text = "You lost the race ;(";
+        }
+        else
+        {
+            positionText.text = "You finished at " + position + "" + ordinal;
+        }
 
         if (stars > 0)
         {
