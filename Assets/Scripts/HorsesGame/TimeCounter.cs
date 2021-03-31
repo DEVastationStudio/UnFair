@@ -40,9 +40,14 @@ public class TimeCounter : MonoBehaviour
     {
         timerActivated = true;
     }
-
+    
     public float GetTimeSpent()
     {
         return timeSpent;
+    }
+
+    public bool GetActivatedTimer()
+    {
+        return timerActivated;
     }
 }

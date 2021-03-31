@@ -1349,7 +1349,7 @@ PrefabInstance:
     - target: {fileID: 2334530788246934318, guid: b60a8615d13f86846bba1edc348a5914,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.532
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2334530788246934318, guid: b60a8615d13f86846bba1edc348a5914,
         type: 3}
@@ -1566,7 +1566,7 @@ PrefabInstance:
     - target: {fileID: 2334530788246934318, guid: b60a8615d13f86846bba1edc348a5914,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.532
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2334530788246934318, guid: b60a8615d13f86846bba1edc348a5914,
         type: 3}
@@ -3788,7 +3788,7 @@ PrefabInstance:
     - target: {fileID: 2334530788246934318, guid: b60a8615d13f86846bba1edc348a5914,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.532
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2334530788246934318, guid: b60a8615d13f86846bba1edc348a5914,
         type: 3}
@@ -3996,7 +3996,7 @@ PrefabInstance:
     - target: {fileID: 2334530788246934318, guid: b60a8615d13f86846bba1edc348a5914,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.532
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2334530788246934318, guid: b60a8615d13f86846bba1edc348a5914,
         type: 3}
@@ -4249,7 +4249,7 @@ PrefabInstance:
     - target: {fileID: 6380600810264887413, guid: 17acc3cfbdd5f0b4d8d91081603d1d6b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.532
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6380600810264887413, guid: 17acc3cfbdd5f0b4d8d91081603d1d6b,
         type: 3}
@@ -4286,6 +4286,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 6847384431891426947, guid: 17acc3cfbdd5f0b4d8d91081603d1d6b,
+        type: 3}
+      propertyPath: timeCounter
+      value: 
+      objectReference: {fileID: 1512164814}
     - target: {fileID: 6847384431891426947, guid: 17acc3cfbdd5f0b4d8d91081603d1d6b,
         type: 3}
       propertyPath: comboText.Array.data[0]

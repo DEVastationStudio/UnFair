@@ -25,12 +25,14 @@ public class PlayerHorse : MonoBehaviour
     private int posComb;
     private int correctSequence;
     private bool combCreated;
-    private int endedCombos;
+    private int endedCombos;//veces realizadas el combo actual
+    private int endedTotalCombos;//combos totales
     [SerializeField] private TextMeshProUGUI[] comboText;
     private bool endedCurrentCombo;
     private bool restartingComboText;
     private bool gameStarted;
     private bool comboFailed;
+    [SerializeField] private TimeCounter timeCounter;
     #region UnityMethods
 
     void Awake()
@@ -52,6 +54,7 @@ public class PlayerHorse : MonoBehaviour
         restartingComboText = false;
         endedCurrentCombo = false;
         endedCombos = 0;
+        endedTotalCombos = 0;
         currentTime = 0.0f;
         combCreated = false;
         GenerateCombination();
@@ -62,7 +65,7 @@ public class PlayerHorse : MonoBehaviour
 
     void Update()
     {
-        if (!gameStarted) { return; }
+        if (!gameStarted || !timeCounter.GetActivatedTimer()) { return; }
         if (input.currentControlScheme.Equals("KeyboardMouseScheme"))
         {
             if (!endedCurrentCombo && previousScheme == Scheme.Gamepad)
@@ -183,7 +186,11 @@ public class PlayerHorse : MonoBehaviour
         ShowCombo();
         combCreated = true;
         endedCombos = 0;
-        ResetCorrect(false, false);
+        if (endedTotalCombos > 0)
+        {
+            ResetCorrect(false, false);
+        }
+        //ResetCorrect(false, false);
     }
     private void ShowCombo()
     {
@@ -222,7 +229,7 @@ public class PlayerHorse : MonoBehaviour
     }
     private void CombinationManagement(string keyPressed)
     {
-        if (!combCreated || restartingComboText || !gameStarted) { return; }
+        if (!combCreated || restartingComboText || !gameStarted || !timeCounter.GetActivatedTimer()) { return; }
         if (posComb < comb.Length)
         {
             if (comb[posComb].Equals(keyPressed))
@@ -253,6 +260,7 @@ public class PlayerHorse : MonoBehaviour
     private void ComboFinished()
     {
         endedCombos++;
+        endedTotalCombos++;
         ResetCorrect(true, false);
     }
 
@@ -272,6 +280,7 @@ public class PlayerHorse : MonoBehaviour
 
     private void ResetCorrect(bool ended, bool failedCombo)
     {
+        if (posComb == 0) { return; }
         restartingComboText = true;
         StopCoroutine(ResetShowedText());
         StartCoroutine(ResetShowedText());
@@ -282,7 +291,8 @@ public class PlayerHorse : MonoBehaviour
         if (ended)
         {
             endedCurrentCombo = true;
-        }else if (failedCombo) 
+        }
+        else if (failedCombo && !endedCurrentCombo)
         {
             comboFailed = true;
         }
