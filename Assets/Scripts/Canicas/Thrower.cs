@@ -50,7 +50,7 @@ public class Thrower : MonoBehaviour
     {
         transform.Rotate(0, rotationSpeed * rotation, 0.0f);
         Vector3 currentRot = transform.localEulerAngles;
-        currentRot.y = Mathf.Clamp(((currentRot.y > 180) ? currentRot.y - 360 : currentRot.y), -50.0f, 50.0f);
+        currentRot.y = Mathf.Clamp(((currentRot.y > 180) ? currentRot.y - 360 : currentRot.y), -45.0f, 45.0f);
         transform.localRotation = Quaternion.Euler(currentRot);
     }
     public Vector3 CalculateForce()

@@ -94,13 +94,24 @@ public class Trajectory : MonoBehaviour
 
             ballCopy.transform.position = currentPos;
             ballCopy.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
+            Marble marble = ballCopy.GetComponent<Marble>();
             pathLine.positionCount = 0;
             pathLine.positionCount = maxIterations;//luego cambiar esto a lo que ha salido de una
-
+            int aux = 0;
             for (int i = 0; i < maxIterations; i++)
             {
+                if (marble.GetCollided())
+                {
+                    aux++;
+                }
                 predictionPhyScene.Simulate(Time.fixedDeltaTime);
                 pathLine.SetPosition(i, ballCopy.transform.position);
+                if(aux>2)
+                {
+                    pathLine.positionCount = i;
+                    Destroy(ballCopy);
+                    return;
+                }
             }
 
             Destroy(ballCopy);
