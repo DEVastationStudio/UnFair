@@ -17,6 +17,7 @@ public partial class PlayerController : MonoBehaviour
     {
         if (scene == "-1")
         {
+            Debug.Log("Llamamos tambien al close");
             _uiManager.CloseNoriaNotAvailable();
             return;
         }
@@ -33,10 +34,15 @@ public partial class PlayerController : MonoBehaviour
                 if (GameProgress.GetStars(i) == 0) allGameWins = false;
                 totalStars += GameProgress.GetStars(i);
             }
-            if (totalStars >= 5 && !allGameWins) // Quitar la exclamación
+            if (totalStars >= 8 && !allGameWins) // Quitar la exclamación
+            {
                 FadeController.Fade(_scene);
+            }
             else
+            {
+                Debug.Log("Aqui se llega");
                 _uiManager.OpenNoriaNotAvailable();
+            }
         }
         else
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class DucksGameManager : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class DucksGameManager : MonoBehaviour
     public GameObject menu;
     public LayerMask duckMask;
     public Button startGameButton;
+
+    [Header("Control por mando")]
+    [SerializeField] private EventSystem _eventSystem;
+    [SerializeField] private GameObject _startButton;
+    [SerializeField] private GameObject _resetButton;
+
     public int playerScore
     {
         get { return _playerScore; }
@@ -40,6 +47,7 @@ public class DucksGameManager : MonoBehaviour
         _blackDucks = _goldDucks + Mathf.RoundToInt(totalDucks*0.12f);
         _greenDucks = _blackDucks + Mathf.RoundToInt(totalDucks*0.3f);
         _redDucks   = _greenDucks + Mathf.RoundToInt(totalDucks*0.3f);
+        _eventSystem.SetSelectedGameObject(_startButton);
         StartCoroutine(GenerateDucks());
     }
 
@@ -154,6 +162,7 @@ public class DucksGameManager : MonoBehaviour
 
         endGameText.text += "\nStars: " + GameProgress.GetStars(3);
         menu.SetActive(true);
+        _eventSystem.SetSelectedGameObject(_resetButton);
     }
 
     public void ResetScene()

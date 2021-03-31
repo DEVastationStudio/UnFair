@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class HUD_Manager : MonoBehaviour
 {
@@ -13,6 +14,12 @@ public class HUD_Manager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timeSpent;
     [SerializeField] private TextMeshProUGUI starsEndedGameText;
     [SerializeField] private TextMeshProUGUI starsObtained;
+
+    [Header("Control por mando")]
+    [SerializeField] private EventSystem _eventSystem;
+    [SerializeField] private GameObject _startGame;
+    [SerializeField] private GameObject _resetGame;
+
     private TimeCounter timeCounter;
     EnemyHorse[] enemyHorses;
     PlayerHorse playerHorse;
@@ -28,6 +35,7 @@ public class HUD_Manager : MonoBehaviour
         inGameCanvas.SetActive(false);
         postGameCanvas.SetActive(false);
         preGameCanvas.SetActive(true);
+        _eventSystem.SetSelectedGameObject(_startGame);
         starsObtained.text = "Stars obtained: " + GameProgress.GetStars(2);
     }
 
@@ -52,14 +60,17 @@ public class HUD_Manager : MonoBehaviour
         raceTime = timeCounter.GetTimeSpent();
         timeSpent.text = FormatTime();
         playerHorse.EndGame();
-        CalculateStars(position);//comprobar que no se llame al reset combo una vez se haya finalizado la carrera
+        CalculateStars(position); //comprobar que no se llame al reset combo una vez se haya finalizado la carrera
 
         foreach (var enemy in enemyHorses)
         {
             enemy.EndGame();
         }
+
         inGameCanvas.SetActive(false);
         postGameCanvas.SetActive(true);
+        _eventSystem.SetSelectedGameObject(_resetGame);
+
         string ordinal = "";
         switch (position)
         {

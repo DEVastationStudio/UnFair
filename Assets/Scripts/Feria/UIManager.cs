@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
@@ -28,6 +29,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _noriaIcono;
     [SerializeField] private GameObject _noriaNotAvailable;
 
+    [Header("EventSystem and buttons")]
+    [SerializeField] private EventSystem _eventSystem;
+    [SerializeField] private GameObject _pauseButtonExit;
+    [SerializeField] private GameObject _continuarNoria;
+
     #endregion Variables
 
     #region Metodos
@@ -40,11 +46,11 @@ public class UIManager : MonoBehaviour
         _virtualCameras[0].SetActive(true);
         StartCoroutine(WaitXSeconds(4));
     }
-    public void OpenPauseMenu() { 
+    public void OpenPauseMenu() {
 
+        _playerInput.SwitchCurrentActionMap("UIMap");
         _basePauseMenu.SetActive(true);
         int totalStars = 0;
-
         int numStars = GameProgress.GetStars(1);
         totalStars += numStars;
         if (numStars >= 1) _tiroAlBlancoStars[0].SetActive(true);
@@ -74,12 +80,20 @@ public class UIManager : MonoBehaviour
             _noriaIcono.GetComponent<Image>().color = new Color(c.r, c.g, c.b, 0.3f);
         else
             _noriaIcono.GetComponent<Image>().color = new Color(c.r, c.g, c.b, 1f);
+
+        _eventSystem.SetSelectedGameObject(_pauseButtonExit);
     }
     public void ClosePauseMenu() { _basePauseMenu.SetActive(false); _playerInput.SwitchCurrentActionMap("ActionMap"); }
     public void OpenPauseExit() { _exitConfirmationPause.SetActive(true); }
     public void ClosePauseExit() { _exitConfirmationPause.SetActive(false); }
-    public void OpenNoriaNotAvailable() { _noriaNotAvailable.SetActive(true); }
-    public void CloseNoriaNotAvailable() { _noriaNotAvailable.SetActive(false); }
+    public void OpenNoriaNotAvailable() { 
+        Debug.Log("Si que entro"); 
+        _noriaNotAvailable.SetActive(true); 
+        /*_eventSystem.SetSelectedGameObject(_continuarNoria);*/
+        _playerInput.SwitchCurrentActionMap("UIMap");
+        Debug.Log("Si que termino");
+    }
+    public void CloseNoriaNotAvailable() { _noriaNotAvailable.SetActive(false); _playerInput.SwitchCurrentActionMap("ActionMap"); }
 
     private IEnumerator WaitXSeconds(float s) 
     {

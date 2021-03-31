@@ -14,6 +14,7 @@ public partial class UIGeneral : MonoBehaviour
         POSTGAME
     }
     [HideInInspector] public Fases faseActual;
+
     #endregion Variables
 
     #region Metodos
@@ -26,6 +27,7 @@ public partial class UIGeneral : MonoBehaviour
         _estrellasTxt.text += "1xStar -> " + _estrella1 + "\n";
         _estrellasTxt.text += "2xStar -> " + _estrella2 + "\n";
         _estrellasTxt.text += "3xStar -> " + _estrella3;
+        _eventSystem.SetSelectedGameObject(_startButton);
 
     }
     public void FaseGame()
@@ -63,6 +65,7 @@ public partial class UIGeneral : MonoBehaviour
         {
             Destroy(DianasRestantes[i].gameObject);
         }
+        _eventSystem.SetSelectedGameObject(_resetButton);
     }
     #endregion Metodos
 }

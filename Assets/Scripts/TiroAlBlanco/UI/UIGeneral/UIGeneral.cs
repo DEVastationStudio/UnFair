@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public partial class UIGeneral : MonoBehaviour
 {
@@ -29,6 +30,13 @@ public partial class UIGeneral : MonoBehaviour
     [SerializeField] private int _estrella2;
     [SerializeField] private int _estrella3;
     [SerializeField] private TextMeshProUGUI _estrellasConseguidasTxt;
+
+    //Botonoes necesarios para la navegación por mando
+    [Header("Control por mando")]
+
+    [SerializeField] private EventSystem _eventSystem;
+    [SerializeField] private GameObject _startButton;
+    [SerializeField] private GameObject _resetButton;
 
 
     #endregion Variables
