@@ -8,7 +8,9 @@ public partial class PlayerController : MonoBehaviour
     #region Variables
 
     [HideInInspector] public bool _isNearMinigame;
+    [HideInInspector] public bool _isNearConversation;
     private bool _isInterfaz;
+    [HideInInspector] public ConversationHelper _conversation;
 
     #endregion Variables
     #region Metodos
@@ -24,6 +26,8 @@ public partial class PlayerController : MonoBehaviour
         if (_isInterfaz) return;
         if (_isNearMinigame)
             StartMinigame();
+        if (_isNearConversation)
+            _conversation.StartConversation();
     }
 
     private void OnEscAction() 
