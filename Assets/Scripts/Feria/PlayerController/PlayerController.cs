@@ -38,6 +38,9 @@ public partial class PlayerController : MonoBehaviour
     {
         lastDir = new Vector2(0,1);
         FadeController.instance.player = this;
+
+        _uiManager._playerInput.SwitchCurrentActionMap("UIMap");
+
         if (FadeController.instance.storedPlayerPosition)
         {
             transform.position = FadeController.instance.lastPlayerPosition;
@@ -49,10 +52,7 @@ public partial class PlayerController : MonoBehaviour
             _dummyCamera.SetActive(false);
             _gameCamera.SetActive(true);
             _titleScreen.SetActive(false);
-        }
-        else 
-        {
-            _uiManager._playerInput.SwitchCurrentActionMap("UIMap");
+            _uiManager._playerInput.SwitchCurrentActionMap("ActionMap");
         }
         yield return null;
         FadeController.FinishLoad();

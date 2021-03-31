@@ -160,7 +160,7 @@ public class DucksGameManager : MonoBehaviour
         }
         GameProgress.SetStars(3, stars);
 
-        endGameText.text += "\nStars: " + GameProgress.GetStars(3);
+        endGameText.text += "\nStars: " + stars;
         menu.SetActive(true);
         _eventSystem.SetSelectedGameObject(_resetButton);
     }

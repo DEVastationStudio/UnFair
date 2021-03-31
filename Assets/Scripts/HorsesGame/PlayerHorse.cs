@@ -282,7 +282,8 @@ public class PlayerHorse : MonoBehaviour
         if (ended)
         {
             endedCurrentCombo = true;
-        }else if (failedCombo) 
+        }
+        else if (failedCombo && !endedCurrentCombo) 
         {
             comboFailed = true;
         }
