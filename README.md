@@ -19,24 +19,6 @@ El propósito de Un\*fair es contar una historia y, al mismo tiempo, proporciona
 Un\*fair está dirigido a un público de todas las edades.
 El juego estará disponible para PC.
 
-# Planificación
-
-Con el objetivo de planificar el trabajo y sacar el máximo partido a nuestro esfuerzo se ha decidido usar las dinámicas de la metodología ágil Scrum que más se adaptan al proyecto. Entre ellas destacan la realización de Daily StandUps en las que cada miembro del equipo informa al resto del estado de su trabajo y las Sprint Reviews al final de cada semana que servirán para poner en común lo que se ha avanzado y cómo encauzar el resto del trabajo.
-
-También se ha decidido emplear tres horas diarias para trabajar en este proyecto. Esta cantidad de tiempo puede variar conforme avance el desarrollo.
-
-## Hoja de ruta del desarrollo
-* Primer prototipo del escenario general: 14 de marzo
-* Versión alfa: 16 de marzo
-* Versión beta de los minijuegos cerrada: 1 de abril
-* Estructuración de la narrativa:  1 de abril
-* Integración de minijuegos y escenario general: 8 de abril
-* Versión beta del juego completo: 16 de abril
-* Post-processing integrado: 11 de mayo
-* Sonido integrado: 11 de mayo
-* Interfaz final integrado: 11 de mayo
-* Versión final de Un*fair: 20 de mayo
-
 # Mecánicas de Juego y Elementos de Juego
 
 ## Descripción detallada del concepto de juego:
