@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class HUD_Marbles : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class HUD_Marbles : MonoBehaviour
     [SerializeField] private TextMeshProUGUI preStarsObtainedText;
     [SerializeField] private TextMeshProUGUI postStarsObtainedText;
     [SerializeField] private Thrower thrower;
+
+    [Header("Control por mando")]
+    [SerializeField] private EventSystem _eventSystem;
+    [SerializeField] private GameObject _startButton;
+    [SerializeField] private GameObject _resetButton;
     private int score;
     private bool gameStarted;
     private string minutes;
@@ -29,6 +35,7 @@ public class HUD_Marbles : MonoBehaviour
         inGameCanvas.SetActive(false);
         postGameCanvas.SetActive(false);
         preGameCanvas.SetActive(true);
+        _eventSystem.SetSelectedGameObject(_startButton);
         gameStarted = false;
         failedBall = false;
         score = 0;
@@ -64,6 +71,7 @@ public class HUD_Marbles : MonoBehaviour
         gameStarted = false;
         inGameCanvas.SetActive(false);
         postGameCanvas.SetActive(true);
+        _eventSystem.SetSelectedGameObject(_resetButton);
         preGameCanvas.SetActive(false);
         finalScoreText.text = "Score: " + score;
         CalculateStars();
