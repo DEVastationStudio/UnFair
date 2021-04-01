@@ -4,7 +4,7 @@
 
 ## Descripción breve del concepto
 
-Juego de minijuegos con historia que se descubre a base de pistas conforme superas los minijuegos. Un*fair está ambientado en una feria norteamericana de los años 50 y los protagonistas son dos niños cuyo objetivo es montarse en la noria.
+Juego de minijuegos con historia que se descubre a base de pistas conforme superas los minijuegos. Un\*fair está ambientado en una feria norteamericana de los años 50 y los protagonistas son dos niños cuyo objetivo es montarse en la noria.
 
 ## Descripción breve de la historia y personajes
 
@@ -159,17 +159,26 @@ A la hora de realizar los modelos 3D se han tomado como referencia fotografías 
 ## Arte 2D
 ### Concept Art
 Comparativa de tamaños de los elementos del puesto:
+![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/Comparativa.png)
 
 Concepto del puesto de la mesa tambaleante:
+![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/Unfair_Ball_Maze.png)
 
 Concept del puesto del autómata pitonisa:
+![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/Unfair_fortune_teller.png)
 
 Concept art del puesto del tiro al pato:
+![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/Unfair_tiro_al_pato1.png)
+![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/Unfair_tiro_al_pato2.png)
 
 ### Sprites de Personajes
 Pillo y señor loco:
+![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/Unfair_pillo.png)
+![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/Unfair_loco.png)
 
 Ancianos:
+![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/Unfair_abuela.png)
+![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/Unfair_abuelo.png)
 ## Arte 3D
 Los modelos 3D serán lowpoly en el escenario grande, de forma que no cargue demasiado la escena. Las escenas de cada minijuego contendrán una mezcla de modelos lowpoly y highpoly. Todos los modelos estarán texturizados y se usarán mapas de normales para dar más detalle. La textura predominante será la de madera pues la mayoría de elementos están construidos con este material.
 * Atracciones
@@ -185,6 +194,11 @@ Con el objetivo de ambientar el escenario se añadirán elementos no interactuab
 
 Los elementos de los minijuegos deberán ser lowpoly para asegurar la fluidez y el buen funcionamiento del mismo. Aquellos modelos que necesiten de un mayor nivel de detalle se crearán en highpoly para luego ir bajando el número de polígonos con la herramienta Decimate de Blender pero manteniendo el Shade Smooth para que no se note en exceso la pérdida de calidad.
 ### Concept art
+![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/ImaginaCortinas.png)
+![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/puesto.png)
+![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/PuestoTicketsNoria.png)
+![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/puestoJuguetes.png)
+![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/feriaCompleto.png)
 # Sonido
 ## Banda sonora
 Un\*fair contará con la siguiente música:
@@ -224,6 +238,8 @@ Los efectos de sonido que aparecerán en Un*fair son los siguientes:
 # Interfaz
 En este apartado se desarrolla el diseño de las interfaces del juego.
 ## Menú principal
+![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/menuPrincipal.png)
+
 Elementos:
 * Título del juego
 * Botón de empezar el juego
@@ -234,6 +250,8 @@ Al pasarte el juego se puede añadir un botón donde poder volver a ver los fina
 Cuando se pulsa el botón de empezar se desvanece la interfaz y cae al suelo de la feria donde apunta al jugador en la puerta de la feria.
 
 ## Menú de pausa
+![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/mapaParqueUnfair.jpg)
+
 Elementos:
 * Mapa de la feria con pegatinas que muestran el progreso de los minijuegos
 * Botón de salir al menú principal
