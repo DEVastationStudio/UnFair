@@ -49,8 +49,8 @@ public class HUD_Marbles : MonoBehaviour
     {
         if (gameStarted)
         {
-            /*timeSpent += Time.deltaTime;
-            seconds = (Mathf.Floor(timeSpent) % 60).ToString("00");
+            timeSpent += Time.deltaTime;
+            /*seconds = (Mathf.Floor(timeSpent) % 60).ToString("00");
             minutes = Mathf.Floor(timeSpent / 60).ToString("00");
             //miliseconds = Mathf.Floor((timeSpent*100) % 100).ToString("00");
             timeText.text = minutes + " : " + seconds;*/
