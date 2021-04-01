@@ -29,6 +29,7 @@ public class HUD_Marbles : MonoBehaviour
     private float timeSpent;
     private bool failedBall;
     private int stars;
+    private int balls;
 
     void Start()
     {
@@ -48,11 +49,16 @@ public class HUD_Marbles : MonoBehaviour
     {
         if (gameStarted)
         {
-            timeSpent += Time.deltaTime;
+            /*timeSpent += Time.deltaTime;
             seconds = (Mathf.Floor(timeSpent) % 60).ToString("00");
             minutes = Mathf.Floor(timeSpent / 60).ToString("00");
             //miliseconds = Mathf.Floor((timeSpent*100) % 100).ToString("00");
-            timeText.text = minutes + " : " + seconds;
+            timeText.text = minutes + " : " + seconds;*/
+            if (thrower.GetBallsLeft() < balls)
+            {
+                balls = thrower.GetBallsLeft();
+                timeText.text = "Balls: " + balls;
+            }
         }
     }
 
@@ -62,6 +68,8 @@ public class HUD_Marbles : MonoBehaviour
         inGameCanvas.SetActive(true);
         postGameCanvas.SetActive(false);
         gameStarted = true;
+        balls = thrower.GetBallsLeft();
+        timeText.text = "Balls: " + balls;
         thrower.SetGameStarted();
     }
 

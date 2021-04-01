@@ -36,7 +36,18 @@ public class ObstacleSpawner : MonoBehaviour
                 else
                 {
                     auxInst = Instantiate(wallPrefab, spawnPoints[i].position, Quaternion.identity);
-                    auxInst.transform.rotation = Quaternion.Euler(-60f, 180f, -90f);
+                    if (i == 0)
+                    {
+                        auxInst.transform.rotation = Quaternion.Euler(-106f, -4f, 60f);
+                    }
+                    else if (i == 1)
+                    {
+                        auxInst.transform.rotation = Quaternion.Euler(-115f, 6f, 120f);
+                    }
+                    else
+                    {
+                        auxInst.transform.rotation = Quaternion.Euler(-60f, 180f, -90f);
+                    }
                 }
             }
             else
