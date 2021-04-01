@@ -4879,7 +4879,7 @@ PrefabInstance:
     - target: {fileID: 6808544849791928551, guid: 4700b75196ea73b478a0a22f2d2f21e4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -49.5
+      value: -50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4700b75196ea73b478a0a22f2d2f21e4, type: 3}
@@ -5678,7 +5678,7 @@ MonoBehaviour:
   - conditions:
     - name: Stars-3
       value: 3
-    conversation: Test Convo 2
+    conversation: Test conversation 3
   _interactUI: {fileID: 1834406443}
 --- !u!136 &1641065537
 CapsuleCollider:
@@ -5740,7 +5740,7 @@ MonoBehaviour:
   allowBarksDuringConversations: 0
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
-  conversation: Test Conversation
+  conversation: Test conversation 3
   conversationConversant: {fileID: 1641065539}
   conversationActor: {fileID: 1757486299}
   startConversationEntryID: -1
