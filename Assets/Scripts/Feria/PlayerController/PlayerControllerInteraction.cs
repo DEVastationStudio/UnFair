@@ -34,7 +34,7 @@ public partial class PlayerController : MonoBehaviour
                 if (GameProgress.GetStars(i) == 0) allGameWins = false;
                 totalStars += GameProgress.GetStars(i);
             }
-            if (totalStars >= 8 && !allGameWins) // Quitar la exclamación
+            if (totalStars >= 8 && allGameWins)
             {
                 FadeController.Fade(_scene);
             }
