@@ -57,7 +57,7 @@ public class ConversationHelper : MonoBehaviour
             c.Invoke();
         }
 
-        OnConversationPath[_conversationPath]?.Invoke();
+        if (OnConversationPath.Length > _conversationPath) OnConversationPath[_conversationPath]?.Invoke();
 
         if (_isInTrigger) SetNearConversation(true);
     }
@@ -78,7 +78,7 @@ public class ConversationHelper : MonoBehaviour
     }
     public void StartConversation()
     {
-        _interactUI.SetActive(false);
+        _interactUI?.SetActive(false);
         _trigger.OnUse();
         _playerInput.SwitchCurrentActionMap("UIMap");
     }
