@@ -20,7 +20,8 @@ public partial class UIGeneral : MonoBehaviour
     //Containers de las fases
     [Header("Fases")]
     [SerializeField] private GameObject _PreGameContainer;
-    [SerializeField] private GameObject _GameContainer;
+    [SerializeField] private GameObject _inGameContainer;
+    [SerializeField] private GameObject _outGameContainer;
     [SerializeField] private GameObject _PostGameContainer;
 
     //Puntuaciones necesarias

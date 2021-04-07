@@ -19,24 +19,6 @@ El propósito de Un\*fair es contar una historia y, al mismo tiempo, proporciona
 Un\*fair está dirigido a un público de todas las edades.
 El juego estará disponible para PC.
 
-# Planificación
-
-Con el objetivo de planificar el trabajo y sacar el máximo partido a nuestro esfuerzo se ha decidido usar las dinámicas de la metodología ágil Scrum que más se adaptan al proyecto. Entre ellas destacan la realización de Daily StandUps en las que cada miembro del equipo informa al resto del estado de su trabajo y las Sprint Reviews al final de cada semana que servirán para poner en común lo que se ha avanzado y cómo encauzar el resto del trabajo.
-
-También se ha decidido emplear tres horas diarias para trabajar en este proyecto. Esta cantidad de tiempo puede variar conforme avance el desarrollo.
-
-## Hoja de ruta del desarrollo
-* Primer prototipo del escenario general: 14 de marzo
-* Versión alfa: 16 de marzo
-* Versión beta de los minijuegos cerrada: 1 de abril
-* Estructuración de la narrativa:  1 de abril
-* Integración de minijuegos y escenario general: 8 de abril
-* Versión beta del juego completo: 16 de abril
-* Post-processing integrado: 11 de mayo
-* Sonido integrado: 11 de mayo
-* Interfaz final integrado: 11 de mayo
-* Versión final de Un*fair: 20 de mayo
-
 # Mecánicas de Juego y Elementos de Juego
 
 ## Descripción detallada del concepto de juego:
@@ -236,31 +218,80 @@ Los efectos de sonido que aparecerán en Un*fair son los siguientes:
   * Sonido de chocar
   * Sonido de encestar
 # Interfaz
-En este apartado se desarrolla el diseño de las interfaces del juego.
-## Menú principal
+Haciendo uso de las leyes del diseño de UX se quiere cumplir unos objetivos que aplicar a la UI.
+
+* Los usuarios deben de poder acceder a toda la información en 3 o menos pasos para hacer una navegación más ligera.
+* El usuario debe de poder trabajar a un ritmo rápido y moverse por la interfaz (Doherty Threshold: https://lawsofux.com/doherty-threshold/)
+* El número de opciones que el usuario tiene a mano en cada momento debe de ser limitado (Miller’s Law: https://lawsofux.com/millers-law/) 
+
+Más links de referencia: 
+* https://uxdesign.cc/ux-and-video-game-design-5d8bcc50be67
+
+## Menú principal (Extradiegética)
 ![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/menuPrincipal.png)
 
 Elementos:
-* Título del juego
-* Botón de empezar el juego
-* Botón de salir del juego
+1. Título del juego
+2. Botón de empezar el juego
+3. Botón de salir del juego
+4. Botón de ajustes
+5. Botón de cutscenes desbloqueadas
 
-Al pasarte el juego se puede añadir un botón donde poder volver a ver los finales que has desbloqueado.
+* 5: Al pasarte el juego se puede añadir un botón donde poder volver a ver los finales que has desbloqueado y se muestran los finales no desbloqueados oscurecidos para dar pie a que el jugador vuelva a pasarse el juego. Habrá que pensar desde diseño como no hacer el juego muy repetitivo (Por ejemplo añadiendo diálogos con varios caminos)
 
-Cuando se pulsa el botón de empezar se desvanece la interfaz y cae al suelo de la feria donde apunta al jugador en la puerta de la feria.
+* Cuando se pulsa el botón de empezar se desvanece la interfaz y cae al suelo de la feria donde apunta al jugador en la entrada.
 
-## Menú de pausa
+## Menú de pausa (Diegética)
 ![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/mapaParqueUnfair.jpg)
 
 Elementos:
-* Mapa de la feria con pegatinas que muestran el progreso de los minijuegos
-* Botón de salir al menú principal
-* Botón de ajustes para cambiar el volumen de la música y los efectos de sonido
-* Botón de cerrar el menú principal
-
-El mapa tiene que quedar como si Diane lo estuviese abriendo y formase parte del mundo del juego.
+1. Mapa de la feria con pegatinas que muestran el progreso de los minijuegos
+2. Botón de salir al menú principal
+3. Botón de ajustes para cambiar el volumen de la música y los efectos de sonido (Se pueden añadir más elementos configurables)
+4. Botón de cerrar el menú de pausa aunque se pueda cerrar directamente pulsando esc/start. 
 
 Las estrellas que Diane vaya consiguiendo se irán añadiendo en formato de pegatinas con 1, 2 o 3 estrellas. La noria saldrá oscurecida o con un cartel de fuera de servicio para mostrar al jugador que aún no puede acceder a ella. Esto último se puede cambiar y no dar feedback desde el mapa si no con el diálogo que el jugador lee cuando habla con el feriante encargado de la noria.
 
-## Minijuegos
-Dentro de los minijuegos el jugador debe poder salir en todo momento al menú principal (Si se encuentra en mitad de una partida y sale se contará como derrota aunque haya conseguido 3 estrellas). La información de los minijuegos debería estar incluida dentro del escenario como tal ej: la puntuación del jugador se puede mostrar en un tablón de records donde se va mostrando si consigue o no las estrellas
+* Debería de haber elementos en el mapa que representen las opciones del menú que se irán agrandando si la opción está seleccionada.
+
+## Minijuegos (Diegética)
+
+El menú de los minijuegos deberían tener una base común. Los minijuegos tienen 3 fases: preGame(1), inGame(2), postGame(3). Dentro de estas 3, la 1 y 3 se le muestran al jugador a través de diálogos y decisiones en la conversación con el feriante del puesto. Para la fase 2 la información relevante de la partida se mostrará en un tablón que forma parte de la propia caseta.
+
+Otra parte de los menús que forman parte de los minijuegos con la pausa en la partida, la cual te deja salir, reanudar o tocar ajustes.
+
+### Fase preGame (1)
+
+El feriante preguntará si quieres echar una partida a lo que el jugador puede responder 3 cosas:
+1. Si, quiero jugar
+2. Como se juega al juego
+3. Mejor más tarde
+
+* La opción 2 da pie al tutorial in game con explicaciones del feriante.
+
+### Fase inGame (2)
+![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/faseInGame.jpg)
+
+Elementos:
+1. Tablón que muestra datos relevantes de la partida
+2. Minijuego
+
+A parte de estos dos elementos base cada minijuego puede añadir cosas extra necesarias para su minijuego en especial.
+
+* El tiempo de las partidas puede pasar a mostrarse como un reloj analogico con una cuenta atrás y los puntos con un contador analogico para que quede más integrado: 
+
+![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/reloj.jpg)
+![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/marcador.jpg)
+
+### Fase post Game (3)
+
+El feriante resume la partida y hace entrega de las pegatinas correspondientes, pudiendo el diálogo cambiar dependiendo de las condiciones: ha conseguido superar el antiguo récord, ha conseguido más estrellas de las que tenía, ha conseguido las 3 estrellas de golpe, etc…
+
+Una vez ha concluido el resumen se vuelve a la fase 1 pero el diálogo cambia para dar consciencia al feriante de que vas a rejugar y que no parezca que repite el diálogo inicial.
+
+#### Pej:
+
+- ¿Quieres volver a jugar?
+* ¡Vamos a por otra!
+* Puedes explicarme las normas, que no me he enterado bien
+* Ya he jugado mucho por hoy

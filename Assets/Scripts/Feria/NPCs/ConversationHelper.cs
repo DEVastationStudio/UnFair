@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class ConversationHelper : MonoBehaviour
 {
+    public ConversationEvent[] OnConversationEndEvents;
     public ConversationEvent[] OnConversationPath;
     public PrefsInt[] requisites;
     [SerializeField] private GameObject _interactUI;
@@ -14,6 +15,7 @@ public class ConversationHelper : MonoBehaviour
     private PlayerController _player;
     private int _conversationPath;
     private DialogueSystemTrigger _trigger;
+    private bool _isInTrigger;
 
     void Start() {
         _trigger = GetComponent<DialogueSystemTrigger>();
@@ -47,27 +49,50 @@ public class ConversationHelper : MonoBehaviour
 
     void OnConversationEnd(Transform actor)
     {
+
         _playerInput.SwitchCurrentActionMap("ActionMap");
-        OnConversationPath[_conversationPath].Invoke();
+
+        foreach(ConversationEvent c in OnConversationEndEvents)
+        {
+            c.Invoke();
+        }
+
+        OnConversationPath[_conversationPath]?.Invoke();
+
+        if (_isInTrigger) SetNearConversation(true);
     }
 
     void OnTriggerEnter(Collider other) {
         if (other.tag != "Player") return;
 
-        _player._isNearConversation = true;
+        _isInTrigger = true;
         _player._conversation = this;
-        _interactUI.SetActive(true);
+        SetNearConversation(true);
     }
     private void OnTriggerExit(Collider other)
     {
-        _player._isNearConversation = false;
-        _interactUI.SetActive(false);
+        if (other.tag != "Player") return;
+
+        _isInTrigger = false;
+        SetNearConversation(false);
     }
     public void StartConversation()
     {
         _interactUI.SetActive(false);
         _trigger.OnUse();
         _playerInput.SwitchCurrentActionMap("UIMap");
+    }
+
+    public void Fade(string scene)
+    {
+        _isInTrigger = false;
+        FadeController.Fade(scene);
+    }
+
+    private void SetNearConversation(bool near)
+    {
+        _player._isNearConversation = near;
+        _interactUI.SetActive(near);
     }
 }
 

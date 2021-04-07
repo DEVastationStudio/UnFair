@@ -34,13 +34,15 @@ public partial class UIGeneral : MonoBehaviour
     {
         faseActual = Fases.GAME;
         _PreGameContainer.SetActive(false);
-        _GameContainer.SetActive(true);
+        _inGameContainer.SetActive(true);
+        _outGameContainer.SetActive(true);
         InitUI();
     }
     public void FasePostGame()
     {
         faseActual = Fases.POSTGAME;
-        _GameContainer.SetActive(false);
+        _inGameContainer.SetActive(false);
+        _outGameContainer.SetActive(false);
         _PostGameContainer.SetActive(true);
         Diana[] DianasRestantes = FindObjectsOfType<Diana>();
         if (_puntuacionActual >= _estrella3)
