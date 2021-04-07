@@ -75,12 +75,13 @@ public class HUD_Marbles : MonoBehaviour
 
     public void EndGame()
     {
-        Physics.autoSimulation = true;
+        //Physics.autoSimulation = true;
         gameStarted = false;
         inGameCanvas.SetActive(false);
         postGameCanvas.SetActive(true);
         _eventSystem.SetSelectedGameObject(_resetButton);
         preGameCanvas.SetActive(false);
+        thrower.SetGameFinished();
         finalScoreText.text = "Score: " + score;
         CalculateStars();
         if (stars > 0)

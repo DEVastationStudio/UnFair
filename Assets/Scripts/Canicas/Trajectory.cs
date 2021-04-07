@@ -14,10 +14,12 @@ public class Trajectory : MonoBehaviour
     private GameObject ballCopy;
     [SerializeField] private GameObject[] obstacles;
     private List<GameObject> predictionObstacles = new List<GameObject>();
+    private Ray ray;
+    [SerializeField] private GameObject thrower;
 
     void Awake()
     {
-        Physics.autoSimulation = false;
+        /*Physics.autoSimulation = false;
 
         normalScene = SceneManager.GetActiveScene();
         normalPhyScene = normalScene.GetPhysicsScene();
@@ -25,28 +27,31 @@ public class Trajectory : MonoBehaviour
         CreateSceneParameters parameters = new CreateSceneParameters(LocalPhysicsMode.Physics3D);
         predictionScene = SceneManager.CreateScene("Trajectory", parameters);
         predictionPhyScene = predictionScene.GetPhysicsScene();
-        CreatePredicObstacles();
+        CreatePredicObstacles();*/
 
-        pathLine = GetComponent<LineRenderer>();
+        
 
         FadeController.FinishLoad();
     }
     void Start()
     {
+        pathLine = GetComponent<LineRenderer>();
         FadeController.FinishLoad();
+        //ray = new Ray(thrower.transform.position, thrower.transform.forward);
+        //Debug.DrawRay(thrower.transform.position, thrower.transform.forward, Color.red);
     }
 
     void Update()
     {
-
+        //Debug.DrawRay(thrower.transform.position, thrower.transform.forward * 100f, Color.red);
     }
 
     void FixedUpdate()
     {
-        if (normalPhyScene.IsValid())
+        /*if (normalPhyScene.IsValid())
         {
             normalPhyScene.Simulate(Time.fixedDeltaTime);
-        }
+        }*/
     }
 
     private void CreatePredicObstacles()
@@ -107,17 +112,22 @@ public class Trajectory : MonoBehaviour
                 }
                 predictionPhyScene.Simulate(Time.fixedDeltaTime);
                 pathLine.SetPosition(i, ballCopy.transform.position);
-                if(aux>2)
+                if (aux > 2)
                 {
                     pathLine.positionCount = i;
                     Destroy(ballCopy);
                     return;
                 }
             }
-
             Destroy(ballCopy);
         }
-
     }
 
+    public void LineCreation(Vector3 origin, Vector3 dst)
+    {
+        pathLine.positionCount = 0;
+        pathLine.positionCount = 2;
+        pathLine.SetPosition(0, origin);
+        pathLine.SetPosition(1, dst);
+    }
 }

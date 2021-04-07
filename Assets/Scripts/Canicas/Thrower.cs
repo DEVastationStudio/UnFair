@@ -11,6 +11,7 @@ public class Thrower : MonoBehaviour
     [SerializeField] private float power;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private int ballsLeft;
+    [SerializeField] private GameObject sphere;
     private HUD_Marbles hud;
     private bool canThrow;
     private Vector3 currentPos;
@@ -18,6 +19,10 @@ public class Thrower : MonoBehaviour
     private Trajectory trajectory;
     private int rotation;
     private bool gameStarted;
+    private float rotx, rotz;
+    private Ray ray;
+    private RaycastHit hit;
+    private Vector3 hitPos;
     /*private bool leftRotation;
     private bool rightRotation;*/
 
@@ -31,17 +36,30 @@ public class Thrower : MonoBehaviour
         hud = FindObjectOfType<HUD_Marbles>();
         currentPos = transform.position;
         currentRot = transform.rotation;
-        CreatePrediction();
+        rotx = -20;
+        rotz = 0;
+        ray = new Ray(transform.position, transform.forward);
+        //CreatePrediction();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (!gameStarted) { return; }
         Rotate();
-        if (currentRot != transform.rotation)
+        /*if (currentRot != transform.rotation)
+        {*/
+        ray.direction = transform.forward;
+        Debug.DrawRay(ray.origin, ray.direction.normalized * 100f, Color.red);
+        if (Physics.Raycast(ray, out hit, 20.0f) && hit.transform.CompareTag("Obstacle"))
         {
-            CreatePrediction();
+
+            hitPos = hit.point;
+            //Instantiate(sphere, hitPos, Quaternion.identity);
+            CreatePrediction(ray.origin, hitPos);
+
         }
+
+        //}
 
         /*if (currentPos != transform.position)
         {
@@ -56,11 +74,19 @@ public class Thrower : MonoBehaviour
     {
         gameStarted = true;
     }
+
+    public void SetGameFinished()
+    {
+        gameStarted = false;
+    }
+    
     private void Rotate()
     {
         transform.Rotate(0, rotationSpeed * rotation, 0.0f);
         Vector3 currentRot = transform.localEulerAngles;
         currentRot.y = Mathf.Clamp(((currentRot.y > 180) ? currentRot.y - 360 : currentRot.y), -45.0f, 45.0f);
+        currentRot.x = rotx;
+        currentRot.z = rotz;
         transform.localRotation = Quaternion.Euler(currentRot);
     }
     public Vector3 CalculateForce()
@@ -75,9 +101,10 @@ public class Thrower : MonoBehaviour
         ball.GetComponent<Rigidbody>().AddForce(CalculateForce(), ForceMode.Impulse);
     }
 
-    void CreatePrediction()
+    void CreatePrediction(Vector3 origin, Vector3 dst)
     {
-        trajectory.PathCreation(ballPref, firePoint.transform.position, CalculateForce());
+        //trajectory.PathCreation(ballPref, firePoint.transform.position, CalculateForce());
+        trajectory.LineCreation(origin, dst);
     }
 
     private void OnSpaceAction(InputValue value)
