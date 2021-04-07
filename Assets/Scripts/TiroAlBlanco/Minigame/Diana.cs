@@ -11,22 +11,26 @@ public class Diana : MonoBehaviour
 
     private void Start()
     {
+        _gameManager = FindObjectOfType<ShootingMinigameManager>();
         if (transform.tag == "DianaDorada" || transform.tag == "Reloj")
-        {
-            _gameManager = FindObjectOfType<ShootingMinigameManager>();
-            StartCoroutine(DianaDorada());
-        }
+            StartCoroutine(DianaTemporal(2));
+        else
+            StartCoroutine(DianaTemporal(4));
+
     }
 
-    IEnumerator DianaDorada() 
+    IEnumerator DianaTemporal(int t) 
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(t);
         if (!_hit)
         {
             _hit = true;
             _gameManager._spawnerDianas.DestroyTarget(gameObject.GetComponent<Diana>()._pos);
             _gameManager._uiGeneral.IncreasePuntuacion(gameObject.GetComponent<Diana>()._points);
-            _gameManager._pistolaScript.CallSpawnRetard(0);
+            if(transform.tag == "DianaDorada" || transform.tag == "Reloj")
+                _gameManager._pistolaScript.AutomaticDespawn();
+            else
+                _gameManager._pistolaScript.CallSpawnRetard(0);
             Destroy(gameObject);
         }
         else 
