@@ -89,6 +89,26 @@ public class PistolaScript : MonoBehaviour
         }
     }
 
+    public void AutomaticDespawn() 
+    {
+        if (Random.Range(0, 100) > _probReloj)
+        {
+            _probReloj = 110;
+            CallSpawnRetard(2);
+        }
+        else if (Random.Range(0, 100) > _probDianaDorada)
+        {
+            _probDianaDorada = 110;
+            CallSpawnRetard(1);
+        }
+        else
+        {
+            _probDianaDorada -= 5;
+            _probReloj -= 2;
+            CallSpawnRetard(0);
+        }
+    }
+
     public void CallSpawnRetard(int type) 
     {
         StartCoroutine(SpawnRetard(type));
