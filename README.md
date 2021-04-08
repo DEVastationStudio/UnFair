@@ -276,12 +276,9 @@ Elementos:
 1. Tablón que muestra datos relevantes de la partida
 2. Minijuego
 
-A parte de estos dos elementos base cada minijuego puede añadir cosas extra necesarias para su minijuego en especial.
+Al entrar a jugar se mostrará una pantalla con los requisitos para las estrellas y un botón de empezar. Si se ve necesario debería de haber un botón de volver hacia la feria.
 
-* El tiempo de las partidas puede pasar a mostrarse como un reloj analogico con una cuenta atrás y los puntos con un contador analogico para que quede más integrado: 
-
-![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/reloj.jpg)
-![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/marcador.jpg)
+* A parte de estos dos elementos base cada minijuego puede añadir cosas extra necesarias para su minijuego en especial.
 
 ### Fase post Game (3)
 
