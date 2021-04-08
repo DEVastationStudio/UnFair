@@ -2355,6 +2355,7 @@ MonoBehaviour:
   _eventSystem: {fileID: 1942569384}
   _startButton: {fileID: 2124532534}
   _resetButton: {fileID: 1067669851}
+  _ddm: {fileID: 1237185697}
   gameOver: 0
   totalDucks: 100
   gameStarted: 0
@@ -2512,8 +2513,12 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   weights:
+  - 0.3
   - 0.2
-  - 0.8
+  - 0.1
+  - 0.4
+  _values: []
+  _storedValues: 
 --- !u!4 &1237185698
 Transform:
   m_ObjectHideFlags: 0

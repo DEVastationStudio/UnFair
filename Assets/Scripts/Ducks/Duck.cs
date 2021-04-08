@@ -56,22 +56,42 @@ public class Duck : FloatingObject
         switch (type)
         {
             case Type.NORMAL:
-                if (player) _gameManager.playerScore++;
+                if (player) 
+                {
+                    _gameManager.playerScore++;
+                    _gameManager.SetLastDuck(0.5f);
+                }
                 else if (!player) _gameManager.aiScore++;
                 break;
             case Type.BLACK:
-                if (player) _gameManager.playerScore = Mathf.Max(_gameManager.playerScore - 2, 0);
+                if (player) 
+                {
+                    _gameManager.playerScore = Mathf.Max(_gameManager.playerScore - 2, 0);
+                    _gameManager.SetLastDuck(0);
+                }
                 else if (!player) _gameManager.aiScore = Mathf.Max(_gameManager.aiScore - 2, 0);
                 break;
             case Type.GOLD:
-                if (player) _gameManager.playerScore += 5;
+                if (player) 
+                {
+                    _gameManager.playerScore += 5;
+                    _gameManager.SetLastDuck(1);
+                }
                 else if (!player) _gameManager.aiScore += 5;
                 break;
             case Type.PLAYER:
                 _gameManager.playerScore += 2;
+                if (player)
+                {
+                    _gameManager.SetLastDuck(0.75f);
+                }
                 break;
             case Type.AI:
                 _gameManager.aiScore += 2;
+                if (player)
+                {
+                    _gameManager.SetLastDuck(0.25f);
+                }
                 break;
         }
 

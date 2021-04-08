@@ -8,8 +8,8 @@ public class DynamicDifficultyManager : MonoBehaviour
     [SerializeField] private float _skillLevel;
     public AnimationCurve[] curves;
     [Range(0.0f, 1.0f)] public float[] weights;
-    private float[] _values;
-    private int[] _storedValues;
+    [SerializeField] private float[] _values;
+    [SerializeField] private int[] _storedValues;
     
     void Start()
     {
@@ -23,8 +23,8 @@ public class DynamicDifficultyManager : MonoBehaviour
     {
         float oldValue = _values[index];
         int numberOfValues = _storedValues[index];
-        _values[index] = (oldValue * numberOfValues / (numberOfValues + 1)) + (oldValue / (numberOfValues + 1));
-        if (numberOfValues < 10) numberOfValues++;
+        _values[index] = (oldValue * numberOfValues / (numberOfValues + 1)) + (value / (numberOfValues + 1));
+        if (numberOfValues < 10) _storedValues[index]++;
         ComputeSkillLevel();
     }
 
@@ -40,6 +40,7 @@ public class DynamicDifficultyManager : MonoBehaviour
         {
             _skillLevel += (_values[i]*weights[i]);
         }
+        print(_skillLevel);
     }
 
     private void LoadParameters()
@@ -47,11 +48,11 @@ public class DynamicDifficultyManager : MonoBehaviour
         for (int i = 0; i < weights.Length; i++)
         {
             _values[i] = PlayerPrefs.GetFloat("DD" + minigame + "v" + i, 0.5f);
-            _storedValues[i] = PlayerPrefs.GetInt("DD" + minigame + "q" + i, 0);
+            _storedValues[i] = PlayerPrefs.GetInt("DD" + minigame + "q" + i, 1);
         }
     }
 
-    private void SaveParameters()
+    public void SaveParameters()
     {
         for (int i = 0; i < weights.Length; i++)
         {

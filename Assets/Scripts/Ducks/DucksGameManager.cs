@@ -18,6 +18,7 @@ public class DucksGameManager : MonoBehaviour
     [SerializeField] private EventSystem _eventSystem;
     [SerializeField] private GameObject _startButton;
     [SerializeField] private GameObject _resetButton;
+    [SerializeField] private DynamicDifficultyManager _ddm;
 
     public int playerScore
     {
@@ -159,7 +160,13 @@ public class DucksGameManager : MonoBehaviour
             }
         }
         GameProgress.SetStars(3, stars);
+        _ddm.SetValue(1, (stars)/3f);
 
+        //Calculate score difference dynamic difficulty input
+        int clampedDiff = Mathf.Clamp(Mathf.Abs(_playerScore-_aiScore), 0, 8);
+        _ddm.SetValue(2, (clampedDiff-1)/7f);
+
+        _ddm.SaveParameters();
         endGameText.text += "\nStars: " + stars;
         menu.SetActive(true);
         _eventSystem.SetSelectedGameObject(_resetButton);
@@ -168,5 +175,11 @@ public class DucksGameManager : MonoBehaviour
     public void ResetScene()
     {
         FadeController.Fade("Ducks");
+    }
+
+    public void SetLastDuck(float value)
+    {
+        _ddm.SetValue(0, value);
+        _ddm.SetValue(3, (value>=0.5f?1:0));
     }
 }
