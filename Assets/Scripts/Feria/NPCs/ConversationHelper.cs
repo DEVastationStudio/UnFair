@@ -78,7 +78,8 @@ public class ConversationHelper : MonoBehaviour
     }
     public void StartConversation()
     {
-        _interactUI?.SetActive(false);
+        if(_interactUI!=null)
+            _interactUI.SetActive(false);
         _trigger.OnUse();
         _playerInput.SwitchCurrentActionMap("UIMap");
     }
