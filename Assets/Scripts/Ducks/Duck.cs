@@ -47,12 +47,13 @@ public class Duck : FloatingObject
             pos.y = 0;
             rigidBody.AddForce(cross/4, ForceMode.Force);
             rigidBody.AddForce(pos/4, ForceMode.Force);
-            Debug.DrawRay(transform.position, Vector3.Cross(transform.position, Vector3.up));
+            //Debug.DrawRay(transform.position, Vector3.Cross(transform.position, Vector3.up));
         }
     }
 
     protected override void OnBasketEnter(bool player)
     {
+        gameObject.layer = 0;
         switch (type)
         {
             case Type.NORMAL:
