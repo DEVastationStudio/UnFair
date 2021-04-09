@@ -7,6 +7,11 @@ using UnityEngine.EventSystems;
 public partial class UIGeneral : MonoBehaviour
 {
     #region Variables
+
+    //Manager
+    [Header("Managers")]
+    [SerializeField] private ShootingMinigameManager _gameManager;
+
     //Timer
     [Header("Timer")]
     [SerializeField] private int _timeForLevel;
@@ -39,9 +44,11 @@ public partial class UIGeneral : MonoBehaviour
     [SerializeField] private GameObject _startButton;
     [SerializeField] private GameObject _resetButton;
 
+    //Dialogos
     [Header("NPC")]
     [SerializeField] private ConversationHelper _npcConversationHelper;
 
+    //Menú de pausa
     [Header("Menú de pausa")]
     [SerializeField] private GameObject _pauseMenu;
     [HideInInspector] public bool _isPaused;

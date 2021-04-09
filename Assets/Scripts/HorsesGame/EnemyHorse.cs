@@ -8,6 +8,7 @@ public class EnemyHorse : MonoBehaviour
     private Vector3 newPos;
     private Vector3 aux;
     private bool gameStarted;
+    [SerializeField] private DynamicDifficultyManager DDM;
 
     void Start()
     {
@@ -18,7 +19,7 @@ public class EnemyHorse : MonoBehaviour
     void Update()
     {
         if (!gameStarted) { return; }
-        mov = Random.Range(0.05f, 0.20f);
+        mov = Random.Range(0.05f, DDM.GetValue(0));
         GetPos();
     }
 

@@ -33,6 +33,10 @@ public class PlayerHorse : MonoBehaviour
     private bool gameStarted;
     private bool comboFailed;
     [SerializeField] private TimeCounter timeCounter;
+    [SerializeField] private DynamicDifficultyManager DDM;
+    private int combosFinishedDDM;
+    private int failedCombosDDM;
+    private float velocityCombos;
     #region UnityMethods
 
     void Awake()
@@ -51,6 +55,8 @@ public class PlayerHorse : MonoBehaviour
         {
             previousScheme = Scheme.Gamepad;
         }
+        combosFinishedDDM = 0;
+        velocityCombos = 0.0f;
         restartingComboText = false;
         endedCurrentCombo = false;
         endedCombos = 0;
@@ -108,6 +114,7 @@ public class PlayerHorse : MonoBehaviour
 
         if (posComb <= 0) { return; }
         currentTime += Time.deltaTime;
+        velocityCombos += Time.deltaTime;
         if (currentTime >= timeForKeys)
         {
             //Debug.Log("Mucho tiempo entre tecla y tecla");
@@ -155,6 +162,7 @@ public class PlayerHorse : MonoBehaviour
     public void EndGame()
     {
         gameStarted = false;
+        DDM.SaveParameters();
     }
     private void GenerateCombination()
     {
@@ -261,6 +269,23 @@ public class PlayerHorse : MonoBehaviour
     {
         endedCombos++;
         endedTotalCombos++;
+        combosFinishedDDM++;
+        failedCombosDDM = 0;
+        float ddmVel;
+        if (velocityCombos < 1.0f)
+        {
+            ddmVel = 0.75f;
+        }
+        else if (velocityCombos > 3.0f)
+        {
+            ddmVel = 0.0f;
+        }
+        else
+        {
+            ddmVel = 0.5f;
+        }
+        DDM.SetValue(0, ddmVel);//VELOCITY
+        velocityCombos = 0.0f;
         ResetCorrect(true, false);
     }
 
@@ -271,7 +296,8 @@ public class PlayerHorse : MonoBehaviour
         auxPos = (Vector3.forward * mov);
         newPos = new Vector3(transform.position.x + auxPos.x, transform.position.y + auxPos.y, transform.position.z + auxPos.z);
         transform.position = Vector3.MoveTowards(transform.position, newPos, 0.75f);
-        if (endedCombos >= 2 || Random.Range(0, 99) > 63)
+        print("La gráfica de la repetición tiene: " + DDM.GetValue(1));
+        if (endedCombos >= 2 || Random.Range(0, 99) < DDM.GetValue(1))//REPASAR
         {
             combCreated = false;
             GenerateCombination();
@@ -288,14 +314,56 @@ public class PlayerHorse : MonoBehaviour
         correctSequence = 0;
         posComb = 0;
         currentTime = 0.0f;
+
         if (ended)
         {
             endedCurrentCombo = true;
+            DDM.SetValue(2, 1.0f);
         }
         else if (failedCombo && !endedCurrentCombo)
         {
             comboFailed = true;
+            failedCombosDDM++;
+            combosFinishedDDM = 0;
+            DDM.SetValue(2, 0.0f);
         }
+
+        if (failedCombosDDM >= 2)
+        {
+            DDM.SetValue(1, 0.0f);
+            failedCombosDDM = 0;
+            combosFinishedDDM = 0;
+        }
+
+        if (combosFinishedDDM >= 5)
+        {
+            DDM.SetValue(1, 1.0f);
+            combosFinishedDDM = 0;
+            failedCombosDDM = 0;
+        }
+
+        /*if ((failedCombosDDM + combosFinishedDDM) >= 5)
+        {
+            if (combosFinishedDDM < 5)
+            {
+                if (combosFinishedDDM < failedCombosDDM)
+                {
+                    DDM.SetValue(1, 0.0f);
+                }
+                else
+                {
+                    DDM.SetValue(1, 0.5f);
+                }
+
+            }
+            else
+            {
+                DDM.SetValue(1, 1.0f);
+            }
+            failedCombosDDM = 0;
+            combosFinishedDDM = 0;
+
+        }*/
     }
 
     public bool GetComboFailed()
