@@ -7,16 +7,18 @@ public class Diana : MonoBehaviour
     public int _points;
     public int _pos;
     public bool _hit;
+    public bool _first;
     private ShootingMinigameManager _gameManager;
 
-    private void Start()
+    public void StartDiana()
     {
         _gameManager = FindObjectOfType<ShootingMinigameManager>();
         if (transform.tag == "DianaDorada" || transform.tag == "Reloj")
             StartCoroutine(DianaTemporal(2));
+        else if (_first)
+            StartCoroutine(DianaTemporal(7));
         else
             StartCoroutine(DianaTemporal(4));
-
     }
 
     IEnumerator DianaTemporal(int t) 

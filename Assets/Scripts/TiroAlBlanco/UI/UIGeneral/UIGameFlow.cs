@@ -34,9 +34,7 @@ public partial class UIGeneral : MonoBehaviour
     {
         faseActual = Fases.GAME;
         _PreGameContainer.SetActive(false);
-        _inGameContainer.SetActive(true);
-        _outGameContainer.SetActive(true);
-        InitUI();
+        StartCoroutine(Countdown());
     }
     public void FasePostGame()
     {
@@ -67,7 +65,45 @@ public partial class UIGeneral : MonoBehaviour
         {
             Destroy(DianasRestantes[i].gameObject);
         }
-        _eventSystem.SetSelectedGameObject(_resetButton);
+        _npcConversationHelper.StartConversation();
+    }
+
+    public void Pause()
+    {
+        _isPaused = !_isPaused;
+        if (_isPaused)
+        {
+            Time.timeScale = 0;
+            _pauseMenu.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1;
+            _pauseMenu.SetActive(false);
+        }
+    }
+
+    public void ExitCurrentGame() 
+    {
+        Time.timeScale = 1;
+        FadeController.Fade("TiroAlBlanco");
+    }
+
+    IEnumerator Countdown() 
+    {
+        _countdown.gameObject.SetActive(true);
+        int count = 3;
+        while (count > 0)
+        {
+            _countdown.text = count.ToString();
+            yield return new WaitForSeconds(1);
+            count--;
+        }
+        _countdown.text = "";
+        _countdown.gameObject.SetActive(false);
+        _inGameContainer.SetActive(true);
+        _outGameContainer.SetActive(true);
+        InitUI();
     }
     #endregion Metodos
 }

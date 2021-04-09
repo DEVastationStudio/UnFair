@@ -16,12 +16,11 @@ public class SpawnerDianas : MonoBehaviour
     #region Metodos
     public void SpawnInit()
     {
-        //Hay que cambiarlo una vez esten hechas las dianas y diseño del nivel
         numDianas = 0;
         targetsInUse = new bool[_spawnPoints.Count];
-        SpawnNewTarget(0);
-        SpawnNewTarget(0);
-        SpawnNewTarget(0);
+        SpawnNewTarget(3);
+        SpawnNewTarget(3);
+        SpawnNewTarget(3);
     }
 
     public void SpawnNewTarget(int type) 
@@ -48,6 +47,9 @@ public class SpawnerDianas : MonoBehaviour
             case 2:
                 Spawn(_spawnPoints[i].transform.position, _possibleTargets[2], i);
                 break;
+            case 3:
+                Spawn(_spawnPoints[i].transform.position, _possibleTargets[0], i, true);
+                break;
         }
     }
 
@@ -57,13 +59,15 @@ public class SpawnerDianas : MonoBehaviour
         targetsInUse[targetPos] = false;
     }
 
-    private void Spawn(Vector3 pos, GameObject target, int posInArray)
+    private void Spawn(Vector3 pos, GameObject target, int posInArray, bool first = false)
     {
-        GameObject aux;
         targetsInUse[posInArray] = true;
-        aux = Instantiate(target, pos, Quaternion.identity);
-        aux.GetComponent<Diana>()._pos = posInArray;
+        Diana aux = Instantiate(target, pos, Quaternion.identity).GetComponent<Diana>();
+        aux._pos = posInArray;
+        if (first)
+            aux._first = true;
         aux.transform.localEulerAngles += new Vector3(0, -180, 0);
+        aux.StartDiana();
         numDianas++;
     }
     #endregion Metodos

@@ -23,6 +23,7 @@ public partial class UIGeneral : MonoBehaviour
     [SerializeField] private GameObject _inGameContainer;
     [SerializeField] private GameObject _outGameContainer;
     [SerializeField] private GameObject _PostGameContainer;
+    [SerializeField] private TextMeshProUGUI _countdown;
 
     //Puntuaciones necesarias
     [Header("Retos")]
@@ -34,11 +35,16 @@ public partial class UIGeneral : MonoBehaviour
 
     //Botonoes necesarios para la navegación por mando
     [Header("Control por mando")]
-
     [SerializeField] private EventSystem _eventSystem;
     [SerializeField] private GameObject _startButton;
     [SerializeField] private GameObject _resetButton;
 
+    [Header("NPC")]
+    [SerializeField] private ConversationHelper _npcConversationHelper;
+
+    [Header("Menú de pausa")]
+    [SerializeField] private GameObject _pauseMenu;
+    [HideInInspector] public bool _isPaused;
 
     #endregion Variables
 

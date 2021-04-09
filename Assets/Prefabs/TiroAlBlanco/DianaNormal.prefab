@@ -96,6 +96,7 @@ MonoBehaviour:
   _points: 10
   _pos: 0
   _hit: 0
+  _first: 0
 --- !u!64 &-5950412849091795481
 MeshCollider:
   m_ObjectHideFlags: 0

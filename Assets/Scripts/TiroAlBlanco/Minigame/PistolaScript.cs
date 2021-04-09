@@ -32,6 +32,14 @@ public class PistolaScript : MonoBehaviour
         _pos = value.Get<Vector2>();
     }
 
+    void OnEscAction()
+    {
+        if (_gameManager._uiGeneral.faseActual == UIGeneral.Fases.GAME) 
+        {
+            _gameManager._uiGeneral.Pause();
+        }
+    }
+
     private void PointerUpdate() 
     {
         if (_gameManager._uiGeneral.faseActual != UIGeneral.Fases.GAME) return;
