@@ -18,7 +18,7 @@ public class RodAiScript : MonoBehaviour
     private Collider[] nearDuckColliders;
     private Duck[] nearDucks;
     private Vector3[] futurePositions;
-    private float[] weights;
+    private int[] weights;
     private Vector3 futureMagnetPos;
     public Rigidbody magnetRB;
     void Start()
@@ -50,7 +50,7 @@ public class RodAiScript : MonoBehaviour
             {
                 nearDucks = new Duck[nearDuckColliders.Length];
                 futurePositions = new Vector3[nearDuckColliders.Length];
-                weights = new float[nearDuckColliders.Length];
+                weights = new int[nearDuckColliders.Length];
 
                 for (int i = 0; i < nearDuckColliders.Length; i++)
                 {
@@ -67,40 +67,51 @@ public class RodAiScript : MonoBehaviour
                 futureMagnetPos = magnet.transform.position + magnetRB.velocity * Time.deltaTime;
 
                 //Calculate weight of all ducks (based on distance and duck type)
-                float modifier = 1;
+                int modifier = 1;
                 for (int i = 0; i < nearDuckColliders.Length; i++)
                 {
                     switch (nearDucks[i].type)
                     {
                         case Duck.Type.NORMAL:
-                            modifier = 1;
+                            modifier = 3;
                             break;
                         case Duck.Type.AI:
-                            modifier = 0.05f;
+                            modifier = 2;
                             break;
                         case Duck.Type.GOLD:
-                            modifier = 0.001f;
+                            modifier = 5;
                             break;
                         case Duck.Type.PLAYER:
-                            modifier = 500f;
+                            modifier = 4;
                             break;
                         case Duck.Type.BLACK:
-                            modifier = 2000;
+                            modifier = 1;
                             break;
                     }
 
-                    weights[i] = (Vector3.Distance(futurePositions[i], futureMagnetPos)) * modifier;
+                    weights[i] = /*(Vector3.Distance(futurePositions[i], futureMagnetPos)) * */modifier;
                 }
 
                 //Set target position to the future position of the best duck
                 int chosenDuck = 0;
-                float minWeight = 99999;
+                int minWeight = 99999;
+                float minDist = 99999;
                 for (int i = 0; i < nearDuckColliders.Length; i++)
                 {
                     if (weights[i] < minWeight)
                     {
                         chosenDuck = i;
                         minWeight = weights[i];
+                        minDist = (Vector3.Distance(futurePositions[i], futureMagnetPos));
+                    }
+                    else if (weights[1] == minWeight)
+                    {
+                        if ((Vector3.Distance(futurePositions[i], futureMagnetPos)) < minDist)
+                        {
+                            chosenDuck = i;
+                            minWeight = weights[i];
+                            minDist = (Vector3.Distance(futurePositions[i], futureMagnetPos)); 
+                        }
                     }
                 }
 

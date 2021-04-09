@@ -264,10 +264,9 @@ Otra parte de los menús que forman parte de los minijuegos con la pausa en la p
 
 El feriante preguntará si quieres echar una partida a lo que el jugador puede responder 3 cosas:
 1. Si, quiero jugar
-2. Como se juega al juego
-3. Mejor más tarde
+2. Mejor más tarde
 
-* La opción 2 da pie al tutorial in game con explicaciones del feriante.
+Una vez se elige la opción 1 el jugador entra a la escena del minijuego y se le presenta una pantalla donde puede ver como conseguir las estrellas a parte de dos botones, empezar y salir. 
 
 ### Fase inGame (2)
 ![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/faseInGame.jpg)
@@ -275,10 +274,9 @@ El feriante preguntará si quieres echar una partida a lo que el jugador puede r
 Elementos:
 1. Tablón que muestra datos relevantes de la partida
 2. Minijuego
-
-Al entrar a jugar se mostrará una pantalla con los requisitos para las estrellas y un botón de empezar. Si se ve necesario debería de haber un botón de volver hacia la feria.
-
 * A parte de estos dos elementos base cada minijuego puede añadir cosas extra necesarias para su minijuego en especial.
+
+Una vez se ha dado a empezar en la fase preGame se activa una cuenta atrás de 3 segundos antes de poder comenzar a mover la mira.
 
 ### Fase post Game (3)
 
