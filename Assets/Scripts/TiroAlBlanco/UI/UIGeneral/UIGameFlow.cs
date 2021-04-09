@@ -42,6 +42,7 @@ public partial class UIGeneral : MonoBehaviour
         _inGameContainer.SetActive(false);
         _outGameContainer.SetActive(false);
         _PostGameContainer.SetActive(true);
+        _gameManager._dynamicDifficultyManager.SaveParameters();
         Diana[] DianasRestantes = FindObjectsOfType<Diana>();
         if (_puntuacionActual >= _estrella3)
         {
