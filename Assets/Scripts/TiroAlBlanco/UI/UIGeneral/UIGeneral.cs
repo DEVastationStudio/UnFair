@@ -7,6 +7,11 @@ using UnityEngine.EventSystems;
 public partial class UIGeneral : MonoBehaviour
 {
     #region Variables
+
+    //Manager
+    [Header("Managers")]
+    [SerializeField] private ShootingMinigameManager _gameManager;
+
     //Timer
     [Header("Timer")]
     [SerializeField] private int _timeForLevel;
@@ -23,6 +28,7 @@ public partial class UIGeneral : MonoBehaviour
     [SerializeField] private GameObject _inGameContainer;
     [SerializeField] private GameObject _outGameContainer;
     [SerializeField] private GameObject _PostGameContainer;
+    [SerializeField] private TextMeshProUGUI _countdown;
 
     //Puntuaciones necesarias
     [Header("Retos")]
@@ -34,11 +40,18 @@ public partial class UIGeneral : MonoBehaviour
 
     //Botonoes necesarios para la navegación por mando
     [Header("Control por mando")]
-
     [SerializeField] private EventSystem _eventSystem;
     [SerializeField] private GameObject _startButton;
     [SerializeField] private GameObject _resetButton;
 
+    //Dialogos
+    [Header("NPC")]
+    [SerializeField] private ConversationHelper _npcConversationHelper;
+
+    //Menú de pausa
+    [Header("Menú de pausa")]
+    [SerializeField] private GameObject _pauseMenu;
+    [HideInInspector] public bool _isPaused;
 
     #endregion Variables
 

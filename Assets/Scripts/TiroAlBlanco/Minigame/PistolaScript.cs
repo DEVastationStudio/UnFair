@@ -32,6 +32,14 @@ public class PistolaScript : MonoBehaviour
         _pos = value.Get<Vector2>();
     }
 
+    void OnEscAction()
+    {
+        if (_gameManager._uiGeneral.faseActual == UIGeneral.Fases.GAME) 
+        {
+            _gameManager._uiGeneral.Pause();
+        }
+    }
+
     private void PointerUpdate() 
     {
         if (_gameManager._uiGeneral.faseActual != UIGeneral.Fases.GAME) return;
@@ -48,13 +56,16 @@ public class PistolaScript : MonoBehaviour
         if (_gameManager._uiGeneral.faseActual != UIGeneral.Fases.GAME) return;
         RaycastHit hit;
         Physics.Raycast(Camera.main.ScreenPointToRay(_mira.transform.position), out hit, 100);
-        if (hit.collider != null && hit.transform.tag == "Diana")
+        if (hit.collider != null && (hit.transform.tag == "Diana"))
         {
-            GameObject diana = hit.transform.gameObject;
+            Diana diana = hit.transform.gameObject.GetComponent<Diana>();
             diana.GetComponent<Diana>()._hit = true;
-            _gameManager._spawnerDianas.DestroyTarget(diana.GetComponent<Diana>()._pos);
-            _gameManager._uiGeneral.IncreasePuntuacion(diana.GetComponent<Diana>()._points);
-            Destroy(diana);
+            _gameManager._spawnerDianas.DestroyTarget(diana._pos);
+            _gameManager._uiGeneral.IncreasePuntuacion(diana._points);
+            if (hit.transform.tag == "Diana")
+                _gameManager._dynamicDifficultyManager.SetValue(0, diana.GetPercentageLifeTime());
+
+            Destroy(diana.gameObject);
             if (Random.Range(0, 100) > _probReloj) 
             {
                 _probReloj = 110;
@@ -80,11 +91,18 @@ public class PistolaScript : MonoBehaviour
                 _gameManager._uiGeneral.IncreasePuntuacion(diana.GetComponent<Diana>()._points);
             else
                 _gameManager._uiGeneral.AddTime(5);
+
+            if (hit.transform.tag == "DianaDorada")
+                _gameManager._dynamicDifficultyManager.SetValue(0, 0.90f);
+            else if (hit.transform.tag == "Reloj")
+                _gameManager._dynamicDifficultyManager.SetValue(0, 1f);
+
             Destroy(diana);
             CallSpawnRetard(0);
         }
         else if (hit.collider != null && hit.transform.tag == "Pared")
         {
+            _gameManager._dynamicDifficultyManager.SetValue(0, 0f);
             _gameManager._uiGeneral.IncreasePuntuacion(-5);
         }
     }
