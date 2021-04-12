@@ -21,6 +21,8 @@ public class RodAiScript : MonoBehaviour
     private int[] weights;
     private Vector3 futureMagnetPos;
     public Rigidbody magnetRB;
+    [SerializeField] private DynamicDifficultyManager _ddm;
+
     void Start()
     {
         positionOffset = transform.position - rodTip.transform.position;
@@ -31,7 +33,7 @@ public class RodAiScript : MonoBehaviour
 
     private void OnDrawGizmos() 
     {
-        Gizmos.DrawSphere(magnet.transform.position, 5);
+        //Gizmos.DrawSphere(magnet.transform.position, 5);
     }
 
     void Update()
@@ -40,7 +42,7 @@ public class RodAiScript : MonoBehaviour
         if (magnet.tag == "Magnet")
         {
             //Get all eligible ducks in a small area
-            nearDuckColliders = Physics.OverlapSphere(magnet.transform.position, 5, ducksLayer);
+            nearDuckColliders = Physics.OverlapSphere(magnet.transform.position, _ddm.GetValue(0), ducksLayer);
 
             if (nearDuckColliders.Length == 0)
             {
@@ -66,45 +68,44 @@ public class RodAiScript : MonoBehaviour
                 //Calculate future position of the magnet
                 futureMagnetPos = magnet.transform.position + magnetRB.velocity * Time.deltaTime;
 
-                //Calculate weight of all ducks (based on distance and duck type)
-                int modifier = 1;
+                //Calculate weight of all ducks (based on duck type)
                 for (int i = 0; i < nearDuckColliders.Length; i++)
-                {
+                {Debug.DrawLine(magnet.transform.position, nearDucks[i].transform.position, Color.green);
                     switch (nearDucks[i].type)
                     {
                         case Duck.Type.NORMAL:
-                            modifier = 3;
+                            weights[i] = 3;
                             break;
                         case Duck.Type.AI:
-                            modifier = 2;
+                            weights[i] = 4;
                             break;
                         case Duck.Type.GOLD:
-                            modifier = 5;
+                            weights[i] = 1;
                             break;
                         case Duck.Type.PLAYER:
-                            modifier = 4;
+                            weights[i] = 2;
                             break;
                         case Duck.Type.BLACK:
-                            modifier = 1;
+                            weights[i] = 5;
                             break;
                     }
-
-                    weights[i] = /*(Vector3.Distance(futurePositions[i], futureMagnetPos)) * */modifier;
                 }
 
                 //Set target position to the future position of the best duck
                 int chosenDuck = 0;
                 int minWeight = 99999;
                 float minDist = 99999;
+                float randomRange = 0;
                 for (int i = 0; i < nearDuckColliders.Length; i++)
                 {
-                    if (weights[i] < minWeight)
+                    randomRange = Random.Range(0, _ddm.GetValue(1));
+                    if (weights[i] < (minWeight + randomRange))
                     {
                         chosenDuck = i;
                         minWeight = weights[i];
                         minDist = (Vector3.Distance(futurePositions[i], futureMagnetPos));
                     }
-                    else if (weights[1] == minWeight)
+                    else if (weights[1] == (minWeight + randomRange))
                     {
                         if ((Vector3.Distance(futurePositions[i], futureMagnetPos)) < minDist)
                         {
@@ -116,7 +117,7 @@ public class RodAiScript : MonoBehaviour
                 }
 
                 //if (nearDucks[chosenDuck].type != Duck.Type.BLACK) //Not yet
-                    _targetPos = nearDucks[chosenDuck].transform.position;
+                    _targetPos = nearDucks[chosenDuck].transform.position;Debug.DrawLine(magnet.transform.position, _targetPos, Color.magenta);
             }
 
         }
@@ -128,17 +129,17 @@ public class RodAiScript : MonoBehaviour
 
 
         //Up/down movement
-
-        bool goDown = Vector3.Distance(magnet.transform.position, _targetPos) < 3;
-
+        Vector3 targetLevel = new Vector3(_targetPos.x, magnet.transform.position.y, _targetPos.z);
+        bool goDown = Vector3.Distance(magnet.transform.position, targetLevel) < 1;
+        print(goDown);
 
         if (_height < 1 && magnet.tag == "Magnet" && goDown)
         {
-            _height = Mathf.Min(_height + 1 * Time.deltaTime, 1);
+            _height = Mathf.Min(_height + 2 * Time.deltaTime, 1);
         }
-        else if (_height > 0 && magnet.tag != "Magnet" && goDown)
+        else if (_height > 0 && magnet.tag != "Magnet")
         {
-            _height = Mathf.Max(_height - 1 * Time.deltaTime, 0);
+            _height = Mathf.Max(_height - 2 * Time.deltaTime, 0);
         }
 
         magnetHitbox.enabled = (_height >= 1);
@@ -147,7 +148,7 @@ public class RodAiScript : MonoBehaviour
         if (!gameManager.gameOver)
         {
             Vector3 newPos = new Vector3(_targetPos.x, _initialHeight - _height, _targetPos.z) + positionOffset;
-            transform.position = Vector3.MoveTowards(transform.position, newPos, 8 * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, newPos, 12 * Time.deltaTime);
         }
     }
 }
