@@ -7,10 +7,11 @@ public class MarbleHoles : MonoBehaviour
     [SerializeField] private int points;
     [SerializeField] private HUD_Marbles hudMarbles;
     [SerializeField] private Thrower thrower;
+    private DynamicDifficultyManager DDM;
 
     void Start()
     {
-
+        DDM = FindObjectOfType<DynamicDifficultyManager>();
     }
 
     void Update()
@@ -22,6 +23,7 @@ public class MarbleHoles : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Canica"))
         {
+            DDM.SetValue(2, 0.0f);
             hudMarbles.AddScore(this.points);
             Destroy(other.gameObject);
             if (thrower.GetBallsLeft() <= 0)

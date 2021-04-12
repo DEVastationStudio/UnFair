@@ -16,6 +16,8 @@ public class HUD_Marbles : MonoBehaviour
     [SerializeField] private TextMeshProUGUI preStarsObtainedText;
     [SerializeField] private TextMeshProUGUI postStarsObtainedText;
     [SerializeField] private Thrower thrower;
+    [SerializeField] private DynamicDifficultyManager DDM;
+    [SerializeField] private float MaxTimeHits = 6; // si se supera este tiempo, bajará la dificultad
 
     [Header("Control por mando")]
     [SerializeField] private EventSystem _eventSystem;
@@ -30,9 +32,11 @@ public class HUD_Marbles : MonoBehaviour
     private bool failedBall;
     private int stars;
     private int balls;
+    private float velocityHits;
 
     void Start()
     {
+        velocityHits = 0.0f;
         inGameCanvas.SetActive(false);
         postGameCanvas.SetActive(false);
         preGameCanvas.SetActive(true);
@@ -49,6 +53,7 @@ public class HUD_Marbles : MonoBehaviour
     {
         if (gameStarted)
         {
+            velocityHits += Time.deltaTime;
             timeSpent += Time.deltaTime;
             /*seconds = (Mathf.Floor(timeSpent) % 60).ToString("00");
             minutes = Mathf.Floor(timeSpent / 60).ToString("00");
@@ -89,6 +94,27 @@ public class HUD_Marbles : MonoBehaviour
             if (stars > GameProgress.GetStars(4))
             {
                 GameProgress.SetStars(4, stars);
+                float auxStarDDM = 0;
+                switch (stars)
+                {
+                    case 0:
+                        auxStarDDM = 0.0f;
+                        break;
+
+                    case 1:
+                        auxStarDDM = 0.25f;
+                        break;
+
+                    case 2:
+                        auxStarDDM = 0.5f;
+                        break;
+
+                    case 3:
+                        auxStarDDM = 0.1f;
+                        break;
+                }
+
+                DDM.SetValue(0, auxStarDDM);
             }
             postStarsObtainedText.text = "You got " + stars + " stars";
 
@@ -97,7 +123,7 @@ public class HUD_Marbles : MonoBehaviour
         {
             postStarsObtainedText.text = "Sorry you got no star ;(";
         }
-
+        DDM.SaveParameters();
         finalTimeText.text = ((Mathf.Floor(timeSpent / 60).ToString("00")) + " : " + (Mathf.Floor(timeSpent) % 60).ToString("00"));
     }
 
@@ -108,6 +134,20 @@ public class HUD_Marbles : MonoBehaviour
 
     public void AddScore(int holeScore)
     {
+        if (velocityHits >= MaxTimeHits)//bajas dificultad por hacerlo muy lento
+        {
+            DDM.SetValue(1, 0.1f);
+
+        }
+        else if (velocityHits<= 2.0f)
+        {
+            DDM.SetValue(1, 0.75f);
+        }
+        else
+        {
+            DDM.SetValue(1, 0.45f);
+        }
+        velocityHits = 0.0f;
         score += holeScore;
         scoreText.text = "Score: " + score.ToString();
     }

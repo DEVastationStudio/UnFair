@@ -297,7 +297,7 @@ public class PlayerHorse : MonoBehaviour
         newPos = new Vector3(transform.position.x + auxPos.x, transform.position.y + auxPos.y, transform.position.z + auxPos.z);
         transform.position = Vector3.MoveTowards(transform.position, newPos, 0.75f);
         print("La gráfica de la repetición tiene: " + DDM.GetValue(1));
-        if (endedCombos >= 2 || Random.Range(0, 99) < DDM.GetValue(1))//REPASAR
+        if ((endedCombos >= 2) || (DDM.GetValue(1) > Random.Range(0, 99)))//REPASAR
         {
             combCreated = false;
             GenerateCombination();
