@@ -3378,6 +3378,81 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - guid: b45fc637-e3e7-45d1-86ba-dd7d2d9ce4f5
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 798189072}
+          m_MethodName: SetConversationEnd
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: eb863fcb-35e9-4861-9808-16ea2386323c
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 798189072}
+          m_MethodName: SetConversationEnd
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 7a22c841-e583-4569-812f-40b75f4f0865
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 798189067}
+          m_MethodName: SwitchCamera
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - guid: e0e686da-43b7-42c0-9117-e6bc1e5d49df
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 119446208}
+          m_MethodName: SwitchCamera
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - guid: f0643f64-3328-4188-90d0-7cebdbc603b3
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1834698868}
+          m_MethodName: SwitchCamera
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
 --- !u!4 &630230074
 Transform:
   m_ObjectHideFlags: 0
@@ -4510,6 +4585,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MinigameAccessPoint (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685901113612023598, guid: 2f12c7b53e8974b498318cc11993badc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f12c7b53e8974b498318cc11993badc, type: 3}
@@ -5816,7 +5896,7 @@ PrefabInstance:
     - target: {fileID: 4355682930610415243, guid: 5b83a25e296a1a540bde3f2c770b5326,
         type: 3}
       propertyPath: conversation
-      value: EndTiroAlBlanco
+      value: EntradaCaballos
       objectReference: {fileID: 0}
     - target: {fileID: 4355682930610415243, guid: 5b83a25e296a1a540bde3f2c770b5326,
         type: 3}
@@ -6806,6 +6886,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MinigameAccessPoint (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685901113612023598, guid: 2f12c7b53e8974b498318cc11993badc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f12c7b53e8974b498318cc11993badc, type: 3}
