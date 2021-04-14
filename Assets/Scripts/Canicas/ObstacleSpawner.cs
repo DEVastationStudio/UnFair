@@ -6,7 +6,10 @@ public class ObstacleSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject rampPrefab;
     [SerializeField] private GameObject wallPrefab;
-    [SerializeField] private Transform[] spawnPoints;
+    [SerializeField] private GameObject[] spawnPoints;
+    private List<GameObject> spawnList;
+    [SerializeField] private DynamicDifficultyManager DDM;
+    [SerializeField] private GameObject thrower;
     private float rand;
 
 
@@ -15,45 +18,87 @@ public class ObstacleSpawner : MonoBehaviour
         GenerateRandomObstacle();
     }
 
-    void Update()
-    {
-
-    }
-
     public void GenerateRandomObstacle()
     {
         GameObject auxInst;
-        for (int i = 0; i < spawnPoints.Length; i++)
+        int auxPosList;
+        spawnList = new List<GameObject>(spawnPoints);//lista para expulsar
+        for (int i = 0; i < (int)DDM.GetValue(1); i++)
         {
-            rand = Random.value;
-            if (rand < 0.80f)
+            auxPosList = Random.Range(0, spawnList.Count);
+            TargetPoints targetAux = spawnList[auxPosList].GetComponent<TargetPoints>();
+            if (Random.value > 0.5f)
             {
-                if (Random.value > 0.5f)
+                //Rampa
+                auxInst = Instantiate(rampPrefab, targetAux.gameObject.transform.position, Quaternion.identity);
+
+                switch (targetAux.GetPosSpawn().ToString())
                 {
-                    auxInst = Instantiate(rampPrefab, spawnPoints[i].position, Quaternion.identity);
-                    auxInst.transform.rotation = Quaternion.Euler(-90f, 0f, -90.0f);//(new Vector3(110f, -180f, -90f));
+                    case "North":
+                        if (Random.value > 0.5f)
+                        {
+                            auxInst.transform.rotation = Quaternion.Euler(-4.0f, 8.0f, -3.0f);
+                        }
+                        else
+                        {
+                            auxInst.transform.rotation = Quaternion.Euler(-4.0f, -8.0f, 3.0f);
+                        }
+                        break;
+                    case "South":
+                        if (Random.value > 0.5f)
+                        {
+                            auxInst.transform.rotation = Quaternion.Euler(-4.0f, 8.0f, -3.0f);
+                        }
+                        else
+                        {
+                            auxInst.transform.rotation = Quaternion.Euler(-4.0f, -8.0f, 3.0f);
+                        }
+                        break;
+                    case "East":
+                        auxInst.transform.rotation = Quaternion.Euler(0f, -45f, 15.0f);//de derecha a izquierda la rampa
+                        break;
+                    case "West":
+                        auxInst.transform.rotation = Quaternion.Euler(0f, 45f, -15.0f);//de izquierda a derecha la rampa
+                        break;
                 }
-                else
-                {
-                    auxInst = Instantiate(wallPrefab, spawnPoints[i].position, Quaternion.identity);
-                    if (i == 0)
-                    {
-                        auxInst.transform.rotation = Quaternion.Euler(-106f, -4f, 60f);
-                    }
-                    else if (i == 1)
-                    {
-                        auxInst.transform.rotation = Quaternion.Euler(-115f, 6f, 120f);
-                    }
-                    else
-                    {
-                        auxInst.transform.rotation = Quaternion.Euler(-60f, 180f, -90f);
-                    }
-                }
+
             }
             else
-            {
-                print("No instancio");
+            {   //Pared
+                auxInst = Instantiate(wallPrefab, targetAux.gameObject.transform.position, Quaternion.identity);
+                switch (targetAux.GetPosSpawn().ToString())
+                {
+                    case "North":
+                        if (Random.value > 0.5f)
+                        {
+                            auxInst.transform.rotation = Quaternion.Euler(0.0f, -5.0f, 2.0f);
+                        }
+                        else
+                        {
+                            auxInst.transform.rotation = Quaternion.Euler(0.0f, 5.0f, -2.0f);
+                        }
+                        break;
+                    case "South":
+                        if (Random.value > 0.5f)
+                        {
+                            auxInst.transform.rotation = Quaternion.Euler(0.0f, -5.0f, 2.0f);
+                        }
+                        else
+                        {
+                            auxInst.transform.rotation = Quaternion.Euler(0.0f, 5.0f, -2.0f);
+                        }
+                        break;
+                    case "East":
+                        auxInst.transform.rotation = Quaternion.Euler(0.0f, 30f, -13f);
+                        break;
+                    case "West":
+                        auxInst.transform.rotation = Quaternion.Euler(0.0f, -30f, 13f);
+                        break;
+                }
+
             }
+            auxInst.GetComponent<PathMovement>().SetTargets(targetAux.GetTargets());
+            spawnList.RemoveAt(auxPosList);
         }
     }
 }
