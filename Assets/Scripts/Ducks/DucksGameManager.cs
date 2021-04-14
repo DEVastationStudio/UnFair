@@ -19,6 +19,7 @@ public class DucksGameManager : MonoBehaviour
     [SerializeField] private GameObject _startButton;
     [SerializeField] private GameObject _resetButton;
     [SerializeField] private DynamicDifficultyManager _ddm;
+    [SerializeField] private ConversationHelper _npcConversationHelper;
 
     public int playerScore
     {
@@ -169,8 +170,10 @@ public class DucksGameManager : MonoBehaviour
         _ddm.SaveParameters();
         endGameText.text += "\nStars: " + stars;
         menu.SetActive(true);
-        _eventSystem.SetSelectedGameObject(_resetButton);
+        
+        _npcConversationHelper.StartConversation();
     }
+
 
     public void ResetScene()
     {
