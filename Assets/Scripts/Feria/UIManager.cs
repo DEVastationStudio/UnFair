@@ -19,6 +19,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<GameObject> _virtualCameras;
     [SerializeField] private GameObject _titleScreen;
 
+    [Header("Ajustes")]
+    [SerializeField] private GameObject _ajustes;
+    [SerializeField] private GameObject _primerAjustesBtn;
+    [SerializeField] private GameObject _entrarAjustesBtn;
+
     [Header("Estrellas")]
     [SerializeField] private List<GameObject> _tiroAlBlancoStars;
     [SerializeField] private List<GameObject> _caballosStars;
@@ -83,9 +88,19 @@ public class UIManager : MonoBehaviour
 
         _eventSystem.SetSelectedGameObject(_pauseButtonExit);
     }
-    public void ClosePauseMenu() { _basePauseMenu.SetActive(false); _playerInput.SwitchCurrentActionMap("ActionMap"); }
-    public void OpenPauseExit() { _exitConfirmationPause.SetActive(true); }
-    public void ClosePauseExit() { _exitConfirmationPause.SetActive(false); }
+    public void ClosePauseMenu() 
+    { 
+        _basePauseMenu.SetActive(false); 
+        _playerInput.SwitchCurrentActionMap("ActionMap"); 
+    }
+    public void OpenPauseExit() 
+    {
+        _exitConfirmationPause.SetActive(true); 
+    }
+    public void ClosePauseExit() 
+    {
+        _exitConfirmationPause.SetActive(false); 
+    }
     public void OpenNoriaNotAvailable() { 
         Debug.Log("Si que entro"); 
         _noriaNotAvailable.SetActive(true); 
@@ -93,14 +108,28 @@ public class UIManager : MonoBehaviour
         _playerInput.SwitchCurrentActionMap("UIMap");
         Debug.Log("Si que termino");
     }
-    public void CloseNoriaNotAvailable() { _noriaNotAvailable.SetActive(false); _playerInput.SwitchCurrentActionMap("ActionMap"); }
-
+    public void CloseNoriaNotAvailable() 
+    { 
+        _noriaNotAvailable.SetActive(false); 
+        _playerInput.SwitchCurrentActionMap("ActionMap");
+    }
+    public void OpenAjustes()
+    {
+        _basePauseMenu.SetActive(false);
+        _ajustes.SetActive(true);
+        _eventSystem.SetSelectedGameObject(_primerAjustesBtn);
+    }
+    public void CloseAjustes()
+    {
+        _ajustes.SetActive(false);
+        _basePauseMenu.SetActive(true);
+        _eventSystem.SetSelectedGameObject(_entrarAjustesBtn);
+    }
     private IEnumerator WaitXSeconds(float s) 
     {
         yield return new WaitForSeconds(s);
         _playerInput.SwitchCurrentActionMap("ActionMap");
     }
-
     public void Exit()
     {
         Application.Quit();
