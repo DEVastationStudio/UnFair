@@ -18,6 +18,7 @@ public class FadeController : MonoBehaviour
 
     public PlayerController player;
     public bool storedPlayerPosition;
+    private static int _songIndex;
 
     void Awake()
     {
@@ -34,6 +35,8 @@ public class FadeController : MonoBehaviour
 
     public static void Fade(string scene)
     {
+        _songIndex = GetSong(scene);
+        AudioManager.instance.FadeOut(_songIndex, 0.5f);
         instance.StartCoroutine(instance.FadeOut(scene));
     }
     public static void FinishLoad(bool skipLoading = false)
@@ -61,6 +64,7 @@ public class FadeController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         if (!skipLoading) yield return FadeImageIn(loading);
+        AudioManager.instance.FadeIn(_songIndex, 0.5f);
         yield return FadeImageIn(fade);
     }
     private IEnumerator FadeImageOut(Image image)
@@ -97,5 +101,16 @@ public class FadeController : MonoBehaviour
             yield return null;
         }
         image.enabled = false;
+    }
+
+    private static int GetSong(string scene)
+    {
+        switch (scene)
+        {
+            case "Feria":
+                return 0;
+            default:
+                return 1;
+        }
     }
 }
