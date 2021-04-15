@@ -1991,6 +1991,7 @@ MonoBehaviour:
   _resetButton: {fileID: 1152714912}
   _npcConversationHelper: {fileID: 321117328}
   _pauseMenu: {fileID: 227362298}
+  _continuarBtn: {fileID: 1418117604}
   _isPaused: 0
   _menuAjustes: {fileID: 321783268}
   _ajustesBtnMain: {fileID: 1683731308}
