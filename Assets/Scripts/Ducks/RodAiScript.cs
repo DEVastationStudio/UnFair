@@ -135,11 +135,11 @@ public class RodAiScript : MonoBehaviour
 
         if (_height < 1 && magnet.tag == "Magnet" && goDown)
         {
-            _height = Mathf.Min(_height + 2 * Time.deltaTime, 1);
+            _height = Mathf.Min(_height + 1.5f * Time.deltaTime, 1);
         }
         else if (_height > 0 && magnet.tag != "Magnet")
         {
-            _height = Mathf.Max(_height - 2 * Time.deltaTime, 0);
+            _height = Mathf.Max(_height - 1.5f * Time.deltaTime, 0);
         }
 
         magnetHitbox.enabled = (_height >= 1);
@@ -148,7 +148,7 @@ public class RodAiScript : MonoBehaviour
         if (!gameManager.gameOver)
         {
             Vector3 newPos = new Vector3(_targetPos.x, _initialHeight - _height, _targetPos.z) + positionOffset;
-            transform.position = Vector3.MoveTowards(transform.position, newPos, 12 * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, newPos, 10 * Time.deltaTime);
         }
     }
 }
