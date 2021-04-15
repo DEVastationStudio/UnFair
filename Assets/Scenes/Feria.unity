@@ -5821,6 +5821,7 @@ MonoBehaviour:
   - {fileID: 27276957}
   - {fileID: 1058451937}
   _titleScreen: {fileID: 963437499}
+  _startBtn: {fileID: 339766995}
   _ajustes: {fileID: 1021979655}
   _primerAjustesBtn: {fileID: 1021979654}
   _entrarAjustesBtn: {fileID: 143266019}

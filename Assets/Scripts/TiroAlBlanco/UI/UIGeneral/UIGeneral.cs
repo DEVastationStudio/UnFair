@@ -53,6 +53,13 @@ public partial class UIGeneral : MonoBehaviour
     [SerializeField] private GameObject _pauseMenu;
     [HideInInspector] public bool _isPaused;
 
+    [Header("Ajustes")]
+    [SerializeField] private GameObject _menuAjustes;
+    [SerializeField] private GameObject _ajustesBtnMain;
+    [SerializeField] private GameObject _ajustesBtnPausa;
+    [SerializeField] private GameObject _primerAjuste;
+    private bool _isPause;
+
     #endregion Variables
 
     #region Metodos

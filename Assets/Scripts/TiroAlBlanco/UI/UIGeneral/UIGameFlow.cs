@@ -84,6 +84,25 @@ public partial class UIGeneral : MonoBehaviour
         }
     }
 
+    public void OpenAjustes(bool isPause)
+    {
+        _isPause = isPause;
+        _menuAjustes.SetActive(true);
+        _eventSystem.SetSelectedGameObject(_primerAjuste);
+    }
+    public void CloseAjustes()
+    {
+        _menuAjustes.SetActive(false);
+        if (_isPause)
+        {
+            _eventSystem.SetSelectedGameObject(_ajustesBtnMain);
+        }
+        else
+        {
+            _eventSystem.SetSelectedGameObject(_ajustesBtnPausa);
+        }
+    }
+
     public void ExitCurrentGame() 
     {
         Time.timeScale = 1;
