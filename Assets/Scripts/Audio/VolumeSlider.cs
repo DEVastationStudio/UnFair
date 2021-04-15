@@ -6,16 +6,16 @@ public class VolumeSlider : MonoBehaviour {
     private float savedVol;
      
     void Awake(){
-        float savedVol = PlayerPrefs.GetFloat(parameterName, slider.maxValue);
-        SetVolume(savedVol); 
-        slider.value = savedVol;
+        float savedVol = PlayerPrefs.GetFloat(parameterName, 1);
+        SetVolume(savedVol*slider.maxValue); 
+        slider.value = savedVol*slider.maxValue;
         slider.onValueChanged.AddListener((float _) => SetVolume(_)); 
     }
      
     void SetVolume(float _value){
         mixer.SetFloat(parameterName, ConvertToDecibel(_value/slider.maxValue)); 
-        PlayerPrefs.SetFloat(parameterName, _value);
-        savedVol = _value;
+        PlayerPrefs.SetFloat(parameterName, _value/slider.maxValue);
+        savedVol = _value/slider.maxValue;
     }
      
     public float ConvertToDecibel(float _value){
