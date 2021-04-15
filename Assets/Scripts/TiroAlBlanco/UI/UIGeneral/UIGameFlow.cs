@@ -76,6 +76,7 @@ public partial class UIGeneral : MonoBehaviour
         {
             Time.timeScale = 0;
             _pauseMenu.SetActive(true);
+            _eventSystem.SetSelectedGameObject(_continuarBtn);
         }
         else
         {

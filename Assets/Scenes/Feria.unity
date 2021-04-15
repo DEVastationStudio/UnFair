@@ -5393,7 +5393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_SelectOnUp: {fileID: 339766997}
+    m_SelectOnUp: {fileID: 2061561551}
     m_SelectOnDown: {fileID: 1029588043}
     m_SelectOnLeft: {fileID: 1029588043}
     m_SelectOnRight: {fileID: 1029588043}
