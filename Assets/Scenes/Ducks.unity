@@ -2476,7 +2476,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 894907344}
         m_MethodName: ExitCurrentGame
         m_Mode: 1
         m_Arguments:
@@ -2911,6 +2911,7 @@ MonoBehaviour:
   magnet: {fileID: 1690188174}
   gameManager: {fileID: 1172530604}
   rodBounds: {fileID: 1523615443}
+  _pauseMenu: {fileID: 1164459993}
 --- !u!4 &894907345
 Transform:
   m_ObjectHideFlags: 0
@@ -5468,7 +5469,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 894907344}
         m_MethodName: Pause
         m_Mode: 1
         m_Arguments:
