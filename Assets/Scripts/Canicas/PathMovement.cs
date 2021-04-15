@@ -13,6 +13,7 @@ public class PathMovement : MonoBehaviour
 
     void Update()
     {
+        if (!HUD_Marbles.startedPressed) { return; }
         if (targets == null || targets.Length < 2) { return; }
         if (transform.position != targets[currentTarget].position)
         {
