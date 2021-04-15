@@ -23,6 +23,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _ajustes;
     [SerializeField] private GameObject _primerAjustesBtn;
     [SerializeField] private GameObject _entrarAjustesBtn;
+    private bool _isPause = false;
+
 
     [Header("Estrellas")]
     [SerializeField] private List<GameObject> _tiroAlBlancoStars;
@@ -113,16 +115,27 @@ public class UIManager : MonoBehaviour
         _noriaNotAvailable.SetActive(false); 
         _playerInput.SwitchCurrentActionMap("ActionMap");
     }
-    public void OpenAjustes()
+    public void OpenAjustes(bool isPause)
     {
-        _basePauseMenu.SetActive(false);
+        _isPause = isPause;
+
+        _ajustes.SetActive(false);
+        if (_isPause)
+            _titleScreen.SetActive(false);
+        else
+            _basePauseMenu.SetActive(false);
+
         _ajustes.SetActive(true);
         _eventSystem.SetSelectedGameObject(_primerAjustesBtn);
     }
     public void CloseAjustes()
     {
         _ajustes.SetActive(false);
-        _basePauseMenu.SetActive(true);
+        if (_isPause)
+            _titleScreen.SetActive(true);
+        else
+            _basePauseMenu.SetActive(true);
+
         _eventSystem.SetSelectedGameObject(_entrarAjustesBtn);
     }
     private IEnumerator WaitXSeconds(float s) 

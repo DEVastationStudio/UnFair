@@ -9,10 +9,11 @@ public class DucksGameManager : MonoBehaviour
 {
     public Duck duckPrefab;
     private int _playerScore, _aiScore;
-    public TMP_Text pScoreText, aScoreText, timerText, titleText, endGameText;
+    public TMP_Text pScoreText, aScoreText, timerText, titleText, endGameText, countdownText;
     public GameObject menu;
     public LayerMask duckMask;
     public Button startGameButton;
+    public RodAiScript aiScript;
 
     [Header("Control por mando")]
     [SerializeField] private EventSystem _eventSystem;
@@ -45,7 +46,7 @@ public class DucksGameManager : MonoBehaviour
     {
         titleText.text += "\nStars: " + GameProgress.GetStars(3);
         noBadDucks = true;
-        _goldDucks  = Mathf.RoundToInt(totalDucks*0.1f);
+        _goldDucks  = Mathf.RoundToInt(totalDucks*0.05f);
         _blackDucks = _goldDucks + Mathf.RoundToInt(totalDucks*0.12f);
         _greenDucks = _blackDucks + Mathf.RoundToInt(totalDucks*0.3f);
         _redDucks   = _greenDucks + Mathf.RoundToInt(totalDucks*0.3f);
@@ -128,9 +129,25 @@ public class DucksGameManager : MonoBehaviour
 
     public void StartGame()
     {
+        StartCoroutine(Countdown());
+    }
+    private IEnumerator Countdown() 
+    {
+        countdownText.gameObject.SetActive(true);
+        int count = 3;
+        while (count > 0)
+        {
+            countdownText.text = count.ToString();
+            yield return new WaitForSeconds(1);
+            count--;
+        }
+        countdownText.text = "";
+        countdownText.gameObject.SetActive(false);
+        
         _actualTime = 30;
         gameStarted = true;
-        StartCoroutine(TimerUpdate());
+        aiScript.enabled = true;
+        yield return TimerUpdate();
     }
 
     private IEnumerator TimerUpdate()

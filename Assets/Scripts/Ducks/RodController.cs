@@ -20,6 +20,8 @@ public class RodController : MonoBehaviour
     public DucksGameManager gameManager;
     public BoxCollider rodBounds;
     private Bounds _bounds;
+    private bool _isPaused;
+    [SerializeField] GameObject _pauseMenu;
 
     void Start()
     {
@@ -85,5 +87,32 @@ public class RodController : MonoBehaviour
     private void OnMouseLeftAction(InputValue value)
     {
         _mouseDown = ((value.Get<float>() == 1) && magnet.tag == "Magnet" && !gameManager.gameOver);
+    }
+
+    void OnEscAction()
+    {
+        if (gameManager.gameStarted && !gameManager.gameOver) 
+        {
+            Pause();
+        }
+    }
+    public void Pause()
+    {
+        _isPaused = !_isPaused;
+        if (_isPaused)
+        {
+            Time.timeScale = 0;
+            _pauseMenu.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1;
+            _pauseMenu.SetActive(false);
+        }
+    }
+    public void ExitCurrentGame() 
+    {
+        Time.timeScale = 1;
+        FadeController.Fade("Ducks");
     }
 }
