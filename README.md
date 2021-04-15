@@ -250,15 +250,28 @@ Elementos:
 3. Botón de ajustes para cambiar el volumen de la música y los efectos de sonido (Se pueden añadir más elementos configurables)
 4. Botón de cerrar el menú de pausa aunque se pueda cerrar directamente pulsando esc/start. 
 
+*Los elementos del 2 -> 4 pueden variar
+
+El mapa tiene que quedar como si Diane lo estuviese abriendo y formase parte del mundo del juego. Los ajustes se encontrarán detrás del mapa, por lo que cuando pulsa ajustes el mapa se gira.
+
 Las estrellas que Diane vaya consiguiendo se irán añadiendo en formato de pegatinas con 1, 2 o 3 estrellas. La noria saldrá oscurecida o con un cartel de fuera de servicio para mostrar al jugador que aún no puede acceder a ella. Esto último se puede cambiar y no dar feedback desde el mapa si no con el diálogo que el jugador lee cuando habla con el feriante encargado de la noria.
 
-* Debería de haber elementos en el mapa que representen las opciones del menú que se irán agrandando si la opción está seleccionada.
+Debería de haber elementos en el mapa que representen las opciones del menú que se irán agrandando si la opción está seleccionada.
 
-## Minijuegos (Diegética)
+## Menú de Ajustes (Ambos)
 
-El menú de los minijuegos deberían tener una base común. Los minijuegos tienen 3 fases: preGame(1), inGame(2), postGame(3). Dentro de estas 3, la 1 y 3 se le muestran al jugador a través de diálogos y decisiones en la conversación con el feriante del puesto. Para la fase 2 la información relevante de la partida se mostrará en un tablón que forma parte de la propia caseta.
+El menú de ajustes se mostrará en 3 casos: Desde el menú principal, desde el menú de pausa de la feria y desde dentro del minijuego (Menú principal y pausa del minijuego)
 
-Otra parte de los menús que forman parte de los minijuegos con la pausa en la partida, la cual te deja salir, reanudar o tocar ajustes.
+La distribución de los ajustes será idéntica en todos los casos, lo único que cambiará será el fondo de los ajustes
+
+![](https://github.com/DEVastationStudio/UnFair/blob/main/ReadmeImages/menuDeAjustes.jpg)
+
+Elementos:
+1. Pestañas de opciones
+2. Sliders o botones de los parámetros que se quieran ajustar
+3. Botón de salir de ajustes
+
+Las pestañas de opciones solo se activan cuando se pulsa el botón de pestaña correspondiente. Desde los botones siempre se va a poder acceder a la pestaña seleccionada en el momento dando hacia abajo.
 
 ### Fase preGame (1)
 
