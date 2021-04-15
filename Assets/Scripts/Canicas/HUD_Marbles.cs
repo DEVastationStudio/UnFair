@@ -11,10 +11,12 @@ public class HUD_Marbles : MonoBehaviour
     [SerializeField] private GameObject preGameCanvas;
     [SerializeField] private GameObject inGameCanvas;
     [SerializeField] private GameObject postGameCanvas;
+    [SerializeField] private GameObject preGameButtonsCanvas;
     [SerializeField] private TextMeshProUGUI finalScoreText;
     [SerializeField] private TextMeshProUGUI finalTimeText;
     [SerializeField] private TextMeshProUGUI preStarsObtainedText;
     [SerializeField] private TextMeshProUGUI postStarsObtainedText;
+    [SerializeField] private TextMeshProUGUI countdownText;
     [SerializeField] private Thrower thrower;
     [SerializeField] private DynamicDifficultyManager DDM;
     [SerializeField] private float MaxTimeHits = 6; // si se supera este tiempo, bajará la dificultad
@@ -33,12 +35,16 @@ public class HUD_Marbles : MonoBehaviour
     private int stars;
     private int balls;
     private float velocityHits;
+    public static bool startedPressed; //para impedir que los obstáculos se muevan
 
     void Start()
     {
+        startedPressed = false;
         velocityHits = 0.0f;
         inGameCanvas.SetActive(false);
         postGameCanvas.SetActive(false);
+        countdownText.gameObject.SetActive(false);
+        preGameButtonsCanvas.SetActive(true);
         preGameCanvas.SetActive(true);
         _eventSystem.SetSelectedGameObject(_startButton);
         gameStarted = false;
@@ -67,7 +73,7 @@ public class HUD_Marbles : MonoBehaviour
         }
     }
 
-    public void StartGame()
+    private void StartGame()
     {
         preGameCanvas.SetActive(false);
         inGameCanvas.SetActive(true);
@@ -78,9 +84,15 @@ public class HUD_Marbles : MonoBehaviour
         thrower.SetGameStarted();
     }
 
+    public void StartCountdown()
+    {
+        StartCoroutine(Countdown());
+    }
+
     public void EndGame()
     {
         //Physics.autoSimulation = true;
+        startedPressed = false;
         gameStarted = false;
         inGameCanvas.SetActive(false);
         postGameCanvas.SetActive(true);
@@ -139,7 +151,7 @@ public class HUD_Marbles : MonoBehaviour
             DDM.SetValue(1, 0.1f);
 
         }
-        else if (velocityHits<= 2.0f)
+        else if (velocityHits <= 2.0f)
         {
             DDM.SetValue(1, 0.75f);
         }
@@ -163,5 +175,23 @@ public class HUD_Marbles : MonoBehaviour
         else if (score >= 50) { stars = 2; }
         else if (score > 0) { stars = 1; }
         else { stars = 0; }
+    }
+
+
+    IEnumerator Countdown()
+    {
+        countdownText.gameObject.SetActive(true);
+        preGameButtonsCanvas.SetActive(false);
+        startedPressed = true;
+        int count = 3;
+        while (count > 0)
+        {
+            countdownText.text = count.ToString();
+            yield return new WaitForSeconds(1);
+            count--;
+        }
+        countdownText.text = "";
+        countdownText.gameObject.SetActive(false);
+        StartGame();
     }
 }

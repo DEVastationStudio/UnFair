@@ -8,12 +8,14 @@ using UnityEngine.EventSystems;
 public class HUD_Manager : MonoBehaviour
 {
     [SerializeField] private GameObject preGameCanvas;
+    [SerializeField] private GameObject preGameButtonsCanvas;
     [SerializeField] private GameObject inGameCanvas;
     [SerializeField] private GameObject postGameCanvas;
     [SerializeField] private TextMeshProUGUI positionText;
     [SerializeField] private TextMeshProUGUI timeSpent;
     [SerializeField] private TextMeshProUGUI starsEndedGameText;
     [SerializeField] private TextMeshProUGUI starsObtained;
+    [SerializeField] private TextMeshProUGUI countdownText;
 
     [Header("Control por mando")]
     [SerializeField] private EventSystem _eventSystem;
@@ -32,6 +34,7 @@ public class HUD_Manager : MonoBehaviour
         playerHorse = FindObjectOfType<PlayerHorse>();
         enemyHorses = FindObjectsOfType<EnemyHorse>();
         timeCounter = this.GetComponent<TimeCounter>();
+        countdownText.gameObject.SetActive(false);
         inGameCanvas.SetActive(false);
         postGameCanvas.SetActive(false);
         preGameCanvas.SetActive(true);
@@ -44,7 +47,7 @@ public class HUD_Manager : MonoBehaviour
 
     }
 
-    public void StartGame()
+    private void StartGame()
     {
         preGameCanvas.SetActive(false);
         inGameCanvas.SetActive(true);
@@ -55,6 +58,12 @@ public class HUD_Manager : MonoBehaviour
         }
         timeCounter.ActivateTimer();
     }
+
+    public void StartCountdown()
+    {
+        StartCoroutine(Countdown());
+    }
+
     public void RaceFinished(int position)
     {
         raceTime = timeCounter.GetTimeSpent();
@@ -125,5 +134,21 @@ public class HUD_Manager : MonoBehaviour
         else if (position == 1 && raceTime <= 30.0f) { stars = 2; }
         else if (position == 1) { stars = 1; }
         else { stars = 0; }
+    }
+
+    IEnumerator Countdown()
+    {
+        countdownText.gameObject.SetActive(true);
+        preGameButtonsCanvas.SetActive(false);
+        int count = 3;
+        while (count > 0)
+        {
+            countdownText.text = count.ToString();
+            yield return new WaitForSeconds(1);
+            count--;
+        }
+        countdownText.text = "";
+        countdownText.gameObject.SetActive(false);
+        StartGame();
     }
 }
