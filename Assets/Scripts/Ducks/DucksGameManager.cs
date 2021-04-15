@@ -42,6 +42,9 @@ public class DucksGameManager : MonoBehaviour
     public bool gameStarted;
     public bool noBadDucks;
 
+    [SerializeField] private GameObject _ajustes, _basePauseMenu, _titleScreen, _primerAjustesBtn, _startBtn, _entrarAjustesBtn;
+    private bool _isPause = false;
+
     void Start()
     {
         titleText.text += "\nStars: " + GameProgress.GetStars(3);
@@ -191,7 +194,6 @@ public class DucksGameManager : MonoBehaviour
         _npcConversationHelper.StartConversation();
     }
 
-
     public void ResetScene()
     {
         FadeController.Fade("Ducks");
@@ -201,5 +203,32 @@ public class DucksGameManager : MonoBehaviour
     {
         _ddm.SetValue(0, value);
         _ddm.SetValue(3, (value>=0.5f?1:0));
+    }
+
+    public void OpenAjustes(bool isPause)
+    {
+        _isPause = isPause;
+        _ajustes.SetActive(false);
+        if (_isPause)
+            _basePauseMenu.SetActive(false);
+        else
+            _titleScreen.SetActive(false);
+
+        _ajustes.SetActive(true);
+        _eventSystem.SetSelectedGameObject(_primerAjustesBtn);
+    }
+    public void CloseAjustes()
+    {
+        _ajustes.SetActive(false);
+        if (_isPause)
+        {
+            _basePauseMenu.SetActive(true);
+            _eventSystem.SetSelectedGameObject(_startBtn);
+        }
+        else
+        {
+            _titleScreen.SetActive(true);
+            _eventSystem.SetSelectedGameObject(_entrarAjustesBtn);
+        }
     }
 }
