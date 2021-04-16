@@ -16,6 +16,7 @@ public class HUD_Manager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI starsEndedGameText;
     [SerializeField] private TextMeshProUGUI starsObtained;
     [SerializeField] private TextMeshProUGUI countdownText;
+    [SerializeField] private ConversationHelper conversation;
 
     [Header("Control por mando")]
     [SerializeField] private EventSystem _eventSystem;
@@ -78,7 +79,8 @@ public class HUD_Manager : MonoBehaviour
 
         inGameCanvas.SetActive(false);
         postGameCanvas.SetActive(true);
-        _eventSystem.SetSelectedGameObject(_resetGame);
+        conversation.StartConversation();
+        //_eventSystem.SetSelectedGameObject(_resetGame);
 
         string ordinal = "";
         switch (position)

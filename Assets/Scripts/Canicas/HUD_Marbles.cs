@@ -20,6 +20,7 @@ public class HUD_Marbles : MonoBehaviour
     [SerializeField] private Thrower thrower;
     [SerializeField] private DynamicDifficultyManager DDM;
     [SerializeField] private float MaxTimeHits = 6; // si se supera este tiempo, bajará la dificultad
+    [SerializeField] private ConversationHelper conversation;
 
     [Header("Control por mando")]
     [SerializeField] private EventSystem _eventSystem;
@@ -96,8 +97,9 @@ public class HUD_Marbles : MonoBehaviour
         gameStarted = false;
         inGameCanvas.SetActive(false);
         postGameCanvas.SetActive(true);
-        _eventSystem.SetSelectedGameObject(_resetButton);
+        //_eventSystem.SetSelectedGameObject(_resetButton);
         preGameCanvas.SetActive(false);
+        conversation.StartConversation();
         thrower.SetGameFinished();
         finalScoreText.text = "Score: " + score;
         CalculateStars();
