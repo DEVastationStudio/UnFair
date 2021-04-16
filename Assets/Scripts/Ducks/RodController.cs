@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class RodController : MonoBehaviour
 {
@@ -22,6 +24,8 @@ public class RodController : MonoBehaviour
     private Bounds _bounds;
     private bool _isPaused;
     [SerializeField] GameObject _pauseMenu;
+    [SerializeField] private EventSystem _eventSystem;
+    [SerializeField] private GameObject _continueBtn;
 
     void Start()
     {
@@ -103,6 +107,7 @@ public class RodController : MonoBehaviour
         {
             Time.timeScale = 0;
             _pauseMenu.SetActive(true);
+            _eventSystem.SetSelectedGameObject(_continueBtn);
         }
         else
         {

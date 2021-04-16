@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     [Header("Title screen")]
     [SerializeField] private List<GameObject> _virtualCameras;
     [SerializeField] private GameObject _titleScreen;
+    [SerializeField] private GameObject _startBtn;
 
     [Header("Ajustes")]
     [SerializeField] private GameObject _ajustes;
@@ -132,11 +133,15 @@ public class UIManager : MonoBehaviour
     {
         _ajustes.SetActive(false);
         if (_isPause)
+        {
             _titleScreen.SetActive(true);
+            _eventSystem.SetSelectedGameObject(_startBtn);
+        }
         else
+        {
             _basePauseMenu.SetActive(true);
-
-        _eventSystem.SetSelectedGameObject(_entrarAjustesBtn);
+            _eventSystem.SetSelectedGameObject(_entrarAjustesBtn);
+        }
     }
     private IEnumerator WaitXSeconds(float s) 
     {

@@ -51,7 +51,15 @@ public partial class UIGeneral : MonoBehaviour
     //Menú de pausa
     [Header("Menú de pausa")]
     [SerializeField] private GameObject _pauseMenu;
+    [SerializeField] private GameObject _continuarBtn;
     [HideInInspector] public bool _isPaused;
+
+    [Header("Ajustes")]
+    [SerializeField] private GameObject _menuAjustes;
+    [SerializeField] private GameObject _ajustesBtnMain;
+    [SerializeField] private GameObject _ajustesBtnPausa;
+    [SerializeField] private GameObject _primerAjuste;
+    private bool _isPause;
 
     #endregion Variables
 
