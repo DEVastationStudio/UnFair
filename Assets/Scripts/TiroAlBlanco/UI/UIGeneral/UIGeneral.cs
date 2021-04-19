@@ -61,6 +61,10 @@ public partial class UIGeneral : MonoBehaviour
     [SerializeField] private GameObject _primerAjuste;
     private bool _isPause;
 
+    [Header("Tutorial")]
+    [SerializeField] private ConversationHelper _npcTutorialConversationHelper;
+    [SerializeField] private GameObject _tutorialContainer;
+
     #endregion Variables
 
     #region Metodos
