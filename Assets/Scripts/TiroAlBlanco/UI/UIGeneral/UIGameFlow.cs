@@ -104,6 +104,17 @@ public partial class UIGeneral : MonoBehaviour
         }
     }
 
+    public void OpenTutorial() 
+    {
+        _tutorialContainer.SetActive(true);
+        _npcTutorialConversationHelper.StartConversation();
+    }
+
+    public void CloseTutorial()
+    {
+        _tutorialContainer.SetActive(false);
+    }
+
     public void ExitCurrentGame() 
     {
         Time.timeScale = 1;
