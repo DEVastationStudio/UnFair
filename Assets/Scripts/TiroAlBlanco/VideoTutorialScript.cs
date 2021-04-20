@@ -16,11 +16,6 @@ public class VideoTutorialScript : MonoBehaviour
 
     #region Metodos
 
-    public void StartTutorial() 
-    {
-        videoContainer.SetActive(true);
-    }
-
     public void StartVideo()
     {
         videoContainer.SetActive(true);
