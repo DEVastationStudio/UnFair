@@ -31,6 +31,13 @@ Así mismo, el jugador podrá entablar conversación con los distintos personaje
 * Caballos de carreras
 * Lanzamiento de canicas
 
+## Sistema de Dificultad Dinámica (DDS)
+Mientras se juega a un minijuego, las acciones del jugador se registran, con el fin de obtener un valor numérico que represente el nivel de habilidad del jugador, entre 0 y 1.
+
+Cada una de las acciones registradas es un **input**, y tiene un **peso**, que indica la importancia que tiene en el cálculo total. La suma de todos los pesos debe ser exactamente 1.
+
+A su vez, la IA de cada minijuego tiene acceso a una serie de **outputs**, que devolverán un valor distinto según el nivel de habilidad del jugador.
+
 # Descripción detallada de las mecánicas de juego:
 
 ## Tiro al blanco:
@@ -71,7 +78,23 @@ Se gana consiguiendo más patos que el otro jugador. Los requisitos para obtener
 ### 3. IA
 La IA controla el movimiento de la caña enemiga, e intenta buscar el mejor pato para pescar.
 
-Para conseguirlo, comprueba los patos más cercanos y escoge el mejor, teniendo en cuenta tanto el tipo de pato como la distancia al imán.
+Para conseguirlo, comprueba los patos más cercanos y escoge el mejor.
+
+Los inputs del DDS utilizados en este minijuego son:
+
+1. Cuanto de bueno es el pato que acaba de pescar
+
+2. La cantidad de estrellas obtenidas por el jugador
+
+3. La diferencia de puntuación entre el jugador y la IA
+
+4. Si el pato que se acaba de pescar es bueno o malo para el jugador
+
+Los outputs del DDS utilizados en este minijuego son:
+
+1. El radio de búsqueda de la IA
+
+2. La tolerancia a pescar patos peores
 
 ## Carrera de caballos:
 
