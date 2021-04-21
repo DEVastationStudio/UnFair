@@ -132,10 +132,26 @@ public class HUD_Manager : MonoBehaviour
     }
     void CalculateStars(int position)
     {
-        if (position == 1 && !playerHorse.GetComboFailed() && raceTime <= 30.0f) { stars = 3; }
+        int auxStars = 0;
+        if (position == 1)
+        {
+            auxStars++;
+            if (!playerHorse.GetComboFailed())
+            {
+                auxStars++;
+            }
+
+            if (raceTime < 31.0f)
+            {
+                auxStars++;
+            }
+
+        }
+        stars = auxStars;
+        /*if (position == 1 && !playerHorse.GetComboFailed() && raceTime <= 30.0f) { stars = 3; }
         else if (position == 1 && raceTime <= 30.0f) { stars = 2; }
         else if (position == 1) { stars = 1; }
-        else { stars = 0; }
+        else { stars = 0; }*/
     }
 
     IEnumerator Countdown()
