@@ -10,6 +10,10 @@ public class PistolaScript : MonoBehaviour
     [SerializeField] private GameObject _mira;
     [SerializeField] private GameObject _mousePoint;
 
+    [Header("VFX")]
+    [SerializeField] private GameObject _sparks;
+    [SerializeField] private float _sparksTime;
+
     [Header("Otros Scripts")]
     [SerializeField] private ShootingMinigameManager _gameManager;
     [SerializeField] private PlayerInput input;
@@ -66,6 +70,7 @@ public class PistolaScript : MonoBehaviour
                 _gameManager._dynamicDifficultyManager.SetValue(0, diana.GetPercentageLifeTime());
 
             Destroy(diana.gameObject);
+            _gameManager._vfxManager.InstantiateVFX(0, hit.point);
             if (Random.Range(0, 100) > _probReloj) 
             {
                 _probReloj = 110;
@@ -98,12 +103,14 @@ public class PistolaScript : MonoBehaviour
                 _gameManager._dynamicDifficultyManager.SetValue(0, 1f);
 
             Destroy(diana);
+            _gameManager._vfxManager.InstantiateVFX(0, hit.point);
             CallSpawnRetard(0);
         }
         else if (hit.collider != null && hit.transform.tag == "Pared")
         {
             _gameManager._dynamicDifficultyManager.SetValue(0, 0f);
             _gameManager._uiGeneral.IncreasePuntuacion(-5);
+            _gameManager._vfxManager.InstantiateVFX(1, hit.point);
         }
     }
 

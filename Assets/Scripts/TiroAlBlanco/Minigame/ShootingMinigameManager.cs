@@ -9,6 +9,7 @@ public class ShootingMinigameManager : MonoBehaviour
     public SpawnerDianas _spawnerDianas;
     public PistolaScript _pistolaScript;
     public DynamicDifficultyManager _dynamicDifficultyManager;
+    public VFXManager _vfxManager;
     #endregion Variables
 
     #region Metodos
