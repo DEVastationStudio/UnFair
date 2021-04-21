@@ -127,6 +127,7 @@ public class PlayerHorse : MonoBehaviour
     #region KeysActions
     private void OnSpaceAction(InputValue value)
     {
+        if (value.Get<float>() == 0) return;
         CombinationManagement("Space");
     }
 
@@ -150,10 +151,10 @@ public class PlayerHorse : MonoBehaviour
         CombinationManagement("Down");
     }
 
-    private void OnEAction(InputValue value)
+    /*private void OnEAction(InputValue value)
     {
         CombinationManagement("E");
-    }
+    }*/
     #endregion KeysActions
     public void StartGame()
     {

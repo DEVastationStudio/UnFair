@@ -13,7 +13,7 @@ public class RodController : MonoBehaviour
     private float _initialHeight;
     private const int _heightOffset = 1;
     private float _height;
-    private bool _mouseDown;
+    public bool _mouseDown;
     public BoxCollider magnetHitbox;
     public GameObject magnet;
     private Vector3 _mousePos;
@@ -88,7 +88,17 @@ public class RodController : MonoBehaviour
         }
     }
 
+    private void OnMovement(InputValue value)
+    {
+        _isGamepad = true;
+        _gamepadCoords = value.Get<Vector2>();
+    }
+
     private void OnMouseLeftAction(InputValue value)
+    {
+        _mouseDown = ((value.Get<float>() == 1) && magnet.tag == "Magnet" && !gameManager.gameOver);
+    }
+    private void OnSpaceAction(InputValue value)
     {
         _mouseDown = ((value.Get<float>() == 1) && magnet.tag == "Magnet" && !gameManager.gameOver);
     }

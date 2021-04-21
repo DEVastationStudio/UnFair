@@ -14,6 +14,7 @@ public class DucksGameManager : MonoBehaviour
     public LayerMask duckMask;
     public Button startGameButton;
     public RodAiScript aiScript;
+    public RodController rodController;
 
     [Header("Control por mando")]
     [SerializeField] private EventSystem _eventSystem;
@@ -150,6 +151,7 @@ public class DucksGameManager : MonoBehaviour
         _actualTime = 30;
         gameStarted = true;
         aiScript.enabled = true;
+        rodController._mouseDown = false;
         yield return TimerUpdate();
     }
 

@@ -21,8 +21,9 @@ public partial class PlayerController : MonoBehaviour
         SetDirection(value.Get<Vector2>());
     }
 
-    private void OnEAction() 
+    private void OnSpaceAction(InputValue value) 
     {
+        if (value.Get<float>() == 0) return;
         if (_isInterfaz) return;
         if (_isNearMinigame)
             StartMinigame();

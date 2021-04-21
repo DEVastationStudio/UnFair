@@ -109,6 +109,7 @@ public class Thrower : MonoBehaviour
 
     private void OnSpaceAction(InputValue value)
     {
+        if (value.Get<float>() == 0) return;
         if (!gameStarted) { return; }
         if (canThrow)
         {
