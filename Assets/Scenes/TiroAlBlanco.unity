@@ -530,6 +530,7 @@ Transform:
   - {fileID: 704847334}
   - {fileID: 371035725}
   - {fileID: 1791233752}
+  - {fileID: 1414616084}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3203,6 +3204,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mira: {fileID: 1696053768}
   _mousePoint: {fileID: 138751479}
+  _sparks: {fileID: 7055510331901327048, guid: 32ef10725f5fd414294ef05b3fc36049, type: 3}
+  _sparksTime: 1
   _gameManager: {fileID: 371035726}
   input: {fileID: 780342087}
   _probDianaDorada: 0
@@ -5654,6 +5657,55 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!1 &1414616083
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1414616084}
+  - component: {fileID: 1414616085}
+  m_Layer: 0
+  m_Name: VFXManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1414616084
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414616083}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 191825661}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1414616085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414616083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 785a8490dc8315a4eb5876139835a8bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _VFX:
+  - {fileID: 7055510331901327048, guid: 32ef10725f5fd414294ef05b3fc36049, type: 3}
+  - {fileID: 5051094025630802372, guid: ef9a37d942418074fa5cfcd372a5ab92, type: 3}
+  _VFXtime:
+  - 1
+  - 1
 --- !u!1 &1416836101 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 030e8d593ca6572459409349e745d18d,
