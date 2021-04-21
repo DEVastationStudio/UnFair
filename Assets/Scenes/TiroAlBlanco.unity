@@ -1488,6 +1488,7 @@ MonoBehaviour:
   _spawnerDianas: {fileID: 736925236}
   _pistolaScript: {fileID: 780342086}
   _dynamicDifficultyManager: {fileID: 1363604920}
+  _vfxManager: {fileID: 1414616085}
 --- !u!1 &374298360
 GameObject:
   m_ObjectHideFlags: 0
