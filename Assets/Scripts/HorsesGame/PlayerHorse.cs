@@ -17,6 +17,8 @@ public class PlayerHorse : MonoBehaviour
     [SerializeField] private PlayerInput input;
     private float mov;
     [SerializeField] private float timeForKeys = 1.5f;
+    [SerializeField] private Sprite[] comboImages;//total de posibles botones//UP,LEFT,RIGHT,DOWN,SPACE,X,A
+    [SerializeField] private Image[] hudImages;//botones que pueden salir en el HUD//0,1,2
     private float currentTime;
     private Vector3 newPos;
     private Vector3 auxPos;
@@ -203,37 +205,48 @@ public class PlayerHorse : MonoBehaviour
     }
     private void ShowCombo()
     {
-        string auxText = "";
+        //string auxText = "";
+        /*
+        comboImages
+        hudImages
+        */
         for (int i = 0; i < comb.Length; i++)
         {
             switch (comb[i].ToString())
             {
                 case "Left":
-                    auxText += "←";
+                    hudImages[i].sprite = comboImages[1];
+                    //auxText += "←";
                     break;
                 case "Up":
-                    auxText += "↑";
+                    hudImages[i].sprite = comboImages[0];
+                    //auxText += "↑";
                     break;
                 case "Down":
-                    auxText += "↓";
+                    hudImages[i].sprite = comboImages[3];
+                    //auxText += "↓";
                     break;
                 case "Right":
-                    auxText += "→";
+                    hudImages[i].sprite = comboImages[2];
+                    //auxText += "→";
                     break;
                 case "Space":
                     if (input.currentControlScheme.Equals("KeyboardMouseScheme"))
                     {
-                        auxText += "Space";
+                        //auxText += "Space";
+                        hudImages[i].sprite = comboImages[4];
                     }
                     else if (input.currentControlScheme.Equals("GamepadScheme"))
                     {
-                        auxText += "Circle";
+                        //auxText += "X";
+                        hudImages[i].sprite = comboImages[6];
                     }
                     break;
             }
-            comboText[i].color = Color.white;
+            /*comboText[i].color = Color.white;
             comboText[i].text = auxText;
-            auxText = "";
+            auxText = "";*/
+            hudImages[i].color = Color.white;
         }
     }
     private void CombinationManagement(string keyPressed)
@@ -243,7 +256,8 @@ public class PlayerHorse : MonoBehaviour
         {
             if (comb[posComb].Equals(keyPressed))
             {
-                comboText[posComb].color = Color.red;
+                //comboText[posComb].color = Color.red;
+                hudImages[posComb].color = Color.red;
                 correctSequence++;
                 currentTime = 0.0f;
                 if (correctSequence == comb.Length)
@@ -376,25 +390,38 @@ public class PlayerHorse : MonoBehaviour
 
     private void ChangedSchemeText()
     {
-        for (int i = 0; i < comboText.Length; i++)
+        for (int i = 0; i < hudImages.Length; i++)
         {
-            if (comboText[i].text.Equals("Circle"))
+            if (hudImages[i].sprite.Equals(comboImages[6]))
+            {
+                //comboText[i].text = "Space";
+                hudImages[i].sprite = comboImages[4];//space
+            }
+            else if (hudImages[i].sprite.Equals(comboImages[4]))
+            {
+                //comboText[i].text = "X";
+                hudImages[i].sprite = comboImages[6];//A
+            }
+        }
+        /*for (int i = 0; i < comboText.Length; i++)
+        {
+            if (comboText[i].text.Equals("X"))
             {
                 comboText[i].text = "Space";
             }
             else if (comboText[i].text.Equals("Space"))
             {
-                comboText[i].text = "Circle";
+                comboText[i].text = "X";
             }
-        }
+        }*/
     }
 
     private IEnumerator ResetShowedText()
     {
         yield return new WaitForSeconds(0.25f);
-        for (int i = 0; i < comboText.Length; i++)
+        for (int i = 0; i < hudImages.Length; i++)
         {
-            comboText[i].color = Color.white;
+            hudImages[i].color = Color.white;
         }
         if (endedCurrentCombo)
         {

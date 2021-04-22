@@ -28,7 +28,8 @@ public partial class UIGeneral : MonoBehaviour
         _estrellasTxt.text += "2xStar -> " + _estrella2 + "\n";
         _estrellasTxt.text += "3xStar -> " + _estrella3;
         _eventSystem.SetSelectedGameObject(_startButton);
-
+        _playerInput.SwitchCurrentActionMap("UIMap");
+        Debug.Log("Scheme cambiado");
     }
     public void FaseGame()
     {
@@ -66,6 +67,7 @@ public partial class UIGeneral : MonoBehaviour
         {
             Destroy(DianasRestantes[i].gameObject);
         }
+        _playerInput.SwitchCurrentActionMap("UIMap");
         _npcConversationHelper.StartConversation();
     }
 
@@ -77,11 +79,13 @@ public partial class UIGeneral : MonoBehaviour
             Time.timeScale = 0;
             _pauseMenu.SetActive(true);
             _eventSystem.SetSelectedGameObject(_continuarBtn);
+            _playerInput.SwitchCurrentActionMap("UIMap");
         }
         else
         {
             Time.timeScale = 1;
             _pauseMenu.SetActive(false);
+            _playerInput.SwitchCurrentActionMap("ActionMap");
         }
     }
 
@@ -113,6 +117,7 @@ public partial class UIGeneral : MonoBehaviour
     public void CloseTutorial()
     {
         _tutorialContainer.SetActive(false);
+        _playerInput.SwitchCurrentActionMap("UIMap");
     }
 
     public void ExitCurrentGame() 
@@ -136,6 +141,7 @@ public partial class UIGeneral : MonoBehaviour
         _inGameContainer.SetActive(true);
         _outGameContainer.SetActive(true);
         InitUI();
+        _playerInput.SwitchCurrentActionMap("ActionMap");
     }
     #endregion Metodos
 }
