@@ -26,7 +26,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _entrarAjustesBtn;
     private bool _isPause = false;
 
-
     [Header("Estrellas")]
     [SerializeField] private List<GameObject> _tiroAlBlancoStars;
     [SerializeField] private List<GameObject> _caballosStars;
