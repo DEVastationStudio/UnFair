@@ -3557,6 +3557,7 @@ MonoBehaviour:
   input: {fileID: 894907343}
   rodTip: {fileID: 1574706726}
   positionOffset: {x: 0, y: 0, z: 0}
+  _mouseDown: 0
   magnetHitbox: {fileID: 1690188175}
   magnet: {fileID: 1690188174}
   gameManager: {fileID: 1172530604}
@@ -4412,6 +4413,7 @@ MonoBehaviour:
     m_Bits: 256
   startGameButton: {fileID: 2124532536}
   aiScript: {fileID: 1387093492}
+  rodController: {fileID: 894907344}
   _eventSystem: {fileID: 1942569384}
   _startButton: {fileID: 817772447}
   _resetButton: {fileID: 1067669851}

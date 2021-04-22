@@ -528,17 +528,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""action"": ""Space Action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""94fca4f5-b28c-42d8-842a-f6acf83f1544"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamepadScheme"",
-                    ""action"": ""Space Action"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
