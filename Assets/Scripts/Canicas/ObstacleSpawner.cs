@@ -30,7 +30,7 @@ public class ObstacleSpawner : MonoBehaviour
             if (Random.value > 0.5f)
             {
                 //Rampa
-                auxInst = Instantiate(rampPrefab, targetAux.gameObject.transform.position, Quaternion.identity);
+                auxInst = Instantiate(rampPrefab, targetAux.GetTargets()[Random.Range(0,2)].position/*targetAux.gameObject.transform.position*/, Quaternion.identity);
 
                 switch (targetAux.GetPosSpawn().ToString())
                 {
@@ -65,7 +65,7 @@ public class ObstacleSpawner : MonoBehaviour
             }
             else
             {   //Pared
-                auxInst = Instantiate(wallPrefab, targetAux.gameObject.transform.position, Quaternion.identity);
+                auxInst = Instantiate(wallPrefab, targetAux.GetTargets()[Random.Range(0,2)].position/*targetAux.gameObject.transform.position*/, Quaternion.identity);
                 switch (targetAux.GetPosSpawn().ToString())
                 {
                     case "North":
