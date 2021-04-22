@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public partial class UIGeneral : MonoBehaviour
 {
@@ -64,6 +65,9 @@ public partial class UIGeneral : MonoBehaviour
     [Header("Tutorial")]
     [SerializeField] private ConversationHelper _npcTutorialConversationHelper;
     [SerializeField] private GameObject _tutorialContainer;
+
+    [Header("Player")]
+    [SerializeField] public PlayerInput _playerInput;
 
     #endregion Variables
 
