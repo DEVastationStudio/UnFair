@@ -4,50 +4,56 @@ using UnityEngine;
 
 public class Diana : MonoBehaviour
 {
+    #region Variables
     public int _points;
     public int _pos;
     public bool _hit;
     public bool _first;
+    public DianaContainer _dianaContainer;
+
     private ShootingMinigameManager _gameManager;
     private bool isInit;
     private float _lifeTime;
     private float _maxLifeTime;
+    #endregion
 
+    #region Metodos
     public void StartDiana()
     {
         _gameManager = FindObjectOfType<ShootingMinigameManager>();
         if (transform.tag == "DianaDorada" || transform.tag == "Reloj")
-            _lifeTime = (0.5f + 2*(1.0f-_gameManager._dynamicDifficultyManager.GetValue(0)));
+            _lifeTime = (0.5f + 2 * (1.0f - _gameManager._dynamicDifficultyManager.GetValue(0)));
         else if (_first)
-            _lifeTime = (3f + 2.5f + 2*(1.0f - _gameManager._dynamicDifficultyManager.GetValue(0)));
+            _lifeTime = (3f + 2.5f + 2 * (1.0f - _gameManager._dynamicDifficultyManager.GetValue(0)));
         else
-            _lifeTime = (2.5f + 2*(1.0f - _gameManager._dynamicDifficultyManager.GetValue(0)));
+            _lifeTime = (2.5f + 2 * (1.0f - _gameManager._dynamicDifficultyManager.GetValue(0)));
         _maxLifeTime = _lifeTime;
         isInit = true;
     }
 
-    public float GetPercentageLifeTime() 
+    public float GetPercentageLifeTime()
     {
         return (_lifeTime / _maxLifeTime);
     }
 
     public void Update()
     {
-        if (isInit) 
+        if (isInit)
         {
             _lifeTime -= Time.deltaTime;
-            if (!_hit && _lifeTime<= 0)
+            if (!_hit && _lifeTime <= 0)
             {
                 _hit = true;
-                _gameManager._spawnerDianas.DestroyTarget(gameObject.GetComponent<Diana>()._pos);
-                _gameManager._uiGeneral.IncreasePuntuacion(gameObject.GetComponent<Diana>()._points);
+                _gameManager._spawnerDianas.DestroyTarget(_pos);
                 if (transform.tag == "DianaDorada" || transform.tag == "Reloj")
-                    _gameManager._pistolaScript.AutomaticDespawn();
+                    _dianaContainer.SleepTarget(true);
                 else
-                    _gameManager._pistolaScript.CallSpawnRetard(0);
+                    _dianaContainer.SleepTarget(false);
                 _gameManager._dynamicDifficultyManager.SetValue(0, 0.25f);
-                Destroy(gameObject);
+                isInit = false;
+                _hit = false;
             }
         }
     }
+    #endregion
 }

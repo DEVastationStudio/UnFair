@@ -7,6 +7,8 @@ public class SpawnerDianas : MonoBehaviour
     #region Variables
     [SerializeField] private List<GameObject> _spawnPoints;
     [SerializeField] private List<GameObject> _possibleTargets;
+    [SerializeField] private List<DianaContainer> _possibleTargetContainers;
+    [SerializeField] private int _maxNumDianas;
 
     [HideInInspector] public int numDianas;
 
@@ -25,11 +27,13 @@ public class SpawnerDianas : MonoBehaviour
 
     public void SpawnNewTarget(int type) 
     {
+        if (numDianas >= _maxNumDianas) return;
+        numDianas++;
         Debug.Log((type == 1)?"Spawneando una diana dorada":"Spawneando una diana normal");
-        int i = Random.Range(0, _spawnPoints.Count - 1);
-        while (targetsInUse[i] && _spawnPoints.Count > numDianas)
+        int i = Random.Range(0, _possibleTargetContainers.Count - 1);
+        while (targetsInUse[i] && _possibleTargetContainers.Count > numDianas)
         {
-            if (i + 1 >= _spawnPoints.Count)
+            if (i + 1 >= _possibleTargetContainers.Count)
                 i = 0;
             else
                 i++;
@@ -39,36 +43,33 @@ public class SpawnerDianas : MonoBehaviour
         switch (type) 
         {
             case 0:
-                Spawn(_spawnPoints[i].transform.position, _possibleTargets[0], i);
-                break;
             case 1:
-                Spawn(_spawnPoints[i].transform.position, _possibleTargets[1], i);
-                break;
             case 2:
-                Spawn(_spawnPoints[i].transform.position, _possibleTargets[2], i);
+                Spawn(/*_spawnPoints[i].transform.position, _possibleTargets[0],*/type, i);
                 break;
             case 3:
-                Spawn(_spawnPoints[i].transform.position, _possibleTargets[0], i, true);
+                Spawn(/*_spawnPoints[i].transform.position, _possibleTargets[0],*/type, i, true);
                 break;
         }
     }
 
-    public void DestroyTarget(int targetPos) 
+    public void DestroyTarget(int targetPos, bool action = false, Diana d = null) 
     {
         numDianas--;
+        Debug.Log("NumDianas:" + numDianas);
         targetsInUse[targetPos] = false;
+        if(d != null)
+            d._dianaContainer.SleepTarget(action);
     }
 
-    private void Spawn(Vector3 pos, GameObject target, int posInArray, bool first = false)
+    private void Spawn(/*Vector3 pos, GameObject target,*/int type, int posInArray, bool first = false)
     {
         targetsInUse[posInArray] = true;
-        Diana aux = Instantiate(target, pos, Quaternion.identity).GetComponent<Diana>();
-        aux._pos = posInArray;
-        if (first)
-            aux._first = true;
-        aux.transform.localEulerAngles += new Vector3(0, -180, 0);
-        aux.StartDiana();
-        numDianas++;
+        //Diana aux = Instantiate(target, pos, Quaternion.identity).GetComponent<Diana>();
+        //aux._pos = posInArray;
+        //aux.transform.localEulerAngles += new Vector3(0, -180, 0);
+        //aux.StartDiana();
+        _possibleTargetContainers[posInArray].WakeUpTarget(type, posInArray);
     }
     #endregion Metodos
 }
