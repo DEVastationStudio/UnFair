@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 637451277175273064}
   - component: {fileID: 637451277175273065}
   - component: {fileID: 6690935963249443877}
+  - component: {fileID: 132469398052570121}
   m_Layer: 0
   m_Name: DianasContainer
   m_TagString: Pared
@@ -113,6 +114,25 @@ MonoBehaviour:
   - {fileID: 6906097203927659176}
   - {fileID: 3701882520413476821}
   - {fileID: 9036368327850557040}
+--- !u!95 &132469398052570121
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637451277175273070}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &637451276765651183
 PrefabInstance:
   m_ObjectHideFlags: 0

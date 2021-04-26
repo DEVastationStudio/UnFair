@@ -2723,7 +2723,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faseActual: 0
   _gameManager: {fileID: 371035726}
-  _timeForLevel: 20
+  _timeForLevel: 50
   _timerText: {fileID: 688951926}
   _puntuacionText: {fileID: 1765146956}
   _puntuacionFinalTxt: {fileID: 22633907}
@@ -6363,9 +6363,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _VFX:
-  - {fileID: 7055510331901327048, guid: 32ef10725f5fd414294ef05b3fc36049, type: 3}
-  - {fileID: 5051094025630802372, guid: ef9a37d942418074fa5cfcd372a5ab92, type: 3}
+  - {fileID: 3206957791658694498, guid: 7181c1c62b04e7a419934acb60db0cf2, type: 3}
+  - {fileID: 407322923622048798, guid: 1b4923c25d9dac64687522b727105d0d, type: 3}
+  - {fileID: 789115147793056447, guid: 5c482aed558d05b4a9e3cfc6b673f983, type: 3}
+  - {fileID: 2445989453861236819, guid: ef9a37d942418074fa5cfcd372a5ab92, type: 3}
   _VFXtime:
+  - 1
+  - 1
   - 1
   - 1
 --- !u!1 &1416836101 stripped

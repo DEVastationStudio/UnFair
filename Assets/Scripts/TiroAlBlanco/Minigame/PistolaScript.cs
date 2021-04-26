@@ -96,17 +96,22 @@ public class PistolaScript : MonoBehaviour
                 _gameManager._uiGeneral.AddTime(5);
 
             if (hit.transform.tag == "DianaDorada")
+            {
                 _gameManager._dynamicDifficultyManager.SetValue(0, 0.90f);
+                _gameManager._vfxManager.InstantiateVFX(1, hit.point);
+            }
             else if (hit.transform.tag == "Reloj")
+            {
                 _gameManager._dynamicDifficultyManager.SetValue(0, 1f);
-            _gameManager._vfxManager.InstantiateVFX(0, hit.point);
+                _gameManager._vfxManager.InstantiateVFX(2, hit.point);
+            }
             CallSpawnRetard(0);
         }
         else if (hit.collider != null && hit.transform.tag == "Pared")
         {
             _gameManager._dynamicDifficultyManager.SetValue(0, 0f);
             _gameManager._uiGeneral.IncreasePuntuacion(-5);
-            _gameManager._vfxManager.InstantiateVFX(1, hit.point);
+            _gameManager._vfxManager.InstantiateVFX(3, hit.point);
         }
     }
 
