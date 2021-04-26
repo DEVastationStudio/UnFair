@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Thrower : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class Thrower : MonoBehaviour
     [SerializeField] private float rotationSpeed;
     [SerializeField] private int ballsLeft;
     [SerializeField] private GameObject sphere;
+    [SerializeField] private Slider forceBar;
+    [SerializeField] private Image backgroundSlider;
+    [SerializeField] private Image fillSlider;
+    private float throwerForce;
+    private float increaserForceSpeed = 0.5f;
+    private bool pressingShoot;
     private HUD_Marbles hud;
     private bool canThrow;
     private Vector3 currentPos;
@@ -30,6 +37,8 @@ public class Thrower : MonoBehaviour
     void Start()
     {
         gameStarted = false;
+        pressingShoot = false;
+        throwerForce = 0.0f;
         rotation = 0;
         canThrow = true;
         trajectory = FindObjectOfType<Trajectory>();
@@ -67,6 +76,29 @@ public class Thrower : MonoBehaviour
         }*/
 
         currentRot = transform.rotation;
+        //aqui si el bool de estar manteniendo, llamar al increase force las veces que sean necesarias
+        /*if (forceBar.value < throwerForce)
+        {
+            forceBar.value += increaserForceSpeed * Time.deltaTime;
+        }*/
+        if (canThrow)
+        {
+            if (pressingShoot && canThrow)
+            {
+                IncreaseThrowForce(0.5f);//fuerza que va aumentando
+                if (forceBar.value < throwerForce)
+                {
+                    forceBar.value += increaserForceSpeed * Time.deltaTime;
+                }
+
+            }
+
+        }
+        else
+        {
+            backgroundSlider.color = new Color(backgroundSlider.color.r, backgroundSlider.color.g, backgroundSlider.color.b, 0.25f);
+            fillSlider.color = new Color(fillSlider.color.r, fillSlider.color.g, fillSlider.color.b, 0.25f);
+        }
 
     }
 
@@ -79,7 +111,7 @@ public class Thrower : MonoBehaviour
     {
         gameStarted = false;
     }
-    
+
     private void Rotate()
     {
         transform.Rotate(0, rotationSpeed * rotation, 0.0f);
@@ -91,7 +123,8 @@ public class Thrower : MonoBehaviour
     }
     public Vector3 CalculateForce()
     {
-        return transform.forward * power;
+        print("Force: " + transform.forward * (power * (forceBar.value * 1.5f)));
+        return transform.forward * (power * Mathf.Clamp(forceBar.value * 1.5f, 0.5f, 1.5f));
     }
 
     void ThrowBall()
@@ -99,6 +132,23 @@ public class Thrower : MonoBehaviour
         ballsLeft--;
         GameObject ball = Instantiate(ballPref, firePoint.transform.position, Quaternion.identity);
         ball.GetComponent<Rigidbody>().AddForce(CalculateForce(), ForceMode.Impulse);
+    }
+
+    /*
+    * Called in the invoke of OnSpaceAction
+    */
+    void ThrowBallCoyote()
+    {
+        if (canThrow && ballsLeft > 0)
+        {
+            ThrowBall();
+            Invoke("ResetForceBar", 0.35f);
+        }
+        else
+        {
+            ResetForceBar();
+        }
+
     }
 
     void CreatePrediction(Vector3 origin, Vector3 dst)
@@ -109,21 +159,34 @@ public class Thrower : MonoBehaviour
 
     private void OnSpaceAction(InputValue value)
     {
-        if (value.Get<float>() == 0) return;
         if (!gameStarted) { return; }
-        if (canThrow)
+        //if (!canThrow) return;//
+        if (value.Get<float>() == 0)//sueltas tecla
         {
-            if (ballsLeft > 0)
+            pressingShoot = false;
+            //Invoke("ResetForceBar", 0.35f);
+            if (canThrow)
             {
-                canThrow = false;
-                ThrowBall();
+                if (ballsLeft > 0)
+                {
+                    canThrow = false;
+                    ThrowBall();
+                }
+                else
+                {
+                    Debug.Log("Te has quedado sin pelotas");
+                }
             }
             else
             {
-                Debug.Log("Te has quedado sin pelotas");
+                //Invoke("ResetForceBar", 0.25f);
+                //Invoke("ThrowBallCoyote", 0.35f);
             }
         }
-
+        else //presionas tecla
+        {
+            pressingShoot = true;
+        }
     }
 
     private void OnMovement(InputValue value)
@@ -142,6 +205,11 @@ public class Thrower : MonoBehaviour
             rotation = 0;
         }
     }
+    private void IncreaseThrowForce(float x)
+    {
+        throwerForce = forceBar.value + x;
+        //print("thrower force: " + throwerForce + " forcebar.value: " + forceBar.value);
+    }
 
     public int GetBallsLeft()
     {
@@ -151,5 +219,17 @@ public class Thrower : MonoBehaviour
     public void SetCanThrow()
     {
         canThrow = true;
+        backgroundSlider.color = new Color(backgroundSlider.color.r, backgroundSlider.color.g, backgroundSlider.color.b, 1.0f);
+        fillSlider.color = new Color(fillSlider.color.r, fillSlider.color.g, fillSlider.color.b, 1.0f);
+        ResetForceBar();
+    }
+
+    /*
+    *Called in the invoke of OnSpaceAction
+    */
+    private void ResetForceBar()
+    {
+        throwerForce = 0.0f;
+        forceBar.value = 0.0f;
     }
 }

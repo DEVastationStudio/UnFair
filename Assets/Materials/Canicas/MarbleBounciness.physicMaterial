@@ -6,9 +6,9 @@ PhysicMaterial:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ObstacleCollision
-  dynamicFriction: 0.6
-  staticFriction: 0.8
+  m_Name: MarbleBounciness
+  dynamicFriction: 0.4
+  staticFriction: 0.6
   bounciness: 0.75
   frictionCombine: 0
   bounceCombine: 0
