@@ -64,12 +64,10 @@ public class PistolaScript : MonoBehaviour
         {
             Diana diana = hit.transform.gameObject.GetComponent<Diana>();
             diana.GetComponent<Diana>()._hit = true;
-            _gameManager._spawnerDianas.DestroyTarget(diana._pos);
+            _gameManager._spawnerDianas.DestroyTarget(diana._pos, true, diana);
             _gameManager._uiGeneral.IncreasePuntuacion(diana._points);
             if (hit.transform.tag == "Diana")
                 _gameManager._dynamicDifficultyManager.SetValue(0, diana.GetPercentageLifeTime());
-
-            Destroy(diana.gameObject);
             _gameManager._vfxManager.InstantiateVFX(0, hit.point);
             if (Random.Range(0, 100) > _probReloj) 
             {
@@ -90,27 +88,30 @@ public class PistolaScript : MonoBehaviour
         }
         else if (hit.collider != null && (hit.transform.tag == "DianaDorada" || hit.transform.tag == "Reloj")) 
         {
-            GameObject diana = hit.transform.gameObject;
-            _gameManager._spawnerDianas.DestroyTarget(diana.GetComponent<Diana>()._pos);
-            if(hit.transform.tag == "DianaDorada")
-                _gameManager._uiGeneral.IncreasePuntuacion(diana.GetComponent<Diana>()._points);
+            Diana diana = hit.transform.gameObject.GetComponent<Diana>();
+            _gameManager._spawnerDianas.DestroyTarget(diana._pos, false, diana);
+            if (hit.transform.tag == "DianaDorada")
+                _gameManager._uiGeneral.IncreasePuntuacion(diana._points);
             else
                 _gameManager._uiGeneral.AddTime(5);
 
             if (hit.transform.tag == "DianaDorada")
+            {
                 _gameManager._dynamicDifficultyManager.SetValue(0, 0.90f);
+                _gameManager._vfxManager.InstantiateVFX(1, hit.point);
+            }
             else if (hit.transform.tag == "Reloj")
+            {
                 _gameManager._dynamicDifficultyManager.SetValue(0, 1f);
-
-            Destroy(diana);
-            _gameManager._vfxManager.InstantiateVFX(0, hit.point);
+                _gameManager._vfxManager.InstantiateVFX(2, hit.point);
+            }
             CallSpawnRetard(0);
         }
         else if (hit.collider != null && hit.transform.tag == "Pared")
         {
             _gameManager._dynamicDifficultyManager.SetValue(0, 0f);
             _gameManager._uiGeneral.IncreasePuntuacion(-5);
-            _gameManager._vfxManager.InstantiateVFX(1, hit.point);
+            _gameManager._vfxManager.InstantiateVFX(3, hit.point);
         }
     }
 
@@ -133,7 +134,6 @@ public class PistolaScript : MonoBehaviour
             CallSpawnRetard(0);
         }
     }
-
     public void CallSpawnRetard(int type) 
     {
         StartCoroutine(SpawnRetard(type));
