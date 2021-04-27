@@ -18,9 +18,14 @@ public class PistolaScript : MonoBehaviour
     [SerializeField] private ShootingMinigameManager _gameManager;
     [SerializeField] private PlayerInput input;
 
+    [Header("Probabilidades")]
+    [SerializeField] private int _restaDianaDorada = 10;
+    [SerializeField] private int _restaDianaReloj = 5;
+
 
     private Vector2 _pos;
     private bool _disparo;
+    private bool _isLastReloj;
     [HideInInspector] public int _probDianaDorada;
     [HideInInspector] public int _probReloj;
     #endregion Variables
@@ -55,6 +60,10 @@ public class PistolaScript : MonoBehaviour
 
     void OnMouseLeftAction()
     {
+        Debug.Log("[------------------------------------------------");
+        Debug.Log("Probabilidad de Diana Dorada: " + _probDianaDorada);
+        Debug.Log("Probabilidad de Diana Reloj: " + _probReloj);
+        Debug.Log("------------------------------------------------]");
         _disparo = !_disparo;
         if (_disparo != true) return;
         if (_gameManager._uiGeneral.faseActual != UIGeneral.Fases.GAME) return;
@@ -69,21 +78,53 @@ public class PistolaScript : MonoBehaviour
             if (hit.transform.tag == "Diana")
                 _gameManager._dynamicDifficultyManager.SetValue(0, diana.GetPercentageLifeTime());
             _gameManager._vfxManager.InstantiateVFX(0, hit.point);
-            if (Random.Range(0, 100) > _probReloj) 
+            if (!_isLastReloj)
             {
-                _probReloj = 110;
-                CallSpawnRetard(2);
+                Debug.Log("AQUI SE ENTRA POR EL CAMINO DEL RELOJ __________________________");
+                if (Random.Range(0, 100) > _probReloj)
+                {
+                    _probReloj = 110;
+                    CallSpawnRetard(2);
+                    _isLastReloj = true;
+                    _probDianaDorada -= _restaDianaDorada;
+                }
+                else if (Random.Range(0, 100) > _probDianaDorada)
+                {
+                    _probDianaDorada = 110;
+                    CallSpawnRetard(1);
+                    _isLastReloj = false;
+                    _probReloj -= _restaDianaReloj;
+                }
+                else
+                {
+                    _probDianaDorada -= _restaDianaDorada;
+                    _probReloj -= _restaDianaReloj;
+                    CallSpawnRetard(0);
+                }
             }
-            else if (Random.Range(0, 100) > _probDianaDorada)
+            else if(_isLastReloj)
             {
-                _probDianaDorada = 110;
-                CallSpawnRetard(1);
-            }
-            else 
-            {
-                _probDianaDorada-=5; 
-                _probReloj -= 2;
-                CallSpawnRetard(0);
+                Debug.Log("__________________________AQUI SE ENTRA POR EL CAMINO DE LA DORADA");
+                if (Random.Range(0, 100) > _probDianaDorada)
+                {
+                    _probDianaDorada = 110;
+                    CallSpawnRetard(1);
+                    _isLastReloj = false;
+                    _probReloj -= _restaDianaReloj;
+                }
+                else if (Random.Range(0, 100) > _probReloj)
+                {
+                    _probReloj = 110;
+                    CallSpawnRetard(2);
+                    _isLastReloj = true;
+                    _probDianaDorada -= _restaDianaDorada;
+                }
+                else
+                {
+                    _probDianaDorada -= _restaDianaDorada;
+                    _probReloj -= _restaDianaReloj;
+                    CallSpawnRetard(0);
+                }
             }
         }
         else if (hit.collider != null && (hit.transform.tag == "DianaDorada" || hit.transform.tag == "Reloj")) 
@@ -99,11 +140,13 @@ public class PistolaScript : MonoBehaviour
             {
                 _gameManager._dynamicDifficultyManager.SetValue(0, 0.90f);
                 _gameManager._vfxManager.InstantiateVFX(1, hit.point);
+                _probReloj -= _restaDianaReloj;
             }
             else if (hit.transform.tag == "Reloj")
             {
                 _gameManager._dynamicDifficultyManager.SetValue(0, 1f);
                 _gameManager._vfxManager.InstantiateVFX(2, hit.point);
+                _probDianaDorada -= _restaDianaDorada;
             }
             CallSpawnRetard(0);
         }
@@ -129,8 +172,8 @@ public class PistolaScript : MonoBehaviour
         }
         else
         {
-            _probDianaDorada -= 5;
-            _probReloj -= 2;
+            _probDianaDorada -= _restaDianaDorada;
+            _probReloj -= _restaDianaReloj;
             CallSpawnRetard(0);
         }
     }
