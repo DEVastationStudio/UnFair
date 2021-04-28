@@ -563,7 +563,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "CancelUI",
+                    "name": "Esc Action",
                     "type": "Button",
                     "id": "cbd1af9c-1dac-4b6d-bb31-1d3ee64e585e",
                     "expectedControlType": "Button",
@@ -733,7 +733,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouseScheme",
-                    "action": "CancelUI",
+                    "action": "Esc Action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -744,7 +744,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "GamepadScheme",
-                    "action": "CancelUI",
+                    "action": "Esc Action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

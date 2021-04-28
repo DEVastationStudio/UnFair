@@ -33,22 +33,28 @@ public class PlayerHorse : MonoBehaviour
     private bool endedCurrentCombo;
     private bool restartingComboText;
     private bool gameStarted;
+    private bool isPaused;
     private bool comboFailed;
     [SerializeField] private TimeCounter timeCounter;
     [SerializeField] private DynamicDifficultyManager DDM;
     private int combosFinishedDDM;
     private int failedCombosDDM;
     private float velocityCombos;
+    [SerializeField] private HUD_Manager hud;
+    private bool inSettingsMenu;
     #region UnityMethods
 
     void Awake()
     {
         availableKeys = new string[] { "Left", "Up", "Down", "Right", "Space" }; //this array maybe shoyuld be changed out of this script in order to have the possibility of rebinding keys
         gameStarted = false;
+        isPaused = false;
         comboFailed = false;
+        inSettingsMenu = false;
     }
     void Start()
     {
+        input.SwitchCurrentActionMap("ActionMap");
         if (input.currentControlScheme.Equals("KeyboardMouseScheme"))
         {
             previousScheme = Scheme.KeyboardMouse;
@@ -157,6 +163,51 @@ public class PlayerHorse : MonoBehaviour
     {
         CombinationManagement("E");
     }*/
+    void OnEscAction(InputValue value)
+    {
+        if (gameStarted)
+        {
+            if (inSettingsMenu)
+            {
+                hud.CloseSettingsMenu();
+
+            }
+            else
+            {
+                isPaused = !isPaused;
+                if (isPaused)
+                {
+                    Time.timeScale = 0;
+                    timeCounter.DeactivateTimer();
+                    input.SwitchCurrentActionMap("UIMap");
+                }
+                else
+                {
+                    Time.timeScale = 1;
+                    timeCounter.ActivateTimer();
+                    input.SwitchCurrentActionMap("ActionMap");
+                }
+                hud.PauseGame(isPaused);
+
+            }
+        }
+
+    }
+
+
+    /*void OnEscActionUI(InputValue value)
+    {
+        if (gameStarted)
+        {
+            isPaused = false;
+            print("pausa quitada");
+            timeCounter.ActivateTimer();
+            input.SwitchCurrentActionMap("ActionMap");
+            hud.PauseGame(isPaused);
+
+        }
+    }*/
+
     #endregion KeysActions
     public void StartGame()
     {
@@ -166,6 +217,21 @@ public class PlayerHorse : MonoBehaviour
     {
         gameStarted = false;
         DDM.SaveParameters();
+    }
+
+    public void UnPauseGame()
+    {
+        isPaused = !isPaused;
+        print("pausa quitada");
+        timeCounter.ActivateTimer();
+        input.SwitchCurrentActionMap("ActionMap");
+
+        hud.PauseGame(isPaused);
+    }
+
+    public void SetInSettings(bool inSettings)
+    {
+        inSettingsMenu = inSettings;
     }
     private void GenerateCombination()
     {

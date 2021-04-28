@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class HUD_Manager : MonoBehaviour
 {
@@ -12,12 +13,17 @@ public class HUD_Manager : MonoBehaviour
     [SerializeField] private GameObject preGameButtonsCanvas;
     [SerializeField] private GameObject inGameCanvas;
     [SerializeField] private GameObject postGameCanvas;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject continueButton;
+    [SerializeField] private GameObject firstSettingButton;
     [SerializeField] private TextMeshProUGUI positionText;
     [SerializeField] private TextMeshProUGUI timeSpent;
     [SerializeField] private TextMeshProUGUI starsEndedGameText;
     [SerializeField] private TextMeshProUGUI starsObtained;
     [SerializeField] private TextMeshProUGUI countdownText;
     [SerializeField] private ConversationHelper conversation;
+    //[SerializeField] private PlayerInput playerInput;
 
     [Header("Control por mando")]
     [SerializeField] private EventSystem _eventSystem;
@@ -29,8 +35,13 @@ public class HUD_Manager : MonoBehaviour
     PlayerHorse playerHorse;
     private float raceTime;
     private int stars;
+    private bool paused;
+    private bool isReseting;
     void Start()
     {
+        //playerInput.SwitchCurrentActionMap("ActionMap");
+        paused = false;
+        isReseting = false;
         stars = -1;
         raceTime = 0.0f;
         playerHorse = FindObjectOfType<PlayerHorse>();
@@ -39,6 +50,9 @@ public class HUD_Manager : MonoBehaviour
         countdownText.gameObject.SetActive(false);
         inGameCanvas.SetActive(false);
         postGameCanvas.SetActive(false);
+        pauseMenu.SetActive(false);
+        pauseMenu.SetActive(false);
+        settingsMenu.SetActive(false);
         preGameCanvas.SetActive(true);
         _eventSystem.SetSelectedGameObject(_startGame);
         starsObtained.text = "Stars obtained: " + GameProgress.GetStars(2);
@@ -54,10 +68,11 @@ public class HUD_Manager : MonoBehaviour
         preGameCanvas.SetActive(false);
         inGameCanvas.SetActive(true);
         playerHorse.StartGame();
-        foreach (var enemy in enemyHorses)
+        /*foreach (var enemy in enemyHorses)
         {
             enemy.StartGame();
-        }
+        }*/
+        Invoke("UnPauseEnemys", 0.5f);
         timeCounter.ActivateTimer();
     }
 
@@ -122,11 +137,82 @@ public class HUD_Manager : MonoBehaviour
             starsEndedGameText.text = "Sorry you got no stars ;( ";
         }
     }
+
+    public void OpenSettingsMenu()
+    {
+        playerHorse.SetInSettings(true);
+        pauseMenu.SetActive(false);
+        settingsMenu.SetActive(true);
+        _eventSystem.SetSelectedGameObject(firstSettingButton);
+    }
+
+    public void CloseSettingsMenu()
+    {
+        playerHorse.SetInSettings(false);
+        pauseMenu.SetActive(true);
+        settingsMenu.SetActive(false);
+        _eventSystem.SetSelectedGameObject(continueButton);
+    }
+
     public void ResetGame()
     {
+        if (isReseting) { return; }
+        isReseting = true;
         FadeController.Fade("HorsesRace");
     }
 
+    public void PauseGame(bool isPaused)
+    {
+        if (isReseting) { return; }
+        paused = isPaused;
+        if (isPaused)
+        {
+            //Time.timeScale = 0;
+            pauseMenu.SetActive(true);
+            _eventSystem.SetSelectedGameObject(continueButton);
+            //playerInput.SwitchCurrentActionMap("UIMap");
+            Invoke("PauseEnemys", 0.5f);
+        }
+        else
+        {
+
+            //Time.timeScale = 1;
+            pauseMenu.SetActive(false);
+            //playerInput.SwitchCurrentActionMap("ActionMap");
+            Invoke("UnPauseEnemys", 0.5f);
+        }
+
+    }
+
+    public void UnPauseGame()
+    {
+        if (isReseting) { return; }
+        playerHorse.UnPauseGame();
+    }
+
+    void PauseEnemys()
+    {
+        if (paused)
+        {
+            foreach (var enemy in enemyHorses)
+            {
+                enemy.EndGame();
+            }
+
+        }
+
+    }
+
+    void UnPauseEnemys()
+    {
+        if (!paused)
+        {
+            foreach (var enemy in enemyHorses)
+            {
+                enemy.StartGame();
+            }
+        }
+    }
     string FormatTime()
     {
         return ((Mathf.Floor(raceTime / 60).ToString("00")) + " : " + (Mathf.Floor(raceTime) % 60).ToString("00"));
