@@ -576,7 +576,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""CancelUI"",
+                    ""name"": ""Esc Action"",
                     ""type"": ""Button"",
                     ""id"": ""cbd1af9c-1dac-4b6d-bb31-1d3ee64e585e"",
                     ""expectedControlType"": ""Button"",
@@ -746,7 +746,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardMouseScheme"",
-                    ""action"": ""CancelUI"",
+                    ""action"": ""Esc Action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -757,7 +757,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamepadScheme"",
-                    ""action"": ""CancelUI"",
+                    ""action"": ""Esc Action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -912,7 +912,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         m_UIMap_MouseLeftActionUI = m_UIMap.FindAction("MouseLeftActionUI", throwIfNotFound: true);
         m_UIMap_AcceptUI = m_UIMap.FindAction("AcceptUI", throwIfNotFound: true);
         m_UIMap_PointUI = m_UIMap.FindAction("PointUI", throwIfNotFound: true);
-        m_UIMap_CancelUI = m_UIMap.FindAction("CancelUI", throwIfNotFound: true);
+        m_UIMap_EscAction = m_UIMap.FindAction("Esc Action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1072,7 +1072,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
     private readonly InputAction m_UIMap_MouseLeftActionUI;
     private readonly InputAction m_UIMap_AcceptUI;
     private readonly InputAction m_UIMap_PointUI;
-    private readonly InputAction m_UIMap_CancelUI;
+    private readonly InputAction m_UIMap_EscAction;
     public struct UIMapActions
     {
         private @PlayerInputs m_Wrapper;
@@ -1082,7 +1082,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         public InputAction @MouseLeftActionUI => m_Wrapper.m_UIMap_MouseLeftActionUI;
         public InputAction @AcceptUI => m_Wrapper.m_UIMap_AcceptUI;
         public InputAction @PointUI => m_Wrapper.m_UIMap_PointUI;
-        public InputAction @CancelUI => m_Wrapper.m_UIMap_CancelUI;
+        public InputAction @EscAction => m_Wrapper.m_UIMap_EscAction;
         public InputActionMap Get() { return m_Wrapper.m_UIMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1107,9 +1107,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @PointUI.started -= m_Wrapper.m_UIMapActionsCallbackInterface.OnPointUI;
                 @PointUI.performed -= m_Wrapper.m_UIMapActionsCallbackInterface.OnPointUI;
                 @PointUI.canceled -= m_Wrapper.m_UIMapActionsCallbackInterface.OnPointUI;
-                @CancelUI.started -= m_Wrapper.m_UIMapActionsCallbackInterface.OnCancelUI;
-                @CancelUI.performed -= m_Wrapper.m_UIMapActionsCallbackInterface.OnCancelUI;
-                @CancelUI.canceled -= m_Wrapper.m_UIMapActionsCallbackInterface.OnCancelUI;
+                @EscAction.started -= m_Wrapper.m_UIMapActionsCallbackInterface.OnEscAction;
+                @EscAction.performed -= m_Wrapper.m_UIMapActionsCallbackInterface.OnEscAction;
+                @EscAction.canceled -= m_Wrapper.m_UIMapActionsCallbackInterface.OnEscAction;
             }
             m_Wrapper.m_UIMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -1129,9 +1129,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @PointUI.started += instance.OnPointUI;
                 @PointUI.performed += instance.OnPointUI;
                 @PointUI.canceled += instance.OnPointUI;
-                @CancelUI.started += instance.OnCancelUI;
-                @CancelUI.performed += instance.OnCancelUI;
-                @CancelUI.canceled += instance.OnCancelUI;
+                @EscAction.started += instance.OnEscAction;
+                @EscAction.performed += instance.OnEscAction;
+                @EscAction.canceled += instance.OnEscAction;
             }
         }
     }
@@ -1174,6 +1174,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         void OnMouseLeftActionUI(InputAction.CallbackContext context);
         void OnAcceptUI(InputAction.CallbackContext context);
         void OnPointUI(InputAction.CallbackContext context);
-        void OnCancelUI(InputAction.CallbackContext context);
+        void OnEscAction(InputAction.CallbackContext context);
     }
 }
