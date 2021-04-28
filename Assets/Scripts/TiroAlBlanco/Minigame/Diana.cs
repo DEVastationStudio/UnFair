@@ -12,14 +12,15 @@ public class Diana : MonoBehaviour
     public DianaContainer _dianaContainer;
 
     private ShootingMinigameManager _gameManager;
-    private bool isInit;
-    private float _lifeTime;
-    private float _maxLifeTime;
+    [SerializeField] private bool isInit;
+    [SerializeField] private float _lifeTime;
+    [SerializeField] private float _maxLifeTime;
     #endregion
 
     #region Metodos
     public void StartDiana()
     {
+        _hit = false;
         _gameManager = FindObjectOfType<ShootingMinigameManager>();
         if (transform.tag == "DianaDorada" || transform.tag == "Reloj")
             _lifeTime = (0.5f + 2 * (1.0f - _gameManager._dynamicDifficultyManager.GetValue(0)));
@@ -33,12 +34,13 @@ public class Diana : MonoBehaviour
 
     public float GetPercentageLifeTime()
     {
+        if (_lifeTime < 0) _lifeTime = 0;
         return (_lifeTime / _maxLifeTime);
     }
 
     public void Update()
     {
-        if (isInit)
+        if (isInit || _lifeTime < 0)
         {
             _lifeTime -= Time.deltaTime;
             if (!_hit && _lifeTime <= 0)
@@ -51,7 +53,7 @@ public class Diana : MonoBehaviour
                     _dianaContainer.SleepTarget(false);
                 _gameManager._dynamicDifficultyManager.SetValue(0, 0.25f);
                 isInit = false;
-                _hit = false;
+                _lifeTime = 0;
             }
         }
     }
