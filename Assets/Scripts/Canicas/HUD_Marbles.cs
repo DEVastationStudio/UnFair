@@ -12,6 +12,10 @@ public class HUD_Marbles : MonoBehaviour
     [SerializeField] private GameObject inGameCanvas;
     [SerializeField] private GameObject postGameCanvas;
     [SerializeField] private GameObject preGameButtonsCanvas;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject continuePauseButton;
+    [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject firstSettingsButton;
     [SerializeField] private TextMeshProUGUI finalScoreText;
     [SerializeField] private TextMeshProUGUI finalTimeText;
     [SerializeField] private TextMeshProUGUI preStarsObtainedText;
@@ -36,15 +40,21 @@ public class HUD_Marbles : MonoBehaviour
     private int stars;
     private int balls;
     private float velocityHits;
+    private bool isPaused;
+    private bool isReseting;
     public static bool startedPressed; //para impedir que los obstáculos se muevan
 
     void Start()
     {
         startedPressed = false;
+        isPaused = false;
+        isReseting = false;
         velocityHits = 0.0f;
         inGameCanvas.SetActive(false);
         postGameCanvas.SetActive(false);
         countdownText.gameObject.SetActive(false);
+        pauseMenu.SetActive(false);
+        settingsMenu.SetActive(false);
         preGameButtonsCanvas.SetActive(true);
         preGameCanvas.SetActive(true);
         _eventSystem.SetSelectedGameObject(_startButton);
@@ -58,6 +68,7 @@ public class HUD_Marbles : MonoBehaviour
 
     void Update()
     {
+        if(isPaused || isReseting){return;}
         if (gameStarted)
         {
             velocityHits += Time.deltaTime;
@@ -89,7 +100,48 @@ public class HUD_Marbles : MonoBehaviour
     {
         StartCoroutine(Countdown());
     }
+    public void PauseGame(bool _isPaused)
+    {
+        if (isReseting) { return; }
+        isPaused = _isPaused;
+        if (isPaused)
+        {
+            pauseMenu.SetActive(true);
+            _eventSystem.SetSelectedGameObject(continuePauseButton);
+            //pausar obstáculos
 
+        }
+        else
+        {
+            pauseMenu.SetActive(false);
+            //despausar obstáculos
+
+        }
+
+    }
+
+    public void OpenSettingsMenu()
+    {
+        thrower.SetInSettings(true);
+        pauseMenu.SetActive(false);
+        settingsMenu.SetActive(true);
+        _eventSystem.SetSelectedGameObject(firstSettingsButton);
+
+    }
+
+    public void CloseSettingsMenu()
+    {
+        thrower.SetInSettings(false);
+        pauseMenu.SetActive(true);
+        settingsMenu.SetActive(false);
+        _eventSystem.SetSelectedGameObject(continuePauseButton);        
+    }
+
+    public void UnPauseGame()
+    {
+        if (isReseting) { return; }
+        thrower.UnPauseGame();
+    }
     public void EndGame()
     {
         //Physics.autoSimulation = true;
@@ -143,6 +195,7 @@ public class HUD_Marbles : MonoBehaviour
 
     public void ResetGame()
     {
+        if (isReseting) { return; }
         FadeController.Fade("Canicas");
     }
 

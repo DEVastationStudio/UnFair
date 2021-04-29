@@ -222,6 +222,7 @@ public class PlayerHorse : MonoBehaviour
     public void UnPauseGame()
     {
         isPaused = !isPaused;
+        Time.timeScale = 1;
         print("pausa quitada");
         timeCounter.ActivateTimer();
         input.SwitchCurrentActionMap("ActionMap");

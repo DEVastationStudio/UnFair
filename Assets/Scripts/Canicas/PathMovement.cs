@@ -11,7 +11,7 @@ public class PathMovement : MonoBehaviour
     private DynamicDifficultyManager DDM;
 
 
-    void Update()
+    void FixedUpdate()
     {
         if (!HUD_Marbles.startedPressed) { return; }
         if (targets == null || targets.Length < 2) { return; }

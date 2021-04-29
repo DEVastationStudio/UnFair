@@ -30,14 +30,19 @@ public class Thrower : MonoBehaviour
     private Ray ray;
     private RaycastHit hit;
     private Vector3 hitPos;
+    private bool isPaused;
+    private bool inSettingsMenu;
     /*private bool leftRotation;
     private bool rightRotation;*/
 
 
     void Start()
     {
+        input.SwitchCurrentActionMap("ActionMap");
         gameStarted = false;
         pressingShoot = false;
+        isPaused = false;
+        inSettingsMenu = false;
         throwerForce = 0.0f;
         rotation = 0;
         canThrow = true;
@@ -53,7 +58,7 @@ public class Thrower : MonoBehaviour
 
     void Update()
     {
-        if (!gameStarted) { return; }
+        if (!gameStarted || isPaused) { return; }
         Rotate();
         /*if (currentRot != transform.rotation)
         {*/
@@ -159,7 +164,7 @@ public class Thrower : MonoBehaviour
 
     private void OnSpaceAction(InputValue value)
     {
-        if (!gameStarted) { return; }
+        if (!gameStarted || isPaused) { return; }
         //if (!canThrow) return;//
         if (value.Get<float>() == 0)//sueltas tecla
         {
@@ -191,7 +196,7 @@ public class Thrower : MonoBehaviour
 
     private void OnMovement(InputValue value)
     {
-        if (!gameStarted) { return; }
+        if (!gameStarted || isPaused) { return; }
         if (value.Get<Vector2>().x < -0.2f)
         {
             rotation = -1;
@@ -204,6 +209,51 @@ public class Thrower : MonoBehaviour
         {
             rotation = 0;
         }
+    }
+    void OnEscAction(InputValue value)
+    {
+        if (gameStarted)
+        {
+            if (inSettingsMenu)
+            {
+                hud.CloseSettingsMenu();
+
+            }
+            else
+            {
+                isPaused = !isPaused;
+                if (isPaused)
+                {
+                    Time.timeScale = 0;
+                    //timeCounter.DeactivateTimer();
+                    input.SwitchCurrentActionMap("UIMap");
+                }
+                else
+                {
+                    Time.timeScale = 1;
+                    //timeCounter.ActivateTimer();
+                    input.SwitchCurrentActionMap("ActionMap");
+                }
+                hud.PauseGame(isPaused);
+
+            }
+        }
+
+    }
+    public void UnPauseGame()
+    {
+        isPaused = !isPaused;
+        Time.timeScale = 1;
+        print("pausa quitada");
+        //timeCounter.ActivateTimer();
+        input.SwitchCurrentActionMap("ActionMap");
+
+        hud.PauseGame(isPaused);
+    }
+
+    public void SetInSettings(bool inSettings)
+    {
+        inSettingsMenu = inSettings;
     }
     private void IncreaseThrowForce(float x)
     {
