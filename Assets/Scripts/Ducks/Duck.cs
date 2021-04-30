@@ -46,8 +46,9 @@ public class Duck : FloatingObject
             Vector3 pos = -transform.position;
             pos.y = 0;
             rigidBody.AddForce(cross/4, ForceMode.Force);
-            rigidBody.AddForce(pos/4, ForceMode.Force);
+            rigidBody.AddForce(pos/12, ForceMode.Force);
             //Debug.DrawRay(transform.position, Vector3.Cross(transform.position, Vector3.up));
+            //Debug.DrawRay(transform.position, cross/4 + pos/12, Color.red);
         }
     }
 
