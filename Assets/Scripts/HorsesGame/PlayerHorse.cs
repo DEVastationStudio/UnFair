@@ -91,7 +91,7 @@ public class PlayerHorse : MonoBehaviour
             if (combCreated && Keyboard.current.anyKey.wasPressedThisFrame)
             {
                 if (!(Keyboard.current[Key.W].wasPressedThisFrame || Keyboard.current[Key.A].wasPressedThisFrame || Keyboard.current[Key.S].wasPressedThisFrame || Keyboard.current[Key.D].wasPressedThisFrame || Keyboard.current[Key.E].wasPressedThisFrame || Keyboard.current[Key.Space].wasPressedThisFrame || Keyboard.current[Key.UpArrow].wasPressedThisFrame || Keyboard.current[Key.DownArrow].wasPressedThisFrame
-                || Keyboard.current[Key.LeftArrow].wasPressedThisFrame || Keyboard.current[Key.RightArrow].wasPressedThisFrame || Keyboard.current[Key.Escape].wasPressedThisFrame))
+                || Keyboard.current[Key.LeftArrow].wasPressedThisFrame || Keyboard.current[Key.RightArrow].wasPressedThisFrame || Keyboard.current[Key.Escape].wasPressedThisFrame || Keyboard.current[Key.Enter].wasPressedThisFrame))
                 {
                     //Debug.Log("Tecla ajena al conjunto de teclas creadas para el minijuego");
                     ResetCorrect(false, true);
