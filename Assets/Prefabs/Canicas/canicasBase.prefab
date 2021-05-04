@@ -90,8 +90,8 @@ GameObject:
   - component: {fileID: 669195492136165671}
   - component: {fileID: 7464858489076633025}
   - component: {fileID: 710810089617018503}
-  - component: {fileID: 959331609009154474}
   - component: {fileID: 7495291002909585189}
+  - component: {fileID: 9132201968390753161}
   m_Layer: 0
   m_Name: Skyline_Down
   m_TagString: Untagged
@@ -160,19 +160,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &959331609009154474
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 308832728288627840}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1.0000002}
-  m_Center: {x: 0, y: -0.000000059604645, z: 0}
 --- !u!114 &7495291002909585189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +172,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd085afb6fb181c4aa2fc5073382626f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &9132201968390753161
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308832728288627840}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.0000002}
+  m_Center: {x: 0, y: -0.000000059604645, z: 0}
 --- !u!1 &406062501004471125
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 4833542459461152131}
   - component: {fileID: 5701142613045689663}
   - component: {fileID: 5146565956245100112}
-  - component: {fileID: 3503986746987251013}
+  - component: {fileID: 604860822697371478}
   m_Layer: 0
   m_Name: paredB
   m_TagString: Obstacle
@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 0
---- !u!64 &3503986746987251013
+--- !u!64 &604860822697371478
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -385,7 +385,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1443125661360653374, guid: a6c8388948f780f41a0c5f61c3e8419a, type: 3}
+  m_Mesh: {fileID: -7667804699602377211, guid: a6c8388948f780f41a0c5f61c3e8419a, type: 3}
 --- !u!1 &1150987307351421437
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,8 +456,8 @@ GameObject:
   - component: {fileID: 8367654521941505030}
   - component: {fileID: 981612695973984123}
   - component: {fileID: 6455268088276059311}
-  - component: {fileID: 390021427498953877}
   - component: {fileID: 2721918344102102292}
+  - component: {fileID: 6251863483181914307}
   m_Layer: 0
   m_Name: ScoreHole (5)
   m_TagString: Untagged
@@ -540,20 +540,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: -0.000000059604645, z: -0.00000008940699}
---- !u!64 &390021427498953877
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1410107006785174757}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &2721918344102102292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -569,6 +555,20 @@ MonoBehaviour:
   points: 0
   hudMarbles: {fileID: 0}
   thrower: {fileID: 0}
+--- !u!64 &6251863483181914307
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410107006785174757}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1512367412137920752
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,8 +660,8 @@ GameObject:
   - component: {fileID: 450873808651290956}
   - component: {fileID: 6067506508815393477}
   - component: {fileID: 6529173481764241606}
-  - component: {fileID: 4457896058158658668}
   - component: {fileID: 1632725361700875518}
+  - component: {fileID: 5524777383614907375}
   m_Layer: 0
   m_Name: ScoreHole (4)
   m_TagString: Untagged
@@ -744,20 +744,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: -0.000000059604645, z: -0.00000008940699}
---- !u!64 &4457896058158658668
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1758788900141651565}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &1632725361700875518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -773,6 +759,20 @@ MonoBehaviour:
   points: 0
   hudMarbles: {fileID: 0}
   thrower: {fileID: 0}
+--- !u!64 &5524777383614907375
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758788900141651565}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &2001873516464074850
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,8 +784,8 @@ GameObject:
   - component: {fileID: 1765594459105978745}
   - component: {fileID: 239057890604856458}
   - component: {fileID: 1687378550637118831}
-  - component: {fileID: 135574018651829896}
   - component: {fileID: 5273960225732785526}
+  - component: {fileID: 2489346719719221717}
   m_Layer: 0
   m_Name: Skyline_Down (1)
   m_TagString: Untagged
@@ -854,19 +854,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &135574018651829896
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2001873516464074850}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1.0000002}
-  m_Center: {x: 0, y: -0.000000059604645, z: 0}
 --- !u!114 &5273960225732785526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -879,6 +866,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd085afb6fb181c4aa2fc5073382626f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &2489346719719221717
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001873516464074850}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.0000002}
+  m_Center: {x: 0, y: -0.000000059604645, z: 0}
 --- !u!1 &2192086675245451367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,8 +1127,8 @@ GameObject:
   - component: {fileID: 8622520659444531143}
   - component: {fileID: 5961183358620915137}
   - component: {fileID: 7945247943342701728}
-  - component: {fileID: 2514846380644921653}
   - component: {fileID: 6684492458709819157}
+  - component: {fileID: 5945326865905345665}
   m_Layer: 0
   m_Name: Skyline_Frente
   m_TagString: Untagged
@@ -1197,19 +1197,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &2514846380644921653
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3552689661631786301}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1.0000002}
-  m_Center: {x: 0, y: -0.000000059604645, z: 0}
 --- !u!114 &6684492458709819157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1222,6 +1209,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd085afb6fb181c4aa2fc5073382626f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &5945326865905345665
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3552689661631786301}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.0000002}
+  m_Center: {x: 0, y: -0.000000059604645, z: 0}
 --- !u!1 &3772932248828606934
 GameObject:
   m_ObjectHideFlags: 0
@@ -1235,7 +1235,7 @@ GameObject:
   - component: {fileID: 7602591648504979423}
   - component: {fileID: 2510362070546797974}
   - component: {fileID: 5855124772326519004}
-  - component: {fileID: 8330283965802406186}
+  - component: {fileID: 1316379839296506435}
   m_Layer: 0
   m_Name: paredR
   m_TagString: Obstacle
@@ -1330,7 +1330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 0
---- !u!64 &8330283965802406186
+--- !u!64 &1316379839296506435
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1343,7 +1343,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4799717817772777962, guid: a6c8388948f780f41a0c5f61c3e8419a, type: 3}
+  m_Mesh: {fileID: 5175766125580547940, guid: a6c8388948f780f41a0c5f61c3e8419a, type: 3}
 --- !u!1 &4211099965606247319
 GameObject:
   m_ObjectHideFlags: 0
@@ -1355,8 +1355,8 @@ GameObject:
   - component: {fileID: 578583726543339263}
   - component: {fileID: 5299370363862871521}
   - component: {fileID: 8332229950613526131}
-  - component: {fileID: 7602424804592156064}
   - component: {fileID: 7065189721207858895}
+  - component: {fileID: 2438993070089501264}
   m_Layer: 0
   m_Name: Skyline_Left
   m_TagString: Untagged
@@ -1425,19 +1425,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7602424804592156064
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4211099965606247319}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1.0000002}
-  m_Center: {x: 0, y: -0.000000059604645, z: 0}
 --- !u!114 &7065189721207858895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1450,6 +1437,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd085afb6fb181c4aa2fc5073382626f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &2438993070089501264
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4211099965606247319}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.0000002}
+  m_Center: {x: 0, y: -0.000000059604645, z: 0}
 --- !u!1 &4366877586309616159
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,8 +1461,8 @@ GameObject:
   - component: {fileID: 6444702406424018850}
   - component: {fileID: 2078120518828857206}
   - component: {fileID: 2730073929702965239}
-  - component: {fileID: 7907936799026191736}
   - component: {fileID: 3449270241363374683}
+  - component: {fileID: 2581625338699450695}
   m_Layer: 0
   m_Name: Skyline_Right
   m_TagString: Untagged
@@ -1531,19 +1531,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7907936799026191736
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4366877586309616159}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1.0000002}
-  m_Center: {x: 0, y: -0.000000059604645, z: 0}
 --- !u!114 &3449270241363374683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1556,6 +1543,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd085afb6fb181c4aa2fc5073382626f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &2581625338699450695
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4366877586309616159}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.0000002}
+  m_Center: {x: 0, y: -0.000000059604645, z: 0}
 --- !u!1 &4617847014805153616
 GameObject:
   m_ObjectHideFlags: 0
@@ -1568,8 +1568,8 @@ GameObject:
   - component: {fileID: 1938494104802094005}
   - component: {fileID: 4655749477542378768}
   - component: {fileID: 2379027153137692737}
-  - component: {fileID: 8188791868543384264}
   - component: {fileID: 441240728020092088}
+  - component: {fileID: 7332463278907452036}
   m_Layer: 0
   m_Name: ScoreHole (3)
   m_TagString: Untagged
@@ -1652,20 +1652,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: -0.000000059604645, z: -0.00000008940699}
---- !u!64 &8188791868543384264
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4617847014805153616}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &441240728020092088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1681,6 +1667,20 @@ MonoBehaviour:
   points: 0
   hudMarbles: {fileID: 0}
   thrower: {fileID: 0}
+--- !u!64 &7332463278907452036
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4617847014805153616}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &4745455460742019630
 GameObject:
   m_ObjectHideFlags: 0
@@ -1852,7 +1852,7 @@ GameObject:
   - component: {fileID: 7724337243917362329}
   - component: {fileID: 614233051858756190}
   - component: {fileID: 8368428676439867465}
-  - component: {fileID: 4962319935521277047}
+  - component: {fileID: 7822720945887514356}
   m_Layer: 0
   m_Name: paredL
   m_TagString: Obstacle
@@ -1947,7 +1947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 0
---- !u!64 &4962319935521277047
+--- !u!64 &7822720945887514356
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1960,7 +1960,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: -4197659669881002106, guid: a6c8388948f780f41a0c5f61c3e8419a, type: 3}
+  m_Mesh: {fileID: 7869264820414706301, guid: a6c8388948f780f41a0c5f61c3e8419a, type: 3}
 --- !u!1 &5428560214882875635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1973,8 +1973,8 @@ GameObject:
   - component: {fileID: 1570831798363519896}
   - component: {fileID: 696003298066985120}
   - component: {fileID: 3444472291862582166}
-  - component: {fileID: 1142773521555574365}
   - component: {fileID: 6906355814859256770}
+  - component: {fileID: 6860641920366372742}
   m_Layer: 0
   m_Name: ScoreHole (1)
   m_TagString: Untagged
@@ -2057,20 +2057,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: -0.000000059604645, z: -0.00000008940699}
---- !u!64 &1142773521555574365
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5428560214882875635}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &6906355814859256770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2086,6 +2072,20 @@ MonoBehaviour:
   points: 0
   hudMarbles: {fileID: 0}
   thrower: {fileID: 0}
+--- !u!64 &6860641920366372742
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5428560214882875635}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &5437484842619987400
 GameObject:
   m_ObjectHideFlags: 0
@@ -2098,8 +2098,8 @@ GameObject:
   - component: {fileID: 3980333677371788910}
   - component: {fileID: 3489036976310228290}
   - component: {fileID: 4441546900251006203}
-  - component: {fileID: 8561454653120673976}
   - component: {fileID: 740098839241447180}
+  - component: {fileID: 8184423676021933431}
   m_Layer: 0
   m_Name: ScoreHole (2)
   m_TagString: Untagged
@@ -2182,20 +2182,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: -0.000000059604645, z: -0.00000008940699}
---- !u!64 &8561454653120673976
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5437484842619987400}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &740098839241447180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2211,6 +2197,20 @@ MonoBehaviour:
   points: 0
   hudMarbles: {fileID: 0}
   thrower: {fileID: 0}
+--- !u!64 &8184423676021933431
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5437484842619987400}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &5647660155606470161
 GameObject:
   m_ObjectHideFlags: 0
@@ -2224,7 +2224,7 @@ GameObject:
   - component: {fileID: 3015983905169085493}
   - component: {fileID: 8940834960885215991}
   - component: {fileID: 7156008566038128901}
-  - component: {fileID: 24178318468059680}
+  - component: {fileID: 2065814399445361776}
   m_Layer: 0
   m_Name: tabla
   m_TagString: Untagged
@@ -2319,7 +2319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 0
---- !u!64 &24178318468059680
+--- !u!64 &2065814399445361776
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2332,7 +2332,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 5451781985792795024, guid: a6c8388948f780f41a0c5f61c3e8419a, type: 3}
+  m_Mesh: {fileID: -5879587694987876317, guid: a6c8388948f780f41a0c5f61c3e8419a, type: 3}
 --- !u!1 &5812161572743771040
 GameObject:
   m_ObjectHideFlags: 0
@@ -2503,8 +2503,8 @@ GameObject:
   - component: {fileID: 6844168029351933659}
   - component: {fileID: 4990151645958788090}
   - component: {fileID: 3224418204588046759}
-  - component: {fileID: 4770506457432189569}
   - component: {fileID: 496562142320034638}
+  - component: {fileID: 2235619990934568604}
   m_Layer: 0
   m_Name: ScoreHole
   m_TagString: Untagged
@@ -2587,20 +2587,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: -0.000000059604645, z: -0.00000008940699}
---- !u!64 &4770506457432189569
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7246534215385108874}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &496562142320034638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2616,6 +2602,20 @@ MonoBehaviour:
   points: 0
   hudMarbles: {fileID: 0}
   thrower: {fileID: 0}
+--- !u!64 &2235619990934568604
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7246534215385108874}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &7640183303470975770
 GameObject:
   m_ObjectHideFlags: 0
@@ -2785,8 +2785,8 @@ GameObject:
   - component: {fileID: 5002425989173014341}
   - component: {fileID: 2265022500462175190}
   - component: {fileID: 641757369283350643}
-  - component: {fileID: 3807357318626093072}
   - component: {fileID: 3291226253230098954}
+  - component: {fileID: 2196306351075635118}
   m_Layer: 0
   m_Name: Skyline_Fondo
   m_TagString: Untagged
@@ -2855,19 +2855,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3807357318626093072
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9218998763101428761}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1.0000002}
-  m_Center: {x: 0, y: -0.000000059604645, z: 0}
 --- !u!114 &3291226253230098954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2880,3 +2867,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd085afb6fb181c4aa2fc5073382626f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &2196306351075635118
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9218998763101428761}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.0000002}
+  m_Center: {x: 0, y: -0.000000059604645, z: 0}
