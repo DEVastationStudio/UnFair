@@ -23,6 +23,8 @@ public class RodAiScript : MonoBehaviour
     public Rigidbody magnetRB;
     [SerializeField] private DynamicDifficultyManager _ddm;
 
+    public Duck _targetDuck;
+
     void Start()
     {
         positionOffset = transform.position - rodTip.transform.position;
@@ -41,85 +43,98 @@ public class RodAiScript : MonoBehaviour
         //Select Target Position
         if (magnet.tag == "Magnet")
         {
-            //Get all eligible ducks in a small area
-            nearDuckColliders = Physics.OverlapSphere(magnet.transform.position, _ddm.GetValue(0), ducksLayer);
 
-            if (nearDuckColliders.Length == 0)
+            if (_targetDuck != null)
             {
-                _targetPos = Vector3.zero;
+                if (_targetDuck.gameObject.layer != ducksLayer)
+                {
+                    _targetDuck = null;
+                }
             }
-            else
+
+            if (_targetDuck == null)
             {
-                nearDucks = new Duck[nearDuckColliders.Length];
-                futurePositions = new Vector3[nearDuckColliders.Length];
-                weights = new int[nearDuckColliders.Length];
+                //Get all eligible ducks in a small area
+                nearDuckColliders = Physics.OverlapSphere(magnet.transform.position, _ddm.GetValue(0), ducksLayer);
 
-                for (int i = 0; i < nearDuckColliders.Length; i++)
+                if (nearDuckColliders.Length == 0)
                 {
-                    nearDucks[i] = nearDuckColliders[i].GetComponent<Duck>();
+                    _targetPos = Vector3.zero;
                 }
-
-                //Calculate future positions based on rigidbody speed
-                for (int i = 0; i < nearDuckColliders.Length; i++)
+                else
                 {
-                    futurePositions[i] = nearDucks[i].transform.position + nearDucks[i].rigidBody.velocity * Time.deltaTime;
-                }
+                    nearDucks = new Duck[nearDuckColliders.Length];
+                    futurePositions = new Vector3[nearDuckColliders.Length];
+                    weights = new int[nearDuckColliders.Length];
 
-                //Calculate future position of the magnet
-                futureMagnetPos = magnet.transform.position + magnetRB.velocity * Time.deltaTime;
-
-                //Calculate weight of all ducks (based on duck type)
-                for (int i = 0; i < nearDuckColliders.Length; i++)
-                {Debug.DrawLine(magnet.transform.position, nearDucks[i].transform.position, Color.green);
-                    switch (nearDucks[i].type)
+                    for (int i = 0; i < nearDuckColliders.Length; i++)
                     {
-                        case Duck.Type.NORMAL:
-                            weights[i] = 3;
-                            break;
-                        case Duck.Type.AI:
-                            weights[i] = 4;
-                            break;
-                        case Duck.Type.GOLD:
-                            weights[i] = 1;
-                            break;
-                        case Duck.Type.PLAYER:
-                            weights[i] = 2;
-                            break;
-                        case Duck.Type.BLACK:
-                            weights[i] = 5;
-                            break;
+                        nearDucks[i] = nearDuckColliders[i].GetComponent<Duck>();
                     }
-                }
 
-                //Set target position to the future position of the best duck
-                int chosenDuck = 0;
-                int minWeight = 99999;
-                float minDist = 99999;
-                float randomRange = 0;
-                for (int i = 0; i < nearDuckColliders.Length; i++)
-                {
-                    randomRange = Random.Range(0, _ddm.GetValue(1));
-                    if (weights[i] < (minWeight + randomRange))
+                    //Calculate future positions based on rigidbody speed
+                    for (int i = 0; i < nearDuckColliders.Length; i++)
                     {
-                        chosenDuck = i;
-                        minWeight = weights[i];
-                        minDist = (Vector3.Distance(futurePositions[i], futureMagnetPos));
+                        futurePositions[i] = nearDucks[i].transform.position + nearDucks[i].rigidBody.velocity * Time.deltaTime;
                     }
-                    else if (weights[1] == (minWeight + randomRange))
+
+                    //Calculate future position of the magnet
+                    futureMagnetPos = magnet.transform.position + magnetRB.velocity * Time.deltaTime;
+
+                    //Calculate weight of all ducks (based on duck type)
+                    for (int i = 0; i < nearDuckColliders.Length; i++)
+                    {Debug.DrawLine(magnet.transform.position, nearDucks[i].transform.position, Color.green);
+                        switch (nearDucks[i].type)
+                        {
+                            case Duck.Type.NORMAL:
+                                weights[i] = 3;
+                                break;
+                            case Duck.Type.AI:
+                                weights[i] = 4;
+                                break;
+                            case Duck.Type.GOLD:
+                                weights[i] = 1;
+                                break;
+                            case Duck.Type.PLAYER:
+                                weights[i] = 2;
+                                break;
+                            case Duck.Type.BLACK:
+                                weights[i] = 5;
+                                break;
+                        }
+                    }
+
+                    //Set target position to the future position of the best duck
+                    int chosenDuck = 0;
+                    int minWeight = 99999;
+                    float minDist = 99999;
+                    float randomRange = 0;
+                    for (int i = 0; i < nearDuckColliders.Length; i++)
                     {
-                        if ((Vector3.Distance(futurePositions[i], futureMagnetPos)) < minDist)
+                        randomRange = Random.Range(0, _ddm.GetValue(1));
+                        if (weights[i] < (minWeight + randomRange))
                         {
                             chosenDuck = i;
                             minWeight = weights[i];
-                            minDist = (Vector3.Distance(futurePositions[i], futureMagnetPos)); 
+                            minDist = (Vector3.Distance(futurePositions[i], futureMagnetPos));
+                        }
+                        else if (weights[1] == (minWeight + randomRange))
+                        {
+                            if ((Vector3.Distance(futurePositions[i], futureMagnetPos)) < minDist)
+                            {
+                                chosenDuck = i;
+                                minWeight = weights[i];
+                                minDist = (Vector3.Distance(futurePositions[i], futureMagnetPos)); 
+                            }
                         }
                     }
+
+                    //if (nearDucks[chosenDuck].type != Duck.Type.BLACK) //Not yet
+                    _targetDuck = nearDucks[chosenDuck];
                 }
-
-                //if (nearDucks[chosenDuck].type != Duck.Type.BLACK) //Not yet
-                    _targetPos = nearDucks[chosenDuck].transform.position;Debug.DrawLine(magnet.transform.position, _targetPos, Color.magenta);
             }
-
+            _targetPos = _targetDuck.transform.position;
+            Debug.DrawLine(magnet.transform.position, _targetPos, Color.magenta);
         }
         else
         {
