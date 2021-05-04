@@ -39,6 +39,7 @@ public class FloatingObject : MonoBehaviour
             rigidBody.constraints = RigidbodyConstraints.FreezeAll;
             transform.parent = _magnet.transform;
             other.tag = "Untagged";
+            gameObject.layer = 0;
             transform.localPosition = new Vector3(0,-1.8f,0);
         }
         else if (other.tag == "Basket" && _magnetized)
