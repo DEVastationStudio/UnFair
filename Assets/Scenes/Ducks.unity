@@ -4407,6 +4407,7 @@ MonoBehaviour:
   titleText: {fileID: 610380578}
   endGameText: {fileID: 1769006259}
   countdownText: {fileID: 2121357762}
+  mainMenu: {fileID: 391563245}
   menu: {fileID: 1261164757}
   duckMask:
     serializedVersion: 2
@@ -4419,6 +4420,7 @@ MonoBehaviour:
   _resetButton: {fileID: 1067669851}
   _ddm: {fileID: 1237185697}
   _npcConversationHelper: {fileID: 1391722646}
+  _playerInput: {fileID: 894907343}
   gameOver: 0
   totalDucks: 100
   gameStarted: 0
@@ -4429,6 +4431,8 @@ MonoBehaviour:
   _primerAjustesBtn: {fileID: 955781577}
   _startBtn: {fileID: 693434502}
   _entrarAjustesBtn: {fileID: 522900461}
+  _playerMagnet: {fileID: 1690188174}
+  _aiMagnet: {fileID: 1579932370}
 --- !u!4 &1172530605
 Transform:
   m_ObjectHideFlags: 0
@@ -5704,6 +5708,7 @@ MonoBehaviour:
     m_Bits: 256
   magnetRB: {fileID: 1579932372}
   _ddm: {fileID: 1237185697}
+  _targetDuck: {fileID: 0}
 --- !u!114 &1391722646 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4355682930610415241, guid: 5b83a25e296a1a540bde3f2c770b5326,
@@ -9475,7 +9480,7 @@ PrefabInstance:
     - target: {fileID: 4355682930610415241, guid: 5b83a25e296a1a540bde3f2c770b5326,
         type: 3}
       propertyPath: OnConversationPath.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4355682930610415241, guid: 5b83a25e296a1a540bde3f2c770b5326,
         type: 3}
@@ -9486,7 +9491,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnConversationPath.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1391722646}
+      objectReference: {fileID: 1172530604}
     - target: {fileID: 4355682930610415241, guid: 5b83a25e296a1a540bde3f2c770b5326,
         type: 3}
       propertyPath: OnConversationPath.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -9505,7 +9510,7 @@ PrefabInstance:
     - target: {fileID: 4355682930610415241, guid: 5b83a25e296a1a540bde3f2c770b5326,
         type: 3}
       propertyPath: OnConversationPath.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Fade
+      value: ResetScene
       objectReference: {fileID: 0}
     - target: {fileID: 4355682930610415241, guid: 5b83a25e296a1a540bde3f2c770b5326,
         type: 3}
@@ -9730,7 +9735,7 @@ PrefabInstance:
     - target: {fileID: 6808544849791928551, guid: 4700b75196ea73b478a0a22f2d2f21e4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -49.5
+      value: -50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4700b75196ea73b478a0a22f2d2f21e4, type: 3}

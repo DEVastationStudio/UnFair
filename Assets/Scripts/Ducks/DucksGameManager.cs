@@ -4,13 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class DucksGameManager : MonoBehaviour
 {
     public Duck duckPrefab;
     private int _playerScore, _aiScore;
     public TMP_Text pScoreText, aScoreText, timerText, titleText, endGameText, countdownText;
-    public GameObject menu;
+    public GameObject mainMenu, menu;
     public LayerMask duckMask;
     public Button startGameButton;
     public RodAiScript aiScript;
@@ -22,6 +23,7 @@ public class DucksGameManager : MonoBehaviour
     [SerializeField] private GameObject _resetButton;
     [SerializeField] private DynamicDifficultyManager _ddm;
     [SerializeField] private ConversationHelper _npcConversationHelper;
+    [SerializeField] private PlayerInput _playerInput;
 
     public int playerScore
     {
@@ -46,8 +48,16 @@ public class DucksGameManager : MonoBehaviour
     [SerializeField] private GameObject _ajustes, _basePauseMenu, _titleScreen, _primerAjustesBtn, _startBtn, _entrarAjustesBtn;
     private bool _isPause = false;
 
+    private List<Vector3> _spawnPositions;
+    private List<GameObject> _spawnedDucks; 
+    [SerializeField] private GameObject _playerMagnet, _aiMagnet;
+
     void Start()
     {
+
+        _spawnedDucks = new List<GameObject>();
+        _spawnPositions = new List<Vector3>();
+
         titleText.text += "\nStars: " + GameProgress.GetStars(3);
         noBadDucks = true;
         _goldDucks  = Mathf.RoundToInt(totalDucks*0.05f);
@@ -102,6 +112,9 @@ public class DucksGameManager : MonoBehaviour
                         duck.type = Duck.Type.NORMAL;
                     }
                     freeSpace = true;
+
+                    _spawnedDucks.Add(duck.gameObject);
+                    _spawnPositions.Add(pos);
                 }
                 else
                 {
@@ -152,6 +165,7 @@ public class DucksGameManager : MonoBehaviour
         gameStarted = true;
         aiScript.enabled = true;
         rodController._mouseDown = false;
+        _playerInput.SwitchCurrentActionMap("ActionMap");
         yield return TimerUpdate();
     }
 
@@ -198,7 +212,83 @@ public class DucksGameManager : MonoBehaviour
 
     public void ResetScene()
     {
-        FadeController.Fade("Ducks");
+        //FadeController.Fade("Ducks");
+        //Hide end-of-game HUD
+        menu.SetActive(false);
+
+
+        //Reset rod positions
+        rodController.gameObject.transform.localPosition = Vector3.zero;
+        aiScript.gameObject.transform.localPosition = Vector3.zero;
+
+        //Reset variables
+        titleText.text += "\nStars: " + GameProgress.GetStars(3);
+        noBadDucks = true;
+        gameOver = false;
+        playerScore = 0;
+        aiScore = 0;
+        gameStarted = false;
+        aiScript.enabled = false;
+        noBadDucks = true;
+
+        //Remove generated ducks
+        foreach (GameObject g in _spawnedDucks)
+        {
+            Destroy(g);
+        }
+
+        //Respawn ducks
+        
+        Duck duck;
+        float angle;
+        float radius;
+
+        int i = 0;
+
+        _spawnedDucks.Clear();
+        
+        foreach (Vector3 pos in _spawnPositions)
+        {
+            angle = Random.Range(0f, 360f);
+            radius = Random.Range(4f, 15f);
+            
+            duck = Instantiate(duckPrefab, pos, Quaternion.Euler(-90, 0, 0));
+            duck._gameManager = this;
+            if (i < _goldDucks)
+            {
+                duck.type = Duck.Type.GOLD;
+            }
+            else if (i < _blackDucks)
+            {
+                duck.type = Duck.Type.BLACK;
+            }
+            else if (i < _greenDucks)
+            {
+                duck.type = Duck.Type.PLAYER;
+            }
+            else if (i < _redDucks)
+            {
+                duck.type = Duck.Type.AI;
+            }
+            else
+            {
+                duck.type = Duck.Type.NORMAL;
+            }
+            
+            i++;
+
+            _spawnedDucks.Add(duck.gameObject);
+        }
+        
+
+        //Reset magnet tags
+        _playerMagnet.tag = "Magnet";
+        _aiMagnet.tag = "Magnet";
+
+        //Show start-of-game HUD
+        mainMenu.SetActive(true);
+        _eventSystem.SetSelectedGameObject(_startButton);
+        _playerInput.SwitchCurrentActionMap("UIMap");
     }
 
     public void SetLastDuck(float value)
