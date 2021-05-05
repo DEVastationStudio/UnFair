@@ -9,6 +9,7 @@ public class Diana : MonoBehaviour
     public int _pos;
     public bool _hit;
     public bool _first;
+    public string _letraDiana;
     public DianaContainer _dianaContainer;
 
     private ShootingMinigameManager _gameManager;
@@ -38,6 +39,53 @@ public class Diana : MonoBehaviour
         return (_lifeTime / _maxLifeTime);
     }
 
+    public void Hit(bool isHit, Vector3 point)
+    {
+        string tag = transform.tag;
+        _gameManager._spawnerDianas.DestroyTarget(_pos, this);
+        switch (tag) 
+        {
+            case "Diana":
+                _gameManager._pistolaScript.AutomaticDespawn();
+                if (isHit) 
+                {
+                    _gameManager._dynamicDifficultyManager.SetValue(0, 0.50f);
+                    _gameManager._uiGeneral.IncreasePuntuacion(_points);
+                    _gameManager._vfxManager.InstantiateVFX(0, point);
+                }
+                break;
+            case "DianaDorada":
+                _gameManager._pistolaScript.CallSpawnRetard(0);
+                if (isHit)
+                {
+                    _gameManager._dynamicDifficultyManager.SetValue(0, 0.9f);
+                    _gameManager._uiGeneral.IncreasePuntuacion(_points);
+                    _gameManager._vfxManager.InstantiateVFX(1, point);
+                }
+                break;
+            case "Reloj":
+                _gameManager._pistolaScript.CallSpawnRetard(0);
+                if (isHit)
+                {
+                    _gameManager._dynamicDifficultyManager.SetValue(0, 1f);
+                    _gameManager._uiGeneral.IncreasePuntuacion(_points);
+                    _gameManager._uiGeneral.AddTime(_points);
+                    _gameManager._vfxManager.InstantiateVFX(2, point);
+                }
+                break;
+            case "DianaConLetra":
+                _gameManager._pistolaScript.CallSpawnRetard(0);
+                if (isHit)
+                {
+                    _gameManager._dynamicDifficultyManager.SetValue(0, 1f);
+                    _gameManager._uiGeneral.IncreasePuntuacion(_points);
+                    _gameManager._uiGeneral.AddTime(_points);
+                    _gameManager._vfxManager.InstantiateVFX(2, point);
+                }
+                break;
+        }
+    }
+
     public void Update()
     {
         if (isInit || _lifeTime < 0)
@@ -46,12 +94,7 @@ public class Diana : MonoBehaviour
             if (!_hit && _lifeTime <= 0)
             {
                 _hit = true;
-                _gameManager._spawnerDianas.DestroyTarget(_pos);
-                if (transform.tag == "DianaDorada" || transform.tag == "Reloj")
-                    _dianaContainer.SleepTarget(true);
-                else
-                    _dianaContainer.SleepTarget(false);
-                _gameManager._dynamicDifficultyManager.SetValue(0, 0.25f);
+                Hit(false, new Vector3(0,0,0));
                 isInit = false;
                 _lifeTime = 0;
             }

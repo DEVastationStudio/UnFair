@@ -60,97 +60,16 @@ public class PistolaScript : MonoBehaviour
 
     void OnMouseLeftAction()
     {
-        Debug.Log("[------------------------------------------------");
-        Debug.Log("Probabilidad de Diana Dorada: " + _probDianaDorada);
-        Debug.Log("Probabilidad de Diana Reloj: " + _probReloj);
-        Debug.Log("------------------------------------------------]");
         _disparo = !_disparo;
         if (_disparo != true) return;
         if (_gameManager._uiGeneral.faseActual != UIGeneral.Fases.GAME) return;
         RaycastHit hit;
         Physics.Raycast(Camera.main.ScreenPointToRay(_mira.transform.position), out hit, 100);
-        if (hit.collider != null && (hit.transform.tag == "Diana"))
+        if (hit.transform.tag == "Diana" || hit.transform.tag == "DianaDorada" || hit.transform.tag == "Reloj" || hit.transform.tag == "DianaConLetra")
         {
-            Diana diana = hit.transform.gameObject.GetComponent<Diana>();
-            diana.GetComponent<Diana>()._hit = true;
-            _gameManager._spawnerDianas.DestroyTarget(diana._pos, true, diana);
-            _gameManager._uiGeneral.IncreasePuntuacion(diana._points);
-            if (hit.transform.tag == "Diana")
-                _gameManager._dynamicDifficultyManager.SetValue(0, diana.GetPercentageLifeTime());
-            _gameManager._vfxManager.InstantiateVFX(0, hit.point);
-            if (!_isLastReloj)
-            {
-                Debug.Log("AQUI SE ENTRA POR EL CAMINO DEL RELOJ __________________________");
-                if (Random.Range(0, 100) > _probReloj)
-                {
-                    _probReloj = 110;
-                    CallSpawnRetard(2);
-                    _isLastReloj = true;
-                    _probDianaDorada -= _restaDianaDorada;
-                }
-                else if (Random.Range(0, 100) > _probDianaDorada)
-                {
-                    _probDianaDorada = 110;
-                    CallSpawnRetard(1);
-                    _isLastReloj = false;
-                    _probReloj -= _restaDianaReloj;
-                }
-                else
-                {
-                    _probDianaDorada -= _restaDianaDorada;
-                    _probReloj -= _restaDianaReloj;
-                    CallSpawnRetard(0);
-                }
-            }
-            else if(_isLastReloj)
-            {
-                Debug.Log("__________________________AQUI SE ENTRA POR EL CAMINO DE LA DORADA");
-                if (Random.Range(0, 100) > _probDianaDorada)
-                {
-                    _probDianaDorada = 110;
-                    CallSpawnRetard(1);
-                    _isLastReloj = false;
-                    _probReloj -= _restaDianaReloj;
-                }
-                else if (Random.Range(0, 100) > _probReloj)
-                {
-                    _probReloj = 110;
-                    CallSpawnRetard(2);
-                    _isLastReloj = true;
-                    _probDianaDorada -= _restaDianaDorada;
-                }
-                else
-                {
-                    _probDianaDorada -= _restaDianaDorada;
-                    _probReloj -= _restaDianaReloj;
-                    CallSpawnRetard(0);
-                }
-            }
+            hit.transform.gameObject.GetComponent<Diana>().Hit(true, hit.point);
         }
-        else if (hit.collider != null && (hit.transform.tag == "DianaDorada" || hit.transform.tag == "Reloj")) 
-        {
-            Diana diana = hit.transform.gameObject.GetComponent<Diana>();
-            _gameManager._spawnerDianas.DestroyTarget(diana._pos, false, diana);
-            if (hit.transform.tag == "DianaDorada")
-                _gameManager._uiGeneral.IncreasePuntuacion(diana._points);
-            else
-                _gameManager._uiGeneral.AddTime(5);
-
-            if (hit.transform.tag == "DianaDorada")
-            {
-                _gameManager._dynamicDifficultyManager.SetValue(0, 0.90f);
-                _gameManager._vfxManager.InstantiateVFX(1, hit.point);
-                _probReloj -= _restaDianaReloj;
-            }
-            else if (hit.transform.tag == "Reloj")
-            {
-                _gameManager._dynamicDifficultyManager.SetValue(0, 1f);
-                _gameManager._vfxManager.InstantiateVFX(2, hit.point);
-                _probDianaDorada -= _restaDianaDorada;
-            }
-            CallSpawnRetard(0);
-        }
-        else if (hit.collider != null && hit.transform.tag == "Pared")
+        else if(hit.transform.tag == "Pared") 
         {
             _gameManager._dynamicDifficultyManager.SetValue(0, 0f);
             _gameManager._uiGeneral.IncreasePuntuacion(-5);

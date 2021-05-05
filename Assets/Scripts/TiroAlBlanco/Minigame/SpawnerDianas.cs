@@ -29,7 +29,6 @@ public class SpawnerDianas : MonoBehaviour
     {
         if (numDianas >= _maxNumDianas) return;
         numDianas++;
-        Debug.Log((type == 1)?"Spawneando una diana dorada":"Spawneando una diana normal");
         int i = Random.Range(0, _possibleTargetContainers.Count - 1);
         while (targetsInUse[i] && _possibleTargetContainers.Count > numDianas)
         {
@@ -38,37 +37,28 @@ public class SpawnerDianas : MonoBehaviour
             else
                 i++;
         }
+
         if (targetsInUse[i])
             return;
-        switch (type) 
-        {
-            case 0:
-            case 1:
-            case 2:
-                Spawn(/*_spawnPoints[i].transform.position, _possibleTargets[0],*/type, i);
-                break;
-            case 3:
-                Spawn(/*_spawnPoints[i].transform.position, _possibleTargets[0],*/type, i, true);
-                break;
-        }
+
+        if(type == 3)
+            Spawn(type, i, true);
+        else
+            Spawn(type, i);
     }
 
-    public void DestroyTarget(int targetPos, bool action = false, Diana d = null) 
+    public void DestroyTarget(int targetPos, Diana d = null) 
     {
         numDianas--;
         Debug.Log("NumDianas:" + numDianas);
         targetsInUse[targetPos] = false;
         if(d != null)
-            d._dianaContainer.SleepTarget(action);
+            d._dianaContainer.SleepTarget();
     }
 
-    private void Spawn(/*Vector3 pos, GameObject target,*/int type, int posInArray, bool first = false)
+    private void Spawn(int type, int posInArray, bool first = false)
     {
         targetsInUse[posInArray] = true;
-        //Diana aux = Instantiate(target, pos, Quaternion.identity).GetComponent<Diana>();
-        //aux._pos = posInArray;
-        //aux.transform.localEulerAngles += new Vector3(0, -180, 0);
-        //aux.StartDiana();
         _possibleTargetContainers[posInArray].WakeUpTarget(type, posInArray);
     }
     #endregion Metodos

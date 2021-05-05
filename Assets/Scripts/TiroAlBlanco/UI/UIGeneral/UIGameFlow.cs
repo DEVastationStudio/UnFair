@@ -65,7 +65,7 @@ public partial class UIGeneral : MonoBehaviour
         _puntuacionFinalTxt.text = "Score: " + _puntuacionActual;
         for (int i = 0; i < DianasRestantes.Length; i++) 
         {
-           DianasRestantes[i]._dianaContainer.SleepTarget(true,true);
+           DianasRestantes[i]._dianaContainer.SleepTarget();
         }
         _playerInput.SwitchCurrentActionMap("UIMap");
         _npcConversationHelper.StartConversation();
