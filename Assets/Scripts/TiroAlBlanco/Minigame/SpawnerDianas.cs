@@ -8,9 +8,13 @@ public class SpawnerDianas : MonoBehaviour
     [SerializeField] private List<GameObject> _spawnPoints;
     [SerializeField] private List<GameObject> _possibleTargets;
     [SerializeField] private List<DianaContainer> _possibleTargetContainers;
+    [SerializeField] private ShootingMinigameManager _gameManager;
     [SerializeField] private int _maxNumDianas;
 
     [HideInInspector] public int numDianas;
+    [HideInInspector] public bool _activeLetter;
+    [HideInInspector] public int _currentLetter;
+    [HideInInspector] public bool _isOnGoldRush;
 
     private bool[] targetsInUse;
     #endregion Variables
@@ -20,9 +24,10 @@ public class SpawnerDianas : MonoBehaviour
     {
         numDianas = 0;
         targetsInUse = new bool[_spawnPoints.Count];
-        SpawnNewTarget(3);
-        SpawnNewTarget(3);
-        SpawnNewTarget(3);
+        SpawnNewTarget(-1);
+        SpawnNewTarget(-1);
+        SpawnNewTarget(-1);
+        _currentLetter = 0;
     }
 
     public void SpawnNewTarget(int type) 
@@ -41,8 +46,27 @@ public class SpawnerDianas : MonoBehaviour
         if (targetsInUse[i])
             return;
 
-        if(type == 3)
+        if (_isOnGoldRush) 
+        {
+            Spawn(1, i);
+            return;
+        }
+
+        if (type == 0 && _gameManager._pistolaScript._timeToSpawnLetter <= 0)
+        {
+            _gameManager._pistolaScript._timeToSpawnLetter = Random.Range(2f,2f);
+            type = -10;
+        } 
+
+        if (type == -1)
             Spawn(type, i, true);
+        else if (type == -10)
+            if (_currentLetter < 6 && !_activeLetter) 
+            {
+                _activeLetter = true;
+                Spawn(_currentLetter + 3, i, true);
+            }else
+                Spawn(0, i, true);
         else
             Spawn(type, i);
     }

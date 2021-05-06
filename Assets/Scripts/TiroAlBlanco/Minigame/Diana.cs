@@ -9,7 +9,7 @@ public class Diana : MonoBehaviour
     public int _pos;
     public bool _hit;
     public bool _first;
-    public string _letraDiana;
+    public int _numLetraDiana;
     public DianaContainer _dianaContainer;
 
     private ShootingMinigameManager _gameManager;
@@ -25,6 +25,8 @@ public class Diana : MonoBehaviour
         _gameManager = FindObjectOfType<ShootingMinigameManager>();
         if (transform.tag == "DianaDorada" || transform.tag == "Reloj")
             _lifeTime = (0.5f + 2 * (1.0f - _gameManager._dynamicDifficultyManager.GetValue(0)));
+        if(_gameManager._spawnerDianas._isOnGoldRush)
+            _lifeTime = (2.5f + 2 * (1.0f - _gameManager._dynamicDifficultyManager.GetValue(0)));
         else if (_first)
             _lifeTime = (3f + 2.5f + 2 * (1.0f - _gameManager._dynamicDifficultyManager.GetValue(0)));
         else
@@ -58,7 +60,8 @@ public class Diana : MonoBehaviour
                 _gameManager._pistolaScript.CallSpawnRetard(0);
                 if (isHit)
                 {
-                    _gameManager._dynamicDifficultyManager.SetValue(0, 0.9f);
+                    if(!_gameManager._spawnerDianas._isOnGoldRush)
+                     _gameManager._dynamicDifficultyManager.SetValue(0, 0.9f);
                     _gameManager._uiGeneral.IncreasePuntuacion(_points);
                     _gameManager._vfxManager.InstantiateVFX(1, point);
                 }
@@ -74,13 +77,20 @@ public class Diana : MonoBehaviour
                 }
                 break;
             case "DianaConLetra":
+                _gameManager._spawnerDianas._activeLetter = false;
                 _gameManager._pistolaScript.CallSpawnRetard(0);
                 if (isHit)
                 {
-                    _gameManager._dynamicDifficultyManager.SetValue(0, 1f);
-                    _gameManager._uiGeneral.IncreasePuntuacion(_points);
-                    _gameManager._uiGeneral.AddTime(_points);
-                    _gameManager._vfxManager.InstantiateVFX(2, point);
+                    Debug.Log("Letra " + _numLetraDiana);
+                    _gameManager._letrasManager.ShowLetter(_gameManager._spawnerDianas._currentLetter);
+                    Mathf.Clamp(_gameManager._spawnerDianas._currentLetter++, 0, 6);
+                    if (_gameManager._spawnerDianas._currentLetter == 6)
+                        _gameManager._letrasManager.GoldRush();
+                }
+                else
+                {
+                    Mathf.Clamp(_gameManager._spawnerDianas._currentLetter--, 0, 6);
+                    _gameManager._letrasManager.HideLetter(_gameManager._spawnerDianas._currentLetter);
                 }
                 break;
         }
@@ -93,7 +103,6 @@ public class Diana : MonoBehaviour
             _lifeTime -= Time.deltaTime;
             if (!_hit && _lifeTime <= 0)
             {
-                _hit = true;
                 Hit(false, new Vector3(0,0,0));
                 isInit = false;
                 _lifeTime = 0;

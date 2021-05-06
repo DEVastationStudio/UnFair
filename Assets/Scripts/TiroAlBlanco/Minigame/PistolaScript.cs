@@ -22,10 +22,10 @@ public class PistolaScript : MonoBehaviour
     [SerializeField] private int _restaDianaDorada = 10;
     [SerializeField] private int _restaDianaReloj = 5;
 
-
     private Vector2 _pos;
     private bool _disparo;
     private bool _isLastReloj;
+    [HideInInspector] public float _timeToSpawnLetter;
     [HideInInspector] public int _probDianaDorada;
     [HideInInspector] public int _probReloj;
     #endregion Variables
@@ -33,6 +33,7 @@ public class PistolaScript : MonoBehaviour
     #region Metodos
     private void Update()
     {
+        _timeToSpawnLetter -= Time.deltaTime;
         PointerUpdate();
     }
 

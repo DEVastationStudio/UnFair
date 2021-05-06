@@ -10,6 +10,7 @@ public class ShootingMinigameManager : MonoBehaviour
     public PistolaScript _pistolaScript;
     public DynamicDifficultyManager _dynamicDifficultyManager;
     public VFXManager _vfxManager;
+    public LetrasUnfairManager _letrasManager;
     #endregion Variables
 
     #region Metodos

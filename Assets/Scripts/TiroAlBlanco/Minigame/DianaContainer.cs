@@ -13,7 +13,7 @@ public class DianaContainer : MonoBehaviour
     #region Metodos
     public void WakeUpTarget(int type, int posInArray)
     {
-        if (type == 3)
+        if (type == -1)
         {
             _targets[0].SetActive(true);
             _d = _targets[0].GetComponent<Diana>();
@@ -22,7 +22,6 @@ public class DianaContainer : MonoBehaviour
         }
         else
         {
-            Debug.Log("Type: " + type);
             _targets[type].SetActive(true);
             _d = _targets[type].GetComponent<Diana>();
             _targetInUse = type;
@@ -32,15 +31,8 @@ public class DianaContainer : MonoBehaviour
         _d.StartDiana();
     }
 
-    public void SleepTarget(bool action, bool end = false)
+    public void SleepTarget()
     {
-        if (!end)
-        {
-            if (action)
-                GameObject.FindObjectOfType<ShootingMinigameManager>()._pistolaScript.CallSpawnRetard(0);
-            else
-                GameObject.FindObjectOfType<ShootingMinigameManager>()._pistolaScript.AutomaticDespawn();
-        }
         _targets[_targetInUse].SetActive(false);
     }
     #endregion

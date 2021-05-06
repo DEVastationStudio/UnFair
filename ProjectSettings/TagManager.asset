@@ -14,6 +14,7 @@ TagManager:
   - Canica
   - Obstacle
   - Reloj
+  - DianaConLetra
   layers:
   - Default
   - TransparentFX
