@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.UI;
 
@@ -42,6 +44,10 @@ public class PlayerHorse : MonoBehaviour
     private float velocityCombos;
     [SerializeField] private HUD_Manager hud;
     private bool inSettingsMenu;
+    private bool validButton;
+    private ButtonControl buttonPressed;
+    private int buttonsPressed;
+    private bool buttonPressing;
     #region UnityMethods
 
     void Awake()
@@ -63,6 +69,9 @@ public class PlayerHorse : MonoBehaviour
         {
             previousScheme = Scheme.Gamepad;
         }
+        buttonsPressed = 0;
+        buttonPressing = false;
+        validButton = false;
         combosFinishedDDM = 0;
         velocityCombos = 0.0f;
         restartingComboText = false;
@@ -108,17 +117,109 @@ public class PlayerHorse : MonoBehaviour
                 previousScheme = Scheme.Gamepad;
                 ChangedSchemeText();
             }
-            if (combCreated && Gamepad.current.wasUpdatedThisFrame)
+            if (!buttonPressing)
+            {
+                buttonsPressed = Gamepad.current.allControls.Count(x => x is ButtonControl button && x.IsPressed() && !x.synthetic);
+                if (buttonsPressed > 1)
+                {
+                    print("muchos botones pulsados");
+                    ResetCorrect(false, true);//marcar como error y reiniciar combo                        
+                    return;
+
+                }
+                else if (buttonsPressed == 1)//poner en un int
+                {
+                    buttonPressed = (ButtonControl)Gamepad.current.allControls.FirstOrDefault(x => x is ButtonControl button && x.IsPressed() && !x.synthetic);
+                    print("Key pressed: " + buttonPressed.ToString());
+                    buttonPressing = true;
+                    if (/*oneButtonPressed && */validButton)
+                    {
+                        print("tocaste tecla de las validas");
+                        validButton = false;
+                        //oneButtonPressed = false;
+                    }
+                    else
+                    {
+                        print("tocaste tecla de las NO validas");
+                        ResetCorrect(false, true);//marcar como error y reiniciar combo                        
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                if (!buttonPressed.IsPressed())
+                {
+                    print("Soltaste el botón: " + buttonPressed.ToString());
+                    buttonPressing = false;
+                    buttonPressed = null;
+                }
+
+            }
+            /*oneButtonPressed = Gamepad.current.allControls.Any(x => x is ButtonControl button && x.IsPressed() && !x.synthetic);
+            if (oneButtonPressed)
+            {
+                if (Gamepad.current.allControls.Count(x => x is ButtonControl button && x.IsPressed() && !x.synthetic) > 1)
+                {
+                    print("que no me pulses varias chaval");
+
+                }
+                else
+                {
+                    ButtonControl testKey = (ButtonControl)Gamepad.current.allControls.FirstOrDefault(x => x is ButtonControl button && x.IsPressed() && !x.synthetic);
+                    print("Key pressed: " + testKey.ToString());
+                }
+
+            }
+            if (oneButtonPressed && !validButton)
+            {
+                print("funciona??");
+                oneButtonPressed = false;
+            }
+            else if (oneButtonPressed && validButton)
+            {
+                print("funciona??tocaste bien???");
+                validButton = false;
+                oneButtonPressed = false;
+            }
+            oneButtonPressed = false;*/
+            /*if (combCreated && Gamepad.current.wasUpdatedThisFrame)
+            {
+                
+                if (validButton)
+                {
+                    validButton = false;
+                }
+                else
+                {
+                    Debug.Log("Tecla ajena al conjunto de teclas creadas para el minijuego - MANDO");
+                    ResetCorrect(false, true);
+                    return;
+
+                }
+
+            }*/
+
+            /*if (combCreated && Gamepad.current.wasUpdatedThisFrame)
+            {
+                if (Gamepad.current[GamepadButton.South].wasPressedThisFrame)
+                {
+                    print("detección tecla en update");
+
+                }
+
+            }*/
+            /*if (combCreated && Gamepad.current.wasUpdatedThisFrame)
             {
                 if (!(Gamepad.current[GamepadButton.DpadUp].wasPressedThisFrame || Gamepad.current[GamepadButton.DpadLeft].wasPressedThisFrame || Gamepad.current[GamepadButton.DpadDown].wasPressedThisFrame || Gamepad.current[GamepadButton.DpadRight].wasPressedThisFrame || Gamepad.current[GamepadButton.South].wasPressedThisFrame || Gamepad.current[GamepadButton.East].wasPressedThisFrame
-                || Gamepad.current[GamepadButton.DpadUp].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadLeft].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadDown].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadRight].wasReleasedThisFrame || Gamepad.current[GamepadButton.South].wasReleasedThisFrame || Gamepad.current[GamepadButton.East].wasReleasedThisFrame 
+                || Gamepad.current[GamepadButton.DpadUp].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadLeft].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadDown].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadRight].wasReleasedThisFrame || Gamepad.current[GamepadButton.South].wasReleasedThisFrame || Gamepad.current[GamepadButton.East].wasReleasedThisFrame
                 || Gamepad.current[GamepadButton.Start].wasPressedThisFrame || Gamepad.current[GamepadButton.Start].wasReleasedThisFrame))
                 {
                     Debug.Log("Tecla ajena al conjunto de teclas creadas para el minijuego - MANDO");
                     ResetCorrect(false, true);
                     return;
                 }
-            }
+            }*/
         }
 
         if (posComb <= 0) { return; }
@@ -137,26 +238,32 @@ public class PlayerHorse : MonoBehaviour
     private void OnSpaceAction(InputValue value)
     {
         if (value.Get<float>() == 0) return;
+        if (input.currentControlScheme.Equals("GamepadScheme")) { validButton = true; }
+        print("space event");
         CombinationManagement("Space");
     }
 
     private void OnAAction(InputValue value)
     {
+        if (input.currentControlScheme.Equals("GamepadScheme")) { validButton = true; }
         CombinationManagement("Left");
     }
 
     private void OnDAction(InputValue value)
     {
+        if (input.currentControlScheme.Equals("GamepadScheme")) { validButton = true; }
         CombinationManagement("Right");
     }
 
     private void OnWAction(InputValue value)
     {
+        if (input.currentControlScheme.Equals("GamepadScheme")) { validButton = true; }
         CombinationManagement("Up");
     }
 
     private void OnSAction(InputValue value)
     {
+        if (input.currentControlScheme.Equals("GamepadScheme")) { validButton = true; }
         CombinationManagement("Down");
     }
 
@@ -166,6 +273,7 @@ public class PlayerHorse : MonoBehaviour
     }*/
     void OnEscAction(InputValue value)
     {
+        if (input.currentControlScheme.Equals("GamepadScheme")) { validButton = true; }
         if (gameStarted)
         {
             if (inSettingsMenu)
@@ -192,6 +300,11 @@ public class PlayerHorse : MonoBehaviour
 
             }
         }
+
+    }
+    void OnPrueba(InputValue value)
+    {
+        print("prueba event");
 
     }
 
@@ -379,9 +492,9 @@ public class PlayerHorse : MonoBehaviour
         auxPos = (Vector3.forward * mov);
         newPos = new Vector3(transform.position.x + auxPos.x, transform.position.y + auxPos.y, transform.position.z + auxPos.z);
         transform.position = Vector3.MoveTowards(transform.position, newPos, 0.75f);
-        print("La gráfica de la repetición tiene: " + DDM.GetValue(1));
+        //print("La gráfica de la repetición tiene: " + DDM.GetValue(1));
         float aux = Random.Range(40.0f, 99.0f);
-        print("Random number: " + aux);
+        //print("Random number: " + aux);
         if ((endedCombos >= 2) || (DDM.GetValue(1) > aux))//REPASAR
         {
             combCreated = false;

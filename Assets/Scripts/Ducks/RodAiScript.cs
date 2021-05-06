@@ -146,7 +146,7 @@ public class RodAiScript : MonoBehaviour
         //Up/down movement
         Vector3 targetLevel = new Vector3(_targetPos.x, magnet.transform.position.y, _targetPos.z);
         bool goDown = Vector3.Distance(magnet.transform.position, targetLevel) < 1;
-        print(goDown);
+        //print(goDown);
 
         if (_height < 1 && magnet.tag == "Magnet" && goDown)
         {

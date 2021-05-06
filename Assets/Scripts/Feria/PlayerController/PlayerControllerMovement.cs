@@ -37,7 +37,7 @@ public partial class PlayerController : MonoBehaviour
 
         _sprite.transform.forward = camPos - _sprite.transform.position;
 
-        _sprite.flipX = true;
+        //_sprite.flipX = true;
 
         //Set Animator direction
 
