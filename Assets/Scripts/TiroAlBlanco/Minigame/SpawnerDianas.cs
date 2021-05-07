@@ -54,7 +54,7 @@ public class SpawnerDianas : MonoBehaviour
 
         if (type == 0 && _gameManager._pistolaScript._timeToSpawnLetter <= 0)
         {
-            _gameManager._pistolaScript._timeToSpawnLetter = Random.Range(2f,2f);
+            _gameManager._pistolaScript._timeToSpawnLetter = Random.Range(2f, 2f);
             type = -10;
         } 
 
