@@ -84,6 +84,14 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "LeftStick",
+                    "type": "Value",
+                    "id": "c30d6243-c6a2-4cfa-aa79-231016298b96",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -320,17 +328,6 @@
                 },
                 {
                     "name": "",
-                    "id": "cfe27bee-6691-4f68-90f6-ab2dd0daf353",
-                    "path": "<Gamepad>/leftStick/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "GamepadScheme",
-                    "action": "A Action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "bbcbf9dd-ab28-4afa-9346-f53060d163da",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
@@ -355,17 +352,6 @@
                     "name": "",
                     "id": "0fda9b93-83c7-43f4-9c4e-2f4652ee6e0a",
                     "path": "<Gamepad>/dpad/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "GamepadScheme",
-                    "action": "W Action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "cf804d5d-431d-4ca1-9679-b42fd1741dc6",
-                    "path": "<Gamepad>/leftStick/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "GamepadScheme",
@@ -408,17 +394,6 @@
                 },
                 {
                     "name": "",
-                    "id": "2433ea0d-ef53-4095-9fc1-e47a12ec733c",
-                    "path": "<Gamepad>/leftStick/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "GamepadScheme",
-                    "action": "S Action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "a04c66ca-5a60-4dfb-bd3d-de14489e81f2",
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
@@ -443,17 +418,6 @@
                     "name": "",
                     "id": "14701437-0a36-488f-82c0-940ca45de308",
                     "path": "<Gamepad>/dpad/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "GamepadScheme",
-                    "action": "D Action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5820ff83-1431-43f8-bc8f-9352bb7688d7",
-                    "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "GamepadScheme",
@@ -570,6 +534,17 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "e53d2810-9890-4ba3-93e6-49f31aafe3b7",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "GamepadScheme",
+                    "action": "LeftStick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

@@ -48,6 +48,9 @@ public class PlayerHorse : MonoBehaviour
     private ButtonControl buttonPressed;
     private int buttonsPressed;
     private bool buttonPressing;
+    private bool joystickUsed;
+    private bool joystickReseted;
+
     #region UnityMethods
 
     void Awake()
@@ -72,6 +75,8 @@ public class PlayerHorse : MonoBehaviour
         buttonsPressed = 0;
         buttonPressing = false;
         validButton = false;
+        joystickUsed = false;
+        joystickReseted = true;
         combosFinishedDDM = 0;
         velocityCombos = 0.0f;
         restartingComboText = false;
@@ -122,9 +127,12 @@ public class PlayerHorse : MonoBehaviour
                 buttonsPressed = Gamepad.current.allControls.Count(x => x is ButtonControl button && x.IsPressed() && !x.synthetic);
                 if (buttonsPressed > 1)
                 {
-                    print("muchos botones pulsados");
-                    ResetCorrect(false, true);//marcar como error y reiniciar combo                        
-                    return;
+                    if (!joystickUsed)
+                    {
+                        print("muchos botones pulsados");
+                        ResetCorrect(false, true);//marcar como error y reiniciar combo                        
+                        return;
+                    }
 
                 }
                 else if (buttonsPressed == 1)//poner en un int
@@ -132,7 +140,7 @@ public class PlayerHorse : MonoBehaviour
                     buttonPressed = (ButtonControl)Gamepad.current.allControls.FirstOrDefault(x => x is ButtonControl button && x.IsPressed() && !x.synthetic);
                     print("Key pressed: " + buttonPressed.ToString());
                     buttonPressing = true;
-                    if (/*oneButtonPressed && */validButton)
+                    if (/*oneButtonPressed && */validButton /*&& variable de haber tocado joystick*/)
                     {
                         print("tocaste tecla de las validas");
                         validButton = false;
@@ -140,9 +148,13 @@ public class PlayerHorse : MonoBehaviour
                     }
                     else
                     {
-                        print("tocaste tecla de las NO validas");
-                        ResetCorrect(false, true);//marcar como error y reiniciar combo                        
-                        return;
+                        if (!joystickUsed)
+                        {
+                            print("tocaste tecla de las NO validas");
+                            ResetCorrect(false, true);//marcar como error y reiniciar combo                        
+                            return;
+
+                        }
                     }
                 }
             }
@@ -245,25 +257,41 @@ public class PlayerHorse : MonoBehaviour
 
     private void OnAAction(InputValue value)
     {
-        if (input.currentControlScheme.Equals("GamepadScheme")) { validButton = true; }
+        if (input.currentControlScheme.Equals("GamepadScheme"))
+        {
+            validButton = true;
+            joystickUsed = false;
+        }
         CombinationManagement("Left");
     }
 
     private void OnDAction(InputValue value)
     {
-        if (input.currentControlScheme.Equals("GamepadScheme")) { validButton = true; }
+        if (input.currentControlScheme.Equals("GamepadScheme"))
+        {
+            validButton = true;
+            joystickUsed = false;
+        }
         CombinationManagement("Right");
     }
 
     private void OnWAction(InputValue value)
     {
-        if (input.currentControlScheme.Equals("GamepadScheme")) { validButton = true; }
+        if (input.currentControlScheme.Equals("GamepadScheme"))
+        {
+            validButton = true;
+            joystickUsed = false;
+        }
         CombinationManagement("Up");
     }
 
     private void OnSAction(InputValue value)
     {
-        if (input.currentControlScheme.Equals("GamepadScheme")) { validButton = true; }
+        if (input.currentControlScheme.Equals("GamepadScheme"))
+        {
+            validButton = true;
+            joystickUsed = false;
+        }
         CombinationManagement("Down");
     }
 
@@ -302,10 +330,48 @@ public class PlayerHorse : MonoBehaviour
         }
 
     }
-    void OnPrueba(InputValue value)
-    {
-        print("prueba event");
 
+    void OnLeftStick(InputValue value)
+    {
+        if (input.currentControlScheme.Equals("GamepadScheme"))
+        {
+            validButton = true;
+            joystickUsed = true;
+            print("valor del joystick: " + value.Get<Vector2>());
+
+            if (joystickReseted && (value.Get<Vector2>().x > 0.75f) && (value.Get<Vector2>().y > -0.5f || value.Get<Vector2>().y < 0.5f))
+            {
+                //derecha
+                joystickUsed = true;
+                joystickReseted = false;
+                CombinationManagement("Right");
+            }
+            else if (joystickReseted && (value.Get<Vector2>().x < -0.75f) && (value.Get<Vector2>().y > -0.5f || value.Get<Vector2>().y < 0.5f))
+            {
+                //izquierda
+                joystickUsed = true;
+                joystickReseted = false;
+                CombinationManagement("Left");
+            }
+            else if (joystickReseted && (value.Get<Vector2>().y > 0.75f) && (value.Get<Vector2>().x > -0.5f || value.Get<Vector2>().x < 0.5f))
+            {
+                //arriba
+                joystickUsed = true;
+                joystickReseted = false;
+                CombinationManagement("Up");
+            }
+            else if (joystickReseted && (value.Get<Vector2>().y < -0.75f) && (value.Get<Vector2>().x > -0.5f || value.Get<Vector2>().x < 0.5f))
+            {
+                //abajo
+                joystickUsed = true;
+                joystickReseted = false;
+                CombinationManagement("Down");
+            }
+            else if (!joystickReseted && (value.Get<Vector2>().x > -0.15f || value.Get<Vector2>().x < 0.15f) && (value.Get<Vector2>().y > -0.15f || value.Get<Vector2>().y < 0.15f))
+            {
+                joystickReseted = true;
+            }
+        }
     }
 
 

@@ -97,6 +97,14 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""LeftStick"",
+                    ""type"": ""Value"",
+                    ""id"": ""c30d6243-c6a2-4cfa-aa79-231016298b96"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -333,17 +341,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""cfe27bee-6691-4f68-90f6-ab2dd0daf353"",
-                    ""path"": ""<Gamepad>/leftStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamepadScheme"",
-                    ""action"": ""A Action"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""bbcbf9dd-ab28-4afa-9346-f53060d163da"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
@@ -368,17 +365,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""0fda9b93-83c7-43f4-9c4e-2f4652ee6e0a"",
                     ""path"": ""<Gamepad>/dpad/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamepadScheme"",
-                    ""action"": ""W Action"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""cf804d5d-431d-4ca1-9679-b42fd1741dc6"",
-                    ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamepadScheme"",
@@ -421,17 +407,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2433ea0d-ef53-4095-9fc1-e47a12ec733c"",
-                    ""path"": ""<Gamepad>/leftStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamepadScheme"",
-                    ""action"": ""S Action"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""a04c66ca-5a60-4dfb-bd3d-de14489e81f2"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
@@ -456,17 +431,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""14701437-0a36-488f-82c0-940ca45de308"",
                     ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamepadScheme"",
-                    ""action"": ""D Action"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5820ff83-1431-43f8-bc8f-9352bb7688d7"",
-                    ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamepadScheme"",
@@ -583,6 +547,17 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e53d2810-9890-4ba3-93e6-49f31aafe3b7"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamepadScheme"",
+                    ""action"": ""LeftStick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1015,6 +990,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         m_ActionMap_SAction = m_ActionMap.FindAction("S Action", throwIfNotFound: true);
         m_ActionMap_DAction = m_ActionMap.FindAction("D Action", throwIfNotFound: true);
         m_ActionMap_Look = m_ActionMap.FindAction("Look", throwIfNotFound: true);
+        m_ActionMap_LeftStick = m_ActionMap.FindAction("LeftStick", throwIfNotFound: true);
         // UIMap
         m_UIMap = asset.FindActionMap("UIMap", throwIfNotFound: true);
         m_UIMap_MovementUI = m_UIMap.FindAction("MovementUI", throwIfNotFound: true);
@@ -1082,6 +1058,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
     private readonly InputAction m_ActionMap_SAction;
     private readonly InputAction m_ActionMap_DAction;
     private readonly InputAction m_ActionMap_Look;
+    private readonly InputAction m_ActionMap_LeftStick;
     public struct ActionMapActions
     {
         private @PlayerInputs m_Wrapper;
@@ -1096,6 +1073,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         public InputAction @SAction => m_Wrapper.m_ActionMap_SAction;
         public InputAction @DAction => m_Wrapper.m_ActionMap_DAction;
         public InputAction @Look => m_Wrapper.m_ActionMap_Look;
+        public InputAction @LeftStick => m_Wrapper.m_ActionMap_LeftStick;
         public InputActionMap Get() { return m_Wrapper.m_ActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1135,6 +1113,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Look.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLook;
+                @LeftStick.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLeftStick;
+                @LeftStick.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLeftStick;
+                @LeftStick.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLeftStick;
             }
             m_Wrapper.m_ActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -1169,6 +1150,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @LeftStick.started += instance.OnLeftStick;
+                @LeftStick.performed += instance.OnLeftStick;
+                @LeftStick.canceled += instance.OnLeftStick;
             }
         }
     }
@@ -1276,6 +1260,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         void OnSAction(InputAction.CallbackContext context);
         void OnDAction(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnLeftStick(InputAction.CallbackContext context);
     }
     public interface IUIMapActions
     {
