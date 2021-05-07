@@ -40,7 +40,7 @@ public class HUD_Marbles : MonoBehaviour
     private int stars;
     private int balls;
     private float velocityHits;
-    private bool isPaused;
+    [HideInInspector] public static bool isPaused;
     private bool isReseting;
     public static bool startedPressed; //para impedir que los obstáculos se muevan
 
@@ -196,6 +196,7 @@ public class HUD_Marbles : MonoBehaviour
     public void ResetGame()
     {
         if (isReseting) { return; }
+        isReseting= true;
         FadeController.Fade("Canicas");
     }
 

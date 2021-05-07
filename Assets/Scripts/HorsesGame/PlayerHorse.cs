@@ -60,7 +60,7 @@ public class PlayerHorse : MonoBehaviour
     }
     void Start()
     {
-        input.SwitchCurrentActionMap("ActionMap");
+        input.SwitchCurrentActionMap("UIMap");
         if (input.currentControlScheme.Equals("KeyboardMouseScheme"))
         {
             previousScheme = Scheme.KeyboardMouse;
@@ -286,13 +286,13 @@ public class PlayerHorse : MonoBehaviour
                 isPaused = !isPaused;
                 if (isPaused)
                 {
-                    Time.timeScale = 0;
+                    //Time.timeScale = 0;
                     timeCounter.DeactivateTimer();
                     input.SwitchCurrentActionMap("UIMap");
                 }
                 else
                 {
-                    Time.timeScale = 1;
+                    //Time.timeScale = 1;
                     timeCounter.ActivateTimer();
                     input.SwitchCurrentActionMap("ActionMap");
                 }
@@ -326,6 +326,7 @@ public class PlayerHorse : MonoBehaviour
     public void StartGame()
     {
         gameStarted = true;
+        input.SwitchCurrentActionMap("ActionMap");
     }
     public void EndGame()
     {

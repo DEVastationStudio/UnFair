@@ -38,7 +38,7 @@ public class Thrower : MonoBehaviour
 
     void Start()
     {
-        input.SwitchCurrentActionMap("ActionMap");
+        input.SwitchCurrentActionMap("UIMap");
         gameStarted = false;
         pressingShoot = false;
         isPaused = false;
@@ -110,6 +110,7 @@ public class Thrower : MonoBehaviour
     public void SetGameStarted()
     {
         gameStarted = true;
+        input.SwitchCurrentActionMap("ActionMap");
     }
 
     public void SetGameFinished()
@@ -224,13 +225,13 @@ public class Thrower : MonoBehaviour
                 isPaused = !isPaused;
                 if (isPaused)
                 {
-                    Time.timeScale = 0;
+                    //Time.timeScale = 0;
                     //timeCounter.DeactivateTimer();
                     input.SwitchCurrentActionMap("UIMap");
                 }
                 else
                 {
-                    Time.timeScale = 1;
+                    //Time.timeScale = 1;
                     //timeCounter.ActivateTimer();
                     input.SwitchCurrentActionMap("ActionMap");
                 }

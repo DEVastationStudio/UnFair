@@ -14,7 +14,7 @@ public class PathMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (!HUD_Marbles.startedPressed) { return; }
-        if (targets == null || targets.Length < 2) { return; }
+        if (targets == null || targets.Length < 2 || HUD_Marbles.isPaused) { return; }
         if (transform.position != targets[currentTarget].position)
         {
             Vector3 objectPos = Vector3.MoveTowards(transform.position, targets[currentTarget].position, (speed * DDM.GetValue(0)) * Time.deltaTime);
