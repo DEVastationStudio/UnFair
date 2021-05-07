@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LetrasUnfairManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class LetrasUnfairManager : MonoBehaviour
     [SerializeField] private Color _goldColor;
     [SerializeField] private Color _whiteColor;
     [SerializeField] private ShootingMinigameManager _gameManager;
+    [SerializeField] private Slider _barraLetras;
 
     public void ShowLetter(int i) 
     {
@@ -38,7 +40,17 @@ public class LetrasUnfairManager : MonoBehaviour
         }
         _gameManager._spawnerDianas._isOnGoldRush = true;
         _gameManager._spawnerDianas._activeLetter = true;
-        yield return new WaitForSeconds(6);
+        _barraLetras.value = 100;
+        _barraLetras.gameObject.SetActive(true);
+        float tBase = 0.01f;
+        float tMax = 100f;
+        while (_barraLetras.value > 0) 
+        {
+            yield return new WaitForSeconds(tBase);
+            _barraLetras.value -= Mathf.Clamp((tMax/4)*tBase, 0, 100);
+        }
+        _barraLetras.gameObject.SetActive(false);
+        _barraLetras.value = 100;
         _gameManager._spawnerDianas._isOnGoldRush = false;
         _gameManager._spawnerDianas._activeLetter = false;
         int count = 0;
