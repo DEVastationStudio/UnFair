@@ -54,7 +54,8 @@ public class DucksGameManager : MonoBehaviour
 
     void Start()
     {
-
+        _playerInput.SwitchCurrentActionMap("UIMap");
+        
         _spawnedDucks = new List<GameObject>();
         _spawnPositions = new List<Vector3>();
 
