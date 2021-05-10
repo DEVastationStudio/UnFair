@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class ConversationHelper : MonoBehaviour
 {
+    public enum CompareMode { LT, LTE, EQ, GTE, GT }
     public ConversationEvent[] OnConversationEndEvents;
     public ConversationEvent[] OnConversationPath;
     public PrefsInt[] requisites;
@@ -29,7 +30,30 @@ public class ConversationHelper : MonoBehaviour
                 bool success = true;
                 foreach (IntTuple f in p.conditions)
                 {
-                    if (PlayerPrefs.GetInt(f.name, 0) != f.value)
+                    if (!success) continue;
+                    
+                    bool condition = false;
+                    int testValue = PlayerPrefs.GetInt(f.name, 0);
+                    switch (f.compareMode)
+                    {
+                        case ConversationHelper.CompareMode.LT:
+                            condition = (testValue < f.value);
+                            break;
+                        case ConversationHelper.CompareMode.LTE:
+                            condition = (testValue <= f.value);
+                            break;
+                        case ConversationHelper.CompareMode.GT:
+                            condition = (testValue > f.value);
+                            break;
+                        case ConversationHelper.CompareMode.GTE:
+                            condition = (testValue >= f.value);
+                            break;
+                        case ConversationHelper.CompareMode.EQ:
+                        default:
+                            condition = (testValue == f.value);
+                            break;
+                    }
+                    if (!condition)
                     {
                         success = false;
                     }
@@ -112,4 +136,5 @@ public class IntTuple
 {
     public string name;
     public int value;
+    public ConversationHelper.CompareMode compareMode = ConversationHelper.CompareMode.EQ;
 }
