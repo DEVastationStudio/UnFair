@@ -26,6 +26,7 @@ public class RodController : MonoBehaviour
     [SerializeField] GameObject _pauseMenu;
     [SerializeField] private EventSystem _eventSystem;
     [SerializeField] private GameObject _continueBtn;
+    [SerializeField] private PlayerInput _playerInput;
 
     void Start()
     {
@@ -103,8 +104,8 @@ public class RodController : MonoBehaviour
         _mouseDown = ((value.Get<float>() == 1) && magnet.tag == "Magnet" && !gameManager.gameOver);
     }
 
-    void OnEscAction()
-    {
+    void OnEscAction(InputValue value)
+    {       
         if (gameManager.gameStarted && !gameManager.gameOver) 
         {
             Pause();
@@ -115,12 +116,14 @@ public class RodController : MonoBehaviour
         _isPaused = !_isPaused;
         if (_isPaused)
         {
+            _playerInput.SwitchCurrentActionMap("UIMap");
             Time.timeScale = 0;
             _pauseMenu.SetActive(true);
             _eventSystem.SetSelectedGameObject(_continueBtn);
         }
         else
         {
+            _playerInput.SwitchCurrentActionMap("ActionMap");
             Time.timeScale = 1;
             _pauseMenu.SetActive(false);
         }

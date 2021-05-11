@@ -76,13 +76,17 @@ public class SpawnerDianas : MonoBehaviour
         numDianas--;
         Debug.Log("NumDianas:" + numDianas);
         targetsInUse[targetPos] = false;
-        if(d != null)
+        if (d != null)
+        {
+            d.GetComponentInParent<Animator>().SetBool("isActive",false);
             d._dianaContainer.SleepTarget();
+        }
     }
 
     private void Spawn(int type, int posInArray, bool first = false)
     {
         targetsInUse[posInArray] = true;
+        _possibleTargetContainers[posInArray].GetComponent<Animator>().SetBool("isActive", true);
         _possibleTargetContainers[posInArray].WakeUpTarget(type, posInArray);
     }
     #endregion Metodos
