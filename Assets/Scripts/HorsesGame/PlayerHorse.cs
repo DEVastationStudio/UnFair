@@ -50,6 +50,7 @@ public class PlayerHorse : MonoBehaviour
     private bool buttonPressing;
     private bool joystickUsed;
     private bool joystickReseted;
+    private string lastJoystickPos;
 
     #region UnityMethods
 
@@ -77,6 +78,7 @@ public class PlayerHorse : MonoBehaviour
         validButton = false;
         joystickUsed = false;
         joystickReseted = true;
+        lastJoystickPos = "";
         combosFinishedDDM = 0;
         velocityCombos = 0.0f;
         restartingComboText = false;
@@ -129,20 +131,20 @@ public class PlayerHorse : MonoBehaviour
                 {
                     if (!joystickUsed)
                     {
-                        print("muchos botones pulsados");
-                        ResetCorrect(false, true);//marcar como error y reiniciar combo                        
+                        //print("muchos botones pulsados");
+                        ResetCorrect(false, true);
                         return;
                     }
 
                 }
-                else if (buttonsPressed == 1)//poner en un int
+                else if (buttonsPressed == 1)
                 {
                     buttonPressed = (ButtonControl)Gamepad.current.allControls.FirstOrDefault(x => x is ButtonControl button && x.IsPressed() && !x.synthetic);
-                    print("Key pressed: " + buttonPressed.ToString());
+                    //print("Key pressed: " + buttonPressed.ToString());
                     buttonPressing = true;
-                    if (/*oneButtonPressed && */validButton /*&& variable de haber tocado joystick*/)
+                    if (validButton)
                     {
-                        print("tocaste tecla de las validas");
+                        //print("tocaste tecla de las validas");
                         validButton = false;
                         //oneButtonPressed = false;
                     }
@@ -150,8 +152,8 @@ public class PlayerHorse : MonoBehaviour
                     {
                         if (!joystickUsed)
                         {
-                            print("tocaste tecla de las NO validas");
-                            ResetCorrect(false, true);//marcar como error y reiniciar combo                        
+                            //print("tocaste tecla de las NO validas");
+                            ResetCorrect(false, true);
                             return;
 
                         }
@@ -162,76 +164,12 @@ public class PlayerHorse : MonoBehaviour
             {
                 if (!buttonPressed.IsPressed())
                 {
-                    print("Soltaste el botón: " + buttonPressed.ToString());
+                    //print("Soltaste el botón: " + buttonPressed.ToString());
                     buttonPressing = false;
                     buttonPressed = null;
                 }
 
             }
-            /*oneButtonPressed = Gamepad.current.allControls.Any(x => x is ButtonControl button && x.IsPressed() && !x.synthetic);
-            if (oneButtonPressed)
-            {
-                if (Gamepad.current.allControls.Count(x => x is ButtonControl button && x.IsPressed() && !x.synthetic) > 1)
-                {
-                    print("que no me pulses varias chaval");
-
-                }
-                else
-                {
-                    ButtonControl testKey = (ButtonControl)Gamepad.current.allControls.FirstOrDefault(x => x is ButtonControl button && x.IsPressed() && !x.synthetic);
-                    print("Key pressed: " + testKey.ToString());
-                }
-
-            }
-            if (oneButtonPressed && !validButton)
-            {
-                print("funciona??");
-                oneButtonPressed = false;
-            }
-            else if (oneButtonPressed && validButton)
-            {
-                print("funciona??tocaste bien???");
-                validButton = false;
-                oneButtonPressed = false;
-            }
-            oneButtonPressed = false;*/
-            /*if (combCreated && Gamepad.current.wasUpdatedThisFrame)
-            {
-                
-                if (validButton)
-                {
-                    validButton = false;
-                }
-                else
-                {
-                    Debug.Log("Tecla ajena al conjunto de teclas creadas para el minijuego - MANDO");
-                    ResetCorrect(false, true);
-                    return;
-
-                }
-
-            }*/
-
-            /*if (combCreated && Gamepad.current.wasUpdatedThisFrame)
-            {
-                if (Gamepad.current[GamepadButton.South].wasPressedThisFrame)
-                {
-                    print("detección tecla en update");
-
-                }
-
-            }*/
-            /*if (combCreated && Gamepad.current.wasUpdatedThisFrame)
-            {
-                if (!(Gamepad.current[GamepadButton.DpadUp].wasPressedThisFrame || Gamepad.current[GamepadButton.DpadLeft].wasPressedThisFrame || Gamepad.current[GamepadButton.DpadDown].wasPressedThisFrame || Gamepad.current[GamepadButton.DpadRight].wasPressedThisFrame || Gamepad.current[GamepadButton.South].wasPressedThisFrame || Gamepad.current[GamepadButton.East].wasPressedThisFrame
-                || Gamepad.current[GamepadButton.DpadUp].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadLeft].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadDown].wasReleasedThisFrame || Gamepad.current[GamepadButton.DpadRight].wasReleasedThisFrame || Gamepad.current[GamepadButton.South].wasReleasedThisFrame || Gamepad.current[GamepadButton.East].wasReleasedThisFrame
-                || Gamepad.current[GamepadButton.Start].wasPressedThisFrame || Gamepad.current[GamepadButton.Start].wasReleasedThisFrame))
-                {
-                    Debug.Log("Tecla ajena al conjunto de teclas creadas para el minijuego - MANDO");
-                    ResetCorrect(false, true);
-                    return;
-                }
-            }*/
         }
 
         if (posComb <= 0) { return; }
@@ -251,8 +189,8 @@ public class PlayerHorse : MonoBehaviour
     {
         if (value.Get<float>() == 0) return;
         if (input.currentControlScheme.Equals("GamepadScheme")) { validButton = true; }
-        print("space event");
         CombinationManagement("Space");
+        lastJoystickPos = "";
     }
 
     private void OnAAction(InputValue value)
@@ -295,10 +233,6 @@ public class PlayerHorse : MonoBehaviour
         CombinationManagement("Down");
     }
 
-    /*private void OnEAction(InputValue value)
-    {
-        CombinationManagement("E");
-    }*/
     void OnEscAction(InputValue value)
     {
         if (input.currentControlScheme.Equals("GamepadScheme")) { validButton = true; }
@@ -337,56 +271,61 @@ public class PlayerHorse : MonoBehaviour
         {
             validButton = true;
             joystickUsed = true;
-            print("valor del joystick: " + value.Get<Vector2>());
+            /*print("valor del joystick: " + value.Get<Vector2>());
+            print("last pos joystick: " + lastJoystickPos);*/
 
-            if (joystickReseted && (value.Get<Vector2>().x > 0.75f) && (value.Get<Vector2>().y > -0.5f || value.Get<Vector2>().y < 0.5f))
+            if (joystickReseted && (value.Get<Vector2>().x > 0.85f) && (value.Get<Vector2>().y > -0.5f || value.Get<Vector2>().y < 0.5f))
             {
-                //derecha
-                joystickUsed = true;
-                joystickReseted = false;
-                CombinationManagement("Right");
+                if (!lastJoystickPos.Equals("Right"))
+                {
+                    //derecha
+                    joystickUsed = true;
+                    joystickReseted = false;
+                    lastJoystickPos = "Right";
+                    CombinationManagement(lastJoystickPos);
+                }
             }
-            else if (joystickReseted && (value.Get<Vector2>().x < -0.75f) && (value.Get<Vector2>().y > -0.5f || value.Get<Vector2>().y < 0.5f))
+            else if (joystickReseted && (value.Get<Vector2>().x < -0.85f) && (value.Get<Vector2>().y > -0.5f || value.Get<Vector2>().y < 0.5f))
             {
-                //izquierda
-                joystickUsed = true;
-                joystickReseted = false;
-                CombinationManagement("Left");
+                if (!lastJoystickPos.Equals("Left"))
+                {
+                    //izquierda
+                    joystickUsed = true;
+                    joystickReseted = false;
+                    lastJoystickPos = "Left";
+                    CombinationManagement(lastJoystickPos);
+                }
             }
-            else if (joystickReseted && (value.Get<Vector2>().y > 0.75f) && (value.Get<Vector2>().x > -0.5f || value.Get<Vector2>().x < 0.5f))
+            else if (joystickReseted && (value.Get<Vector2>().y > 0.85f) && (value.Get<Vector2>().x > -0.5f || value.Get<Vector2>().x < 0.5f))
             {
-                //arriba
-                joystickUsed = true;
-                joystickReseted = false;
-                CombinationManagement("Up");
+                if (!lastJoystickPos.Equals("Up"))
+                {
+                    //arriba
+                    joystickUsed = true;
+                    joystickReseted = false;
+                    lastJoystickPos = "Up";
+                    CombinationManagement(lastJoystickPos);
+                }
             }
-            else if (joystickReseted && (value.Get<Vector2>().y < -0.75f) && (value.Get<Vector2>().x > -0.5f || value.Get<Vector2>().x < 0.5f))
+            else if (joystickReseted && (value.Get<Vector2>().y < -0.85f) && (value.Get<Vector2>().x > -0.5f || value.Get<Vector2>().x < 0.5f))
             {
-                //abajo
-                joystickUsed = true;
-                joystickReseted = false;
-                CombinationManagement("Down");
+                if (!lastJoystickPos.Equals("Down"))
+                {
+                    //abajo
+                    joystickUsed = true;
+                    joystickReseted = false;
+                    lastJoystickPos = "Down";
+                    CombinationManagement(lastJoystickPos);
+                }
             }
             else if (!joystickReseted && (value.Get<Vector2>().x > -0.15f || value.Get<Vector2>().x < 0.15f) && (value.Get<Vector2>().y > -0.15f || value.Get<Vector2>().y < 0.15f))
             {
                 joystickReseted = true;
+                //lastJoystickPos = "";
             }
         }
     }
 
-
-    /*void OnEscActionUI(InputValue value)
-    {
-        if (gameStarted)
-        {
-            isPaused = false;
-            print("pausa quitada");
-            timeCounter.ActivateTimer();
-            input.SwitchCurrentActionMap("ActionMap");
-            hud.PauseGame(isPaused);
-
-        }
-    }*/
 
     #endregion KeysActions
     public void StartGame()
@@ -420,10 +359,21 @@ public class PlayerHorse : MonoBehaviour
         int keys = 3;//Random.Range(3, 6);
         comb = new string[keys];
         string temp = "";
+        string[] tempArrows = new string[keys];
         //Debug.Log("Combinación a realizar");
         for (int i = 0; i < comb.Length; i++)
         {
             temp = (string)availableKeys[Random.Range(0, availableKeys.Length)];
+
+            if (tempArrows.Contains(temp))
+            {
+                do
+                {
+                    temp = (string)availableKeys[Random.Range(0, availableKeys.Length)];
+                }
+                while (tempArrows.Contains(temp));
+            }
+
 
             if (i >= 2)
             {
@@ -439,6 +389,7 @@ public class PlayerHorse : MonoBehaviour
                     temp = aux;
                 }
             }
+            tempArrows[i] = temp;
             comb[i] = temp;
             Debug.Log(comb[i]);
         }
@@ -677,5 +628,6 @@ public class PlayerHorse : MonoBehaviour
             Move();
         }
         restartingComboText = false;
+        lastJoystickPos = "";
     }
 }
