@@ -61,7 +61,7 @@ MonoBehaviour:
       type: 4
       typeString: CustomFieldType_Localization
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 21300000, guid: 662efe88aa7dfb9418c60f5ffcba0d7b, type: 3}
+    spritePortrait: {fileID: 21300000, guid: 09b2d0d416d75aa498f10d293e3931ce, type: 3}
     alternatePortraits: []
     spritePortraits: []
   - id: 4
@@ -91,7 +91,7 @@ MonoBehaviour:
       type: 4
       typeString: CustomFieldType_Localization
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: 4d06b2d9b4d8fd74b9da0544cd1577dc, type: 3}
     alternatePortraits: []
     spritePortraits: []
   - id: 5
@@ -121,7 +121,7 @@ MonoBehaviour:
       type: 4
       typeString: CustomFieldType_Localization
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: 7db8c3abb2adb4b49bb7564fa56e1563, type: 3}
     alternatePortraits: []
     spritePortraits: []
   - id: 6
@@ -147,7 +147,7 @@ MonoBehaviour:
       type: 4
       typeString: CustomFieldType_Localization
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: 41046a10c6572b641b66bb688cc41970, type: 3}
     alternatePortraits: []
     spritePortraits: []
   - id: 7
@@ -177,7 +177,7 @@ MonoBehaviour:
       type: 4
       typeString: CustomFieldType_Localization
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: 45a3b23efe1bae244a3f12dc2f1a2631, type: 3}
     alternatePortraits: []
     spritePortraits: []
   - id: 9
@@ -203,7 +203,7 @@ MonoBehaviour:
       type: 4
       typeString: CustomFieldType_Localization
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: f0f12e6e1d175f049bab06e536761026, type: 3}
     alternatePortraits: []
     spritePortraits: []
   - id: 8
@@ -233,7 +233,7 @@ MonoBehaviour:
       type: 4
       typeString: CustomFieldType_Localization
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: 4a5c9bce8f5781c4eb694960d34865d9, type: 3}
     alternatePortraits: []
     spritePortraits: []
   - id: 10
@@ -259,7 +259,7 @@ MonoBehaviour:
       type: 4
       typeString: CustomFieldType_Localization
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: f42584fba928fe0468596ca6cf6dbbb6, type: 3}
     alternatePortraits: []
     spritePortraits: []
   - id: 11
@@ -289,7 +289,7 @@ MonoBehaviour:
       type: 4
       typeString: CustomFieldType_Localization
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: fd0f9d45cd84ba844bc02e1a0b70d572, type: 3}
     alternatePortraits: []
     spritePortraits: []
   - id: 12
@@ -315,7 +315,7 @@ MonoBehaviour:
       type: 4
       typeString: CustomFieldType_Localization
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: 089e23e7910af63479a7bf6aa97a648c, type: 3}
     alternatePortraits: []
     spritePortraits: []
   - id: 13
@@ -427,7 +427,7 @@ MonoBehaviour:
       type: 0
       typeString: 
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: eb74eb09fe4b5a3418bff9a240dc71d3, type: 3}
     alternatePortraits: []
     spritePortraits: []
   - id: 16
@@ -453,7 +453,7 @@ MonoBehaviour:
       type: 4
       typeString: CustomFieldType_Localization
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: fd8514e7845e88c4fb678820034d334b, type: 3}
     alternatePortraits: []
     spritePortraits: []
   - id: 22
@@ -483,7 +483,7 @@ MonoBehaviour:
       type: 0
       typeString: 
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: 8cdd3d7aeea72fe42a4b154471229fe3, type: 3}
     alternatePortraits: []
     spritePortraits: []
   - id: 17
@@ -509,7 +509,7 @@ MonoBehaviour:
       type: 4
       typeString: CustomFieldType_Localization
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: fd11dd0dea8388646b3a5d344925a350, type: 3}
     alternatePortraits: []
     spritePortraits: []
   - id: 18
@@ -2414,7 +2414,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Actor
-        value: 2
+        value: 8
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -2499,7 +2499,7 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 2
+        value: 16
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -2572,7 +2572,7 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 2
+        value: 4
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -2643,7 +2643,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Actor
-        value: 2
+        value: 10
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -2701,8 +2701,8 @@ MonoBehaviour:
         y: 168
         width: 160
         height: 30
-    canvasScrollPosition: {x: 0.24680042, y: 0.18858433}
-    canvasZoom: 0.8200002
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 1
   - id: 5
     fields:
     - title: Title

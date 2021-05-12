@@ -8,8 +8,14 @@ public class SplashScript : MonoBehaviour
     public Image logo;
     public AudioSource sound;
     public AnimationCurve curve;
+    private bool _canSkip;
+    private bool finished;
     IEnumerator Start()
     {
+        Application.targetFrameRate = 60;
+
+        _canSkip = (PlayerPrefs.GetInt("Progression", 0) != 0);
+
         float audioLength = sound.clip.length;
         //float fadeLength = audioLength*3/4;
         float elapsedTime = 0;
@@ -36,6 +42,30 @@ public class SplashScript : MonoBehaviour
             yield return null;
         }
         elapsedTime = 0;
+        if (!finished)
+        {
+            finished = true;
+            while (elapsedTime < 1)
+            {
+                tempColor = logo.color;
+                tempColor.a = Mathf.Lerp(1, 0, elapsedTime);
+                logo.color = tempColor;
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            FadeController.Fade("Feria");
+        }
+
+    }
+    
+    private IEnumerator Skip()
+    {
+        if (finished || !_canSkip) yield break;
+        finished = true;
+        sound.Stop();
+        Color tempColor;
+        float elapsedTime = 0;
+
         while (elapsedTime < 1)
         {
             tempColor = logo.color;
@@ -44,8 +74,20 @@ public class SplashScript : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        FadeController.Fade("Feria");
 
+        FadeController.Fade("Feria");
     }
-    
+
+    private void OnEscAction()
+    {
+        StartCoroutine(Skip());
+    }
+    private void OnSpaceAction()
+    {
+        StartCoroutine(Skip());
+    }
+    private void OnMouseLeftAction()
+    {
+        StartCoroutine(Skip());
+    }
 }
