@@ -29,8 +29,10 @@ public partial class PlayerController : MonoBehaviour
     private void Move()
     {
         //Update position
-        transform.position = new Vector3(transform.position.x + _dir.y * Time.deltaTime * _velocity, transform.position.y, transform.position.z - _dir.x * Time.deltaTime * _velocity);
-        
+        //transform.position = new Vector3(transform.position.x + _dir.y * Time.deltaTime * _velocity, transform.position.y, transform.position.z - _dir.x * Time.deltaTime * _velocity);
+
+        _rigidbody.velocity = new Vector3(_dir.y * Time.deltaTime * _velocity, 0, -_dir.x * Time.deltaTime * _velocity);
+
         //Look towards the camera
         Vector3 camPos = _mainCamera.transform.position;
         camPos.y = _sprite.transform.position.y;
