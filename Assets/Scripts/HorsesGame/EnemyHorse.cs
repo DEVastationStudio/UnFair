@@ -9,9 +9,11 @@ public class EnemyHorse : MonoBehaviour
     private Vector3 aux;
     private bool gameStarted;
     [SerializeField] private DynamicDifficultyManager DDM;
+    private Animator animator;
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         gameStarted = false;
     }
 
@@ -31,6 +33,7 @@ public class EnemyHorse : MonoBehaviour
         {
             return;
         }
+        animator.SetTrigger("isRunning");
         transform.position = Vector3.MoveTowards(transform.position, newPos, Random.Range(0.05f, 0.08f));
     }
 
