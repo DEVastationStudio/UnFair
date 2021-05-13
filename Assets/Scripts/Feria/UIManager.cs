@@ -40,6 +40,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private EventSystem _eventSystem;
     [SerializeField] private GameObject _pauseButtonExit;
     [SerializeField] private GameObject _continuarNoria;
+    [Header("Intro cutscene")]
+    [SerializeField] private ConversationHelper introNpc;
 
     #endregion Variables
 
@@ -145,7 +147,14 @@ public class UIManager : MonoBehaviour
     private IEnumerator WaitXSeconds(float s) 
     {
         yield return new WaitForSeconds(s);
-        _playerInput.SwitchCurrentActionMap("ActionMap");
+        if (PlayerPrefs.GetInt("Progression", 0) == 0)
+        {
+            introNpc.StartConversation();
+        }
+        else
+        {
+            _playerInput.SwitchCurrentActionMap("ActionMap");
+        }
     }
     public void Exit()
     {
