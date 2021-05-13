@@ -3,7 +3,52 @@ guid: ba988fd16435fee41bbe9f086b999d1f
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: f5b1a87df537ba645b7fab7cbb7e2894, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: barras
+    second: {fileID: 2100000, guid: 879aee3d5e449f7458bc04044a130787, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: columnas
+    second: {fileID: 2100000, guid: f5b1a87df537ba645b7fab7cbb7e2894, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: columnasCentro
+    second: {fileID: 2100000, guid: ce3b2cec390350e48bf316be6994fa4b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cortina
+    second: {fileID: 2100000, guid: 36becb6c576d6db4ba7f6026102c0f5f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal
+    second: {fileID: 2100000, guid: 9872c05341b39e14b9ffa8e5ba7d2207, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: techin
+    second: {fileID: 2100000, guid: 28f4dfa106e5fee478239a706096c1ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: techo
+    second: {fileID: 2100000, guid: f5b1a87df537ba645b7fab7cbb7e2894, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: vigas
+    second: {fileID: 2100000, guid: f5b1a87df537ba645b7fab7cbb7e2894, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6036972002631801551}
-  m_Mesh: {fileID: 289301614986012343, guid: 4c5e88cdc6ad00141a5f88806584bd85, type: 3}
+  m_Mesh: {fileID: -5512504897300948919, guid: 4c5e88cdc6ad00141a5f88806584bd85, type: 3}
 --- !u!23 &5244264182621633306
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -97,11 +97,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 6847384431891426946}
   timeForKeys: 1.5
+  comboImages: []
+  hudImages: []
   comb: []
   comboText:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  timeCounter: {fileID: 0}
+  DDM: {fileID: 0}
+  hud: {fileID: 0}
 --- !u!114 &6847384431891426946
 MonoBehaviour:
   m_ObjectHideFlags: 0
