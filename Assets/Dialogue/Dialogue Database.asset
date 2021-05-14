@@ -345,7 +345,7 @@ MonoBehaviour:
       type: 4
       typeString: CustomFieldType_Localization
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: af2610fe30bbcc844a586bd78639dcf0, type: 3}
     alternatePortraits: []
     spritePortraits: []
   - id: 14
@@ -371,7 +371,7 @@ MonoBehaviour:
       type: 4
       typeString: CustomFieldType_Localization
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: b4ef54c24d5431941a88b9422ebe0268, type: 3}
     alternatePortraits: []
     spritePortraits: []
   - id: 15
