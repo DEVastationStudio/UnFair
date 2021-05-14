@@ -133,7 +133,7 @@ public class RodAiScript : MonoBehaviour
                     _targetDuck = nearDucks[chosenDuck];
                 }
             }
-            _targetPos = _targetDuck.transform.position;
+            if (_targetDuck != null) _targetPos = _targetDuck.transform.position;
             Debug.DrawLine(magnet.transform.position, _targetPos, Color.magenta);
         }
         else

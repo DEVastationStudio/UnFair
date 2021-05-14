@@ -24,6 +24,12 @@ public partial class PlayerController : MonoBehaviour
     [Header("Animator")]
     [SerializeField] private Animator _animator;
 
+    [Header("Npcs")]
+    [SerializeField] private ConversationHelper _salidaCanicas;
+    [SerializeField] private ConversationHelper _salidaTiroAlBlanco;
+    [SerializeField] private ConversationHelper _salidaPatos;
+    [SerializeField] private ConversationHelper _salidaCaballos;
+
     #endregion Variables
 
     #region Metodos
@@ -57,6 +63,24 @@ public partial class PlayerController : MonoBehaviour
         }
         yield return null;
         FadeController.FinishLoad();
+
+        int prog = PlayerPrefs.GetInt("Progression", 0);
+        if (prog == 2 && PlayerPrefs.GetInt("Stars-4", 0) > 0)
+        {
+            _salidaCanicas.StartConversation();
+        }
+        else if (prog == 4 && PlayerPrefs.GetInt("Stars-1", 0) > 0)
+        {
+            _salidaTiroAlBlanco.StartConversation();
+        }
+        else if (prog == 7 && PlayerPrefs.GetInt("Stars-3", 0) > 0)
+        {
+            _salidaPatos.StartConversation();
+        }
+        else if (prog == 9 && PlayerPrefs.GetInt("Stars-2", 0) > 0)
+        {
+            _salidaCaballos.StartConversation();
+        }
     }
 
     #endregion Metodos

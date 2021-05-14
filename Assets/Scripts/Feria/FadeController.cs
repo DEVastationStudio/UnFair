@@ -20,6 +20,8 @@ public class FadeController : MonoBehaviour
     public bool storedPlayerPosition;
     private static int _songIndex;
 
+    public bool fading;
+
     void Awake()
     {
         if (instance == null)
@@ -46,7 +48,7 @@ public class FadeController : MonoBehaviour
 
     private IEnumerator FadeOut(string scene)
     {
-        
+        fading = true;
         if (scene != "Feria" && player != null)
         {
             lastPlayerPosition = player.gameObject.transform.position;
@@ -66,6 +68,7 @@ public class FadeController : MonoBehaviour
         if (!skipLoading) yield return FadeImageIn(loading);
         if (AudioManager.instance != null) AudioManager.instance.FadeIn(_songIndex, 0.5f);
         yield return FadeImageIn(fade);
+        fading = false;
     }
     private IEnumerator FadeImageOut(Image image)
     {

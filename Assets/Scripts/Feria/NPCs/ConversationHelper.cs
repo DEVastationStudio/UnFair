@@ -18,11 +18,54 @@ public class ConversationHelper : MonoBehaviour
     private DialogueSystemTrigger _trigger;
     private bool _isInTrigger;
 
+    public static NpcSpriteManager npcSpriteManager;
+
     void Start() {
         _trigger = GetComponent<DialogueSystemTrigger>();
-        _player = FindObjectOfType<PlayerController>();
+        if (_player == null) _player = FindObjectOfType<PlayerController>();
         _playerInput = FindObjectOfType<PlayerInput>();
+    }
 
+    public void SetConversationEnd(int path)
+    {
+        _conversationPath = path;
+    }
+
+    void OnConversationEnd(Transform actor)
+    {
+
+        _playerInput.SwitchCurrentActionMap("ActionMap");
+
+        foreach(ConversationEvent c in OnConversationEndEvents)
+        {
+            c?.Invoke();
+        }
+
+        if (OnConversationPath.Length > _conversationPath) OnConversationPath[_conversationPath]?.Invoke();
+
+        if (_isInTrigger) SetNearConversation(true);
+    }
+
+    void OnTriggerEnter(Collider other) {
+        if (other.tag != "Player") return;
+
+        _isInTrigger = true;
+
+        if (_player == null) _player = FindObjectOfType<PlayerController>();
+        _player._conversation = this;
+        
+        SetNearConversation(true);
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag != "Player") return;
+
+        _isInTrigger = false;
+        SetNearConversation(false);
+    }
+    public void StartConversation()
+    {
+        //Esto es probable que lo mueva al método que actualiza cuando se cambia un playerpref si va muy mal
         if (requisites.Length != 0)
         {
             foreach(PrefsInt p in requisites)
@@ -64,44 +107,7 @@ public class ConversationHelper : MonoBehaviour
                 }
             }
         }
-    }
 
-    public void SetConversationEnd(int path)
-    {
-        _conversationPath = path;
-    }
-
-    void OnConversationEnd(Transform actor)
-    {
-
-        _playerInput.SwitchCurrentActionMap("ActionMap");
-
-        foreach(ConversationEvent c in OnConversationEndEvents)
-        {
-            c.Invoke();
-        }
-
-        if (OnConversationPath.Length > _conversationPath) OnConversationPath[_conversationPath]?.Invoke();
-
-        if (_isInTrigger) SetNearConversation(true);
-    }
-
-    void OnTriggerEnter(Collider other) {
-        if (other.tag != "Player") return;
-
-        _isInTrigger = true;
-        _player._conversation = this;
-        SetNearConversation(true);
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag != "Player") return;
-
-        _isInTrigger = false;
-        SetNearConversation(false);
-    }
-    public void StartConversation()
-    {
         if(_interactUI!=null)
             _interactUI.SetActive(false);
         _trigger.OnUse();
@@ -119,6 +125,27 @@ public class ConversationHelper : MonoBehaviour
         _player._isNearConversation = near;
         _interactUI.SetActive(near);
     }
+
+    public void SetProgression(int progression)
+    {
+        PlayerPrefs.SetInt("Progression", progression);
+        if (npcSpriteManager != null) npcSpriteManager.UpdateSprites();
+    }
+
+    public void IncreaseInternalProgression(string name)
+    {
+        int value = PlayerPrefs.GetInt(name, 0);
+        value++;
+        if (value <= 2)
+        {
+            PlayerPrefs.SetInt(name, value);
+        }
+        else
+        {
+            PlayerPrefs.SetInt(name, 2);
+        }
+    }
+
 }
 
 [System.Serializable]

@@ -25,6 +25,7 @@ public partial class PlayerController : MonoBehaviour
     {
         if (value.Get<float>() == 0) return;
         if (_isInterfaz) return;
+        if (FadeController.instance.fading) return;
         if (_isNearMinigame)
             StartMinigame();
         if (_isNearConversation)
