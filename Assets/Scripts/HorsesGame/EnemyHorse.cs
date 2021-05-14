@@ -13,7 +13,7 @@ public class EnemyHorse : MonoBehaviour
 
     void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         gameStarted = false;
     }
 
@@ -33,7 +33,7 @@ public class EnemyHorse : MonoBehaviour
         {
             return;
         }
-        animator.SetTrigger("isRunning");
+        animator.SetTrigger("running");
         transform.position = Vector3.MoveTowards(transform.position, newPos, Random.Range(0.05f, 0.08f));
     }
 
