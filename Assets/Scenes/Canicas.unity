@@ -3544,6 +3544,7 @@ MonoBehaviour:
   forceBar: {fileID: 1556095629}
   backgroundSlider: {fileID: 1992444673}
   fillSlider: {fileID: 1153187296}
+  staticRotX: -20
 --- !u!65 &905994871
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -16,9 +16,12 @@ public class Thrower : MonoBehaviour
     [SerializeField] private Slider forceBar;
     [SerializeField] private Image backgroundSlider;
     [SerializeField] private Image fillSlider;
+    [SerializeField] private float staticRotX = -20.0f;
     private float throwerForce;
     private float increaserForceSpeed = 0.5f;
     private bool pressingShoot;
+    private bool randomized;
+    private bool increasingForce;
     private HUD_Marbles hud;
     private bool canThrow;
     private Vector3 currentPos;
@@ -40,9 +43,11 @@ public class Thrower : MonoBehaviour
     {
         input.SwitchCurrentActionMap("UIMap");
         gameStarted = false;
+        increasingForce = true;
         pressingShoot = false;
         isPaused = false;
         inSettingsMenu = false;
+        randomized = false;
         throwerForce = 0.0f;
         rotation = 0;
         canThrow = true;
@@ -50,7 +55,7 @@ public class Thrower : MonoBehaviour
         hud = FindObjectOfType<HUD_Marbles>();
         currentPos = transform.position;
         currentRot = transform.rotation;
-        rotx = -20;
+        rotx = staticRotX;
         rotz = 0;
         ray = new Ray(transform.position, transform.forward);
         //CreatePrediction();
@@ -58,6 +63,7 @@ public class Thrower : MonoBehaviour
 
     void Update()
     {
+        rotx = staticRotX;
         if (!gameStarted || isPaused) { return; }
         Rotate();
         /*if (currentRot != transform.rotation)
@@ -86,16 +92,40 @@ public class Thrower : MonoBehaviour
         {
             forceBar.value += increaserForceSpeed * Time.deltaTime;
         }*/
+
+        if (forceBar.value >= 1.0f)
+        {
+            increasingForce = false;
+        }
+        else if (!increasingForce && forceBar.value <= 0.0f)
+        {
+            increasingForce = true;
+        }
+
         if (canThrow)
         {
             if (pressingShoot && canThrow)
             {
-                IncreaseThrowForce(0.5f);//fuerza que va aumentando
-                if (forceBar.value < throwerForce)
+                /*if (!randomized)
                 {
+                    RandomizeStatusBar();
+                }*/
+                if (increasingForce)
+                {
+                    //IncreaseThrowForce(0.5f);//fuerza que va aumentando
+                    //if (forceBar.value < throwerForce)
+                    //{
                     forceBar.value += increaserForceSpeed * Time.deltaTime;
+                    //}
                 }
-
+                else
+                {
+                    //IncreaseThrowForce(-0.5f);//fuerza que va disminuyendo
+                    //if (forceBar.value > throwerForce)
+                    //{
+                    forceBar.value -= increaserForceSpeed * Time.deltaTime;
+                    //}
+                }
             }
 
         }
@@ -110,6 +140,7 @@ public class Thrower : MonoBehaviour
     public void SetGameStarted()
     {
         gameStarted = true;
+        RandomizeStatusBar();
         input.SwitchCurrentActionMap("ActionMap");
     }
 
@@ -130,7 +161,7 @@ public class Thrower : MonoBehaviour
     public Vector3 CalculateForce()
     {
         print("Force: " + transform.forward * (power * (forceBar.value * 1.5f)));
-        return transform.forward * (power * Mathf.Clamp(forceBar.value * 1.5f, 0.5f, 1.5f));
+        return transform.forward * (power/2 + (power/2) * forceBar.value/** Mathf.Clamp(forceBar.value * 1.5f, 0.5f, 1.5f)*/);
     }
 
     void ThrowBall()
@@ -143,7 +174,7 @@ public class Thrower : MonoBehaviour
     /*
     * Called in the invoke of OnSpaceAction
     */
-    void ThrowBallCoyote()
+    /*void ThrowBallCoyote()
     {
         if (canThrow && ballsLeft > 0)
         {
@@ -155,7 +186,7 @@ public class Thrower : MonoBehaviour
             ResetForceBar();
         }
 
-    }
+    }*/
 
     void CreatePrediction(Vector3 origin, Vector3 dst)
     {
@@ -259,7 +290,7 @@ public class Thrower : MonoBehaviour
     private void IncreaseThrowForce(float x)
     {
         throwerForce = forceBar.value + x;
-        //print("thrower force: " + throwerForce + " forcebar.value: " + forceBar.value);
+        print("thrower force: " + throwerForce + " forcebar.value: " + forceBar.value);
     }
 
     public int GetBallsLeft()
@@ -272,7 +303,7 @@ public class Thrower : MonoBehaviour
         canThrow = true;
         backgroundSlider.color = new Color(backgroundSlider.color.r, backgroundSlider.color.g, backgroundSlider.color.b, 1.0f);
         fillSlider.color = new Color(fillSlider.color.r, fillSlider.color.g, fillSlider.color.b, 1.0f);
-        ResetForceBar();
+        RandomizeStatusBar();
     }
 
     /*
@@ -282,5 +313,14 @@ public class Thrower : MonoBehaviour
     {
         throwerForce = 0.0f;
         forceBar.value = 0.0f;
+    }
+
+    private void RandomizeStatusBar()
+    {
+        randomized = true;
+        float rand = Random.Range(0.00f, 0.90f);
+        throwerForce = forceBar.value = rand;
+        increasingForce = true;
+
     }
 }
