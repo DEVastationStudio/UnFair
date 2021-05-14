@@ -51,6 +51,7 @@ public class PlayerHorse : MonoBehaviour
     private bool joystickUsed;
     private bool joystickReseted;
     private string lastJoystickPos;
+    private Animator animator;
 
     #region UnityMethods
 
@@ -64,6 +65,7 @@ public class PlayerHorse : MonoBehaviour
     }
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         input.SwitchCurrentActionMap("UIMap");
         if (input.currentControlScheme.Equals("KeyboardMouseScheme"))
         {
@@ -506,6 +508,7 @@ public class PlayerHorse : MonoBehaviour
     private void Move()
     {
         //Debug.Log("combinacion correcta");
+        animator.SetTrigger("running");
         mov = Random.Range(0.25f, 0.33f);
         auxPos = (Vector3.forward * mov);
         newPos = new Vector3(transform.position.x + auxPos.x, transform.position.y + auxPos.y, transform.position.z + auxPos.z);
@@ -518,6 +521,7 @@ public class PlayerHorse : MonoBehaviour
             combCreated = false;
             GenerateCombination();
         }
+
     }
 
     private void ResetCorrect(bool ended, bool failedCombo)
