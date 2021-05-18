@@ -2,52 +2,63 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public partial class PlayerController : MonoBehaviour
+public class FollowPlayerScript : MonoBehaviour
 {
-    #region Variables
-
-    private Vector2 _dir;
-    public Vector2 lastDir;
-
-    #endregion Variables
-
-    #region Metodos
-
-    private void SetDirection(Vector2 dir) 
+    [SerializeField] private Rigidbody _rigidbody; 
+    private Vector3 _dir;
+    [SerializeField] private float _velocity;
+    [SerializeField] private GameObject _player;
+    [SerializeField] private Camera _mainCamera;
+    [SerializeField] private Animator _animator;
+    public Vector3 lastDir;
+    private Queue<Vector3> positions;
+    
+    void Start()
     {
-        _dir = dir;
-        if (dir.x != 0 || dir.y != 0)
+        positions = new Queue<Vector3>();
+        lastDir = new Vector3(0,0,1);
+
+        FadeController.instance.follower = this;
+
+        if (FadeController.instance.storedPlayerPosition)
         {
-            lastDir = dir;
-            _animator.SetBool("Moving", true);
+            transform.position = FadeController.instance.lastFollowerPosition;
+            lastDir = FadeController.instance.lastFollowerDirection;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        positions.Enqueue(_player.transform.position);
+        if (positions.Count >= 10) positions.Dequeue();
+
+        _dir = positions.Peek() - transform.position;
+        Debug.DrawRay(transform.position, _dir, Color.red);
+        _dir.Normalize();
+        lastDir = _dir;
+
+        if (Vector3.Distance(transform.position, _player.transform.position) > 6)
+        {
+            if (Vector3.Distance(transform.position, positions.Peek()) < 0.01f)
+            {
+                positions.Dequeue();
+            }
+            _rigidbody.velocity = new Vector3(_dir.x * Time.deltaTime * _velocity, 0, _dir.z * Time.deltaTime * _velocity);
         }
         else
         {
-            _animator.SetBool("Moving", false);
+            _rigidbody.velocity = Vector3.zero;
         }
-    }
-    private void Move()
-    {
-        //Update position
-        //transform.position = new Vector3(transform.position.x + _dir.y * Time.deltaTime * _velocity, transform.position.y, transform.position.z - _dir.x * Time.deltaTime * _velocity);
-
-        _rigidbody.velocity = new Vector3(_dir.y * Time.deltaTime * _velocity, 0, -_dir.x * Time.deltaTime * _velocity);
-
-        //Look towards the camera
-        Vector3 camPos = _mainCamera.transform.position;
-        camPos.y = _sprite.transform.position.y;
-
-        _sprite.transform.forward = camPos - _sprite.transform.position;//new Vector3(-_mainCamera.transform.forward.x, _sprite.transform.forward.y, -_mainCamera.transform.forward.z);
 
         //Set Animator direction
 
         float angle = Vector3.SignedAngle(_mainCamera.transform.forward, Vector3.forward, Vector3.up);
-        Vector2 rotatedLastDir = Quaternion.Euler(0,0,-angle-90)*lastDir;
+        Vector3 rotatedLastDir = Quaternion.Euler(0,angle+90,0)*lastDir;
         
-        float up = Mathf.Max(rotatedLastDir.y, 0);
-        float down = -Mathf.Min(rotatedLastDir.y, 0);
-        float left = -Mathf.Min(rotatedLastDir.x, 0);
-        float right = Mathf.Max(rotatedLastDir.x, 0);
+        float up = Mathf.Max(rotatedLastDir.x, 0);
+        float down = -Mathf.Min(rotatedLastDir.x, 0);
+        float left = Mathf.Max(rotatedLastDir.z, 0);
+        float right = -Mathf.Min(rotatedLastDir.z, 0);
 
         if (up > 0.4f)
         {
@@ -123,7 +134,6 @@ public partial class PlayerController : MonoBehaviour
             _animator.SetLayerWeight(7,1);
             _animator.SetLayerWeight(8,0);
         }
-    }
 
-    #endregion Metodos
+    }
 }

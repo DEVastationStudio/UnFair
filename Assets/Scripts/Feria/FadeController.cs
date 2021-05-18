@@ -16,7 +16,11 @@ public class FadeController : MonoBehaviour
     public Vector3 lastPlayerPosition;
     public Vector2 lastPlayerDirection;
 
+    public Vector3 lastFollowerPosition;
+    public Vector3 lastFollowerDirection;
+
     public PlayerController player;
+    public FollowPlayerScript follower;
     public bool storedPlayerPosition;
     private static int _songIndex;
 
@@ -53,6 +57,8 @@ public class FadeController : MonoBehaviour
         {
             lastPlayerPosition = player.gameObject.transform.position;
             lastPlayerDirection = player.lastDir;
+            lastFollowerPosition = follower.gameObject.transform.position;
+            lastFollowerDirection = follower.lastDir;
             storedPlayerPosition = true;
         }
 
