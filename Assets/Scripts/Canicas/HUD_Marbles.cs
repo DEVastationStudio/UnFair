@@ -16,6 +16,7 @@ public class HUD_Marbles : MonoBehaviour
     [SerializeField] private GameObject continuePauseButton;
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject firstSettingsButton;
+    [SerializeField] private GameObject startGameButtonPregame;
     [SerializeField] private TextMeshProUGUI finalScoreText;
     [SerializeField] private TextMeshProUGUI finalTimeText;
     [SerializeField] private TextMeshProUGUI preStarsObtainedText;
@@ -68,7 +69,7 @@ public class HUD_Marbles : MonoBehaviour
 
     void Update()
     {
-        if(isPaused || isReseting){return;}
+        if (isPaused || isReseting) { return; }
         if (gameStarted)
         {
             velocityHits += Time.deltaTime;
@@ -128,15 +129,41 @@ public class HUD_Marbles : MonoBehaviour
         _eventSystem.SetSelectedGameObject(firstSettingsButton);
 
     }
+    public void OpenSettingsMenuPregame()
+    {
+        thrower.SetInSettings(true);
+        preGameCanvas.SetActive(false);
+        settingsMenu.SetActive(true);
+        _eventSystem.SetSelectedGameObject(firstSettingsButton);
+    }
 
     public void CloseSettingsMenu()
+    {
+        if (gameStarted)
+        {
+            CloseSettingsMenuIngame();
+        }
+        else
+        {
+            CloseSettingsMenuPregame();
+        }
+    }
+
+    public void CloseSettingsMenuIngame()
     {
         thrower.SetInSettings(false);
         pauseMenu.SetActive(true);
         settingsMenu.SetActive(false);
-        _eventSystem.SetSelectedGameObject(continuePauseButton);        
+        _eventSystem.SetSelectedGameObject(continuePauseButton);
     }
+    public void CloseSettingsMenuPregame()
+    {
+        thrower.SetInSettings(false);
+        settingsMenu.SetActive(false);
+        preGameCanvas.SetActive(true);
+        _eventSystem.SetSelectedGameObject(startGameButtonPregame);
 
+    }
     public void UnPauseGame()
     {
         if (isReseting) { return; }
@@ -196,7 +223,7 @@ public class HUD_Marbles : MonoBehaviour
     public void ResetGame()
     {
         if (isReseting) { return; }
-        isReseting= true;
+        isReseting = true;
         FadeController.Fade("Canicas");
     }
 

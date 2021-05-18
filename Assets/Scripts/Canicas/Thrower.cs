@@ -161,7 +161,7 @@ public class Thrower : MonoBehaviour
     public Vector3 CalculateForce()
     {
         print("Force: " + transform.forward * (power * (forceBar.value * 1.5f)));
-        return transform.forward * (power/2 + (power/2) * forceBar.value/** Mathf.Clamp(forceBar.value * 1.5f, 0.5f, 1.5f)*/);
+        return transform.forward * (power / 2 + (power / 2) * forceBar.value/** Mathf.Clamp(forceBar.value * 1.5f, 0.5f, 1.5f)*/);
     }
 
     void ThrowBall()
@@ -270,6 +270,14 @@ public class Thrower : MonoBehaviour
 
             }
         }
+        else
+        {
+            if (inSettingsMenu)
+            {
+                hud.CloseSettingsMenu();
+            }
+
+        }
 
     }
     public void UnPauseGame()
@@ -286,6 +294,7 @@ public class Thrower : MonoBehaviour
     public void SetInSettings(bool inSettings)
     {
         inSettingsMenu = inSettings;
+        print("hola");
     }
     private void IncreaseThrowForce(float x)
     {

@@ -17,6 +17,7 @@ public class HUD_Manager : MonoBehaviour
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject continueButton;
     [SerializeField] private GameObject firstSettingButton;
+    [SerializeField] private GameObject startGameButtonPregame;
     [SerializeField] private TextMeshProUGUI positionText;
     [SerializeField] private TextMeshProUGUI timeSpent;
     [SerializeField] private TextMeshProUGUI starsEndedGameText;
@@ -37,10 +38,12 @@ public class HUD_Manager : MonoBehaviour
     private int stars;
     private bool paused;
     private bool isReseting;
+    private bool gameStarted;
     void Start()
     {
         //playerInput.SwitchCurrentActionMap("ActionMap");
         paused = false;
+        gameStarted = false;
         isReseting = false;
         stars = -1;
         raceTime = 0.0f;
@@ -73,6 +76,7 @@ public class HUD_Manager : MonoBehaviour
             enemy.StartGame();
         }*/
         Invoke("UnPauseEnemys", 0.5f);
+        gameStarted = true;
         timeCounter.ActivateTimer();
     }
 
@@ -146,12 +150,40 @@ public class HUD_Manager : MonoBehaviour
         _eventSystem.SetSelectedGameObject(firstSettingButton);
     }
 
+    public void OpenSettingsMenuPregame()
+    {
+        playerHorse.SetInSettings(true);
+        preGameCanvas.SetActive(false);
+        settingsMenu.SetActive(true);
+        _eventSystem.SetSelectedGameObject(firstSettingButton);
+    }
+
     public void CloseSettingsMenu()
+    {
+        if (gameStarted)
+        {
+            CloseSettingsMenuIngame();
+        }
+        else
+        {
+            CloseSettingsMenuPregame();
+        }
+    }
+
+    public void CloseSettingsMenuIngame()
     {
         playerHorse.SetInSettings(false);
         pauseMenu.SetActive(true);
         settingsMenu.SetActive(false);
         _eventSystem.SetSelectedGameObject(continueButton);
+    }
+
+    public void CloseSettingsMenuPregame()
+    {
+        playerHorse.SetInSettings(false);
+        preGameCanvas.SetActive(true);
+        settingsMenu.SetActive(false);
+        _eventSystem.SetSelectedGameObject(startGameButtonPregame);
     }
 
     public void ResetGame()

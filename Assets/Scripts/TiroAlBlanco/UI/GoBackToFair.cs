@@ -5,13 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class GoBackToFair : MonoBehaviour
 {
-    public void GoToFair(bool inFair = false) 
+    public void GoToFair(bool inFair = false)
     {
         if (inFair)
         {
             FadeController.instance.player = null;
             FadeController.instance.storedPlayerPosition = false;
         }
-        FadeController.Fade("Feria");
+        if (!FadeController.instance.fading)
+        {
+            FadeController.Fade("Feria");
+        }
     }
 }

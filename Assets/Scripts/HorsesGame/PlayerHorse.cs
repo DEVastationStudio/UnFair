@@ -264,6 +264,13 @@ public class PlayerHorse : MonoBehaviour
 
             }
         }
+        else
+        {
+            if (inSettingsMenu)
+            {
+                hud.CloseSettingsMenu();
+            }
+        }
 
     }
 
