@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Duck : FloatingObject
 {
-    public enum Type { NORMAL, PLAYER, AI, BLACK, GOLD }
+    public enum Type { NORMAL, PLAYER, AI, BLACK, GOLD, BIG }
     [SerializeField] private Renderer _renderer;
+    [SerializeField] private Material[] _materials;
     public Type type;
 
     public DucksGameManager _gameManager;
@@ -13,26 +14,29 @@ public class Duck : FloatingObject
     protected override void Start()
     {
         base.Start();
-        Material _material = _renderer.material;
+        
         switch (type)
         {
             case Type.NORMAL:
-                _material.color = Color.white;
+                _renderer.material = _materials[0];
                 break;
             case Type.PLAYER:
-                _material.color = Color.green;
+                _renderer.material = _materials[1];
                 break;
             case Type.AI:
-                _material.color = Color.red;
+                _renderer.material = _materials[2];
                 break;
             case Type.BLACK:
-                _material.color = Color.black;
+                _renderer.material = _materials[3];
                 break;
             case Type.GOLD:
-                _material.color = Color.yellow;
+                _renderer.material = _materials[4];
+                break;
+            case Type.BIG:
+                _renderer.material = _materials[4];
+                transform.localScale = new Vector3(60,60,60);
                 break;
         }
-        _renderer.material = _material;
     }
     protected override void FixedUpdate() {
         
@@ -80,6 +84,14 @@ public class Duck : FloatingObject
                     _gameManager.SetLastDuck(1);
                 }
                 else if (!player) _gameManager.aiScore += 5;
+                break;
+            case Type.BIG:
+                if (player) 
+                {
+                    _gameManager.playerScore += 7;
+                    _gameManager.SetLastDuck(1);
+                }
+                else if (!player) _gameManager.aiScore += 7;
                 break;
             case Type.PLAYER:
                 _gameManager.playerScore += 2;
