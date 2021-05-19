@@ -100,7 +100,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""LeftStick"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""c30d6243-c6a2-4cfa-aa79-231016298b96"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
