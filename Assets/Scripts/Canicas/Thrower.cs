@@ -17,6 +17,7 @@ public class Thrower : MonoBehaviour
     [SerializeField] private Image backgroundSlider;
     [SerializeField] private Image fillSlider;
     [SerializeField] private float staticRotX = -20.0f;
+    [SerializeField] private Transform initialPos;  
     private float throwerForce;
     private float increaserForceSpeed = 0.5f;
     private bool pressingShoot;
@@ -41,24 +42,9 @@ public class Thrower : MonoBehaviour
 
     void Start()
     {
-        input.SwitchCurrentActionMap("UIMap");
-        gameStarted = false;
-        increasingForce = true;
-        pressingShoot = false;
-        isPaused = false;
-        inSettingsMenu = false;
-        randomized = false;
-        throwerForce = 0.0f;
-        rotation = 0;
-        canThrow = true;
         trajectory = FindObjectOfType<Trajectory>();
         hud = FindObjectOfType<HUD_Marbles>();
-        currentPos = transform.position;
-        currentRot = transform.rotation;
-        rotx = staticRotX;
-        rotz = 0;
-        ray = new Ray(transform.position, transform.forward);
-        //CreatePrediction();
+        Init();
     }
 
     void Update()
@@ -134,6 +120,29 @@ public class Thrower : MonoBehaviour
             backgroundSlider.color = new Color(backgroundSlider.color.r, backgroundSlider.color.g, backgroundSlider.color.b, 0.25f);
             fillSlider.color = new Color(fillSlider.color.r, fillSlider.color.g, fillSlider.color.b, 0.25f);
         }
+
+    }
+
+    public void Init()
+    {
+        transform.position = initialPos.position;
+        transform.rotation = initialPos.rotation;
+        input.SwitchCurrentActionMap("UIMap");
+        gameStarted = false;
+        increasingForce = true;
+        pressingShoot = false;
+        isPaused = false;
+        inSettingsMenu = false;
+        randomized = false;
+        throwerForce = 0.0f;
+        rotation = 0;
+        canThrow = true;
+        currentPos = transform.position;
+        currentRot = transform.rotation;
+        rotx = staticRotX;
+        rotz = 0;
+        ray = new Ray(transform.position, transform.forward);
+        //CreatePrediction();
 
     }
 

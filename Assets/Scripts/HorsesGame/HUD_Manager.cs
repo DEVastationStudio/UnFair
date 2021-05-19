@@ -32,6 +32,7 @@ public class HUD_Manager : MonoBehaviour
     [SerializeField] private GameObject _resetGame;
 
     private TimeCounter timeCounter;
+    private MetaController metaController;
     EnemyHorse[] enemyHorses;
     PlayerHorse playerHorse;
     private float raceTime;
@@ -41,15 +42,26 @@ public class HUD_Manager : MonoBehaviour
     private bool gameStarted;
     void Start()
     {
+        playerHorse = FindObjectOfType<PlayerHorse>();
+        enemyHorses = FindObjectsOfType<EnemyHorse>();
+        timeCounter = this.GetComponent<TimeCounter>();
+        metaController = FindObjectOfType<MetaController>();
+        Init();
+    }
+
+    void Update()
+    {
+
+    }
+
+    private void Init()
+    {
         //playerInput.SwitchCurrentActionMap("ActionMap");
         paused = false;
         gameStarted = false;
         isReseting = false;
         stars = -1;
         raceTime = 0.0f;
-        playerHorse = FindObjectOfType<PlayerHorse>();
-        enemyHorses = FindObjectsOfType<EnemyHorse>();
-        timeCounter = this.GetComponent<TimeCounter>();
         countdownText.gameObject.SetActive(false);
         inGameCanvas.SetActive(false);
         postGameCanvas.SetActive(false);
@@ -57,13 +69,9 @@ public class HUD_Manager : MonoBehaviour
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
         preGameCanvas.SetActive(true);
+        preGameButtonsCanvas.SetActive(true);
         _eventSystem.SetSelectedGameObject(_startGame);
         starsObtained.text = "Stars obtained: " + GameProgress.GetStars(2);
-    }
-
-    void Update()
-    {
-
     }
 
     private void StartGame()
@@ -190,7 +198,16 @@ public class HUD_Manager : MonoBehaviour
     {
         if (isReseting) { return; }
         isReseting = true;
-        FadeController.Fade("HorsesRace");
+        Init();
+        playerHorse.Init();
+        foreach (var enemy in enemyHorses)
+        {
+            enemy.Init();
+        }
+        timeCounter.Init();
+        metaController.Init();
+
+        //FadeController.Fade("HorsesRace");
     }
 
     public void PauseGame(bool isPaused)

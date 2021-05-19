@@ -26,6 +26,7 @@ public class HUD_Marbles : MonoBehaviour
     [SerializeField] private DynamicDifficultyManager DDM;
     [SerializeField] private float MaxTimeHits = 6; // si se supera este tiempo, bajará la dificultad
     [SerializeField] private ConversationHelper conversation;
+    [SerializeField] private ObstacleSpawner obstacleSpawner;
 
     [Header("Control por mando")]
     [SerializeField] private EventSystem _eventSystem;
@@ -47,24 +48,7 @@ public class HUD_Marbles : MonoBehaviour
 
     void Start()
     {
-        startedPressed = false;
-        isPaused = false;
-        isReseting = false;
-        velocityHits = 0.0f;
-        inGameCanvas.SetActive(false);
-        postGameCanvas.SetActive(false);
-        countdownText.gameObject.SetActive(false);
-        pauseMenu.SetActive(false);
-        settingsMenu.SetActive(false);
-        preGameButtonsCanvas.SetActive(true);
-        preGameCanvas.SetActive(true);
-        _eventSystem.SetSelectedGameObject(_startButton);
-        gameStarted = false;
-        failedBall = false;
-        score = 0;
-        stars = 0;
-        timeSpent = 0.0f;
-        preStarsObtainedText.text = "Stars obtained: " + GameProgress.GetStars(4);
+        Init();
     }
 
     void Update()
@@ -84,6 +68,28 @@ public class HUD_Marbles : MonoBehaviour
                 timeText.text = "Balls: " + balls;
             }
         }
+    }
+
+    private void Init()
+    {
+        startedPressed = false;
+        isPaused = false;
+        isReseting = false;
+        velocityHits = 0.0f;
+        inGameCanvas.SetActive(false);
+        postGameCanvas.SetActive(false);
+        countdownText.gameObject.SetActive(false);
+        pauseMenu.SetActive(false);
+        settingsMenu.SetActive(false);
+        preGameButtonsCanvas.SetActive(true);
+        preGameCanvas.SetActive(true);
+        _eventSystem.SetSelectedGameObject(_startButton);
+        gameStarted = false;
+        failedBall = false;
+        score = 0;
+        stars = 0;
+        timeSpent = 0.0f;
+        preStarsObtainedText.text = "Stars obtained: " + GameProgress.GetStars(4);
     }
 
     private void StartGame()
@@ -224,7 +230,14 @@ public class HUD_Marbles : MonoBehaviour
     {
         if (isReseting) { return; }
         isReseting = true;
-        FadeController.Fade("Canicas");
+        Marble marbleInGame = FindObjectOfType<Marble>();
+        if (marbleInGame != null) Destroy(marbleInGame.gameObject);
+        //FadeController.Fade("Canicas");
+        Init();
+        obstacleSpawner.DestroyObstacles();
+        obstacleSpawner.Init();
+        thrower.Init();
+
     }
 
     public void AddScore(int holeScore)

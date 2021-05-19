@@ -8,6 +8,7 @@ public class ObstacleSpawner : MonoBehaviour
     [SerializeField] private GameObject wallPrefab;
     [SerializeField] private GameObject[] spawnPoints;
     private List<GameObject> spawnList;
+    private List<GameObject> obstaclesList = new List<GameObject>();
     [SerializeField] private DynamicDifficultyManager DDM;
     [SerializeField] private GameObject thrower;
     private float rand;
@@ -15,7 +16,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     void Start()
     {
-        GenerateRandomObstacle();
+        Init();
     }
 
     public void GenerateRandomObstacle()
@@ -30,7 +31,7 @@ public class ObstacleSpawner : MonoBehaviour
             if (Random.value > 0.5f)
             {
                 //Rampa
-                auxInst = Instantiate(rampPrefab, targetAux.GetTargets()[Random.Range(0,2)].position/*targetAux.gameObject.transform.position*/, Quaternion.identity);
+                auxInst = Instantiate(rampPrefab, targetAux.GetTargets()[Random.Range(0, 2)].position/*targetAux.gameObject.transform.position*/, Quaternion.identity);
 
                 switch (targetAux.GetPosSpawn().ToString())
                 {
@@ -65,7 +66,7 @@ public class ObstacleSpawner : MonoBehaviour
             }
             else
             {   //Pared
-                auxInst = Instantiate(wallPrefab, targetAux.GetTargets()[Random.Range(0,2)].position/*targetAux.gameObject.transform.position*/, Quaternion.identity);
+                auxInst = Instantiate(wallPrefab, targetAux.GetTargets()[Random.Range(0, 2)].position/*targetAux.gameObject.transform.position*/, Quaternion.identity);
                 switch (targetAux.GetPosSpawn().ToString())
                 {
                     case "North":
@@ -97,8 +98,23 @@ public class ObstacleSpawner : MonoBehaviour
                 }
 
             }
+            obstaclesList.Add(auxInst);
             auxInst.GetComponent<PathMovement>().SetTargets(targetAux.GetTargets());
             spawnList.RemoveAt(auxPosList);
         }
+    }
+
+    public void DestroyObstacles()
+    {
+        foreach (var obstacle in obstaclesList)
+        {
+            Destroy(obstacle);
+        }
+
+    }
+
+    public void Init()
+    {
+        GenerateRandomObstacle();
     }
 }

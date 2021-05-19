@@ -52,46 +52,17 @@ public class PlayerHorse : MonoBehaviour
     private bool joystickReseted;
     private string lastJoystickPos;
     private Animator animator;
+    [SerializeField] private Transform initialPos;
 
     #region UnityMethods
 
     void Awake()
     {
-        availableKeys = new string[] { "Left", "Up", "Down", "Right", "Space" }; //this array maybe shoyuld be changed out of this script in order to have the possibility of rebinding keys
-        gameStarted = false;
-        isPaused = false;
-        comboFailed = false;
-        inSettingsMenu = false;
     }
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
-        input.SwitchCurrentActionMap("UIMap");
-        if (input.currentControlScheme.Equals("KeyboardMouseScheme"))
-        {
-            previousScheme = Scheme.KeyboardMouse;
-        }
-        else if (input.currentControlScheme.Equals("GamepadScheme"))
-        {
-            previousScheme = Scheme.Gamepad;
-        }
-        buttonsPressed = 0;
-        buttonPressing = false;
-        validButton = false;
-        joystickUsed = false;
-        joystickReseted = true;
-        lastJoystickPos = "";
-        combosFinishedDDM = 0;
-        velocityCombos = 0.0f;
-        restartingComboText = false;
-        endedCurrentCombo = false;
-        endedCombos = 0;
-        endedTotalCombos = 0;
-        currentTime = 0.0f;
-        combCreated = false;
-        GenerateCombination();
-        posComb = 0;
-        correctSequence = 0;
+        Init();
         FadeController.FinishLoad();
     }
 
@@ -337,6 +308,46 @@ public class PlayerHorse : MonoBehaviour
 
 
     #endregion KeysActions
+
+    public void Init()
+    {
+        transform.position = initialPos.position;
+        transform.rotation = initialPos.rotation;
+        availableKeys = new string[] { "Left", "Up", "Down", "Right", "Space" }; //this array maybe shoyuld be changed out of this script in order to have the possibility of rebinding keys
+        gameStarted = false;
+        isPaused = false;
+        comboFailed = false;
+        inSettingsMenu = false;
+
+        
+        input.SwitchCurrentActionMap("UIMap");
+        if (input.currentControlScheme.Equals("KeyboardMouseScheme"))
+        {
+            previousScheme = Scheme.KeyboardMouse;
+        }
+        else if (input.currentControlScheme.Equals("GamepadScheme"))
+        {
+            previousScheme = Scheme.Gamepad;
+        }
+        buttonsPressed = 0;
+        buttonPressing = false;
+        validButton = false;
+        joystickUsed = false;
+        joystickReseted = true;
+        lastJoystickPos = "";
+        combosFinishedDDM = 0;
+        velocityCombos = 0.0f;
+        restartingComboText = false;
+        endedCurrentCombo = false;
+        endedCombos = 0;
+        endedTotalCombos = 0;
+        currentTime = 0.0f;
+        combCreated = false;
+        GenerateCombination();
+        posComb = 0;
+        correctSequence = 0;
+
+    }
     public void StartGame()
     {
         gameStarted = true;
