@@ -319,7 +319,7 @@ public class PlayerHorse : MonoBehaviour
         comboFailed = false;
         inSettingsMenu = false;
 
-        
+
         input.SwitchCurrentActionMap("UIMap");
         if (input.currentControlScheme.Equals("KeyboardMouseScheme"))
         {
@@ -526,12 +526,24 @@ public class PlayerHorse : MonoBehaviour
     private void Move()
     {
         //Debug.Log("combinacion correcta");
-        animator.SetTrigger("running");
+        animator.SetTrigger("running");/*
         mov = Random.Range(0.25f, 0.33f);
         auxPos = (Vector3.forward * mov);
-        newPos = new Vector3(transform.position.x + auxPos.x, transform.position.y + auxPos.y, transform.position.z + auxPos.z);
-        transform.position = Vector3.MoveTowards(transform.position, newPos, 0.75f);
+        newPos = new Vector3(transform.position.x + auxPos.x, transform.position.y + auxPos.y, transform.position.z + auxPos.z);*/
+        //transform.position = Vector3.MoveTowards(transform.position, newPos, 0.75f);
+        //transform.position = Vector3.Lerp(transform.position,newPos,0.5f);
+        //Vector3 velocity = Vector3.zero;
+        //transform.position = Vector3.SmoothDamp(transform.position, newPos, ref velocity, 0.5f);//Lerp(transform.position,newPos,0.5f);
         //print("La gráfica de la repetición tiene: " + DDM.GetValue(1));
+        /*float aux = Random.Range(40.0f, 99.0f);
+        //print("Random number: " + aux);
+        if ((endedCombos >= 2) || (DDM.GetValue(1) > aux))//REPASAR
+        {
+            combCreated = false;
+            GenerateCombination();
+        }*/
+        StartCoroutine(Movement());
+
         float aux = Random.Range(40.0f, 99.0f);
         //print("Random number: " + aux);
         if ((endedCombos >= 2) || (DDM.GetValue(1) > aux))//REPASAR
@@ -540,6 +552,21 @@ public class PlayerHorse : MonoBehaviour
             GenerateCombination();
         }
 
+    }
+
+    IEnumerator Movement()
+    {
+        mov = Random.Range(0.25f, 0.33f);
+        auxPos = (Vector3.forward * mov);
+        newPos = new Vector3(transform.position.x + auxPos.x, transform.position.y + auxPos.y, transform.position.z + auxPos.z);
+        while (transform.position != newPos)
+        {
+            float step = 0.5f * Time.fixedDeltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, newPos, step);
+            yield return new WaitForFixedUpdate();
+        }
+
+        yield return null;
     }
 
     private void ResetCorrect(bool ended, bool failedCombo)

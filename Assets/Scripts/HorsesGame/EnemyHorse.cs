@@ -8,6 +8,7 @@ public class EnemyHorse : MonoBehaviour
     private Vector3 newPos;
     private Vector3 aux;
     private bool gameStarted;
+    private bool moving;
     [SerializeField] private DynamicDifficultyManager DDM;
     private Animator animator;
     [SerializeField] private Transform initialPos;
@@ -22,25 +23,27 @@ public class EnemyHorse : MonoBehaviour
     void Update()
     {
         if (!gameStarted) { return; }
-        mov = Random.Range(0.05f, DDM.GetValue(0));
-        GetPos();
+        //mov = Random.Range(0.05f, DDM.GetValue(0));
+        //GetPos();
     }
 
     private void FixedUpdate()
     {
-        if (!gameStarted) { return; }
+        if (!gameStarted || moving) { return; }
         float rand = Random.Range(0.0f, 15.0f);
         if (rand < 14.25f)
         {
             return;
         }
+        moving = true;
         animator.SetTrigger("running");
-        transform.position = Vector3.MoveTowards(transform.position, newPos, Random.Range(0.05f, 0.08f));
+        StartCoroutine(Movement());
     }
 
     public void Init()
     {
         gameStarted = false;
+        moving = false;
         transform.position = initialPos.position;
         transform.rotation = initialPos.rotation;
     }
@@ -57,5 +60,21 @@ public class EnemyHorse : MonoBehaviour
     {
         aux = (Vector3.forward * mov);
         newPos = new Vector3(transform.position.x + aux.x, transform.position.y + aux.y, transform.position.z + aux.z);
+    }
+
+    IEnumerator Movement()
+    {
+        mov = Random.Range(0.05f, DDM.GetValue(0));
+        aux = (Vector3.forward * mov);
+        newPos = new Vector3(transform.position.x + aux.x, transform.position.y + aux.y, transform.position.z + aux.z);
+        while (transform.position != newPos)
+        {
+            float step = Random.Range(0.25f, 0.35f/*0.05f, 0.08f*/) * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, newPos, step);
+            yield return new WaitForFixedUpdate();
+        }
+        moving = false;
+        yield return null;
+
     }
 }

@@ -1411,26 +1411,26 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.3155381
       value: 0.21850784
-      inSlope: 0.29803687
-      outSlope: 0.29803687
+      inSlope: 0.2250849
+      outSlope: 0.2250849
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 0.6008442
-      value: 0.32662728
-      inSlope: 0.2187574
-      outSlope: 0.2187574
+      value: 0.285
+      inSlope: 0.13531743
+      outSlope: 0.13531743
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0.35
-      inSlope: 0.058555357
-      outSlope: 0.058555357
+      value: 0.3
+      inSlope: 0.03757935
+      outSlope: 0.03757935
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -8242,6 +8242,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1415035496906592346, guid: 17acc3cfbdd5f0b4d8d91081603d1d6b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3177559869941437328, guid: 17acc3cfbdd5f0b4d8d91081603d1d6b,
         type: 3}
       propertyPath: m_LocalPosition.x
