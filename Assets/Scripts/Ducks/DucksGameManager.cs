@@ -16,6 +16,9 @@ public class DucksGameManager : MonoBehaviour
     public Button startGameButton;
     public RodAiScript aiScript;
     public RodController rodController;
+    private bool _spawnedBigDuck;
+    private const int maxTime = 30;
+    private float _bigDuckSpawnTime;
 
     [Header("Control por mando")]
     [SerializeField] private EventSystem _eventSystem;
@@ -162,10 +165,14 @@ public class DucksGameManager : MonoBehaviour
         countdownText.text = "";
         countdownText.gameObject.SetActive(false);
         
-        _actualTime = 30;
+        _actualTime = maxTime;
+        _spawnedBigDuck = false;
         gameStarted = true;
         aiScript.enabled = true;
         rodController._mouseDown = false;
+
+        _bigDuckSpawnTime = Random.Range(12, 15);
+
         _playerInput.SwitchCurrentActionMap("ActionMap");
         yield return TimerUpdate();
     }
@@ -177,6 +184,19 @@ public class DucksGameManager : MonoBehaviour
             timerText.text = "Time: " + _actualTime;
             yield return new WaitForSeconds(1);
             _actualTime--;
+
+            if (!_spawnedBigDuck)
+            {
+                if (_actualTime <= _bigDuckSpawnTime)
+                {
+                    _spawnedBigDuck = true;
+                    Duck duck = Instantiate(duckPrefab, new Vector3(0,4,0), Quaternion.Euler(-90, 0, 0));
+                    duck._gameManager = this;
+                    duck.type = Duck.Type.BIG;
+                    _spawnedDucks.Add(duck.gameObject);
+                }
+            }
+            
         }
         //Finish game
         gameOver = true;

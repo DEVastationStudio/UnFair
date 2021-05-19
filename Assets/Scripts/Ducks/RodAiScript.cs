@@ -101,6 +101,9 @@ public class RodAiScript : MonoBehaviour
                             case Duck.Type.BLACK:
                                 weights[i] = 5;
                                 break;
+                            case Duck.Type.BIG:
+                                weights[i] = -100;
+                                break;
                         }
                     }
 

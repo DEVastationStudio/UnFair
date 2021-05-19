@@ -67,6 +67,7 @@ Hay cinco tipos de patos:
 3. Pato rojo: Otorga dos puntos al pescador controlado por la IA
 4. Pato dorado: Otorga cinco puntos a quien lo pesque
 5. Pato negro: Quita dos puntos a quien lo pesque
+6. Pato supremo: Aparece al final de la partida, otorga siete puntos a quien lo pesque
 
 ### 2. Victoria y obtención de estrellas
 Se gana consiguiendo más patos que el otro jugador. Los requisitos para obtener cada una de las estrellas son los siguientes:

@@ -10,6 +10,7 @@ public class FloatingObject : MonoBehaviour
     protected bool _inWater;
     protected bool _magnetized;
     protected GameObject _magnet;
+    public Collider col1, col2;
 
     protected virtual void Start() {
         _waterHeight = 0;
@@ -40,7 +41,8 @@ public class FloatingObject : MonoBehaviour
             transform.parent = _magnet.transform;
             other.tag = "Untagged";
             gameObject.layer = 0;
-            transform.localPosition = new Vector3(0,-1.8f,0);
+            StartCoroutine(MoveToMagnet());
+            //transform.localPosition = new Vector3(0,-1.8f,0);
         }
         else if (other.tag == "Basket" && _magnetized)
         {
@@ -60,6 +62,24 @@ public class FloatingObject : MonoBehaviour
             _magnet = null;
             OnBasketEnter(false);
         }
+    }
+
+    protected IEnumerator MoveToMagnet()
+    {
+        Vector3 targetPos = transform.parent.transform.position + new Vector3(0,-1.8f,0);
+        col1.enabled = false;
+        col2.enabled = false;
+
+        while (Vector3.Distance(transform.position, targetPos) > 0.1f)
+        {
+            targetPos = transform.parent.transform.position + new Vector3(0,-1.8f,0);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, 0.1f);
+            Debug.DrawLine(transform.position, targetPos, Color.red);
+            yield return null;
+        }
+        transform.localPosition = new Vector3(0,-1.8f,0);
+        col1.enabled = true;
+        col2.enabled = true;
     }
 
     protected virtual void OnBasketEnter(bool player) {}
