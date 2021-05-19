@@ -3,7 +3,27 @@ guid: 44b0be16305c4034e8f960ab94fca646
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: 9872c05341b39e14b9ffa8e5ba7d2207, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.004
+    second: {fileID: 2100000, guid: e712833cf8594754b9f82d65b06c60fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 7b3c21e0c6ff19d4b9e7b840a6e9037b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: patopiel
+    second: {fileID: 2100000, guid: 7b3c21e0c6ff19d4b9e7b840a6e9037b, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

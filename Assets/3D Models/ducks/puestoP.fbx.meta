@@ -3,7 +3,57 @@ guid: 77b64d071428cc045995b1610044b796
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: a85dbeb894cada243b38edbd5f8b560f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cartel
+    second: {fileID: 2100000, guid: 36242bb59bc73e54c9c57682d41d90a0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cartel2
+    second: {fileID: 2100000, guid: 28f4dfa106e5fee478239a706096c1ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cartel3
+    second: {fileID: 2100000, guid: 95d720b6827a5664fa36429b68329ca9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cartel4
+    second: {fileID: 2100000, guid: fb5a92efdaf18134cb3fce094c5b499a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cortina
+    second: {fileID: 2100000, guid: 0e844b7fa6702e04f8cb819cf38a3356, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal.001
+    second: {fileID: 2100000, guid: 9872c05341b39e14b9ffa8e5ba7d2207, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: postes
+    second: {fileID: 2100000, guid: e712833cf8594754b9f82d65b06c60fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: techin.001
+    second: {fileID: 2100000, guid: e712833cf8594754b9f82d65b06c60fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: vigas.001
+    second: {fileID: 2100000, guid: e712833cf8594754b9f82d65b06c60fe, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

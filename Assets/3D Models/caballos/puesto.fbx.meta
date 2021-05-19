@@ -27,12 +27,27 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: columnasDentro
+    second: {fileID: 2100000, guid: ce3b2cec390350e48bf316be6994fa4b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: cortina
     second: {fileID: 2100000, guid: 36becb6c576d6db4ba7f6026102c0f5f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: madera
+    second: {fileID: 2100000, guid: 28f4dfa106e5fee478239a706096c1ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: metal
+    second: {fileID: 2100000, guid: 9872c05341b39e14b9ffa8e5ba7d2207, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal.002
     second: {fileID: 2100000, guid: 9872c05341b39e14b9ffa8e5ba7d2207, type: 2}
   - first:
       type: UnityEngine:Material
@@ -42,7 +57,22 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: techinMetal
+    second: {fileID: 2100000, guid: f5b1a87df537ba645b7fab7cbb7e2894, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: techo
+    second: {fileID: 2100000, guid: f5b1a87df537ba645b7fab7cbb7e2894, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: techo.001
+    second: {fileID: 2100000, guid: f5b1a87df537ba645b7fab7cbb7e2894, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: viga
     second: {fileID: 2100000, guid: f5b1a87df537ba645b7fab7cbb7e2894, type: 2}
   - first:
       type: UnityEngine:Material
