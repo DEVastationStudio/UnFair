@@ -3,7 +3,27 @@ guid: c127bfb9e8fffbe43a855b03a35de39a
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: adornos
+    second: {fileID: 2100000, guid: db5ae629534805c4c8e84ec206ff8f89, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bordes
+    second: {fileID: 2100000, guid: 95d720b6827a5664fa36429b68329ca9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: fondo
+    second: {fileID: 2100000, guid: 9dadbd8ed5614ef499183263c6374f99, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal
+    second: {fileID: 2100000, guid: 9872c05341b39e14b9ffa8e5ba7d2207, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
