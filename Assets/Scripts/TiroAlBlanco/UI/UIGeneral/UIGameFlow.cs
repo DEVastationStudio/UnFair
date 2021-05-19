@@ -66,7 +66,11 @@ public partial class UIGeneral : MonoBehaviour
         for (int i = 0; i < DianasRestantes.Length; i++) 
         {
            DianasRestantes[i]._dianaContainer.SleepTarget();
+           DianasRestantes[i].GetComponentInParent<Animator>().SetBool("isActive", false);
         }
+        _gameManager._spawnerDianas._activeLetter = false;
+        _gameManager._spawnerDianas._currentLetter = 0;
+        _gameManager._spawnerDianas._isOnGoldRush = false;
         _playerInput.SwitchCurrentActionMap("UIMap");
         _npcConversationHelper.StartConversation();
     }

@@ -56,6 +56,18 @@ public class SplashScript : MonoBehaviour
             FadeController.Fade("Feria");
         }
 
+        QualitySettings.vSyncCount = PlayerPrefs.GetInt("vSyncState");
+        
+        if(PlayerPrefs.GetInt("vSyncState") == 0) 
+        {
+            if (PlayerPrefs.GetInt("fpsValue") == 0)
+                Application.targetFrameRate = (int)Screen.currentResolution.refreshRate;
+            else if (PlayerPrefs.GetInt("fpsValue") == 241) 
+                Application.targetFrameRate = -1;
+            else
+                Application.targetFrameRate = PlayerPrefs.GetInt("fpsValue");
+        }
+
     }
     
     private IEnumerator Skip()
