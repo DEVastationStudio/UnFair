@@ -10,13 +10,17 @@ public class MetaController : MonoBehaviour
     private bool playerFinished;
     void Start()
     {
-        playerPos = 1;
-        playerFinished = false;
+        Init();
     }
 
     void Update()
     {
 
+    }
+    public void Init()
+    {
+        playerPos = 1;
+        playerFinished = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,7 +35,7 @@ public class MetaController : MonoBehaviour
         }
         else if (other.CompareTag("RivalHorse"))
         {
-            playerPos++;            
+            playerPos++;
             playerFinished = true;
             hUD_Manager.RaceFinished(playerPos);
             Debug.Log("Rival llegó");

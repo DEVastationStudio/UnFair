@@ -13,8 +13,7 @@ public class TimeCounter : MonoBehaviour
     private bool timerActivated;
     void Start()
     {
-        timerActivated = false;
-        timeSpent = 0.0f;
+        Init();
     }
 
     // Update is called once per frame
@@ -31,6 +30,12 @@ public class TimeCounter : MonoBehaviour
         }
     }
 
+    public void Init()
+    {
+        timerActivated = false;
+        timeSpent = 0.0f;
+    }
+
     public void DeactivateTimer()
     {
         timerActivated = false;
@@ -40,7 +45,7 @@ public class TimeCounter : MonoBehaviour
     {
         timerActivated = true;
     }
-    
+
     public float GetTimeSpent()
     {
         return timeSpent;
