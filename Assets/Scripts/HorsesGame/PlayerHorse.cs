@@ -556,7 +556,7 @@ public class PlayerHorse : MonoBehaviour
 
     IEnumerator Movement()
     {
-        mov = Random.Range(0.25f, 0.33f);
+        mov = Random.Range(0.30f, 0.34f);
         auxPos = (Vector3.forward * mov);
         newPos = new Vector3(transform.position.x + auxPos.x, transform.position.y + auxPos.y, transform.position.z + auxPos.z);
         while (transform.position != newPos)
