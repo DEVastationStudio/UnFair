@@ -74,7 +74,7 @@ public class SpawnerDianas : MonoBehaviour
     public void DestroyTarget(int targetPos, Diana d = null) 
     {
         numDianas--;
-        Debug.Log("NumDianas:" + numDianas);
+        //Debug.Log("NumDianas:" + numDianas);
         targetsInUse[targetPos] = false;
         if (d != null)
         {

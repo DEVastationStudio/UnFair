@@ -83,14 +83,14 @@ public class Diana : MonoBehaviour
                 {
                     Debug.Log("Letra " + _numLetraDiana);
                     _gameManager._letrasManager.ShowLetter(_gameManager._spawnerDianas._currentLetter);
-                    Mathf.Clamp(_gameManager._spawnerDianas._currentLetter++, 0, 6);
+                    _gameManager._spawnerDianas._currentLetter = Mathf.Clamp(_gameManager._spawnerDianas._currentLetter + 1, 0, 6);
                     if (_gameManager._spawnerDianas._currentLetter == 6)
                         _gameManager._letrasManager.GoldRush();
                 }
                 else
                 {
-                    Mathf.Clamp(_gameManager._spawnerDianas._currentLetter--, 0, 6);
-                    _gameManager._letrasManager.HideLetter(_gameManager._spawnerDianas._currentLetter);
+                    _gameManager._spawnerDianas._currentLetter = Mathf.Clamp(_gameManager._spawnerDianas._currentLetter - 1, 0, 6);
+                    _gameManager._letrasManager.HideLetter(_gameManager._spawnerDianas._currentLetter );
                 }
                 break;
         }

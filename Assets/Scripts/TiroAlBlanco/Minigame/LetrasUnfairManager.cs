@@ -20,6 +20,7 @@ public class LetrasUnfairManager : MonoBehaviour
 
     public void HideLetter(int i)
     {
+        //if (i < 0) return;
         Letras[i].SetActive(false);
         Guiones[i].SetActive(true);
     }
@@ -60,6 +61,7 @@ public class LetrasUnfairManager : MonoBehaviour
             Color c = s.color;
             c = _whiteColor;
             s.color = c;
+            if (count < 0) count = 0;
             HideLetter(count);
             count++;
         }
