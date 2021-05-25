@@ -130,7 +130,10 @@ public class RodController : MonoBehaviour
     }
     public void ExitCurrentGame() 
     {
-        Time.timeScale = 1;
-        FadeController.Fade("Ducks");
+        //Time.timeScale = 1;
+        //FadeController.Fade("Ducks");
+
+        Pause();
+        gameManager.ResetScene();
     }
 }

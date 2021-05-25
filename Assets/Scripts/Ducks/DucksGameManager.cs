@@ -185,6 +185,8 @@ public class DucksGameManager : MonoBehaviour
             yield return new WaitForSeconds(1);
             _actualTime--;
 
+            if (!gameStarted) yield break;
+
             if (!_spawnedBigDuck)
             {
                 if (_actualTime <= _bigDuckSpawnTime)
@@ -251,6 +253,8 @@ public class DucksGameManager : MonoBehaviour
         gameStarted = false;
         aiScript.enabled = false;
         noBadDucks = true;
+
+        timerText.text = "Time: 0";
 
         //Remove generated ducks
         foreach (GameObject g in _spawnedDucks)

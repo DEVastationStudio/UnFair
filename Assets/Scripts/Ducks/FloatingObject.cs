@@ -41,6 +41,7 @@ public class FloatingObject : MonoBehaviour
             transform.parent = _magnet.transform;
             other.tag = "Untagged";
             gameObject.layer = 0;
+            transform.localScale *= 1.2f;
             StartCoroutine(MoveToMagnet());
             //transform.localPosition = new Vector3(0,-1.8f,0);
         }
@@ -51,6 +52,7 @@ public class FloatingObject : MonoBehaviour
             transform.parent = null;
             _magnet.tag = "Magnet";
             _magnet = null;
+            transform.localScale /= 1.2f;
             OnBasketEnter(true);
         }
         else if (other.tag == "RivalBasket" && _magnetized)
@@ -60,6 +62,7 @@ public class FloatingObject : MonoBehaviour
             transform.parent = null;
             _magnet.tag = "Magnet";
             _magnet = null;
+            transform.localScale /= 1.2f;
             OnBasketEnter(false);
         }
     }

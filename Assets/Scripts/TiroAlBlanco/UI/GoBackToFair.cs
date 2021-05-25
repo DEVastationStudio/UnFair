@@ -17,4 +17,8 @@ public class GoBackToFair : MonoBehaviour
             FadeController.Fade("Feria");
         }
     }
+    public void ResetTimeScale()
+    {
+        Time.timeScale = 1;
+    }
 }
