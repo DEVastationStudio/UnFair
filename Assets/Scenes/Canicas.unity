@@ -424,8 +424,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.020000005, y: 0.024383647, z: 0.020501213}
-  m_Center: {x: -5.2353133e-10, y: -0.002191872, z: 0.0002505966}
+  m_Size: {x: 0.020000005, y: 0.009196423, z: 0.020501213}
+  m_Center: {x: -6.082763e-10, y: -0.009785487, z: 0.00025059684}
 --- !u!23 &60267497
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3013,8 +3013,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.020000014, y: 0.024383718, z: 0.020501219}
-  m_Center: {x: 5.836435e-10, y: -0.0021919236, z: 0.00025059667}
+  m_Size: {x: 0.020000014, y: 0.013408234, z: 0.02050122}
+  m_Center: {x: 6.0566696e-10, y: -0.00767967, z: 0.000250597}
 --- !u!23 &699286820
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6162,8 +6162,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.019890623, y: 0.024500893, z: 0.027598513}
-  m_Center: {x: 0.000032076532, y: 0.00013934556, z: 0.0037992434}
+  m_Size: {x: 0.019890625, y: 0.020762548, z: 0.027598513}
+  m_Center: {x: 0.00003207683, y: 0.035266515, z: 0.0037992613}
 --- !u!23 &1519391772
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7650,6 +7650,15 @@ LineRenderer:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0.02
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
