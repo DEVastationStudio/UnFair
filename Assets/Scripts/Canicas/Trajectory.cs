@@ -29,7 +29,7 @@ public class Trajectory : MonoBehaviour
         predictionPhyScene = predictionScene.GetPhysicsScene();
         CreatePredicObstacles();*/
 
-        
+
 
         FadeController.FinishLoad();
     }
@@ -125,9 +125,21 @@ public class Trajectory : MonoBehaviour
 
     public void LineCreation(Vector3 origin, Vector3 dst)
     {
+        Vector3 vector = dst - origin;
+        Vector3 pointFinal = RectPoint(origin, vector, 0.80f); //obtener un punto anterior al de la colisión del rayo con el obstáculo
         pathLine.positionCount = 0;
         pathLine.positionCount = 2;
         pathLine.SetPosition(0, origin);
-        pathLine.SetPosition(1, dst);
+        pathLine.SetPosition(1, pointFinal);
     }
+
+    private Vector3 RectPoint(Vector3 origin, Vector3 vector, float lambda)
+    {
+        float x, y, z;
+        x = origin.x + vector.x * lambda;
+        y = origin.y + vector.y * lambda;
+        z = origin.z + vector.z * lambda;
+        return new Vector3(x, y, z);
+    }
+
 }
