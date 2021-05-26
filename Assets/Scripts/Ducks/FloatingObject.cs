@@ -31,21 +31,26 @@ public class FloatingObject : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if (other.tag == "Magnet" && _inWater && !_magnetized)
+    private void OnTriggerEnter(Collider other)
+    {
+        CatchDuck(other.gameObject);
+    }
+
+    public void CatchDuck(GameObject g) {
+        if (g.tag == "Magnet" && _inWater && !_magnetized)
         {
             _inWater = false;
             _magnetized = true;
-            _magnet = other.gameObject;
+            _magnet = g.gameObject;
             rigidBody.constraints = RigidbodyConstraints.FreezeAll;
             transform.parent = _magnet.transform;
-            other.tag = "Untagged";
+            g.tag = "Untagged";
             gameObject.layer = 0;
             transform.localScale *= 1.2f;
             StartCoroutine(MoveToMagnet());
             //transform.localPosition = new Vector3(0,-1.8f,0);
         }
-        else if (other.tag == "Basket" && _magnetized)
+        else if (g.tag == "Basket" && _magnetized)
         {
             _magnetized = false;
             rigidBody.constraints = RigidbodyConstraints.None;
@@ -55,7 +60,7 @@ public class FloatingObject : MonoBehaviour
             transform.localScale /= 1.2f;
             OnBasketEnter(true);
         }
-        else if (other.tag == "RivalBasket" && _magnetized)
+        else if (g.tag == "RivalBasket" && _magnetized)
         {
             _magnetized = false;
             rigidBody.constraints = RigidbodyConstraints.None;
