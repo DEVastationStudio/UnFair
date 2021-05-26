@@ -82,7 +82,6 @@ public class FloatingObject : MonoBehaviour
         }
         transform.localPosition = new Vector3(0,-1.8f,0);
         col1.enabled = true;
-        col2.enabled = true;
     }
 
     protected virtual void OnBasketEnter(bool player) {}
