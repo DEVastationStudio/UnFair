@@ -105,6 +105,7 @@ public class HUD_Marbles : MonoBehaviour
 
     public void StartCountdown()
     {
+        AudioManager.instance.FadeOut(7,0.1f);
         StartCoroutine(Countdown());
     }
     public void PauseGame(bool _isPaused)
@@ -229,6 +230,7 @@ public class HUD_Marbles : MonoBehaviour
     public void ResetGame()
     {
         if (isReseting) { return; }
+        AudioManager.instance.changeTheme(6);
         isReseting = true;
         Marble marbleInGame = FindObjectOfType<Marble>();
         if (marbleInGame != null) Destroy(marbleInGame.gameObject);
@@ -288,6 +290,7 @@ public class HUD_Marbles : MonoBehaviour
         }
         countdownText.text = "";
         countdownText.gameObject.SetActive(false);
+        AudioManager.instance.FadeIn(7,0.1f);
         StartGame();
     }
 }

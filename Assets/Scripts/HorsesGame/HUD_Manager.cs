@@ -92,6 +92,7 @@ public class HUD_Manager : MonoBehaviour
 
     public void StartCountdown()
     {
+        AudioManager.instance.FadeOut(17,0.1f);
         StartCoroutine(Countdown());
     }
 
@@ -200,6 +201,7 @@ public class HUD_Manager : MonoBehaviour
     {
         if (isReseting) { return; }
         isReseting = true;
+        AudioManager.instance.changeTheme(16);
         Init();
 
         //playerHorse.Init();
@@ -312,6 +314,7 @@ public class HUD_Manager : MonoBehaviour
         }
         countdownText.text = "";
         countdownText.gameObject.SetActive(false);
+        AudioManager.instance.FadeIn(17,0.1f);
         StartGame();
     }
 }

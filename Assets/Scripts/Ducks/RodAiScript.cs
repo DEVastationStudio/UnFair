@@ -29,6 +29,9 @@ public class RodAiScript : MonoBehaviour
     {
         positionOffset = transform.position - rodTip.transform.position;
         positionOffset.y = 0;
+        //positionOffset = transform.position - magnet.transform.position;
+        //positionOffset.y = 0;
+
         _height = 0;
         _initialHeight = transform.position.y;
     }
@@ -40,20 +43,24 @@ public class RodAiScript : MonoBehaviour
 
     void Update()
     {
+
+        //positionOffset = transform.position - futureMagnetPos;
+        //positionOffset.y = 0;
+
         //Select Target Position
         if (magnet.tag == "Magnet")
         {
 
-            if (_targetDuck != null)
+            /**/if (_targetDuck != null)
             {
-                if (_targetDuck.gameObject.layer != ducksLayer)
+                if (!(ducksLayer == (ducksLayer | (1 << _targetDuck.gameObject.layer))))
                 {
                     _targetDuck = null;
                 }
             }
-
+/*
             if (_targetDuck == null)
-            {
+            {*/
                 //Get all eligible ducks in a small area
                 nearDuckColliders = Physics.OverlapSphere(magnet.transform.position, _ddm.GetValue(0), ducksLayer);
 
@@ -83,20 +90,20 @@ public class RodAiScript : MonoBehaviour
 
                     //Calculate weight of all ducks (based on duck type)
                     for (int i = 0; i < nearDuckColliders.Length; i++)
-                    {Debug.DrawLine(magnet.transform.position, nearDucks[i].transform.position, Color.green);
+                    {//Debug.DrawLine(magnet.transform.position, nearDucks[i].transform.position, Color.green);
                         switch (nearDucks[i].type)
                         {
                             case Duck.Type.NORMAL:
                                 weights[i] = 3;
                                 break;
                             case Duck.Type.AI:
-                                weights[i] = 4;
+                                weights[i] = 2;
                                 break;
                             case Duck.Type.GOLD:
                                 weights[i] = 1;
                                 break;
                             case Duck.Type.PLAYER:
-                                weights[i] = 2;
+                                weights[i] = 4;
                                 break;
                             case Duck.Type.BLACK:
                                 weights[i] = 5;
@@ -114,7 +121,8 @@ public class RodAiScript : MonoBehaviour
                     float randomRange = 0;
                     for (int i = 0; i < nearDuckColliders.Length; i++)
                     {
-                        randomRange = Random.Range(0, _ddm.GetValue(1));
+                        randomRange = Mathf.RoundToInt(Random.Range(0, _ddm.GetValue(1)));
+                        //print("Random Range: " + randomRange);
                         if (weights[i] < (minWeight + randomRange))
                         {
                             chosenDuck = i;
@@ -132,12 +140,12 @@ public class RodAiScript : MonoBehaviour
                         }
                     }
 
-                    //if (nearDucks[chosenDuck].type != Duck.Type.BLACK) //Not yet
-                    _targetDuck = nearDucks[chosenDuck];
+                    if (_targetDuck == null || _targetDuck.type == Duck.Type.BIG)
+                        _targetDuck = nearDucks[chosenDuck];
                 }
-            }
-            if (_targetDuck != null) _targetPos = _targetDuck.transform.position;
-            Debug.DrawLine(magnet.transform.position, _targetPos, Color.magenta);
+            //}
+            if (_targetDuck != null) _targetPos = _targetDuck.transform.position + _targetDuck.rigidBody.velocity * 2 * Time.deltaTime;
+            //Debug.DrawLine(magnet.transform.position, _targetPos, Color.magenta);
         }
         else
         {
@@ -148,8 +156,8 @@ public class RodAiScript : MonoBehaviour
 
         //Up/down movement
         Vector3 targetLevel = new Vector3(_targetPos.x, magnet.transform.position.y, _targetPos.z);
-        bool goDown = Vector3.Distance(magnet.transform.position, targetLevel) < 1;
-        //print(goDown);
+        bool goDown = Vector3.Distance(magnet.transform.position, targetLevel) < 1.5f;
+        //Debug.DrawLine(magnet.transform.position, targetLevel, goDown?Color.white:Color.black);
 
         if (_height < 1 && magnet.tag == "Magnet" && goDown)
         {
@@ -160,13 +168,25 @@ public class RodAiScript : MonoBehaviour
             _height = Mathf.Max(_height - 1.5f * Time.deltaTime, 0);
         }
 
-        magnetHitbox.enabled = (_height >= 1);
+        //magnetHitbox.enabled = (_height >= 1);
+
+        if (_height >= 1)
+        {
+            _targetDuck.CatchDuck(magnet.gameObject);
+        }
 
         //Move rod
         if (!gameManager.gameOver)
         {
             Vector3 newPos = new Vector3(_targetPos.x, _initialHeight - _height, _targetPos.z) + positionOffset;
             transform.position = Vector3.MoveTowards(transform.position, newPos, 10 * Time.deltaTime);
+            /*Debug.DrawLine(transform.position, newPos, Color.yellow);
+            Debug.DrawRay(transform.position, Vector3.up, Color.yellow);
+            Debug.DrawRay(newPos, Vector3.up, Color.yellow);
+            
+            Debug.DrawLine(transform.position-positionOffset, newPos-positionOffset, Color.red);
+            Debug.DrawRay(transform.position-positionOffset, Vector3.up, Color.red);
+            Debug.DrawRay(newPos-positionOffset, Vector3.up, Color.red);*/
         }
     }
 }
