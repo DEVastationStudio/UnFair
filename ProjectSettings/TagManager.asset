@@ -15,6 +15,7 @@ TagManager:
   - Obstacle
   - Reloj
   - DianaConLetra
+  - NewPosPlayer
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - 
   - Ducks
   - PostProcessing
-  - 
+  - NewPos
   - 
   - 
   - 

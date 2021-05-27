@@ -33,6 +33,7 @@ public class HUD_Manager : MonoBehaviour
 
     private TimeCounter timeCounter;
     private MetaController metaController;
+    private HorsesSpawner horsesSpawner;
     EnemyHorse[] enemyHorses;
     PlayerHorse playerHorse;
     private float raceTime;
@@ -46,6 +47,7 @@ public class HUD_Manager : MonoBehaviour
         enemyHorses = FindObjectsOfType<EnemyHorse>();
         timeCounter = this.GetComponent<TimeCounter>();
         metaController = FindObjectOfType<MetaController>();
+        horsesSpawner = FindObjectOfType<HorsesSpawner>();
         Init();
     }
 
@@ -199,11 +201,13 @@ public class HUD_Manager : MonoBehaviour
         if (isReseting) { return; }
         isReseting = true;
         Init();
-        playerHorse.Init();
-        foreach (var enemy in enemyHorses)
+
+        //playerHorse.Init();
+        /*foreach (var enemy in enemyHorses)
         {
             enemy.Init();
-        }
+        }*/
+        horsesSpawner.Init();
         timeCounter.Init();
         metaController.Init();
 
@@ -288,6 +292,11 @@ public class HUD_Manager : MonoBehaviour
         else if (position == 1 && raceTime <= 30.0f) { stars = 2; }
         else if (position == 1) { stars = 1; }
         else { stars = 0; }*/
+    }
+
+    public void DisableComboPanel()
+    {
+        playerHorse.NextMoveEnd();
     }
 
     IEnumerator Countdown()

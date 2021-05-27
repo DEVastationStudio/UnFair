@@ -21,6 +21,8 @@ public class PlayerHorse : MonoBehaviour
     [SerializeField] private float timeForKeys = 1.5f;
     [SerializeField] private Sprite[] comboImages;//total de posibles botones//UP,LEFT,RIGHT,DOWN,SPACE,X,A
     [SerializeField] private Image[] hudImages;//botones que pueden salir en el HUD//0,1,2
+    [SerializeField] private GameObject comboBackground;
+    [SerializeField] private GameObject newPosPlayer;
     private float currentTime;
     private Vector3 newPos;
     private Vector3 auxPos;
@@ -52,7 +54,8 @@ public class PlayerHorse : MonoBehaviour
     private bool joystickReseted;
     private string lastJoystickPos;
     private Animator animator;
-    [SerializeField] private Transform initialPos;
+    private Transform initialPos;
+    private bool finishingRace;
 
     #region UnityMethods
 
@@ -62,8 +65,8 @@ public class PlayerHorse : MonoBehaviour
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
-        Init();
-        FadeController.FinishLoad();
+        //Init();
+        //FadeController.FinishLoad();
     }
 
     void Update()
@@ -309,8 +312,15 @@ public class PlayerHorse : MonoBehaviour
 
     #endregion KeysActions
 
-    public void Init()
+    public void Init(Transform pos)
     {
+        finishingRace = false;
+        for (int i = 0; i < hudImages.Length; i++)
+        {
+            hudImages[i].gameObject.SetActive(true);
+        }
+        comboBackground.SetActive(true);
+        initialPos = pos;
         transform.position = initialPos.position;
         transform.rotation = initialPos.rotation;
         availableKeys = new string[] { "Left", "Up", "Down", "Right", "Space" }; //this array maybe shoyuld be changed out of this script in order to have the possibility of rebinding keys
@@ -525,6 +535,10 @@ public class PlayerHorse : MonoBehaviour
 
     private void Move()
     {
+        if (finishingRace)
+        {
+            DisableComboPanel();
+        }
         //Debug.Log("combinacion correcta");
         animator.SetTrigger("running");/*
         mov = Random.Range(0.25f, 0.33f);
@@ -542,6 +556,11 @@ public class PlayerHorse : MonoBehaviour
             combCreated = false;
             GenerateCombination();
         }*/
+        mov = Random.Range(0.30f, 0.34f);
+        auxPos = (Vector3.forward * mov);
+        newPos = new Vector3(transform.position.x + auxPos.x, transform.position.y + auxPos.y, transform.position.z + auxPos.z);
+        //newPosPlayer.transform.position = newPos;        
+        newPosPlayer.transform.position = new Vector3(newPosPlayer.transform.position.x, newPosPlayer.transform.position.y, newPosPlayer.transform.position.z + 0.30f);
         StartCoroutine(Movement());
 
         float aux = Random.Range(40.0f, 99.0f);
@@ -556,9 +575,6 @@ public class PlayerHorse : MonoBehaviour
 
     IEnumerator Movement()
     {
-        mov = Random.Range(0.30f, 0.34f);
-        auxPos = (Vector3.forward * mov);
-        newPos = new Vector3(transform.position.x + auxPos.x, transform.position.y + auxPos.y, transform.position.z + auxPos.z);
         while (transform.position != newPos)
         {
             float step = 0.5f * Time.fixedDeltaTime;
@@ -629,6 +645,22 @@ public class PlayerHorse : MonoBehaviour
             combosFinishedDDM = 0;
 
         }*/
+    }
+
+    private void DisableComboPanel()
+    {
+        gameStarted = false;
+        for (int i = 0; i < hudImages.Length; i++)
+        {
+            hudImages[i].gameObject.SetActive(false);
+        }
+        comboBackground.SetActive(false);
+
+    }
+
+    public void NextMoveEnd()
+    {
+        finishingRace = true;
     }
 
     public bool GetComboFailed()

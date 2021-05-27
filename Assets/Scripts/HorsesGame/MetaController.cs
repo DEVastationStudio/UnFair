@@ -40,5 +40,9 @@ public class MetaController : MonoBehaviour
             hUD_Manager.RaceFinished(playerPos);
             Debug.Log("Rival llegó");
         }
+        else if (other.CompareTag("NewPosPlayer"))
+        {
+            hUD_Manager.DisableComboPanel();
+        }
     }
 }

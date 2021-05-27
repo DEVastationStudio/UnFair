@@ -11,12 +11,12 @@ public class EnemyHorse : MonoBehaviour
     private bool moving;
     [SerializeField] private DynamicDifficultyManager DDM;
     private Animator animator;
-    [SerializeField] private Transform initialPos;
+    private Transform initialPos;
 
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
-        Init();
+        //Init();
     }
 
 
@@ -40,8 +40,9 @@ public class EnemyHorse : MonoBehaviour
         StartCoroutine(Movement());
     }
 
-    public void Init()
+    public void Init(Transform pos)
     {
+        initialPos = pos;
         gameStarted = false;
         moving = false;
         transform.position = initialPos.position;
