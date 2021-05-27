@@ -22,7 +22,7 @@ public class FadeController : MonoBehaviour
     public PlayerController player;
     public FollowPlayerScript follower;
     public bool storedPlayerPosition;
-    private static int _songIndex;
+    private static int _songIndex = 2;
 
     public bool fading;
 
@@ -117,7 +117,18 @@ public class FadeController : MonoBehaviour
         switch (scene)
         {
             case "Feria":
-                return 0;
+                if (instance.storedPlayerPosition)
+                    return 3;
+                else
+                    return 2;
+            case "Canicas":
+                return 6;
+            case "Ducks":
+                return 12;
+            case "HorsesRace":
+                return 16;
+            case "TiroAlBlanco":
+                return 9;
             default:
                 return 1;
         }

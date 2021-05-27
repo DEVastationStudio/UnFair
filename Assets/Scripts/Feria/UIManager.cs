@@ -54,6 +54,7 @@ public class UIManager : MonoBehaviour
         _titleScreen.SetActive(false);
         _virtualCameras[0].SetActive(true);
         StartCoroutine(WaitXSeconds(4));
+        if (AudioManager.instance != null) AudioManager.instance.changeTheme(3);
     }
     public void OpenPauseMenu() {
 

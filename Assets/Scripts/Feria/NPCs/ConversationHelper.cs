@@ -146,6 +146,11 @@ public class ConversationHelper : MonoBehaviour
         }
     }
 
+    public void ChangeSong(int index)
+    {
+        if (AudioManager.instance != null) AudioManager.instance.changeTheme(index);
+    }
+
 }
 
 [System.Serializable]

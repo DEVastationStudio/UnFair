@@ -40,7 +40,7 @@ public class AudioManager : MonoBehaviour
         if (index != curSong)
         {
             curSong = index;
-            StartCoroutine(AudioFade(audioClips[index], 0.75f, 0.75f, audioSrc));
+            StartCoroutine(AudioFade(audioClips[index], 0.2f, 0.2f, audioSrc));
         }
     }
     private static IEnumerator AudioFade(AudioClip newClip, float speedOut, float speedIn, AudioSource auSrc)

@@ -145,6 +145,7 @@ public partial class UIGeneral : MonoBehaviour
         _inGameContainer.SetActive(true);
         _outGameContainer.SetActive(true);
         InitUI();
+        AudioManager.instance.FadeIn(10,0.1f);
         _playerInput.SwitchCurrentActionMap("ActionMap");
     }
     #endregion Metodos

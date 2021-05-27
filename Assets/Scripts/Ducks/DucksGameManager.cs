@@ -150,6 +150,7 @@ public class DucksGameManager : MonoBehaviour
 
     public void StartGame()
     {
+        AudioManager.instance.FadeOut(13,0.1f);
         StartCoroutine(Countdown());
     }
     private IEnumerator Countdown() 
@@ -174,6 +175,7 @@ public class DucksGameManager : MonoBehaviour
         _bigDuckSpawnTime = Random.Range(12, 15);
 
         _playerInput.SwitchCurrentActionMap("ActionMap");
+        AudioManager.instance.FadeIn(13,0.1f);
         yield return TimerUpdate();
     }
 
@@ -235,6 +237,9 @@ public class DucksGameManager : MonoBehaviour
 
     public void ResetScene()
     {
+        
+        AudioManager.instance.changeTheme(12);
+
         //FadeController.Fade("Ducks");
         //Hide end-of-game HUD
         menu.SetActive(false);

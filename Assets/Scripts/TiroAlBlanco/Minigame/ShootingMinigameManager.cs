@@ -24,12 +24,14 @@ public class ShootingMinigameManager : MonoBehaviour
 
     public void StartGame() 
     {
+        AudioManager.instance.FadeOut(10,0.1f);
         _uiGeneral.FaseGame();
         _spawnerDianas.SpawnInit();
     }
 
     public void RestartGame() 
     {
+        AudioManager.instance.changeTheme(9);
         _pistolaScript._probDianaDorada = 110;
         _uiGeneral.FasePreGame();
     }
