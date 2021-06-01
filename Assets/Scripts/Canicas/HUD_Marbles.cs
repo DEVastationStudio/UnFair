@@ -105,7 +105,7 @@ public class HUD_Marbles : MonoBehaviour
 
     public void StartCountdown()
     {
-        //AudioManager.instance.FadeOut(7,0.1f);
+        AudioManager.instance.FadeOut(7,0.1f);
         StartCoroutine(Countdown());
     }
     public void PauseGame(bool _isPaused)
