@@ -28,6 +28,9 @@ public class DucksGameManager : MonoBehaviour
     [SerializeField] private ConversationHelper _npcConversationHelper;
     [SerializeField] private PlayerInput _playerInput;
 
+    [Header("VFX Manager")]
+    public VFXManager _vfxManager;
+
     public int playerScore
     {
         get { return _playerScore; }
