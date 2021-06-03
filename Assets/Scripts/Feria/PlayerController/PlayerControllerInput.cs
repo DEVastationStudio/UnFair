@@ -37,10 +37,9 @@ public partial class PlayerController : MonoBehaviour
         _uiManager.TogglePauseMenu();
     }
 
-    private void OnMovementUI() 
+    /*private void OnMovementUI() 
     {
         Debug.Log("Funcionaaaa");
-    }
-
+    }*/
     #endregion Metodos
 }

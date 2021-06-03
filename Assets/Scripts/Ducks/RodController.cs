@@ -79,7 +79,10 @@ public class RodController : MonoBehaviour
         {
             Vector2 pos = value.Get<Vector2>();
 
+            if (pos.x == 0 && pos.y == 0) return;
+
             _mousePos = Camera.main.ScreenToWorldPoint(new Vector3(pos.x, pos.y, 30));
+
             _isGamepad = false;
         }
         else

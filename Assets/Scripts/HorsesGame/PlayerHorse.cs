@@ -55,6 +55,7 @@ public class PlayerHorse : MonoBehaviour
     private string lastJoystickPos;
     private Animator animator;
     private Transform initialPos;
+    private Vector3 _initialNewPosPlayer;
     private bool finishingRace;
 
     #region UnityMethods
@@ -65,6 +66,8 @@ public class PlayerHorse : MonoBehaviour
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
+        _initialNewPosPlayer = newPosPlayer.transform.position;
+
         //Init();
         //FadeController.FinishLoad();
     }
@@ -314,6 +317,7 @@ public class PlayerHorse : MonoBehaviour
 
     public void Init(Transform pos)
     {
+        newPosPlayer.transform.position = _initialNewPosPlayer;
         finishingRace = false;
         for (int i = 0; i < hudImages.Length; i++)
         {
@@ -560,7 +564,7 @@ public class PlayerHorse : MonoBehaviour
         auxPos = (Vector3.forward * mov);
         newPos = new Vector3(transform.position.x + auxPos.x, transform.position.y + auxPos.y, transform.position.z + auxPos.z);
         //newPosPlayer.transform.position = newPos;        
-        newPosPlayer.transform.position = new Vector3(newPosPlayer.transform.position.x, newPosPlayer.transform.position.y, newPosPlayer.transform.position.z + 0.30f);
+        newPosPlayer.transform.position = new Vector3(newPosPlayer.transform.position.x, newPosPlayer.transform.position.y, newPosPlayer.transform.position.z + mov);
         StartCoroutine(Movement());
 
         float aux = Random.Range(40.0f, 99.0f);
