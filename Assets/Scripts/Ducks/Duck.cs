@@ -58,6 +58,7 @@ public class Duck : FloatingObject
 
     protected override void OnBasketEnter(bool player)
     {
+        if (_gameManager.gameOver) return;
         gameObject.layer = 0;
         switch (type)
         {
