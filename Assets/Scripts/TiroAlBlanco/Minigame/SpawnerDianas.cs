@@ -16,6 +16,9 @@ public class SpawnerDianas : MonoBehaviour
     [HideInInspector] public int _currentLetter;
     [HideInInspector] public bool _isOnGoldRush;
 
+    private const int MAX_LETTER_COUNT = 2;
+    private int _countToCheatLetter;
+
     private bool[] targetsInUse;
     #endregion Variables
 
@@ -28,6 +31,7 @@ public class SpawnerDianas : MonoBehaviour
         SpawnNewTarget(-1);
         SpawnNewTarget(-1);
         _currentLetter = 0;
+        _countToCheatLetter = MAX_LETTER_COUNT;
     }
 
     public void SpawnNewTarget(int type) 
@@ -64,7 +68,26 @@ public class SpawnerDianas : MonoBehaviour
             if (_currentLetter < 6 && !_activeLetter) 
             {
                 _activeLetter = true;
-                Spawn(_currentLetter + 3, i, true);
+                int aux = Random.Range(_currentLetter, Mathf.Clamp(_currentLetter+2, _currentLetter, 5));
+                Debug.Log("RangeMin: "+ _currentLetter + " -- RangeMax: "+ Mathf.Clamp(_currentLetter + 2, _currentLetter, 5) + " -- Aux: " + aux);
+                if (_countToCheatLetter > 0)
+                {
+                    if (_currentLetter == aux)
+                    {
+                        _countToCheatLetter = MAX_LETTER_COUNT;
+                        Spawn(_currentLetter + 3, i, true, _currentLetter);
+                    }
+                    else
+                    {
+                        _countToCheatLetter--;
+                        Spawn(aux + 3, i, true, aux);
+                    }
+                }
+                else 
+                {
+                    _countToCheatLetter = MAX_LETTER_COUNT;
+                    Spawn(_currentLetter + 3, i, true, _currentLetter);
+                }
             }else
                 Spawn(0, i, true);
         else
@@ -90,11 +113,11 @@ public class SpawnerDianas : MonoBehaviour
         targetsInUse[targetPos] = false;
     }
 
-    private void Spawn(int type, int posInArray, bool first = false)
+    private void Spawn(int type, int posInArray, bool first = false, int letter = -1)
     {
         targetsInUse[posInArray] = true;
         _possibleTargetContainers[posInArray].GetComponent<Animator>().SetBool("isActive", true);
-        _possibleTargetContainers[posInArray].WakeUpTarget(type, posInArray);
+        _possibleTargetContainers[posInArray].WakeUpTarget(type, posInArray, letter);
     }
     #endregion Metodos
 }

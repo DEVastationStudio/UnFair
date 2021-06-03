@@ -10,6 +10,7 @@ public class Diana : MonoBehaviour
     public bool _hit;
     public bool _first;
     public int _numLetraDiana;
+    public int _activeLetter;
     public DianaContainer _dianaContainer;
 
     private ShootingMinigameManager _gameManager;
@@ -81,15 +82,22 @@ public class Diana : MonoBehaviour
                 _gameManager._pistolaScript.CallSpawnRetard(0);
                 if (isHit)
                 {
-                    _gameManager._letrasManager.ShowLetter(_gameManager._spawnerDianas._currentLetter);
-                    _gameManager._spawnerDianas._currentLetter = Mathf.Clamp(_gameManager._spawnerDianas._currentLetter + 1, 0, 6);
-                    if (_gameManager._spawnerDianas._currentLetter == 6)
-                        _gameManager._letrasManager.GoldRush();
-                }
-                else
-                {
-                    _gameManager._spawnerDianas._currentLetter = Mathf.Clamp(_gameManager._spawnerDianas._currentLetter - 1, 0, 6);
-                    _gameManager._letrasManager.HideLetter(_gameManager._spawnerDianas._currentLetter );
+                    if (_activeLetter == _gameManager._spawnerDianas._currentLetter)
+                    {
+                        _activeLetter = -1;
+                        _gameManager._letrasManager.ShowLetter(_gameManager._spawnerDianas._currentLetter);
+                        _gameManager._spawnerDianas._currentLetter = Mathf.Clamp(_gameManager._spawnerDianas._currentLetter + 1, 0, 6);
+                        if (_gameManager._spawnerDianas._currentLetter == 6)
+                            _gameManager._letrasManager.GoldRush();
+                    }
+                    else
+                    {
+                        for (int i = _gameManager._spawnerDianas._currentLetter; i >= 0; i--) 
+                        {
+                            _gameManager._spawnerDianas._currentLetter = Mathf.Clamp(_gameManager._spawnerDianas._currentLetter - 1, 0, 6);
+                            _gameManager._letrasManager.HideLetter(_gameManager._spawnerDianas._currentLetter );
+                        }
+                    }
                 }
                 break;
         }
