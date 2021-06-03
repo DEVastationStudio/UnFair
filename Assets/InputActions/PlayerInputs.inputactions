@@ -933,6 +933,12 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "NoMap",
+            "id": "73265a04-b4f9-4a97-a827-e4d9a9c41953",
+            "actions": [],
+            "bindings": []
         }
     ],
     "controlSchemes": [

@@ -60,7 +60,7 @@ public partial class PlayerController : MonoBehaviour
             _gameCamera.SetActive(true);
             _titleScreen.SetActive(false);
             //if (AudioManager.instance != null) AudioManager.instance.changeTheme(3);
-            _uiManager._playerInput.SwitchCurrentActionMap("ActionMap");
+            //_uiManager._playerInput.SwitchCurrentActionMap("ActionMap");
         }
         yield return null;
         FadeController.FinishLoad();

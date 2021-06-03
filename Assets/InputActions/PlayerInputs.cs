@@ -946,6 +946,12 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""NoMap"",
+            ""id"": ""73265a04-b4f9-4a97-a827-e4d9a9c41953"",
+            ""actions"": [],
+            ""bindings"": []
         }
     ],
     ""controlSchemes"": [
@@ -999,6 +1005,8 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         m_UIMap_AcceptUI = m_UIMap.FindAction("AcceptUI", throwIfNotFound: true);
         m_UIMap_PointUI = m_UIMap.FindAction("PointUI", throwIfNotFound: true);
         m_UIMap_EscAction = m_UIMap.FindAction("Esc Action", throwIfNotFound: true);
+        // NoMap
+        m_NoMap = asset.FindActionMap("NoMap", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1230,6 +1238,31 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         }
     }
     public UIMapActions @UIMap => new UIMapActions(this);
+
+    // NoMap
+    private readonly InputActionMap m_NoMap;
+    private INoMapActions m_NoMapActionsCallbackInterface;
+    public struct NoMapActions
+    {
+        private @PlayerInputs m_Wrapper;
+        public NoMapActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        public InputActionMap Get() { return m_Wrapper.m_NoMap; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(NoMapActions set) { return set.Get(); }
+        public void SetCallbacks(INoMapActions instance)
+        {
+            if (m_Wrapper.m_NoMapActionsCallbackInterface != null)
+            {
+            }
+            m_Wrapper.m_NoMapActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+            }
+        }
+    }
+    public NoMapActions @NoMap => new NoMapActions(this);
     private int m_KeyboardMouseSchemeSchemeIndex = -1;
     public InputControlScheme KeyboardMouseSchemeScheme
     {
@@ -1270,5 +1303,8 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         void OnAcceptUI(InputAction.CallbackContext context);
         void OnPointUI(InputAction.CallbackContext context);
         void OnEscAction(InputAction.CallbackContext context);
+    }
+    public interface INoMapActions
+    {
     }
 }
