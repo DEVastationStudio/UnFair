@@ -87,6 +87,7 @@ public class HUD_Marbles : MonoBehaviour
         gameStarted = false;
         failedBall = false;
         score = 0;
+        scoreText.text = "Score: " + score.ToString();
         stars = 0;
         timeSpent = 0.0f;
         preStarsObtainedText.text = "Stars obtained: " + GameProgress.GetStars(4);
@@ -105,7 +106,7 @@ public class HUD_Marbles : MonoBehaviour
 
     public void StartCountdown()
     {
-        AudioManager.instance.FadeOut(7,0.1f);
+        AudioManager.instance.FadeOut(7, 0.1f);
         StartCoroutine(Countdown());
     }
     public void PauseGame(bool _isPaused)
@@ -290,7 +291,7 @@ public class HUD_Marbles : MonoBehaviour
         }
         countdownText.text = "";
         countdownText.gameObject.SetActive(false);
-        AudioManager.instance.FadeIn(7,0.1f);
+        AudioManager.instance.FadeIn(7, 0.1f);
         StartGame();
     }
 }

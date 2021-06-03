@@ -11,13 +11,14 @@ public class Thrower : MonoBehaviour
     [SerializeField] private GameObject firePoint;
     [SerializeField] private float power;
     [SerializeField] private float rotationSpeed;
-    [SerializeField] private int ballsLeft;
+    [SerializeField] private int ballsLeftEditor;
+    private int ballsLeft;
     [SerializeField] private GameObject sphere;
     [SerializeField] private Slider forceBar;
     [SerializeField] private Image backgroundSlider;
     [SerializeField] private Image fillSlider;
     [SerializeField] private float staticRotX = -20.0f;
-    [SerializeField] private Transform initialPos;  
+    [SerializeField] private Transform initialPos;
     private float throwerForce;
     private float increaserForceSpeed = 0.5f;
     private bool pressingShoot;
@@ -128,6 +129,7 @@ public class Thrower : MonoBehaviour
         transform.position = initialPos.position;
         transform.rotation = initialPos.rotation;
         input.SwitchCurrentActionMap("UIMap");
+        ballsLeft = ballsLeftEditor;
         gameStarted = false;
         increasingForce = true;
         pressingShoot = false;

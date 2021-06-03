@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: d68bd1208271b2048bfc2bac198077b5, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 1687652377}
   m_IndirectSpecularColor: {r: 0.4506417, g: 0.5006082, b: 0.5749649, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -2013,6 +2013,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 436cdc3f183579a48935c985712847f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &151110447 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7118982431895059877, guid: a5543c142fa8b2244ab8d0bbe6c5905c,
+    type: 3}
+  m_PrefabInstance: {fileID: 206132815}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &158248090
@@ -21558,6 +21570,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1687652378}
   - component: {fileID: 1687652377}
+  - component: {fileID: 1687652379}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -21640,6 +21653,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 35.944, y: 22.527, z: 37.442}
+--- !u!114 &1687652379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687652376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 544755c56d4cfa44590441505851b1d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _posDay:
+  - {x: -2.26, y: 1.98, z: 0}
+  - {x: 2.7, y: 1.32, z: 0}
+  - {x: 3, y: -0.41, z: 0}
+  _rotDay:
+  - {x: 8.76, y: 40.83, z: 82.2}
+  - {x: 1.15, y: -41.6, z: -86.5}
+  - {x: 13, y: -39, z: 73}
+  _postProcessVolume: {fileID: 151110447}
 --- !u!1 &1696073138
 GameObject:
   m_ObjectHideFlags: 0
@@ -22008,6 +22042,7 @@ MonoBehaviour:
   _isNearMinigame: 0
   _isNearConversation: 0
   _conversation: {fileID: 0}
+  cycle: 0
   lastDir: {x: 0, y: 0}
 --- !u!114 &1757486298
 MonoBehaviour:
