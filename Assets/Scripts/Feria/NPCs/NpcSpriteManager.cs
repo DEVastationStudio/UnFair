@@ -23,16 +23,24 @@ public class NpcSpriteManager : MonoBehaviour
             case 1:
             case 2:
             case 3:
-            case 4:
-            case 5:
                 FindObjectOfType<SunCycle>().SetLight(0);
                 break;
+            case 4:
+                if (PlayerPrefs.GetInt("Stars-1", 0) > 0)
+                    FindObjectOfType<SunCycle>().SetLight(1);
+                else
+                    FindObjectOfType<SunCycle>().SetLight(0);
+                break;
+            case 5:
             case 6:
             case 7:
             case 8:
-                FindObjectOfType<SunCycle>().SetLight(1);
-                break;
             case 9:
+                if (PlayerPrefs.GetInt("Stars-3", 0) > 0)
+                    FindObjectOfType<SunCycle>().SetLight(2);
+                else
+                    FindObjectOfType<SunCycle>().SetLight(1);
+                break;
             case 10:
             case 11:
             default:

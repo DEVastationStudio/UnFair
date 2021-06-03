@@ -75,12 +75,19 @@ public class SpawnerDianas : MonoBehaviour
     {
         numDianas--;
         //Debug.Log("NumDianas:" + numDianas);
-        targetsInUse[targetPos] = false;
+        //targetsInUse[targetPos] = false;
         if (d != null)
         {
             d.GetComponentInParent<Animator>().SetBool("isActive",false);
             d._dianaContainer.SleepTarget();
+            StartCoroutine(WaitAnimation(targetPos));
         }
+    }
+
+    IEnumerator WaitAnimation(int targetPos) 
+    {
+        yield return new WaitForSeconds(1);
+        targetsInUse[targetPos] = false;
     }
 
     private void Spawn(int type, int posInArray, bool first = false)

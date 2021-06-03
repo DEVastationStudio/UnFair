@@ -81,7 +81,6 @@ public class Diana : MonoBehaviour
                 _gameManager._pistolaScript.CallSpawnRetard(0);
                 if (isHit)
                 {
-                    Debug.Log("Letra " + _numLetraDiana);
                     _gameManager._letrasManager.ShowLetter(_gameManager._spawnerDianas._currentLetter);
                     _gameManager._spawnerDianas._currentLetter = Mathf.Clamp(_gameManager._spawnerDianas._currentLetter + 1, 0, 6);
                     if (_gameManager._spawnerDianas._currentLetter == 6)
