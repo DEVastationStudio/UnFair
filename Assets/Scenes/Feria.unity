@@ -20522,6 +20522,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11424616, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: controlCursorState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11424616, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
       propertyPath: backButtons.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -22042,7 +22046,6 @@ MonoBehaviour:
   _isNearMinigame: 0
   _isNearConversation: 0
   _conversation: {fileID: 0}
-  cycle: 0
   lastDir: {x: 0, y: 0}
 --- !u!114 &1757486298
 MonoBehaviour:
