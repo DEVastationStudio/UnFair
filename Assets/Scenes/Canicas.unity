@@ -327,7 +327,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &55386071
 PrefabInstance:
@@ -5360,6 +5360,7 @@ MonoBehaviour:
   MaxTimeHits: 6
   conversation: {fileID: 1700041150}
   obstacleSpawner: {fileID: 1827280119}
+  _lineRenderer: {fileID: 1827280118}
   _eventSystem: {fileID: 1024452216}
   _startButton: {fileID: 1428141898}
   _resetButton: {fileID: 1087131786}

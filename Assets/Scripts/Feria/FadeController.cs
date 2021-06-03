@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 
 public class FadeController : MonoBehaviour
 {
@@ -28,6 +31,11 @@ public class FadeController : MonoBehaviour
 
     void Awake()
     {
+        foreach (InputSystemUIInputModule i in FindObjectsOfType<InputSystemUIInputModule>())
+        {
+            i.enabled = false;
+        }
+        
         if (instance == null)
         {
             instance = this;
@@ -52,6 +60,16 @@ public class FadeController : MonoBehaviour
 
     private IEnumerator FadeOut(string scene)
     {
+        foreach (PlayerInput p in FindObjectsOfType<PlayerInput>())
+        {
+            p.SwitchCurrentActionMap("NoMap");
+        }
+
+        foreach (InputSystemUIInputModule i in FindObjectsOfType<InputSystemUIInputModule>())
+        {
+            i.enabled = false;
+        }
+
         fading = true;
         if (scene != "Feria" && player != null)
         {
@@ -75,6 +93,16 @@ public class FadeController : MonoBehaviour
         if (AudioManager.instance != null) AudioManager.instance.FadeIn(_songIndex, 0.5f);
         yield return FadeImageIn(fade);
         fading = false;
+        
+        foreach (InputSystemUIInputModule i in FindObjectsOfType<InputSystemUIInputModule>())
+        {
+            i.enabled = true;
+        }
+
+        if (storedPlayerPosition && _songIndex == GetSong("Feria"))
+        {
+            FindObjectOfType<PlayerInput>().SwitchCurrentActionMap("ActionMap");
+        }
     }
     private IEnumerator FadeImageOut(Image image)
     {

@@ -27,6 +27,7 @@ public class HUD_Marbles : MonoBehaviour
     [SerializeField] private float MaxTimeHits = 6; // si se supera este tiempo, bajará la dificultad
     [SerializeField] private ConversationHelper conversation;
     [SerializeField] private ObstacleSpawner obstacleSpawner;
+    [SerializeField] private LineRenderer _lineRenderer;
 
     [Header("Control por mando")]
     [SerializeField] private EventSystem _eventSystem;
@@ -66,6 +67,16 @@ public class HUD_Marbles : MonoBehaviour
             {
                 balls = thrower.GetBallsLeft();
                 timeText.text = "Balls: " + balls;
+            }
+            if (balls <= 0)
+            {
+                _lineRenderer.material.SetColor("_Color", new Color(1f, 1f, 1f, 0.0f));
+                thrower.SetInvisibleSlider();
+
+            }
+            else
+            {
+                _lineRenderer.material.SetColor("_Color", new Color(1f, 1f, 1f, 1.0f));
             }
         }
     }
@@ -235,7 +246,7 @@ public class HUD_Marbles : MonoBehaviour
         isReseting = true;
         Marble marbleInGame = FindObjectOfType<Marble>();
         if (marbleInGame != null) Destroy(marbleInGame.gameObject);
-        FadeController.Fade("Canicas");
+        //FadeController.Fade("Canicas");
         Init();
         obstacleSpawner.DestroyObstacles();
         obstacleSpawner.Init();
