@@ -144,6 +144,8 @@ public class Thrower : MonoBehaviour
         rotx = staticRotX;
         rotz = 0;
         ray = new Ray(transform.position, transform.forward);
+        backgroundSlider.color = new Color(backgroundSlider.color.r, backgroundSlider.color.g, backgroundSlider.color.b, 1.0f);
+        fillSlider.color = new Color(fillSlider.color.r, fillSlider.color.g, fillSlider.color.b, 1.0f);
         //CreatePrediction();
 
     }
@@ -342,5 +344,11 @@ public class Thrower : MonoBehaviour
         throwerForce = forceBar.value = rand;
         increasingForce = true;
 
+    }
+
+    public void SetInvisibleSlider()
+    {
+        backgroundSlider.color = new Color(backgroundSlider.color.r, backgroundSlider.color.g, backgroundSlider.color.b, 0.0f);
+        fillSlider.color = new Color(fillSlider.color.r, fillSlider.color.g, fillSlider.color.b, 0.0f);
     }
 }
