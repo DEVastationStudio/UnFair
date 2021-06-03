@@ -235,7 +235,7 @@ public class HUD_Marbles : MonoBehaviour
         isReseting = true;
         Marble marbleInGame = FindObjectOfType<Marble>();
         if (marbleInGame != null) Destroy(marbleInGame.gameObject);
-        //FadeController.Fade("Canicas");
+        FadeController.Fade("Canicas");
         Init();
         obstacleSpawner.DestroyObstacles();
         obstacleSpawner.Init();

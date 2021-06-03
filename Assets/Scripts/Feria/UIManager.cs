@@ -56,6 +56,24 @@ public class UIManager : MonoBehaviour
         StartCoroutine(WaitXSeconds(4));
         if (AudioManager.instance != null) AudioManager.instance.changeTheme(3);
     }
+
+    public void TogglePauseMenu()
+    {
+        if (_playerInput.currentActionMap.name.Equals("UIMap"))
+        {
+            if (_basePauseMenu.activeSelf)
+            {
+                ClosePauseMenu();
+            }
+        }
+        else
+        {
+            if (!_basePauseMenu.activeSelf)
+            {
+                OpenPauseMenu();
+            }
+        }
+    }
     public void OpenPauseMenu() {
 
         _playerInput.SwitchCurrentActionMap("UIMap");

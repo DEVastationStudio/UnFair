@@ -58,6 +58,7 @@ public class Duck : FloatingObject
 
     protected override void OnBasketEnter(bool player)
     {
+        if (_gameManager.gameOver) return;
         gameObject.layer = 0;
         switch (type)
         {
@@ -68,6 +69,7 @@ public class Duck : FloatingObject
                     _gameManager.SetLastDuck(0.5f);
                 }
                 else if (!player) _gameManager.aiScore++;
+                _gameManager._vfxManager.InstantiateVFX(0, transform.position);
                 break;
             case Type.BLACK:
                 if (player) 
@@ -76,6 +78,7 @@ public class Duck : FloatingObject
                     _gameManager.SetLastDuck(0);
                 }
                 else if (!player) _gameManager.aiScore = Mathf.Max(_gameManager.aiScore - 2, 0);
+                _gameManager._vfxManager.InstantiateVFX(1, transform.position);
                 break;
             case Type.GOLD:
                 if (player) 
@@ -84,6 +87,7 @@ public class Duck : FloatingObject
                     _gameManager.SetLastDuck(1);
                 }
                 else if (!player) _gameManager.aiScore += 5;
+                _gameManager._vfxManager.InstantiateVFX(2, transform.position);
                 break;
             case Type.BIG:
                 if (player) 
@@ -92,6 +96,7 @@ public class Duck : FloatingObject
                     _gameManager.SetLastDuck(1);
                 }
                 else if (!player) _gameManager.aiScore += 7;
+                _gameManager._vfxManager.InstantiateVFX(3, transform.position);
                 break;
             case Type.PLAYER:
                 _gameManager.playerScore += 2;
@@ -99,6 +104,7 @@ public class Duck : FloatingObject
                 {
                     _gameManager.SetLastDuck(0.75f);
                 }
+                _gameManager._vfxManager.InstantiateVFX(4, transform.position);
                 break;
             case Type.AI:
                 _gameManager.aiScore += 2;
@@ -106,6 +112,7 @@ public class Duck : FloatingObject
                 {
                     _gameManager.SetLastDuck(0.25f);
                 }
+                _gameManager._vfxManager.InstantiateVFX(4, transform.position);
                 break;
         }
 

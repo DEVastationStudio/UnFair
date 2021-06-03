@@ -282,6 +282,53 @@ Transform:
   m_Father: {fileID: 1064045474}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &49337112
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 49337114}
+  - component: {fileID: 49337113}
+  m_Layer: 0
+  m_Name: VFXManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &49337113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49337112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 785a8490dc8315a4eb5876139835a8bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _VFX:
+  - {fileID: 5310782411772580173, guid: b715abcf7c401a545a5bc0c70be7bcc9, type: 3}
+  _VFXtime:
+  - 1
+--- !u!4 &49337114
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49337112}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.7923408, y: 0.12390745, z: 4.0604806}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &55386071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8991,6 +9038,11 @@ PrefabInstance:
       propertyPath: hudMarbles
       value: 
       objectReference: {fileID: 1279387235}
+    - target: {fileID: 441240728020092088, guid: e620b9ff46b9ba840ba3ce0fab776c06,
+        type: 3}
+      propertyPath: vfxManager
+      value: 
+      objectReference: {fileID: 49337113}
     - target: {fileID: 496562142320034638, guid: e620b9ff46b9ba840ba3ce0fab776c06,
         type: 3}
       propertyPath: points
@@ -9006,6 +9058,11 @@ PrefabInstance:
       propertyPath: hudMarbles
       value: 
       objectReference: {fileID: 1279387235}
+    - target: {fileID: 496562142320034638, guid: e620b9ff46b9ba840ba3ce0fab776c06,
+        type: 3}
+      propertyPath: vfxManager
+      value: 
+      objectReference: {fileID: 49337113}
     - target: {fileID: 614233051858756190, guid: e620b9ff46b9ba840ba3ce0fab776c06,
         type: 3}
       propertyPath: m_Material
@@ -9032,6 +9089,11 @@ PrefabInstance:
       propertyPath: hudMarbles
       value: 
       objectReference: {fileID: 1279387235}
+    - target: {fileID: 740098839241447180, guid: e620b9ff46b9ba840ba3ce0fab776c06,
+        type: 3}
+      propertyPath: vfxManager
+      value: 
+      objectReference: {fileID: 49337113}
     - target: {fileID: 1150987307351421437, guid: e620b9ff46b9ba840ba3ce0fab776c06,
         type: 3}
       propertyPath: m_Name
@@ -9052,6 +9114,11 @@ PrefabInstance:
       propertyPath: hudMarbles
       value: 
       objectReference: {fileID: 1279387235}
+    - target: {fileID: 1632725361700875518, guid: e620b9ff46b9ba840ba3ce0fab776c06,
+        type: 3}
+      propertyPath: vfxManager
+      value: 
+      objectReference: {fileID: 49337113}
     - target: {fileID: 2510362070546797974, guid: e620b9ff46b9ba840ba3ce0fab776c06,
         type: 3}
       propertyPath: m_Material
@@ -9073,6 +9140,11 @@ PrefabInstance:
       propertyPath: hudMarbles
       value: 
       objectReference: {fileID: 1279387235}
+    - target: {fileID: 2721918344102102292, guid: e620b9ff46b9ba840ba3ce0fab776c06,
+        type: 3}
+      propertyPath: vfxManager
+      value: 
+      objectReference: {fileID: 49337113}
     - target: {fileID: 3015983905169085493, guid: e620b9ff46b9ba840ba3ce0fab776c06,
         type: 3}
       propertyPath: m_Enabled
@@ -9124,6 +9196,11 @@ PrefabInstance:
       propertyPath: hudMarbles
       value: 
       objectReference: {fileID: 1279387235}
+    - target: {fileID: 6906355814859256770, guid: e620b9ff46b9ba840ba3ce0fab776c06,
+        type: 3}
+      propertyPath: vfxManager
+      value: 
+      objectReference: {fileID: 49337113}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e620b9ff46b9ba840ba3ce0fab776c06, type: 3}
 --- !u!1 &3236940903364659327 stripped

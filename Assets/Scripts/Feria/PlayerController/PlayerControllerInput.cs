@@ -34,14 +34,12 @@ public partial class PlayerController : MonoBehaviour
 
     private void OnEscAction() 
     {
-        _uiManager.OpenPauseMenu();
-        gameObject.GetComponent<PlayerInput>().SwitchCurrentActionMap("UIMap");
+        _uiManager.TogglePauseMenu();
     }
 
-    private void OnMovementUI() 
+    /*private void OnMovementUI() 
     {
         Debug.Log("Funcionaaaa");
-    }
-
+    }*/
     #endregion Metodos
 }

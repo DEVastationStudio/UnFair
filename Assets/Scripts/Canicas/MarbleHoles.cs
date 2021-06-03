@@ -7,6 +7,7 @@ public class MarbleHoles : MonoBehaviour
     [SerializeField] private int points;
     [SerializeField] private HUD_Marbles hudMarbles;
     [SerializeField] private Thrower thrower;
+    [SerializeField] private VFXManager vfxManager;
     private DynamicDifficultyManager DDM;
 
     void Start()
@@ -25,6 +26,14 @@ public class MarbleHoles : MonoBehaviour
         {
             DDM.SetValue(2, 0.0f);
             hudMarbles.AddScore(this.points);
+            //Spawnear +15 --->
+            vfxManager.InstantiateVFX(0, 
+                new Vector3( 
+                    other.gameObject.transform.position.x, 
+                    other.gameObject.transform.position.y + 0.4f, 
+                    other.gameObject.transform.position.z)
+                );
+            //<--- EndSpawn
             Destroy(other.gameObject);
             if (thrower.GetBallsLeft() <= 0)
             {
