@@ -39,7 +39,9 @@ public class PistolaScript : MonoBehaviour
 
     void OnLook(InputValue value) 
     {
-        _pos = value.Get<Vector2>();
+        Vector2 pos = value.Get<Vector2>();
+        if (pos.x == 0 && pos.y == 0) return;
+        _pos = pos;
     }
 
     void OnEscAction()
