@@ -48,7 +48,7 @@ public class Thrower : MonoBehaviour
         Init();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         rotx = staticRotX;
         if (!gameStarted || isPaused) { return; }
