@@ -41,7 +41,7 @@ public class RodAiScript : MonoBehaviour
         //Gizmos.DrawSphere(magnet.transform.position, 5);
     }
 
-    void Update()
+    void FixedUpdate()
     {
 
         //positionOffset = transform.position - futureMagnetPos;
@@ -161,11 +161,11 @@ public class RodAiScript : MonoBehaviour
 
         if (_height < 1 && magnet.tag == "Magnet" && goDown)
         {
-            _height = Mathf.Min(_height + 1.5f * Time.deltaTime, 1);
+            _height = Mathf.Min(_height + 0.5f * Time.deltaTime, 1);
         }
         else if (_height > 0 && magnet.tag != "Magnet")
         {
-            _height = Mathf.Max(_height - 1.5f * Time.deltaTime, 0);
+            _height = Mathf.Max(_height - 0.5f * Time.deltaTime, 0);
         }
 
         //magnetHitbox.enabled = (_height >= 1);

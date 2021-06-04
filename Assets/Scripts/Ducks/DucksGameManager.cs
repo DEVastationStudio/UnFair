@@ -324,6 +324,11 @@ public class DucksGameManager : MonoBehaviour
         _playerInput.SwitchCurrentActionMap("UIMap");
     }
 
+    public void SetUIMap()
+    {
+        _playerInput.SwitchCurrentActionMap("UIMap");
+    }
+
     public void SetLastDuck(float value)
     {
         _ddm.SetValue(0, value);
