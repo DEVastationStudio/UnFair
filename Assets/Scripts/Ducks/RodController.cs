@@ -41,7 +41,7 @@ public class RodController : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         if (!gameManager.gameStarted) return;
         
