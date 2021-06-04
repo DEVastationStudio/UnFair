@@ -12,7 +12,19 @@ public class SplashScript : MonoBehaviour
     private bool finished;
     IEnumerator Start()
     {
-        Application.targetFrameRate = 60;
+
+        QualitySettings.vSyncCount = PlayerPrefs.GetInt("vSyncState");
+
+        if (PlayerPrefs.GetInt("vSyncState") == 0)
+        {
+            if (PlayerPrefs.GetInt("fpsValue") == 0)
+                Application.targetFrameRate = (int)Screen.currentResolution.refreshRate;
+            else if (PlayerPrefs.GetInt("fpsValue") == 241)
+                Application.targetFrameRate = -1;
+            else
+                Application.targetFrameRate = PlayerPrefs.GetInt("fpsValue");
+        }
+        //Application.targetFrameRate = 60;
 
         _canSkip = (PlayerPrefs.GetInt("Progression", 0) != 0);
 
@@ -27,11 +39,11 @@ public class SplashScript : MonoBehaviour
         {
             tempColor = logo.color;
             //tempColor.a = Mathf.Lerp(0, 1, elapsedTime/fadeLength);
-            tempColor.a = curve.Evaluate(elapsedTime/audioLength);
+            tempColor.a = curve.Evaluate(elapsedTime / audioLength);
             logo.color = tempColor;
 
             //scale = Mathf.Lerp(0.75f, 1.25f, elapsedTime/fadeLength);
-            scale = tempColor.a*0.5f + 0.75f;
+            scale = tempColor.a * 0.5f + 0.75f;
 
             logo.transform.localScale = new Vector3(scale, scale, scale);
             elapsedTime += Time.deltaTime;
@@ -55,21 +67,8 @@ public class SplashScript : MonoBehaviour
             }
             FadeController.Fade("Feria");
         }
-
-        QualitySettings.vSyncCount = PlayerPrefs.GetInt("vSyncState");
-        
-        if(PlayerPrefs.GetInt("vSyncState") == 0) 
-        {
-            if (PlayerPrefs.GetInt("fpsValue") == 0)
-                Application.targetFrameRate = (int)Screen.currentResolution.refreshRate;
-            else if (PlayerPrefs.GetInt("fpsValue") == 241) 
-                Application.targetFrameRate = -1;
-            else
-                Application.targetFrameRate = PlayerPrefs.GetInt("fpsValue");
-        }
-
     }
-    
+
     private IEnumerator Skip()
     {
         if (finished || !_canSkip) yield break;
