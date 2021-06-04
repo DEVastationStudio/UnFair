@@ -6403,7 +6403,7 @@ MonoBehaviour:
     - id: 2
       fields:
       - title: Title
-        value: New Dialogue Entry
+        value: 
         type: 0
         typeString: CustomFieldType_Text
       - title: Pictures
@@ -6429,7 +6429,7 @@ MonoBehaviour:
       - title: Dialogue Text
         value: "Esto no es un tiro al blanco com\xFAn, tienes que tirar de la mira
           con el puntero del rat\xF3n para apuntar.\r\nUna vez has colocado la mira
-          en la diana haz click derecho para disparar\n"
+          en la diana haz click izquierdo para disparar\n"
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
