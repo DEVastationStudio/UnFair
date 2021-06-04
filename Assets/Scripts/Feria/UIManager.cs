@@ -25,6 +25,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _primerAjustesBtn;
     [SerializeField] private GameObject _entrarAjustesBtn;
     private bool _isPause = false;
+    
+    [Header("Iconos")]
+    [SerializeField] private GameObject _tiroAlBlancoIcono;
+    [SerializeField] private GameObject _patosIcono;
+    [SerializeField] private GameObject _canicasIcono;
+    [SerializeField] private GameObject _caballosIcono;
 
     [Header("Estrellas")]
     [SerializeField] private List<GameObject> _tiroAlBlancoStars;
@@ -81,33 +87,37 @@ public class UIManager : MonoBehaviour
         int totalStars = 0;
         int numStars = GameProgress.GetStars(1);
         totalStars += numStars;
+        if (numStars == 0) _tiroAlBlancoIcono.SetActive(false);
         if (numStars >= 1) _tiroAlBlancoStars[0].SetActive(true);
         if (numStars >= 2) _tiroAlBlancoStars[1].SetActive(true);
         if (numStars == 3) _tiroAlBlancoStars[2].SetActive(true);
 
         numStars = GameProgress.GetStars(2);
         totalStars += numStars;
+        if (numStars == 0) _caballosIcono.SetActive(false);
         if (numStars >= 1) _caballosStars[0].SetActive(true);
         if (numStars >= 2) _caballosStars[1].SetActive(true);
         if (numStars == 3) _caballosStars[2].SetActive(true);
 
         numStars = GameProgress.GetStars(3);
         totalStars += numStars;
+        if (numStars == 0) _patosIcono.SetActive(false);
         if (numStars >= 1) _patosStars[0].SetActive(true);
         if (numStars >= 2) _patosStars[1].SetActive(true);
         if (numStars == 3) _patosStars[2].SetActive(true);
 
         numStars = GameProgress.GetStars(4);
         totalStars += numStars;
+        if (numStars == 0) _canicasIcono.SetActive(false);
         if (numStars >= 1) _canicasStars[0].SetActive(true);
         if (numStars >= 2) _canicasStars[1].SetActive(true);
         if (numStars == 3) _canicasStars[2].SetActive(true);
 
-        Color c = _noriaIcono.GetComponent<Image>().color;
-        if (totalStars < 6)
-            _noriaIcono.GetComponent<Image>().color = new Color(c.r, c.g, c.b, 0.3f);
-        else
-            _noriaIcono.GetComponent<Image>().color = new Color(c.r, c.g, c.b, 1f);
+        //Color c = _noriaIcono.GetComponent<Image>().color;
+        //if (totalStars < 6)
+        //    _noriaIcono.GetComponent<Image>().color = new Color(c.r, c.g, c.b, 0.3f);
+        //else
+        //    _noriaIcono.GetComponent<Image>().color = new Color(c.r, c.g, c.b, 1f);
 
         _eventSystem.SetSelectedGameObject(_pauseButtonExit);
     }
