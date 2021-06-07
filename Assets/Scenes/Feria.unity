@@ -2797,7 +2797,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!224 &188185761
 RectTransform:
@@ -16985,10 +16985,10 @@ MonoBehaviour:
   _ajustes: {fileID: 1021979655}
   _primerAjustesBtn: {fileID: 1021979654}
   _entrarAjustesBtn: {fileID: 143266019}
-  _tiroAlBlancoIcono: {fileID: 0}
-  _patosIcono: {fileID: 0}
-  _canicasIcono: {fileID: 0}
-  _caballosIcono: {fileID: 0}
+  _tiroAlBlancoIcono: {fileID: 1994901561}
+  _patosIcono: {fileID: 1601105717}
+  _canicasIcono: {fileID: 167593091}
+  _caballosIcono: {fileID: 937075049}
   _tiroAlBlancoStars:
   - {fileID: 1350758401}
   - {fileID: 1279861441}

@@ -13993,8 +13993,7 @@ MonoBehaviour:
       - title: Dialogue Text
         value: "La verdad es que no lo se. De peque\xF1a siempre quise ser modelo
           de pasarela, y con quince a\xF1os me fui de casa con unas amigas para asistir
-          a competiciones profesionales.\r\nA mis padres nunca les pareci\xF3 buena
-          idea.\r"
+          a competiciones profesionales.\r"
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -14880,7 +14879,7 @@ MonoBehaviour:
         y: 1170
         width: 160
         height: 30
-    canvasScrollPosition: {x: 130.29346, y: 714.28564}
+    canvasScrollPosition: {x: 186.3374, y: 315.3846}
     canvasZoom: 0.90999997
   - id: 24
     fields:
@@ -52542,7 +52541,7 @@ MonoBehaviour:
         typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: "Puedes mover la ca\xF1a utilizando el rat\xF3n, WASD, o el stick
-          izqierdo del mando."
+          izquierdo del mando."
         type: 0
         typeString: CustomFieldType_Text
       - title: en
