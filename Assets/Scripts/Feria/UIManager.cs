@@ -44,10 +44,21 @@ public class UIManager : MonoBehaviour
 
     [Header("EventSystem and buttons")]
     [SerializeField] private EventSystem _eventSystem;
-    [SerializeField] private GameObject _pauseButtonExit;
+    [SerializeField] private GameObject _pauseCloseButton;
     [SerializeField] private GameObject _continuarNoria;
+
     [Header("Intro cutscene")]
     [SerializeField] private ConversationHelper introNpc;
+
+    [Header("Segunda confirmación pausa")]
+    [SerializeField] private GameObject _panelSegundaConfirmacionPausa;
+    [SerializeField] private GameObject _botonSegundaConfirmacionPausa;
+    [SerializeField] private GameObject _botonSalirPausa;
+
+    [Header("Segunda confirmación menu principal")]
+    [SerializeField] private GameObject _panelSegundaConfirmacionMenuPrincipal;
+    [SerializeField] private GameObject _botonSegundaConfirmacionMenuPrincipal;
+    [SerializeField] private GameObject _botonSalirMenuPrincipal;
 
     #endregion Variables
 
@@ -113,13 +124,7 @@ public class UIManager : MonoBehaviour
         if (numStars >= 2) _canicasStars[1].SetActive(true);
         if (numStars == 3) _canicasStars[2].SetActive(true);
 
-        //Color c = _noriaIcono.GetComponent<Image>().color;
-        //if (totalStars < 6)
-        //    _noriaIcono.GetComponent<Image>().color = new Color(c.r, c.g, c.b, 0.3f);
-        //else
-        //    _noriaIcono.GetComponent<Image>().color = new Color(c.r, c.g, c.b, 1f);
-
-        _eventSystem.SetSelectedGameObject(_pauseButtonExit);
+        _eventSystem.SetSelectedGameObject(_pauseCloseButton);
     }
     public void ClosePauseMenu() 
     { 
@@ -136,8 +141,7 @@ public class UIManager : MonoBehaviour
     }
     public void OpenNoriaNotAvailable() { 
         Debug.Log("Si que entro"); 
-        _noriaNotAvailable.SetActive(true); 
-        /*_eventSystem.SetSelectedGameObject(_continuarNoria);*/
+        _noriaNotAvailable.SetActive(true);
         _playerInput.SwitchCurrentActionMap("UIMap");
         Debug.Log("Si que termino");
     }
@@ -173,6 +177,28 @@ public class UIManager : MonoBehaviour
             _eventSystem.SetSelectedGameObject(_entrarAjustesBtn);
         }
     }
+
+    public void OpenSegundaConfirmacionPausa()
+    {
+        _panelSegundaConfirmacionPausa.SetActive(true);
+        _eventSystem.SetSelectedGameObject(_botonSegundaConfirmacionPausa);
+    }
+    public void OpenSegundaConfirmacionMenuPrincipal()
+    {
+        _panelSegundaConfirmacionMenuPrincipal.SetActive(true);
+        _eventSystem.SetSelectedGameObject(_botonSegundaConfirmacionMenuPrincipal);
+    }
+    public void CloseSegundaConfirmacionPausa()
+    {
+        _eventSystem.SetSelectedGameObject(_botonSalirPausa);
+        _panelSegundaConfirmacionPausa.SetActive(false);
+    }
+    public void CloseSegundaConfirmacionMenuPrincipal()
+    {
+        _eventSystem.SetSelectedGameObject(_botonSalirMenuPrincipal);
+        _panelSegundaConfirmacionMenuPrincipal.SetActive(false);
+    }
+
     private IEnumerator WaitXSeconds(float s) 
     {
         yield return new WaitForSeconds(s);
