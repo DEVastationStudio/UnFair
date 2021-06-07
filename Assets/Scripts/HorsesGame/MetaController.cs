@@ -33,14 +33,14 @@ public class MetaController : MonoBehaviour
             playerFinished = true;
             hUD_Manager.RaceFinished(playerPos);
         }
-        else if (other.CompareTag("RivalHorse"))
+        if (other.CompareTag("RivalHorse"))
         {
             playerPos++;
             playerFinished = true;
             hUD_Manager.RaceFinished(playerPos);
             Debug.Log("Rival llegó");
         }
-        else if (other.CompareTag("NewPosPlayer"))
+        if (other.CompareTag("NewPosPlayer"))
         {
             hUD_Manager.DisableComboPanel();
         }

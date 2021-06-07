@@ -5677,7 +5677,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1342275059}
   - component: {fileID: 1342275058}
-  - component: {fileID: 1342275060}
+  - component: {fileID: 1342275062}
   m_Layer: 10
   m_Name: PlayerNewPos
   m_TagString: NewPosPlayer
@@ -5696,8 +5696,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: -0.5}
+  m_Size: {x: 0.02, y: 0.06, z: 0.085}
+  m_Center: {x: 0.000007211169, y: -0.007, z: -0.0065}
 --- !u!4 &1342275059
 Transform:
   m_ObjectHideFlags: 0
@@ -5706,13 +5706,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1342275057}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.35, z: 3.24}
-  m_LocalScale: {x: 1, y: 1, z: 0.3}
+  m_LocalPosition: {x: 0.75, y: 5.185, z: 2.25}
+  m_LocalScale: {x: 15, y: 15, z: 15}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1342275060
+--- !u!54 &1342275062
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6386,6 +6386,7 @@ MonoBehaviour:
   preGameCanvas: {fileID: 1591486261}
   preGameButtonsCanvas: {fileID: 1759439531}
   inGameCanvas: {fileID: 1078690467}
+  timeCanvas: {fileID: 1004687438}
   postGameCanvas: {fileID: 1571292826}
   pauseMenu: {fileID: 518363028}
   settingsMenu: {fileID: 326306254}

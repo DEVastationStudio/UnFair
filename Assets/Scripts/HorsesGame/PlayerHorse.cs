@@ -390,6 +390,7 @@ public class PlayerHorse : MonoBehaviour
     }
     private void GenerateCombination()
     {
+        if (finishingRace) { return; }
         int keys = 3;//Random.Range(3, 6);
         comb = new string[keys];
         string temp = "";
@@ -484,7 +485,7 @@ public class PlayerHorse : MonoBehaviour
     }
     private void CombinationManagement(string keyPressed)
     {
-        if (!combCreated || restartingComboText || !gameStarted || !timeCounter.GetActivatedTimer()) { return; }
+        if (!combCreated || restartingComboText || !gameStarted || !timeCounter.GetActivatedTimer() || finishingRace) { return; }
         if (posComb < comb.Length)
         {
             if (comb[posComb].Equals(keyPressed))
@@ -539,10 +540,10 @@ public class PlayerHorse : MonoBehaviour
 
     private void Move()
     {
-        if (finishingRace)
+        /*if (finishingRace)
         {
             DisableComboPanel();
-        }
+        }*/
         //Debug.Log("combinacion correcta");
         animator.SetTrigger("running");/*
         mov = Random.Range(0.25f, 0.33f);
@@ -591,7 +592,7 @@ public class PlayerHorse : MonoBehaviour
 
     private void ResetCorrect(bool ended, bool failedCombo)
     {
-        if (posComb == 0) { return; }
+        if (posComb == 0 || finishingRace) { return; }
         restartingComboText = true;
         StopCoroutine(ResetShowedText());
         StartCoroutine(ResetShowedText());
@@ -651,8 +652,10 @@ public class PlayerHorse : MonoBehaviour
         }*/
     }
 
+    
     private void DisableComboPanel()
     {
+        print("que llegas mi loco");
         gameStarted = false;
         for (int i = 0; i < hudImages.Length; i++)
         {
@@ -665,6 +668,7 @@ public class PlayerHorse : MonoBehaviour
     public void NextMoveEnd()
     {
         finishingRace = true;
+        DisableComboPanel();
     }
 
     public bool GetComboFailed()

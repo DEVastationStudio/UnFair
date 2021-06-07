@@ -12,6 +12,7 @@ public class HUD_Manager : MonoBehaviour
     [SerializeField] private GameObject preGameCanvas;
     [SerializeField] private GameObject preGameButtonsCanvas;
     [SerializeField] private GameObject inGameCanvas;
+    [SerializeField] private GameObject timeCanvas;
     [SerializeField] private GameObject postGameCanvas;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject settingsMenu;
@@ -66,6 +67,7 @@ public class HUD_Manager : MonoBehaviour
         raceTime = 0.0f;
         countdownText.gameObject.SetActive(false);
         inGameCanvas.SetActive(false);
+        timeCanvas.SetActive(false);
         postGameCanvas.SetActive(false);
         pauseMenu.SetActive(false);
         pauseMenu.SetActive(false);
@@ -80,6 +82,7 @@ public class HUD_Manager : MonoBehaviour
     {
         preGameCanvas.SetActive(false);
         inGameCanvas.SetActive(true);
+        timeCanvas.SetActive(true);
         playerHorse.StartGame();
         /*foreach (var enemy in enemyHorses)
         {
@@ -92,7 +95,7 @@ public class HUD_Manager : MonoBehaviour
 
     public void StartCountdown()
     {
-        AudioManager.instance.FadeOut(17,0.1f);
+        AudioManager.instance.FadeOut(17, 0.1f);
         StartCoroutine(Countdown());
     }
 
@@ -109,6 +112,7 @@ public class HUD_Manager : MonoBehaviour
         }
 
         inGameCanvas.SetActive(false);
+        timeCanvas.SetActive(false);
         postGameCanvas.SetActive(true);
         conversation.StartConversation();
         //_eventSystem.SetSelectedGameObject(_resetGame);
@@ -314,7 +318,7 @@ public class HUD_Manager : MonoBehaviour
         }
         countdownText.text = "";
         countdownText.gameObject.SetActive(false);
-        AudioManager.instance.FadeIn(17,0.1f);
+        AudioManager.instance.FadeIn(17, 0.1f);
         StartGame();
     }
 }
