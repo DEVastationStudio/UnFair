@@ -3769,7 +3769,7 @@ MonoBehaviour:
     type: 3}
   firePoint: {fileID: 905994868}
   power: 15
-  rotationSpeed: 0.25
+  rotationSpeed: 1.35
   ballsLeftEditor: 5
   sphere: {fileID: 5088704268563862295, guid: 5b5a4f308a5a17d40ab8aa57165626f8, type: 3}
   forceBar: {fileID: 1556095629}
@@ -5609,6 +5609,7 @@ MonoBehaviour:
   timeText: {fileID: 1359935411}
   preGameCanvas: {fileID: 1677917214}
   inGameCanvas: {fileID: 1973349407}
+  ballsCanvas: {fileID: 1941512881}
   postGameCanvas: {fileID: 193018454}
   preGameButtonsCanvas: {fileID: 1751609784}
   pauseMenu: {fileID: 695762577}

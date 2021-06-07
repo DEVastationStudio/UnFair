@@ -10,6 +10,7 @@ public class HUD_Marbles : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private GameObject preGameCanvas;
     [SerializeField] private GameObject inGameCanvas;
+    [SerializeField] private GameObject ballsCanvas;
     [SerializeField] private GameObject postGameCanvas;
     [SerializeField] private GameObject preGameButtonsCanvas;
     [SerializeField] private GameObject pauseMenu;
@@ -88,6 +89,7 @@ public class HUD_Marbles : MonoBehaviour
         isReseting = false;
         velocityHits = 0.0f;
         inGameCanvas.SetActive(false);
+        ballsCanvas.SetActive(false);
         postGameCanvas.SetActive(false);
         countdownText.gameObject.SetActive(false);
         pauseMenu.SetActive(false);
@@ -108,6 +110,7 @@ public class HUD_Marbles : MonoBehaviour
     {
         preGameCanvas.SetActive(false);
         inGameCanvas.SetActive(true);
+        ballsCanvas.SetActive(true);
         postGameCanvas.SetActive(false);
         gameStarted = true;
         balls = thrower.GetBallsLeft();
@@ -194,6 +197,7 @@ public class HUD_Marbles : MonoBehaviour
         startedPressed = false;
         gameStarted = false;
         inGameCanvas.SetActive(false);
+        ballsCanvas.SetActive(false);
         postGameCanvas.SetActive(true);
         //_eventSystem.SetSelectedGameObject(_resetButton);
         preGameCanvas.SetActive(false);
