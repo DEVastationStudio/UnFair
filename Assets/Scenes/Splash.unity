@@ -875,6 +875,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  mixer: {fileID: 24100000, guid: a0b373f910760d44fb402b5cea1b5d25, type: 2}
 --- !u!114 &1878857646
 MonoBehaviour:
   m_ObjectHideFlags: 0

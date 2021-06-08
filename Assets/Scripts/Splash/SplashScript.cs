@@ -8,6 +8,7 @@ public class SplashScript : MonoBehaviour
     public Image logo;
     public AudioSource sound;
     public AnimationCurve curve;
+    public UnityEngine.Audio.AudioMixer mixer;
     private bool _canSkip;
     private bool finished;
     IEnumerator Start()
@@ -18,7 +19,15 @@ public class SplashScript : MonoBehaviour
         if (PlayerPrefs.GetInt("vSyncState") == 0)
         {
             if (PlayerPrefs.GetInt("fpsValue") == 0)
+            {
+                PlayerPrefs.SetFloat("Audio", 0.5f);
+                PlayerPrefs.SetFloat("Sound", 0.5f);
+                PlayerPrefs.SetFloat("Music", 0.5f);
+                mixer.SetFloat("Audio", ConvertToDecibel(PlayerPrefs.GetFloat("Audio")));
+                mixer.SetFloat("Sound", ConvertToDecibel(PlayerPrefs.GetFloat("Sound")));
+                mixer.SetFloat("Music", ConvertToDecibel(PlayerPrefs.GetFloat("Music")));
                 Application.targetFrameRate = (int)Screen.currentResolution.refreshRate;
+            }
             else if (PlayerPrefs.GetInt("fpsValue") == 241)
                 Application.targetFrameRate = -1;
             else
@@ -27,6 +36,7 @@ public class SplashScript : MonoBehaviour
         //Application.targetFrameRate = 60;
 
         _canSkip = (PlayerPrefs.GetInt("Progression", 0) != 0);
+
 
         float audioLength = sound.clip.length;
         //float fadeLength = audioLength*3/4;
@@ -100,5 +110,9 @@ public class SplashScript : MonoBehaviour
     private void OnMouseLeftAction()
     {
         StartCoroutine(Skip());
+    }
+    public float ConvertToDecibel(float _value)
+    {
+        return Mathf.Log10(Mathf.Max(_value, 0.0001f)) * 20f;
     }
 }
