@@ -70,7 +70,7 @@ public class EnemyHorse : MonoBehaviour
         newPos = new Vector3(transform.position.x + aux.x, transform.position.y + aux.y, transform.position.z + aux.z);
         while (transform.position != newPos)
         {
-            float step = Random.Range(0.25f, 0.35f/*0.05f, 0.08f*/) * Time.deltaTime;
+            float step = Random.Range(0.22f, 0.27f/*0.05f, 0.08f*/) * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, newPos, step);
             yield return new WaitForFixedUpdate();
         }

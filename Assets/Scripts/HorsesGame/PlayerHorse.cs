@@ -561,7 +561,7 @@ public class PlayerHorse : MonoBehaviour
             combCreated = false;
             GenerateCombination();
         }*/
-        mov = Random.Range(0.30f, 0.34f);
+        mov = Random.Range(0.24f, 0.27f);
         auxPos = (Vector3.forward * mov);
         newPos = new Vector3(transform.position.x + auxPos.x, transform.position.y + auxPos.y, transform.position.z + auxPos.z);
         //newPosPlayer.transform.position = newPos;        
@@ -582,7 +582,7 @@ public class PlayerHorse : MonoBehaviour
     {
         while (transform.position != newPos)
         {
-            float step = 0.5f * Time.fixedDeltaTime;
+            float step = 0.35f * Time.fixedDeltaTime;
             transform.position = Vector3.MoveTowards(transform.position, newPos, step);
             yield return new WaitForFixedUpdate();
         }
