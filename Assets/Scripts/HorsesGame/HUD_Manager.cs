@@ -25,6 +25,7 @@ public class HUD_Manager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI starsObtained;
     [SerializeField] private TextMeshProUGUI countdownText;
     [SerializeField] private ConversationHelper conversation;
+    [SerializeField] private ConversationHelper conversationTutorial;
     //[SerializeField] private PlayerInput playerInput;
 
     [Header("Control por mando")]
@@ -97,6 +98,13 @@ public class HUD_Manager : MonoBehaviour
     {
         AudioManager.instance.FadeOut(17, 0.1f);
         StartCoroutine(Countdown());
+    }
+
+    public void OpenTutorial()
+    {
+        preGameButtonsCanvas.SetActive(false);
+        conversationTutorial.StartConversation();
+
     }
 
     public void RaceFinished(int position)
