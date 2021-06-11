@@ -92,16 +92,14 @@ public class Diana : MonoBehaviour
                     }
                     else
                     {
-                        for (int i = _gameManager._spawnerDianas._currentLetter; i >= 0; i--) 
-                        {
-                            _gameManager._spawnerDianas._currentLetter = Mathf.Clamp(_gameManager._spawnerDianas._currentLetter - 1, 0, 6);
-                            _gameManager._letrasManager.HideLetter(_gameManager._spawnerDianas._currentLetter );
-                        }
+                        _gameManager._letrasManager.ResetWord();
                     }
                 }
                 break;
         }
     }
+
+   
 
     public void Update()
     {
