@@ -11,6 +11,8 @@ public class Thrower : MonoBehaviour
     [SerializeField] private GameObject firePoint;
     [SerializeField] private float power;
     [SerializeField] private float rotationSpeed;
+    [SerializeField] private float shakeSpeedEditor = 0.5f;
+    private float shakeSpeed;
     [SerializeField] private int ballsLeftEditor;
     private int ballsLeft;
     [SerializeField] private GameObject sphere;
@@ -19,6 +21,8 @@ public class Thrower : MonoBehaviour
     [SerializeField] private Image fillSlider;
     [SerializeField] private float staticRotX = -20.0f;
     [SerializeField] private Transform initialPos;
+    [SerializeField] private float timeForShake = 2.0f;
+    private float currentTimeStopped;
     private float throwerForce;
     private float increaserForceSpeed = 0.5f;
     private bool pressingShoot;
@@ -37,6 +41,11 @@ public class Thrower : MonoBehaviour
     private Vector3 hitPos;
     private bool isPaused;
     private bool inSettingsMenu;
+    private bool isMoving;
+    private bool alreadyMoved;
+    private bool savedShake;
+    private float yRealRot;
+    private bool shakeStarted;
     /*private bool leftRotation;
     private bool rightRotation;*/
 
@@ -53,6 +62,27 @@ public class Thrower : MonoBehaviour
         rotx = staticRotX;
         if (!gameStarted || isPaused) { return; }
         Rotate();
+        if (alreadyMoved)
+        {
+            if (!shakeStarted)
+            {
+                if (!isMoving)
+                {
+                    currentTimeStopped += Time.fixedDeltaTime;
+                }
+                if (currentTimeStopped >= timeForShake)
+                {
+                    currentTimeStopped = 0.0f;
+                    shakeStarted = true;
+                    StartCoroutine(Shake());
+
+                }
+
+            }
+
+        }
+        //ShakeLine();
+
         /*if (currentRot != transform.rotation)
         {*/
         ray.direction = transform.forward;
@@ -129,6 +159,10 @@ public class Thrower : MonoBehaviour
         transform.position = initialPos.position;
         transform.rotation = initialPos.rotation;
         input.SwitchCurrentActionMap("UIMap");
+        isMoving = false;
+        shakeSpeed = shakeSpeedEditor;
+        savedShake = false;
+        alreadyMoved = false;
         ballsLeft = ballsLeftEditor;
         gameStarted = false;
         increasingForce = true;
@@ -136,6 +170,7 @@ public class Thrower : MonoBehaviour
         isPaused = false;
         inSettingsMenu = false;
         randomized = false;
+        shakeStarted = false;
         throwerForce = 0.0f;
         rotation = 0;
         canThrow = true;
@@ -146,6 +181,7 @@ public class Thrower : MonoBehaviour
         ray = new Ray(transform.position, transform.forward);
         backgroundSlider.color = new Color(backgroundSlider.color.r, backgroundSlider.color.g, backgroundSlider.color.b, 1.0f);
         fillSlider.color = new Color(fillSlider.color.r, fillSlider.color.g, fillSlider.color.b, 1.0f);
+        currentTimeStopped = 0.0f;
         //CreatePrediction();
 
     }
@@ -160,6 +196,71 @@ public class Thrower : MonoBehaviour
     public void SetGameFinished()
     {
         gameStarted = false;
+    }
+
+    private void ShakeLine()
+    {
+        if (!alreadyMoved) { return; }
+        if (!savedShake) { yRealRot = transform.rotation.y; savedShake = true; }
+        if (!isMoving)
+        {
+
+            //AngleAmount = Mathf.Clamp(AngleAmount, -15 , 15 );
+            transform.Rotate(0, rotationSpeed * shakeSpeed * Time.fixedDeltaTime, 0.0f);
+            Vector3 currentRot = transform.localEulerAngles;
+            //currentRot.y = Mathf.Clamp(/*yRealRot + 1 * Random.Range(-10f, 10f)*//*currentRot.y*/currentRot.y, yRealRot - 15f, yRealRot + 15f);
+            if (currentRot.y == yRealRot - 15f)
+            {
+                print("maxIzquieda");
+                shakeSpeed = 0.5f;
+            }
+            else if (currentRot.y == yRealRot + 15f)
+            {
+                print("maxDerecha");
+                shakeSpeed = -0.5f;
+            }
+            currentRot.x = rotx;
+            currentRot.z = rotz;
+            transform.localRotation = Quaternion.Euler(currentRot);
+        }
+        else
+        {
+            savedShake = false;
+        }
+
+    }
+
+    private IEnumerator Shake()
+    {
+        yRealRot = transform.localEulerAngles.y;//((transform.rotation.y > 180) ? transform.rotation.y - 360 : transform.rotation.y);
+        yRealRot = ((yRealRot > 180) ? yRealRot - 360 : yRealRot);
+        float direction = 1;
+        float currentRotY = transform.localEulerAngles.y;
+        while (!isMoving)
+        {
+            print("transform: " + transform.rotation.eulerAngles.y);
+            print("yRealRot: " + yRealRot);
+            currentRotY = transform.localEulerAngles.y; ;
+            currentRotY = ((currentRotY > 180) ? currentRotY - 360 : currentRotY);
+            print("currentRotY: " + currentRotY);
+            if ((currentRotY >= yRealRot + 7.5f) || (currentRotY >= 45.0f))
+            {
+                print("direccion: -1");
+                direction = -1f;
+            }
+            else if ((currentRotY <= yRealRot - 7.5f) || (currentRotY <= -45.0f))
+            {
+
+                print("direccion: 1");
+                direction = 1f;
+            }
+
+            transform.Rotate(0.0f, (rotationSpeed / 2) * direction, 0.0f);
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
+        }
+        yield return null;
+
     }
 
     private void Rotate()
@@ -244,15 +345,25 @@ public class Thrower : MonoBehaviour
         if (!gameStarted || isPaused) { return; }
         if (value.Get<Vector2>().x < -0.2f)
         {
+            alreadyMoved = true;
+            isMoving = true;
+            shakeStarted = false;
+            currentTimeStopped = 0.0f;
             rotation = -1;
         }
         else if (value.Get<Vector2>().x > 0.2f)
         {
+            alreadyMoved = true;
+            isMoving = true;
+            shakeStarted = false;
+            currentTimeStopped = 0.0f;
             rotation = 1;
         }
         else
         {
             rotation = 0;
+            isMoving = false;
+            StopCoroutine(Shake());
         }
     }
     void OnEscAction(InputValue value)
@@ -351,4 +462,5 @@ public class Thrower : MonoBehaviour
         backgroundSlider.color = new Color(backgroundSlider.color.r, backgroundSlider.color.g, backgroundSlider.color.b, 0.0f);
         fillSlider.color = new Color(fillSlider.color.r, fillSlider.color.g, fillSlider.color.b, 0.0f);
     }
+
 }
