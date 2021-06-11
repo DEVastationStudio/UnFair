@@ -590,6 +590,10 @@ public class PlayerHorse : MonoBehaviour
         yield return null;
     }
 
+    public void SetUIMap()
+    {
+        input.SwitchCurrentActionMap("UIMap");
+    }
     private void ResetCorrect(bool ended, bool failedCombo)
     {
         if (posComb == 0 || finishingRace) { return; }
