@@ -24,6 +24,14 @@ public class LetrasUnfairManager : MonoBehaviour
         Letras[i].SetActive(false);
         Guiones[i].SetActive(true);
     }
+    public void ResetWord() 
+    {
+        for (int i = _gameManager._spawnerDianas._currentLetter; i >= 0; i--)
+        {
+            _gameManager._spawnerDianas._currentLetter = Mathf.Clamp(_gameManager._spawnerDianas._currentLetter - 1, 0, 6);
+            _gameManager._letrasManager.HideLetter(_gameManager._spawnerDianas._currentLetter);
+        }
+    }
 
     public void GoldRush() 
     {
