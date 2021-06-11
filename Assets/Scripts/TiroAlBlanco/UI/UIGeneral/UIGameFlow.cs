@@ -115,13 +115,11 @@ public partial class UIGeneral : MonoBehaviour
 
     public void OpenTutorial() 
     {
-        _tutorialContainer.SetActive(true);
         _npcTutorialConversationHelper.StartConversation();
     }
 
     public void CloseTutorial()
     {
-        _tutorialContainer.SetActive(false);
         _playerInput.SwitchCurrentActionMap("UIMap");
     }
 
