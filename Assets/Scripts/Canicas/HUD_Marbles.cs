@@ -27,6 +27,7 @@ public class HUD_Marbles : MonoBehaviour
     [SerializeField] private DynamicDifficultyManager DDM;
     [SerializeField] private float MaxTimeHits = 6; // si se supera este tiempo, bajará la dificultad
     [SerializeField] private ConversationHelper conversation;
+    [SerializeField] private ConversationHelper conversationTutorial;
     [SerializeField] private ObstacleSpawner obstacleSpawner;
     [SerializeField] private LineRenderer _lineRenderer;
 
@@ -106,6 +107,12 @@ public class HUD_Marbles : MonoBehaviour
         preStarsObtainedText.text = "Stars obtained: " + GameProgress.GetStars(4);
     }
 
+    public void OpenTutorial()
+    {
+        preGameButtonsCanvas.SetActive(false);
+        conversationTutorial.StartConversation();
+
+    }
     private void StartGame()
     {
         preGameCanvas.SetActive(false);
