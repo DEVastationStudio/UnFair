@@ -3787,14 +3787,53 @@ MonoBehaviour:
   - {fileID: 1617276170}
   - {fileID: 533213089}
   - {fileID: 1940852505}
-  _lightOff: {r: 0, g: 0, b: 0, a: 0}
-  _lightWaiting: {r: 0, g: 0, b: 0, a: 0}
-  _lightCorrect: {r: 0, g: 0, b: 0, a: 0}
-  _lightWin: {r: 0, g: 0, b: 0, a: 0}
   _goldColor: {r: 1, g: 0.8674296, b: 0, a: 1}
   _whiteColor: {r: 1, g: 1, b: 1, a: 1}
   _gameManager: {fileID: 371035726}
   _barraLetras: {fileID: 538834411}
+  _numOfBlinks: 3
+  _blinkSpeed: 0.25
+  _lightOff: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
+  _lightWaiting: {r: 1, g: 1, b: 1, a: 1}
+  _lightCorrect: {r: 0.18934417, g: 1, b: 0, a: 1}
+  _lightWin: {r: 0.9837978, g: 1, b: 0, a: 1}
+  _lightWrong: {r: 1, g: 0, b: 0, a: 1}
+  LucesU:
+  - {fileID: 989419957}
+  - {fileID: 389284616}
+  - {fileID: 2051196484}
+  - {fileID: 328479954}
+  - {fileID: 1916462558}
+  - {fileID: 348079159}
+  - {fileID: 644140861}
+  LucesN:
+  - {fileID: 244182941}
+  - {fileID: 796433153}
+  - {fileID: 445312027}
+  - {fileID: 1903950716}
+  LucesF:
+  - {fileID: 1225917136}
+  - {fileID: 1152719154}
+  - {fileID: 122727093}
+  - {fileID: 2074120193}
+  LucesA:
+  - {fileID: 1700185846}
+  - {fileID: 1517396599}
+  - {fileID: 634190223}
+  - {fileID: 103499448}
+  LucesI:
+  - {fileID: 1931462549}
+  - {fileID: 1442326338}
+  - {fileID: 589887153}
+  - {fileID: 1823845619}
+  LucesR:
+  - {fileID: 1792978308}
+  - {fileID: 708000745}
+  - {fileID: 369982813}
+  - {fileID: 890132098}
+  - {fileID: 1503256759}
+  - {fileID: 890985944}
+  - {fileID: 142504400}
 --- !u!4 &689484389
 Transform:
   m_ObjectHideFlags: 0
@@ -3846,7 +3885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faseActual: 0
   _gameManager: {fileID: 371035726}
-  _timeForLevel: 30
+  _timeForLevel: 35
   _timerText: {fileID: 688951926}
   _puntuacionText: {fileID: 1765146956}
   _puntuacionFinalTxt: {fileID: 22633907}
