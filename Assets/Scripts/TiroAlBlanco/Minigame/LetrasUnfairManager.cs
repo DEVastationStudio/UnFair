@@ -45,6 +45,8 @@ public class LetrasUnfairManager : MonoBehaviour
         _gameManager._letrasManager.ShowLetter(_gameManager._spawnerDianas._currentLetter);
         ChangeLightColor(_lightCorrect, _gameManager._spawnerDianas._currentLetter);
         _gameManager._spawnerDianas._currentLetter = Mathf.Clamp(_gameManager._spawnerDianas._currentLetter + 1, 0, 6);
+        if(_gameManager._spawnerDianas._currentLetter<6)
+            ChangeLightColor(_lightWaiting, _gameManager._spawnerDianas._currentLetter);
         if (_gameManager._spawnerDianas._currentLetter == 6) 
         {
             for (int i = 0; i < 6; i++)
