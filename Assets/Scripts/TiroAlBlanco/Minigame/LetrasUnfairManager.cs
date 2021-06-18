@@ -12,6 +12,21 @@ public class LetrasUnfairManager : MonoBehaviour
     [SerializeField] private ShootingMinigameManager _gameManager;
     [SerializeField] private Slider _barraLetras;
 
+    [Header("Luces")]
+    [SerializeField] private int _numOfBlinks;
+    [SerializeField] private float _blinkSpeed;
+    [SerializeField] private Color _lightOff;
+    [SerializeField] private Color _lightWaiting;
+    [SerializeField] private Color _lightCorrect;
+    [SerializeField] private Color _lightWin; 
+    [SerializeField] private Color _lightWrong;
+    public List<GameObject> LucesU;
+    public List<GameObject> LucesN;
+    public List<GameObject> LucesF;
+    public List<GameObject> LucesA;
+    public List<GameObject> LucesI;
+    public List<GameObject> LucesR;
+
     public void ShowLetter(int i) 
     {
         Letras[i].SetActive(true);
@@ -24,12 +39,37 @@ public class LetrasUnfairManager : MonoBehaviour
         Letras[i].SetActive(false);
         Guiones[i].SetActive(true);
     }
-    public void ResetWord() 
+
+    public void CorrectLetterShoot()
     {
+        _gameManager._letrasManager.ShowLetter(_gameManager._spawnerDianas._currentLetter);
+        ChangeLightColor(_lightCorrect, _gameManager._spawnerDianas._currentLetter);
+        _gameManager._spawnerDianas._currentLetter = Mathf.Clamp(_gameManager._spawnerDianas._currentLetter + 1, 0, 6);
+        if (_gameManager._spawnerDianas._currentLetter == 6) 
+        {
+            for (int i = 0; i < 6; i++)
+                ChangeLightColor(_lightWin, i);
+            _gameManager._letrasManager.GoldRush();
+        }
+    }
+
+    public void ResetWord(bool startOfGame = false)
+    {
+        if (_gameManager._spawnerDianas._isOnGoldRush) return;
         for (int i = _gameManager._spawnerDianas._currentLetter; i >= 0; i--)
         {
             _gameManager._spawnerDianas._currentLetter = Mathf.Clamp(_gameManager._spawnerDianas._currentLetter - 1, 0, 6);
             _gameManager._letrasManager.HideLetter(_gameManager._spawnerDianas._currentLetter);
+        }
+        if (!startOfGame)
+        {
+            StartCoroutine(WrongLetterLights());
+        }
+        else 
+        {
+            for (int i = 1; i < 6; i++)
+                ChangeLightColor(_lightOff, i);
+            ChangeLightColor(_lightWaiting, 0);
         }
     }
 
@@ -74,6 +114,65 @@ public class LetrasUnfairManager : MonoBehaviour
             count++;
         }
         _gameManager._spawnerDianas._currentLetter = 0;
+        for (int i = 1; i < 6; i++)
+            ChangeLightColor(_lightOff, i);
+        ChangeLightColor(_lightWaiting, 0);
+    }
+
+    private void ChangeLightColor(Color c, int l) 
+    {
+        List<GameObject> inUse;
+        switch (l) 
+        {
+            case 0:
+                inUse = LucesU;
+                break;
+            case 1:
+                inUse = LucesN;
+                break;
+            case 2:
+                inUse = LucesF;
+                break;
+            case 3:
+                inUse = LucesA;
+                break;
+            case 4:
+                inUse = LucesI;
+                break;
+            case 5:
+                inUse = LucesR;
+                break;
+            default:
+                inUse = new List<GameObject>();
+                break;
+        }
+
+        foreach (GameObject g in inUse)
+        {
+            g.GetComponent<SpriteRenderer>().color = c;
+        }
+    }
+
+    IEnumerator WrongLetterLights() 
+    {
+        for (int i = 0; i < 6; i++)
+            ChangeLightColor(_lightWrong, i);
+        yield return new WaitForSeconds(1);
+        for (int i = 0; i < 6; i++)
+            ChangeLightColor(_lightOff, i);
+        yield return new WaitForSeconds(0.2f);
+        ChangeLightColor(_lightWaiting, 0);
+    }
+
+    IEnumerator BlinkingLights(int letterToBlink, Color blinkingColor)
+    {
+        ChangeLightColor(blinkingColor, letterToBlink);
+        for (int i = 0; i < _numOfBlinks; i++)
+        {
+            ChangeLightColor(_lightOff, letterToBlink);
+            yield return new WaitForSeconds(_blinkSpeed);
+            ChangeLightColor(blinkingColor, letterToBlink);
+        }
     }
 
 }

@@ -34,6 +34,7 @@ public partial class UIGeneral : MonoBehaviour
     public void FaseGame()
     {
         faseActual = Fases.GAME;
+        _gameManager._letrasManager.ResetWord(true);
         _PreGameContainer.SetActive(false);
         StartCoroutine(Countdown());
     }
@@ -44,7 +45,7 @@ public partial class UIGeneral : MonoBehaviour
         _outGameContainer.SetActive(false);
         _PostGameContainer.SetActive(true);
         _gameManager._dynamicDifficultyManager.SaveParameters();
-        _gameManager._letrasManager.ResetWord();
+        _gameManager._letrasManager.ResetWord(true);
         Diana[] DianasRestantes = FindObjectsOfType<Diana>();
         if (_puntuacionActual >= _estrella3)
         {

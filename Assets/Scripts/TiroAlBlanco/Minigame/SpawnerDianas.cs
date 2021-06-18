@@ -58,14 +58,13 @@ public class SpawnerDianas : MonoBehaviour
 
         if (type == 0 && _gameManager._pistolaScript._timeToSpawnLetter <= 0)
         {
-            _gameManager._pistolaScript._timeToSpawnLetter = Random.Range(2f, 2f);
             type = -10;
-        } 
+        }
 
         if (type == -1)
             Spawn(type, i, true);
         else if (type == -10)
-            if (_currentLetter < 6 && !_activeLetter) 
+            if (_currentLetter < 6 && !_activeLetter && !_gameManager._spawnerDianas._isOnGoldRush) 
             {
                 _activeLetter = true;
                 int aux = Random.Range(_currentLetter, Mathf.Clamp(_currentLetter+2, _currentLetter, 5));

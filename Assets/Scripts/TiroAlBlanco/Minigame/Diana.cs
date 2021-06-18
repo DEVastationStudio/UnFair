@@ -84,11 +84,8 @@ public class Diana : MonoBehaviour
                 {
                     if (_activeLetter == _gameManager._spawnerDianas._currentLetter)
                     {
-                        _activeLetter = -1;
-                        _gameManager._letrasManager.ShowLetter(_gameManager._spawnerDianas._currentLetter);
-                        _gameManager._spawnerDianas._currentLetter = Mathf.Clamp(_gameManager._spawnerDianas._currentLetter + 1, 0, 6);
-                        if (_gameManager._spawnerDianas._currentLetter == 6)
-                            _gameManager._letrasManager.GoldRush();
+                        _gameManager._pistolaScript._timeToSpawnLetter = 2f;
+                        _gameManager._vfxManager.InstantiateTrailFromAToB(transform, _gameManager._letrasManager.Letras[_gameManager._spawnerDianas._currentLetter].transform, 0);
                     }
                     else
                     {
@@ -98,8 +95,6 @@ public class Diana : MonoBehaviour
                 break;
         }
     }
-
-   
 
     public void Update()
     {
