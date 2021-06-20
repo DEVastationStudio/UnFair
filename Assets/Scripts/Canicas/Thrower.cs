@@ -230,6 +230,10 @@ public class Thrower : MonoBehaviour
 
     }
 
+    public void SetUIMap()
+    {
+        input.SwitchCurrentActionMap("UIMap");
+    }
     private IEnumerator Shake()
     {
         yRealRot = transform.localEulerAngles.y;//((transform.rotation.y > 180) ? transform.rotation.y - 360 : transform.rotation.y);

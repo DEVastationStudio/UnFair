@@ -25,7 +25,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _primerAjustesBtn;
     [SerializeField] private GameObject _entrarAjustesBtn;
     private bool _isPause = false;
-    
+
     [Header("Iconos")]
     [SerializeField] private GameObject _tiroAlBlancoIcono;
     [SerializeField] private GameObject _patosIcono;
@@ -91,7 +91,8 @@ public class UIManager : MonoBehaviour
             }
         }
     }
-    public void OpenPauseMenu() {
+    public void OpenPauseMenu()
+    {
 
         _playerInput.SwitchCurrentActionMap("UIMap");
         _basePauseMenu.SetActive(true);
@@ -126,28 +127,29 @@ public class UIManager : MonoBehaviour
 
         _eventSystem.SetSelectedGameObject(_pauseCloseButton);
     }
-    public void ClosePauseMenu() 
-    { 
-        _basePauseMenu.SetActive(false); 
-        _playerInput.SwitchCurrentActionMap("ActionMap"); 
-    }
-    public void OpenPauseExit() 
+    public void ClosePauseMenu()
     {
-        _exitConfirmationPause.SetActive(true); 
+        _basePauseMenu.SetActive(false);
+        _playerInput.SwitchCurrentActionMap("ActionMap");
     }
-    public void ClosePauseExit() 
+    public void OpenPauseExit()
     {
-        _exitConfirmationPause.SetActive(false); 
+        _exitConfirmationPause.SetActive(true);
     }
-    public void OpenNoriaNotAvailable() { 
-        Debug.Log("Si que entro"); 
+    public void ClosePauseExit()
+    {
+        _exitConfirmationPause.SetActive(false);
+    }
+    public void OpenNoriaNotAvailable()
+    {
+        Debug.Log("Si que entro");
         _noriaNotAvailable.SetActive(true);
         _playerInput.SwitchCurrentActionMap("UIMap");
         Debug.Log("Si que termino");
     }
-    public void CloseNoriaNotAvailable() 
-    { 
-        _noriaNotAvailable.SetActive(false); 
+    public void CloseNoriaNotAvailable()
+    {
+        _noriaNotAvailable.SetActive(false);
         _playerInput.SwitchCurrentActionMap("ActionMap");
     }
     public void OpenAjustes(bool isPause)
@@ -199,7 +201,7 @@ public class UIManager : MonoBehaviour
         _panelSegundaConfirmacionMenuPrincipal.SetActive(false);
     }
 
-    private IEnumerator WaitXSeconds(float s) 
+    private IEnumerator WaitXSeconds(float s)
     {
         yield return new WaitForSeconds(s);
         if (PlayerPrefs.GetInt("Progression", 0) == 0)
@@ -214,6 +216,12 @@ public class UIManager : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
+    }
+
+    public void RemoveData()
+    {
+        PlayerPrefs.DeleteAll();
+        FadeController.Fade("Feria");
     }
     #endregion Metodos
 
