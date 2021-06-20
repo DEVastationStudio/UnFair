@@ -69,7 +69,7 @@ public class RodController : MonoBehaviour
             newPos.x = Mathf.Clamp(newPos.x, _bounds.min.x, _bounds.max.x);
             newPos.z = Mathf.Clamp(newPos.z, _bounds.min.z, _bounds.max.z);
 
-            transform.position = Vector3.MoveTowards(transform.position, newPos, 8 * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, newPos, 10 * Time.deltaTime);
         }
     }
 

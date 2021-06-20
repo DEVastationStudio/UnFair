@@ -8,7 +8,7 @@ public class RodAiScript : MonoBehaviour
     public Vector3 positionOffset;
     private float _initialHeight;
     private const int _heightOffset = 1;
-    private float _height;
+    [SerializeField]private float _height;
     public BoxCollider magnetHitbox;
     public GameObject magnet;
     private Vector3 _targetPos;
@@ -22,6 +22,7 @@ public class RodAiScript : MonoBehaviour
     private Vector3 futureMagnetPos;
     public Rigidbody magnetRB;
     [SerializeField] private DynamicDifficultyManager _ddm;
+    [SerializeField]private float _catchCooldown;
 
     public Duck _targetDuck;
 
@@ -34,6 +35,8 @@ public class RodAiScript : MonoBehaviour
 
         _height = 0;
         _initialHeight = transform.position.y;
+
+        _catchCooldown = _ddm.GetValue(2);
     }
 
     private void OnDrawGizmos() 
@@ -51,101 +54,114 @@ public class RodAiScript : MonoBehaviour
         if (magnet.tag == "Magnet")
         {
 
-            /**/if (_targetDuck != null)
+            if (_targetDuck != null)
             {
                 if (!(ducksLayer == (ducksLayer | (1 << _targetDuck.gameObject.layer))))
                 {
                     _targetDuck = null;
                 }
             }
-/*
-            if (_targetDuck == null)
-            {*/
-                //Get all eligible ducks in a small area
-                nearDuckColliders = Physics.OverlapSphere(magnet.transform.position, _ddm.GetValue(0), ducksLayer);
 
-                if (nearDuckColliders.Length == 0)
-                {
-                    _targetPos = Vector3.zero;
-                }
-                else
-                {
-                    nearDucks = new Duck[nearDuckColliders.Length];
-                    futurePositions = new Vector3[nearDuckColliders.Length];
-                    weights = new int[nearDuckColliders.Length];
+            if (_catchCooldown > 0)
+            {
+                _catchCooldown -= Time.fixedDeltaTime;
+            }
+            else
+            {                
+                /*
+                if (_targetDuck == null)
+                {*/
+                    //Get all eligible ducks in a small area
+                    nearDuckColliders = Physics.OverlapSphere(magnet.transform.position, _ddm.GetValue(0), ducksLayer);
 
-                    for (int i = 0; i < nearDuckColliders.Length; i++)
+                    if (nearDuckColliders.Length == 0)
                     {
-                        nearDucks[i] = nearDuckColliders[i].GetComponent<Duck>();
+                        _targetPos = Vector3.zero;
                     }
-
-                    //Calculate future positions based on rigidbody speed
-                    for (int i = 0; i < nearDuckColliders.Length; i++)
+                    else
                     {
-                        futurePositions[i] = nearDucks[i].transform.position + nearDucks[i].rigidBody.velocity * Time.deltaTime;
-                    }
+                        nearDucks = new Duck[nearDuckColliders.Length];
+                        futurePositions = new Vector3[nearDuckColliders.Length];
+                        weights = new int[nearDuckColliders.Length];
 
-                    //Calculate future position of the magnet
-                    futureMagnetPos = magnet.transform.position + magnetRB.velocity * Time.deltaTime;
-
-                    //Calculate weight of all ducks (based on duck type)
-                    for (int i = 0; i < nearDuckColliders.Length; i++)
-                    {//Debug.DrawLine(magnet.transform.position, nearDucks[i].transform.position, Color.green);
-                        switch (nearDucks[i].type)
+                        for (int i = 0; i < nearDuckColliders.Length; i++)
                         {
-                            case Duck.Type.NORMAL:
-                                weights[i] = 3;
-                                break;
-                            case Duck.Type.AI:
-                                weights[i] = 2;
-                                break;
-                            case Duck.Type.GOLD:
-                                weights[i] = 1;
-                                break;
-                            case Duck.Type.PLAYER:
-                                weights[i] = 4;
-                                break;
-                            case Duck.Type.BLACK:
-                                weights[i] = 5;
-                                break;
-                            case Duck.Type.BIG:
-                                weights[i] = -100;
-                                break;
+                            nearDucks[i] = nearDuckColliders[i].GetComponent<Duck>();
                         }
-                    }
 
-                    //Set target position to the future position of the best duck
-                    int chosenDuck = 0;
-                    int minWeight = 99999;
-                    float minDist = 99999;
-                    float randomRange = 0;
-                    for (int i = 0; i < nearDuckColliders.Length; i++)
-                    {
-                        randomRange = Mathf.RoundToInt(Random.Range(0, _ddm.GetValue(1)));
-                        //print("Random Range: " + randomRange);
-                        if (weights[i] < (minWeight + randomRange))
+                        //Calculate future positions based on rigidbody speed
+                        for (int i = 0; i < nearDuckColliders.Length; i++)
                         {
-                            chosenDuck = i;
-                            minWeight = weights[i];
-                            minDist = (Vector3.Distance(futurePositions[i], futureMagnetPos));
+                            futurePositions[i] = nearDucks[i].transform.position + nearDucks[i].rigidBody.velocity * Time.deltaTime;
                         }
-                        else if (weights[1] == (minWeight + randomRange))
+
+                        //Calculate future position of the magnet
+                        futureMagnetPos = magnet.transform.position + magnetRB.velocity * Time.deltaTime;
+
+                        //Calculate weight of all ducks (based on duck type)
+                        for (int i = 0; i < nearDuckColliders.Length; i++)
+                        {//Debug.DrawLine(magnet.transform.position, nearDucks[i].transform.position, Color.green);
+                            switch (nearDucks[i].type)
+                            {
+                                case Duck.Type.NORMAL:
+                                    weights[i] = 3;
+                                    break;
+                                case Duck.Type.AI:
+                                    weights[i] = 2;
+                                    break;
+                                case Duck.Type.GOLD:
+                                    weights[i] = 1;
+                                    break;
+                                case Duck.Type.PLAYER:
+                                    weights[i] = 2; //4
+                                    break;
+                                case Duck.Type.BLACK:
+                                    weights[i] = 5;
+                                    break;
+                                case Duck.Type.TIME:
+                                    weights[i] = 5;
+                                    break;
+                                case Duck.Type.BIG:
+                                    weights[i] = -100;
+                                    break;
+                            }
+                        }
+
+                        //Set target position to the future position of the best duck
+                        int chosenDuck = 0;
+                        int minWeight = 99999;
+                        float minDist = 99999;
+                        float randomRange = 0;
+                        for (int i = 0; i < nearDuckColliders.Length; i++)
                         {
-                            if ((Vector3.Distance(futurePositions[i], futureMagnetPos)) < minDist)
+                            randomRange = Mathf.RoundToInt(Random.Range(0, _ddm.GetValue(1)));
+                            //print("Random Range: " + randomRange);
+                            if (weights[i] < (minWeight + randomRange))
                             {
                                 chosenDuck = i;
                                 minWeight = weights[i];
-                                minDist = (Vector3.Distance(futurePositions[i], futureMagnetPos)); 
+                                minDist = (Vector3.Distance(futurePositions[i], futureMagnetPos));
+                            }
+                            else if (weights[1] == (minWeight + randomRange))
+                            {
+                                if ((Vector3.Distance(futurePositions[i], futureMagnetPos)) < minDist)
+                                {
+                                    chosenDuck = i;
+                                    minWeight = weights[i];
+                                    minDist = (Vector3.Distance(futurePositions[i], futureMagnetPos)); 
+                                }
                             }
                         }
-                    }
 
-                    if (_targetDuck == null || _targetDuck.type == Duck.Type.BIG)
-                        _targetDuck = nearDucks[chosenDuck];
-                }
-            //}
-            if (_targetDuck != null) _targetPos = _targetDuck.transform.position + _targetDuck.rigidBody.velocity * 2 * Time.deltaTime;
-            //Debug.DrawLine(magnet.transform.position, _targetPos, Color.magenta);
+                        if (_targetDuck == null || _targetDuck.type == Duck.Type.BIG)
+                            _targetDuck = nearDucks[chosenDuck];
+                    }
+                //}
+            
+                if (_targetDuck != null) _targetPos = _targetDuck.transform.position + _targetDuck.rigidBody.velocity * 2 * Time.deltaTime;
+                else _targetPos = new Vector3(10,0,0);
+                //Debug.DrawLine(magnet.transform.position, _targetPos, Color.magenta);
+            }
         }
         else
         {
@@ -156,30 +172,35 @@ public class RodAiScript : MonoBehaviour
 
         //Up/down movement
         Vector3 targetLevel = new Vector3(_targetPos.x, magnet.transform.position.y, _targetPos.z);
-        bool goDown = Vector3.Distance(magnet.transform.position, targetLevel) < 1.5f;
-        //Debug.DrawLine(magnet.transform.position, targetLevel, goDown?Color.white:Color.black);
+        bool goDown = Vector3.Distance(magnet.transform.position, targetLevel) < 2;
+        Debug.DrawLine(magnet.transform.position, targetLevel, goDown?Color.white:Color.black);
 
-        if (_height < 1 && magnet.tag == "Magnet" && goDown)
+        if (_height < 1 && magnet.tag == "Magnet" && goDown && _targetDuck != null)
         {
-            _height = Mathf.Min(_height + 0.5f * Time.deltaTime, 1);
+            _height = Mathf.Min(_height + 1 * Time.deltaTime, 1);
         }
-        else if (_height > 0 && magnet.tag != "Magnet")
+        else if (_height > 0/* && magnet.tag != "Magnet"*/)
         {
             _height = Mathf.Max(_height - 0.5f * Time.deltaTime, 0);
         }
 
         //magnetHitbox.enabled = (_height >= 1);
 
-        if (_height >= 1)
+        if (_height >= 1 && _targetDuck != null && goDown)
         {
             _targetDuck.CatchDuck(magnet.gameObject);
+            _catchCooldown = _ddm.GetValue(2);
         }
 
         //Move rod
         if (!gameManager.gameOver)
         {
             Vector3 newPos = new Vector3(_targetPos.x, _initialHeight - _height, _targetPos.z) + positionOffset;
-            transform.position = Vector3.MoveTowards(transform.position, newPos, 10 * Time.deltaTime);
+            int speed = 10;
+
+            if (Vector3.Distance(magnet.transform.position, targetLevel) < 2) speed = 20;
+
+            transform.position = Vector3.MoveTowards(transform.position, newPos, speed * Time.deltaTime);
             /*Debug.DrawLine(transform.position, newPos, Color.yellow);
             Debug.DrawRay(transform.position, Vector3.up, Color.yellow);
             Debug.DrawRay(newPos, Vector3.up, Color.yellow);

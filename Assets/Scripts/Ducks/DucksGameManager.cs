@@ -17,7 +17,7 @@ public class DucksGameManager : MonoBehaviour
     public RodAiScript aiScript;
     public RodController rodController;
     private bool _spawnedBigDuck;
-    private const int maxTime = 30;
+    private const int maxTime = 60;
     private float _bigDuckSpawnTime;
 
     [Header("Control por mando")]
@@ -57,6 +57,7 @@ public class DucksGameManager : MonoBehaviour
     private List<Vector3> _spawnPositions;
     private List<GameObject> _spawnedDucks; 
     [SerializeField] private GameObject _playerMagnet, _aiMagnet;
+    public GameObject[] duckSpawnPoints;
 
     void Start()
     {
@@ -77,7 +78,7 @@ public class DucksGameManager : MonoBehaviour
 
     private IEnumerator GenerateDucks()
     {
-        Duck duck;
+        /*Duck duck;
         float angle;
         float radius;
         Vector3 pos;
@@ -137,9 +138,10 @@ public class DucksGameManager : MonoBehaviour
                 }
                 //yield return null;
             }
-        }
+        }*/
         startGameButton.interactable = true;
         FadeController.FinishLoad();
+        yield return null;
     }
 
     private void OnPlayerScoreUpdate(int value)
@@ -194,10 +196,46 @@ public class DucksGameManager : MonoBehaviour
 
             if (!_spawnedBigDuck)
             {
+                Duck duck;
+
+                if (_actualTime % 3 == 0 && _spawnedDucks.Count < 200)
+                {
+                    foreach (GameObject s in duckSpawnPoints)
+                    {
+                        duck = Instantiate(duckPrefab, s.transform.position, Quaternion.Euler(-90, 0, 0));
+                        duck._gameManager = this;
+
+                        float rng = Random.Range(0f,1f);
+
+                        if (rng < 0.35f) //0.35
+                        {
+                            duck.type = Duck.Type.NORMAL;
+                        }
+                        else if (rng < 0.60f) //0.25
+                        {
+                            duck.type = Duck.Type.PLAYER;
+                        }
+                        else if (rng < 0.75f) //0.15
+                        {
+                            duck.type = Duck.Type.GOLD;
+                        }
+                        else if (rng < 0.90f) //0.15
+                        {
+                            duck.type = Duck.Type.BLACK;
+                        }
+                        else //0.1
+                        {
+                            duck.type = Duck.Type.TIME;
+                        }
+
+                        _spawnedDucks.Add(duck.gameObject);
+                    }
+                }
+
                 if (_actualTime <= _bigDuckSpawnTime)
                 {
                     _spawnedBigDuck = true;
-                    Duck duck = Instantiate(duckPrefab, new Vector3(0,4,0), Quaternion.Euler(-90, 0, 0));
+                    duck = Instantiate(duckPrefab, new Vector3(0,4,0), Quaternion.Euler(-90, 0, 0));
                     duck._gameManager = this;
                     duck.type = Duck.Type.BIG;
                     _spawnedDucks.Add(duck.gameObject);
@@ -271,7 +309,7 @@ public class DucksGameManager : MonoBehaviour
         }
 
         //Respawn ducks
-        
+        /*
         Duck duck;
         float angle;
         float radius;
@@ -311,7 +349,7 @@ public class DucksGameManager : MonoBehaviour
             i++;
 
             _spawnedDucks.Add(duck.gameObject);
-        }
+        }*/
         
 
         //Reset magnet tags
@@ -359,6 +397,15 @@ public class DucksGameManager : MonoBehaviour
         {
             _titleScreen.SetActive(true);
             _eventSystem.SetSelectedGameObject(_entrarAjustesBtn);
+        }
+    }
+
+    public void IncreaseTimer()
+    {
+        if (_actualTime > 0)
+        {
+            _actualTime += 5;
+            timerText.text = "Time: " + _actualTime;
         }
     }
 }

@@ -70,6 +70,15 @@ public class FloatingObject : MonoBehaviour
             transform.localScale /= 1.2f;
             OnBasketEnter(false);
         }
+        else if (g.tag == "Trash" && _magnetized)
+        {
+            _magnetized = false;
+            rigidBody.constraints = RigidbodyConstraints.None;
+            transform.parent = null;
+            _magnet.tag = "Magnet";
+            _magnet = null;
+            transform.localScale /= 1.2f;
+        }
     }
 
     protected IEnumerator MoveToMagnet()

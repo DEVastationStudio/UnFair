@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Duck : FloatingObject
 {
-    public enum Type { NORMAL, PLAYER, AI, BLACK, GOLD, BIG }
+    public enum Type { NORMAL, PLAYER, AI, BLACK, GOLD, BIG, TIME }
     [SerializeField] private Renderer _renderer;
     [SerializeField] private Material[] _materials;
     public Type type;
@@ -35,6 +35,9 @@ public class Duck : FloatingObject
             case Type.BIG:
                 _renderer.material = _materials[4];
                 transform.localScale = new Vector3(60,60,60);
+                break;
+            case Type.TIME:
+                _renderer.material = _materials[5];
                 break;
         }
     }
@@ -99,11 +102,18 @@ public class Duck : FloatingObject
                 _gameManager._vfxManager.InstantiateVFX(3, transform.position);
                 break;
             case Type.PLAYER:
-                _gameManager.playerScore += 2;
+                /*_gameManager.playerScore += 2;
                 if (player)
                 {
                     _gameManager.SetLastDuck(0.75f);
+                }*/
+                if (player) 
+                {
+                    _gameManager.playerScore += 2;
+                    _gameManager.SetLastDuck(0.75f);
                 }
+                else if (!player) _gameManager.aiScore += 2;
+
                 _gameManager._vfxManager.InstantiateVFX(4, transform.position);
                 break;
             case Type.AI:
@@ -113,6 +123,10 @@ public class Duck : FloatingObject
                     _gameManager.SetLastDuck(0.25f);
                 }
                 _gameManager._vfxManager.InstantiateVFX(4, transform.position);
+                break;
+            case Type.TIME:
+                _gameManager.IncreaseTimer();
+                _gameManager._vfxManager.InstantiateVFX(5, transform.position);
                 break;
         }
 

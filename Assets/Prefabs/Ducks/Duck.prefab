@@ -114,11 +114,12 @@ MonoBehaviour:
   col2: {fileID: 6373847414294606773}
   _renderer: {fileID: 4510567887144084291}
   _materials:
-  - {fileID: 2100000, guid: 7b3c21e0c6ff19d4b9e7b840a6e9037b, type: 2}
+  - {fileID: 2100000, guid: fbee66fc7d7765243854079c297beef9, type: 2}
   - {fileID: 2100000, guid: 3e4d2cbadcfef9a45b8b8e059a8f8865, type: 2}
   - {fileID: 2100000, guid: aa29204a606e25d4b8e6f0deb3aedf9a, type: 2}
   - {fileID: 2100000, guid: f907fe53d27017f479ce90bd521e2df1, type: 2}
   - {fileID: 2100000, guid: 1aba575d964eb59498abce8d8bb929af, type: 2}
+  - {fileID: 2100000, guid: 98dac35781c315840a7a30b95b263f9b, type: 2}
   type: 0
   _gameManager: {fileID: 0}
 --- !u!54 &5950351324030407451

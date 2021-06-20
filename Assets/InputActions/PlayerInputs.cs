@@ -28,7 +28,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Space Action"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""43a15b34-3642-4298-a093-8e8713900381"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -591,7 +591,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""AcceptUI"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""5de2e36b-0a6d-4e9f-82a4-8cb4595d8bed"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",

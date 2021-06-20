@@ -16,6 +16,7 @@ TagManager:
   - Reloj
   - DianaConLetra
   - NewPosPlayer
+  - Trash
   layers:
   - Default
   - TransparentFX
