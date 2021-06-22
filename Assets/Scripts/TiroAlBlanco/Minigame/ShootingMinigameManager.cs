@@ -26,7 +26,6 @@ public class ShootingMinigameManager : MonoBehaviour
     {
         AudioManager.instance.FadeOut(10,0.1f);
         _uiGeneral.FaseGame();
-        _spawnerDianas.SpawnInit();
     }
 
     public void RestartGame() 

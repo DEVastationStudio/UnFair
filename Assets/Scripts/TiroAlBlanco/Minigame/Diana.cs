@@ -25,13 +25,13 @@ public class Diana : MonoBehaviour
         _hit = false;
         _gameManager = FindObjectOfType<ShootingMinigameManager>();
         if (transform.tag == "DianaDorada" || transform.tag == "Reloj")
-            _lifeTime = (0.5f + 2 * (1.0f - _gameManager._dynamicDifficultyManager.GetValue(0)));
+            _lifeTime = (0.5f + 1.5f * (1.0f - _gameManager._dynamicDifficultyManager.GetValue(0)));
         if(_gameManager._spawnerDianas._isOnGoldRush)
-            _lifeTime = (2.5f + 2 * (1.0f - _gameManager._dynamicDifficultyManager.GetValue(0)));
+            _lifeTime = (2.5f + 1.5f * (1.0f - _gameManager._dynamicDifficultyManager.GetValue(0)));
         else if (_first)
             _lifeTime = (3f + 2.5f + 2 * (1.0f - _gameManager._dynamicDifficultyManager.GetValue(0)));
         else
-            _lifeTime = (2.5f + 2 * (1.0f - _gameManager._dynamicDifficultyManager.GetValue(0)));
+            _lifeTime = (2.5f + 1.5f * (1.0f - _gameManager._dynamicDifficultyManager.GetValue(0)));
         _maxLifeTime = _lifeTime;
         isInit = true;
     }

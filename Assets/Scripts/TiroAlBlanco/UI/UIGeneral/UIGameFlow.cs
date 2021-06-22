@@ -139,6 +139,8 @@ public partial class UIGeneral : MonoBehaviour
             _countdown.text = count.ToString();
             yield return new WaitForSeconds(1);
             count--;
+            if(count == 1)
+                _gameManager._spawnerDianas.SpawnInit();
         }
         _countdown.text = "";
         _countdown.gameObject.SetActive(false);
