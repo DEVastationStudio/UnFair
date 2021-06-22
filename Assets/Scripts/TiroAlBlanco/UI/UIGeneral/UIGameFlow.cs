@@ -45,6 +45,7 @@ public partial class UIGeneral : MonoBehaviour
         _outGameContainer.SetActive(false);
         _PostGameContainer.SetActive(true);
         _gameManager._dynamicDifficultyManager.SaveParameters();
+        _gameManager._logSystem._DDMValEnd = _gameManager._dynamicDifficultyManager.GetSkillLevel();
         _gameManager._letrasManager.ResetWord(true);
         Diana[] DianasRestantes = FindObjectsOfType<Diana>();
         if (_puntuacionActual >= _estrella3)
@@ -65,6 +66,7 @@ public partial class UIGeneral : MonoBehaviour
         else _estrellasConseguidasTxt.text = "No Stars";
 
         _puntuacionFinalTxt.text = "Score: " + _puntuacionActual;
+        _gameManager._logSystem._Score = _puntuacionActual;
         for (int i = 0; i < DianasRestantes.Length; i++) 
         {
            DianasRestantes[i]._dianaContainer.SleepTarget();
@@ -75,6 +77,7 @@ public partial class UIGeneral : MonoBehaviour
         _gameManager._spawnerDianas._isOnGoldRush = false;
         _playerInput.SwitchCurrentActionMap("UIMap");
         _npcConversationHelper.StartConversation();
+        _gameManager._logSystem.SaveData();
     }
 
     public void Pause()
@@ -142,6 +145,7 @@ public partial class UIGeneral : MonoBehaviour
             if(count == 1)
                 _gameManager._spawnerDianas.SpawnInit();
         }
+        _gameManager._logSystem._DDMValStart = _gameManager._dynamicDifficultyManager.GetSkillLevel();
         _countdown.text = "";
         _countdown.gameObject.SetActive(false);
         _inGameContainer.SetActive(true);

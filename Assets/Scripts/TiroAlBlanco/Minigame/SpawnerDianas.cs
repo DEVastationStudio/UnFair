@@ -75,17 +75,20 @@ public class SpawnerDianas : MonoBehaviour
                     {
                         _countToCheatLetter = MAX_LETTER_COUNT;
                         Spawn(_currentLetter + 3, i, true, _currentLetter);
+                        _gameManager._logSystem._DL++;
                     }
                     else
                     {
                         _countToCheatLetter--;
                         Spawn(aux + 3, i, true, aux);
+                        _gameManager._logSystem._DL++;
                     }
                 }
                 else 
                 {
                     _countToCheatLetter = MAX_LETTER_COUNT;
                     Spawn(_currentLetter + 3, i, true, _currentLetter);
+                    _gameManager._logSystem._DR++;
                 }
             }else
                 Spawn(0, i, true);
@@ -96,8 +99,6 @@ public class SpawnerDianas : MonoBehaviour
     public void DestroyTarget(int targetPos, Diana d = null) 
     {
         numDianas--;
-        //Debug.Log("NumDianas:" + numDianas);
-        //targetsInUse[targetPos] = false;
         if (d != null)
         {
             d.GetComponentInParent<Animator>().SetBool("isActive",false);
@@ -114,6 +115,21 @@ public class SpawnerDianas : MonoBehaviour
 
     private void Spawn(int type, int posInArray, bool first = false, int letter = -1)
     {
+        switch (type) 
+        {
+            case 0:
+                _gameManager._logSystem._DN++;
+                break;
+            case 1:
+                if(_isOnGoldRush)
+                    _gameManager._logSystem._DGR++;
+                else
+                    _gameManager._logSystem._DD++;
+                break;
+            case 2:
+                _gameManager._logSystem._DR++;
+                break;
+        }
         targetsInUse[posInArray] = true;
         _possibleTargetContainers[posInArray].GetComponent<Animator>().SetBool("isActive", true);
         _possibleTargetContainers[posInArray].WakeUpTarget(type, posInArray, letter);

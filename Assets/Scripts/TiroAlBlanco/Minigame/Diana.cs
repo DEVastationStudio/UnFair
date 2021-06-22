@@ -52,6 +52,7 @@ public class Diana : MonoBehaviour
                 _gameManager._pistolaScript.AutomaticDespawn();
                 if (isHit) 
                 {
+                    _gameManager._logSystem._DNDisp++;
                     _gameManager._dynamicDifficultyManager.SetValue(0, 0.50f);
                     _gameManager._uiGeneral.IncreasePuntuacion(_points);
                     _gameManager._vfxManager.InstantiateVFX(0, point);
@@ -61,8 +62,9 @@ public class Diana : MonoBehaviour
                 _gameManager._pistolaScript.CallSpawnRetard(0);
                 if (isHit)
                 {
-                    if(!_gameManager._spawnerDianas._isOnGoldRush)
-                     _gameManager._dynamicDifficultyManager.SetValue(0, 0.9f);
+                    if (!_gameManager._spawnerDianas._isOnGoldRush)
+                        _gameManager._dynamicDifficultyManager.SetValue(0, 0.9f);
+                    _gameManager._logSystem._DDDisp++;
                     _gameManager._uiGeneral.IncreasePuntuacion(_points);
                     _gameManager._vfxManager.InstantiateVFX(1, point);
                 }
@@ -71,6 +73,8 @@ public class Diana : MonoBehaviour
                 _gameManager._pistolaScript.CallSpawnRetard(0);
                 if (isHit)
                 {
+                    _gameManager._logSystem._DRDisp++;
+                    _gameManager._logSystem._TP += _points;
                     _gameManager._dynamicDifficultyManager.SetValue(0, 1f);
                     _gameManager._uiGeneral.IncreasePuntuacion(_points);
                     _gameManager._uiGeneral.AddTime(_points);
@@ -84,11 +88,13 @@ public class Diana : MonoBehaviour
                 {
                     if (_activeLetter == _gameManager._spawnerDianas._currentLetter)
                     {
+                        _gameManager._logSystem._DLDispT++;
                         _gameManager._pistolaScript._timeToSpawnLetter = 2f;
                         _gameManager._vfxManager.InstantiateTrailFromAToB(transform, _gameManager._letrasManager.Letras[_gameManager._spawnerDianas._currentLetter].transform, 0);
                     }
                     else
                     {
+                        _gameManager._logSystem._DLDispF++;
                         _gameManager._letrasManager.ResetWord();
                     }
                 }

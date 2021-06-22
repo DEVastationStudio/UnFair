@@ -17,7 +17,8 @@ public partial class UIGeneral : MonoBehaviour
     private void ResetTimer() 
     {
         actualTime = _timeForLevel;
-        _timerText.text = "Time: " + _timeForLevel; 
+        _timerText.text = "Time: " + _timeForLevel;
+        _gameManager._logSystem._TP += _timeForLevel;
     }
 
     IEnumerator TimerUpdate()

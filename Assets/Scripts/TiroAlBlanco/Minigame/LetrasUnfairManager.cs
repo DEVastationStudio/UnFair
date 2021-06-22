@@ -80,8 +80,9 @@ public class LetrasUnfairManager : MonoBehaviour
         StartCoroutine(WinningUnfair());
     }
 
-    IEnumerator WinningUnfair() 
+    IEnumerator WinningUnfair()
     {
+        _gameManager._logSystem._GR++;
         foreach (GameObject g in Letras) 
         {
             SpriteRenderer s = g.GetComponent<SpriteRenderer>();
@@ -95,10 +96,12 @@ public class LetrasUnfairManager : MonoBehaviour
         _barraLetras.gameObject.SetActive(true);
         float tBase = 0.01f;
         float tMax = 100f;
+        float tTotal = 4;
+        _gameManager._logSystem._GRTime = tTotal;
         while (_barraLetras.value > 0) 
         {
             yield return new WaitForSeconds(tBase);
-            _barraLetras.value -= Mathf.Clamp((tMax/4)*tBase, 0, 100);
+            _barraLetras.value -= Mathf.Clamp((tMax/tTotal)*tBase, 0, 100);
         }
         _barraLetras.gameObject.SetActive(false);
         _barraLetras.value = 100;

@@ -11,6 +11,7 @@ public class ShootingMinigameManager : MonoBehaviour
     public DynamicDifficultyManager _dynamicDifficultyManager;
     public VFXManager _vfxManager;
     public LetrasUnfairManager _letrasManager;
+    public LogSystem _logSystem;
     #endregion Variables
 
     #region Metodos

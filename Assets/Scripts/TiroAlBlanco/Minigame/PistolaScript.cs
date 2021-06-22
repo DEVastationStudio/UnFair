@@ -73,6 +73,7 @@ public class PistolaScript : MonoBehaviour
         }
         else if(hit.transform.tag == "Pared") 
         {
+            _gameManager._logSystem._Miss++;
             _gameManager._dynamicDifficultyManager.SetValue(0, 0f);
             _gameManager._uiGeneral.IncreasePuntuacion(-5);
             _gameManager._vfxManager.InstantiateVFX(3, hit.point);

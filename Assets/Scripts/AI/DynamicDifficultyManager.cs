@@ -33,6 +33,11 @@ public class DynamicDifficultyManager : MonoBehaviour
         return curves[curve].Evaluate(_skillLevel);
     }
 
+    public float GetSkillLevel() 
+    {
+        return _skillLevel;
+    }
+
     private void ComputeSkillLevel()
     {
         _skillLevel = 0;
