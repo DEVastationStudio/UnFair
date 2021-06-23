@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
-public class LogSystem : MonoBehaviour
+
+public class ShootingLogSystem : MonoBehaviour
 {
-    /* ---ORDEN DE ARCHIVO---
+    /* ---Leyenda---
      * DN -> Diana Normal
      * DD -> Diana Dorada
      * DR -> Diana Reloj
      * DL -> Diana Letra
      * GR -> Gold Rush
      * TP -> Tiempo en partida
-     * Orden archivo: [Date - DN - DNDisp - DD - DDDisp - DR - DRDisp - DL - DLDispT - DLDispF - GR - GRTime - DGR - DGRDisp - Miss - TP - DDMVal]
     */
     #region Variables
     [SerializeField] private ShootingMinigameManager _gameManager;
+    [SerializeField] private string _dataName;
 
     [HideInInspector] public int _DN = 0;
     [HideInInspector] public int _DD = 0;
@@ -37,13 +38,22 @@ public class LogSystem : MonoBehaviour
     [HideInInspector] public float _Score = 0;
 
     private string _fileName;
+    private const string _DATA_PATH = "/Minigame_Data/ShootingMinigame/";
+    private string _directoryPath;
     #endregion
 
     #region Metodos
 
     private void Start()
     {
-        _fileName = Application.dataPath + "/Shooting_Minigame_Data.csv";
+        _directoryPath = Application.dataPath + _DATA_PATH;
+        _fileName = Application.dataPath + _DATA_PATH + _dataName + ".csv";
+
+        if (!Directory.Exists(_directoryPath))
+        {
+            Directory.CreateDirectory(_directoryPath);
+        }
+
         if (!File.Exists(_fileName))
         {
             StartData();
@@ -56,35 +66,36 @@ public class LogSystem : MonoBehaviour
         using (StreamWriter sw = new StreamWriter(_fileName, true))
         {
             sw.WriteLine(
-                "DATE" + " "+
-                "DN" + " " +
-                "DNDisp" + " " +
-                "DD" + " " +
-                "DDDisp" + " " +
-                "DR" + " " +
-                "DRDisp" + " " +
-                "DL" + " " +
-                "DLDispT" + " " +
-                "DLDispF" + " " +
-                "GR" + " " +
-                "GRTime" + " " +
-                "DGR" + " " +
-                "MISS" + " " +
-                "TP" + " " +
-                "DDMValStart" + " " +
-                "DDMValEnd" + " "+
+                "DATE" + " " +
+                "NORMAL_SPAWNS" + " " +
+                "NORMAL_SHOTS" + " " +
+                "GOLD_SPAWNS" + " " +
+                "GOLD_SHOTS" + " " +
+                "CLOCK_SPAWNS" + " " +
+                "CLOCK_SHOTS" + " " +
+                "LETTER_SPAWNS" + " " +
+                "CORRECT_LETTER_SHOTS" + " " +
+                "FAIL_LETTER_SHOTS" + " " +
+                "GOLD_RUSH" + " " +
+                "GOLD_RUSH_TIME" + " " +
+                "GOLD_RUSH_SPAWNS" + " " +
+                "GOLD_RUSH_SHOTS" + " " +
+                "MISSED_SHOTS" + " " +
+                "TOTAL_GAME_TIME" + " " +
+                "START_DIFFICULTY" + " " +
+                "END_DIFFICULTY" + " " +
                 "SCORE"
             );
             sw.Close();
         }
     }
 
-    public void SaveData() 
+    public void SaveData()
     {
         using (StreamWriter sw = new StreamWriter(_fileName, true))
-        {   
+        {
             sw.WriteLine(
-                DateTime.Today.Day+"/"+ DateTime.Today.Month +"/"+ DateTime.Today.Year + " " +
+                DateTime.Today.Day + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year + " " +
                 _DN + " " +
                 _DNDisp + " " +
                 _DD + " " +
@@ -97,10 +108,11 @@ public class LogSystem : MonoBehaviour
                 _GR + " " +
                 _GRTime + " " +
                 _DGR + " " +
+                _DGRDisp + " " +
                 _Miss + " " +
                 _TP + " " +
                 _DDMValStart + " " +
-                _DDMValEnd + " " + 
+                _DDMValEnd + " " +
                 _Score
             );
             sw.Close();
@@ -129,7 +141,6 @@ public class LogSystem : MonoBehaviour
         _DDMValStart = 0;
         _DDMValEnd = 0;
         _Score = 0;
-}
-
-    #endregion
+    }
+#endregion
 }

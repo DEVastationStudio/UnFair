@@ -3887,7 +3887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faseActual: 0
   _gameManager: {fileID: 371035726}
-  _timeForLevel: 10
+  _timeForLevel: 35
   _timerText: {fileID: 688951926}
   _puntuacionText: {fileID: 1765146956}
   _puntuacionFinalTxt: {fileID: 22633907}
@@ -9055,10 +9055,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1476653112}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11c453510af728c4ab0f4c0681cd6f73, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f0017aad14759248a5b526fb6026646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _gameManager: {fileID: 371035726}
+  _dataName: ShootingMinigame_v0.2.2a
   _DN: 0
   _DD: 0
   _DR: 0

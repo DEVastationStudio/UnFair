@@ -67,7 +67,7 @@ public class PistolaScript : MonoBehaviour
         RaycastHit hit;
         Physics.Raycast(Camera.main.ScreenPointToRay(_mira.transform.position), out hit, 100);
         if (hit.transform == null) return;
-        if (hit.transform.tag == "Diana" || hit.transform.tag == "DianaDorada" || hit.transform.tag == "Reloj" || hit.transform.tag == "DianaConLetra")
+        if (hit.transform.tag == "Diana" || hit.transform.tag == "DianaDorada" || hit.transform.tag == "Reloj" || hit.transform.tag == "DianaConLetra" || hit.transform.tag == "DianaDoradaGR")
         {
             hit.transform.gameObject.GetComponent<Diana>().Hit(true, hit.point);
         }

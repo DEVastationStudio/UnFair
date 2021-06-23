@@ -52,7 +52,7 @@ public class SpawnerDianas : MonoBehaviour
 
         if (_isOnGoldRush) 
         {
-            Spawn(1, i);
+            Spawn(9, i);
             return;
         }
 
@@ -121,13 +121,13 @@ public class SpawnerDianas : MonoBehaviour
                 _gameManager._logSystem._DN++;
                 break;
             case 1:
-                if(_isOnGoldRush)
-                    _gameManager._logSystem._DGR++;
-                else
-                    _gameManager._logSystem._DD++;
+                _gameManager._logSystem._DD++;
                 break;
             case 2:
                 _gameManager._logSystem._DR++;
+                break;
+            case 9:
+                _gameManager._logSystem._DGR++;
                 break;
         }
         targetsInUse[posInArray] = true;

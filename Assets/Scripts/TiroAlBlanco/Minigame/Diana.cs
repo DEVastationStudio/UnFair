@@ -62,8 +62,7 @@ public class Diana : MonoBehaviour
                 _gameManager._pistolaScript.CallSpawnRetard(0);
                 if (isHit)
                 {
-                    if (!_gameManager._spawnerDianas._isOnGoldRush)
-                        _gameManager._dynamicDifficultyManager.SetValue(0, 0.9f);
+                    _gameManager._dynamicDifficultyManager.SetValue(0, 0.9f);
                     _gameManager._logSystem._DDDisp++;
                     _gameManager._uiGeneral.IncreasePuntuacion(_points);
                     _gameManager._vfxManager.InstantiateVFX(1, point);
@@ -99,6 +98,16 @@ public class Diana : MonoBehaviour
                     }
                 }
                 break;
+            case "DianaDoradaGR":
+                _gameManager._pistolaScript.CallSpawnRetard(0);
+                if (isHit)
+                {
+                    _gameManager._dynamicDifficultyManager.SetValue(0, 0.7f);
+                    _gameManager._logSystem._DGRDisp++;
+                    _gameManager._uiGeneral.IncreasePuntuacion(_points);
+                    _gameManager._vfxManager.InstantiateVFX(1, point);
+                }
+                break;
         }
     }
 
@@ -107,6 +116,10 @@ public class Diana : MonoBehaviour
         if (isInit || _lifeTime < 0)
         {
             _lifeTime -= Time.deltaTime;
+            if (_gameManager._spawnerDianas._isOnGoldRush && transform.tag != "DianaDoradaGR")
+                _lifeTime = -1;
+            if(!_gameManager._spawnerDianas._isOnGoldRush && transform.tag == "DianaDoradaGR")
+                _lifeTime = -1;
             if (!_hit && _lifeTime <= 0)
             {
                 Hit(false, new Vector3(0,0,0));

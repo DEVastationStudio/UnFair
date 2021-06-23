@@ -17,6 +17,7 @@ TagManager:
   - DianaConLetra
   - NewPosPlayer
   - Trash
+  - DianaDoradaGR
   layers:
   - Default
   - TransparentFX
