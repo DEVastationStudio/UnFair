@@ -31,7 +31,7 @@ public class FloatingObject : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         CatchDuck(other.gameObject);
     }
@@ -78,6 +78,7 @@ public class FloatingObject : MonoBehaviour
             _magnet.tag = "Magnet";
             _magnet = null;
             transform.localScale /= 1.2f;
+            OnTrashEnter();
         }
     }
 
@@ -87,10 +88,10 @@ public class FloatingObject : MonoBehaviour
         col1.enabled = false;
         col2.enabled = false;
 
-        while (Vector3.Distance(transform.position, targetPos) > 0.1f)
+        while (Vector3.Distance(transform.position, targetPos) > 1)
         {
             targetPos = transform.parent.transform.position + new Vector3(0,-1.8f,0);
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, 0.1f);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, 0.2f);
             Debug.DrawLine(transform.position, targetPos, Color.red);
             yield return null;
         }
@@ -99,4 +100,5 @@ public class FloatingObject : MonoBehaviour
     }
 
     protected virtual void OnBasketEnter(bool player) {}
+    protected virtual void OnTrashEnter() {}
 }

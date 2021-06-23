@@ -135,4 +135,46 @@ public class Duck : FloatingObject
             _gameManager.noBadDucks = false;
         }
     }
+
+    protected override void OnTrashEnter()
+    {
+        if (_gameManager.gameOver) return;
+        gameObject.layer = 0;
+
+        int boostTime = 0;
+        switch (type)
+        {
+            case Type.NORMAL:
+                boostTime = 1;
+                _gameManager._vfxManager.InstantiateVFX(0, transform.position);
+                break;
+            case Type.BLACK:
+                boostTime = -2;
+                _gameManager._vfxManager.InstantiateVFX(1, transform.position);
+                break;
+            case Type.GOLD:
+                boostTime = 5;
+                _gameManager._vfxManager.InstantiateVFX(2, transform.position);
+                break;
+            case Type.BIG:
+                boostTime = 7;
+                _gameManager._vfxManager.InstantiateVFX(3, transform.position);
+                break;
+            case Type.PLAYER:
+                boostTime = 2;
+                _gameManager._vfxManager.InstantiateVFX(4, transform.position);
+                break;
+            case Type.AI:
+                boostTime = 2;
+                _gameManager._vfxManager.InstantiateVFX(4, transform.position);
+                break;
+            case Type.TIME:
+                boostTime = 5;
+                _gameManager._vfxManager.InstantiateVFX(5, transform.position);
+                break;
+        }
+
+        _gameManager.BoostPlayer(boostTime);
+
+    }
 }

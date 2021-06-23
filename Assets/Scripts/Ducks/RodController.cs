@@ -23,6 +23,7 @@ public class RodController : MonoBehaviour
     public BoxCollider rodBounds;
     private Bounds _bounds;
     private bool _isPaused;
+    private float _boostTimer, _badBoostTimer;
     [SerializeField] GameObject _pauseMenu;
     [SerializeField] private EventSystem _eventSystem;
     [SerializeField] private GameObject _continueBtn;
@@ -69,7 +70,20 @@ public class RodController : MonoBehaviour
             newPos.x = Mathf.Clamp(newPos.x, _bounds.min.x, _bounds.max.x);
             newPos.z = Mathf.Clamp(newPos.z, _bounds.min.z, _bounds.max.z);
 
-            transform.position = Vector3.MoveTowards(transform.position, newPos, 10 * Time.deltaTime);
+            float multiplier = 1.0f;
+            float badMultiplier = 1.0f;
+            if (_boostTimer > 0)
+            {
+                multiplier = 1.75f;
+                _boostTimer -= Time.fixedDeltaTime;
+            }
+            if (_badBoostTimer > 0)
+            {
+                //badMultiplier = 0.25f;
+                _badBoostTimer -= Time.fixedDeltaTime;
+            }
+
+            transform.position = Vector3.MoveTowards(transform.position, newPos, multiplier * badMultiplier * 10 * Time.deltaTime);
         }
     }
 
@@ -138,5 +152,13 @@ public class RodController : MonoBehaviour
 
         Pause();
         gameManager.ResetScene();
+    }
+
+    public void Boost(int boostTime)
+    {
+        if (boostTime > 0)
+            _boostTimer += boostTime;
+        else
+            _badBoostTimer -= boostTime;
     }
 }
