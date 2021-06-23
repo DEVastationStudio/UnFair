@@ -200,26 +200,43 @@ public class DucksGameManager : MonoBehaviour
 
                 if (_actualTime % 3 == 0 && _spawnedDucks.Count < 200)
                 {
-                    foreach (GameObject s in duckSpawnPoints)
+                    for (int i = 0; i < duckSpawnPoints.Length; i++)
                     {
+                        GameObject s = duckSpawnPoints[i];
                         duck = Instantiate(duckPrefab, s.transform.position, Quaternion.Euler(-90, 0, 0));
                         duck._gameManager = this;
 
                         float rng = Random.Range(0f,1f);
 
-                        if (rng < 0.35f) //0.35
+                        float[] probs;
+
+                        if (i == 3) //Good positions for player
+                        {
+                            if (playerScore > aiScore)      probs = new float[] { 0.45f, 0.60f, 0.65f, 0.90f }; //Player advantage
+                            else if (playerScore < aiScore) probs = new float[] { 0.25f, 0.60f, 0.85f, 0.90f }; //Ai advantage
+                            else                            probs = new float[] { 0.35f, 0.60f, 0.75f, 0.90f }; //Neutral scores
+                        }
+                        else if (i == 2) //Good positions for ai
+                        {
+                            if (playerScore > aiScore)      probs = new float[] { 0.25f, 0.60f, 0.85f, 0.90f }; //Player advantage
+                            else if (playerScore < aiScore) probs = new float[] { 0.45f, 0.60f, 0.65f, 0.90f }; //Ai advantage
+                            else                            probs = new float[] { 0.35f, 0.60f, 0.75f, 0.90f }; //Neutral scores
+                        }
+                        else probs = new float[] { 0.35f, 0.60f, 0.75f, 0.90f };
+
+                        if (rng < probs[0]) //0.35
                         {
                             duck.type = Duck.Type.NORMAL;
                         }
-                        else if (rng < 0.60f) //0.25
+                        else if (rng < probs[1]) //0.25
                         {
                             duck.type = Duck.Type.PLAYER;
                         }
-                        else if (rng < 0.75f) //0.15
+                        else if (rng < probs[2]) //0.15
                         {
                             duck.type = Duck.Type.GOLD;
                         }
-                        else if (rng < 0.90f) //0.15
+                        else if (rng < probs[3]) //0.15
                         {
                             duck.type = Duck.Type.BLACK;
                         }
@@ -407,5 +424,10 @@ public class DucksGameManager : MonoBehaviour
             _actualTime += 5;
             timerText.text = "Time: " + _actualTime;
         }
+    }
+
+    public void BoostPlayer(int boostTime)
+    {
+        rodController.Boost(boostTime);
     }
 }
