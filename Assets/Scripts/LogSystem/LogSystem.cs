@@ -9,7 +9,7 @@ public class LogSystem : MonoBehaviour
     [SerializeField] private string _dataName;
 
     private string _fileName;
-    private const string _DATA_PATH = "/Minigame_Data/ShootingMinigame/";
+    private const string _DATA_PATH = "/../Minigame_Data/ShootingMinigame/";
     private string _directoryPath;
     #endregion
 

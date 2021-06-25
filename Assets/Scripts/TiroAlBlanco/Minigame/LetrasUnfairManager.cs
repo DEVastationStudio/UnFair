@@ -15,11 +15,11 @@ public class LetrasUnfairManager : MonoBehaviour
     [Header("Luces")]
     [SerializeField] private int _numOfBlinks;
     [SerializeField] private float _blinkSpeed;
-    [SerializeField] private Color _lightOff;
-    [SerializeField] private Color _lightWaiting;
-    [SerializeField] private Color _lightCorrect;
-    [SerializeField] private Color _lightWin; 
-    [SerializeField] private Color _lightWrong;
+    [SerializeField] private Sprite _lightOff;
+    [SerializeField] private Sprite _lightWaiting;
+    [SerializeField] private Sprite _lightCorrect;
+    [SerializeField] private Sprite _lightWin; 
+    [SerializeField] private Sprite _lightWrong;
     public List<GameObject> LucesU;
     public List<GameObject> LucesN;
     public List<GameObject> LucesF;
@@ -124,7 +124,7 @@ public class LetrasUnfairManager : MonoBehaviour
         ChangeLightColor(_lightWaiting, 0);
     }
 
-    private void ChangeLightColor(Color c, int l) 
+    private void ChangeLightColor(Sprite sp, int l) 
     {
         List<GameObject> inUse;
         switch (l) 
@@ -154,7 +154,7 @@ public class LetrasUnfairManager : MonoBehaviour
 
         foreach (GameObject g in inUse)
         {
-            g.GetComponent<SpriteRenderer>().color = c;
+            g.GetComponent<SpriteRenderer>().sprite = sp;
         }
     }
 
@@ -169,7 +169,7 @@ public class LetrasUnfairManager : MonoBehaviour
         ChangeLightColor(_lightWaiting, 0);
     }
 
-    IEnumerator BlinkingLights(int letterToBlink, Color blinkingColor)
+    IEnumerator BlinkingLights(int letterToBlink, Sprite blinkingColor)
     {
         ChangeLightColor(blinkingColor, letterToBlink);
         for (int i = 0; i < _numOfBlinks; i++)

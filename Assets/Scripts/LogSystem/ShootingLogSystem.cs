@@ -38,7 +38,7 @@ public class ShootingLogSystem : MonoBehaviour
     [HideInInspector] public float _Score = 0;
 
     private string _fileName;
-    private const string _DATA_PATH = "/Minigame_Data/ShootingMinigame/";
+    private const string _DATA_PATH = "/../Minigame_Data/ShootingMinigame/";
     private string _directoryPath;
     #endregion
 
