@@ -25,10 +25,10 @@ public partial class PlayerController : MonoBehaviour
     [SerializeField] private Animator _animator;
 
     [Header("Npcs")]
-    [SerializeField] private ConversationHelper _salidaCanicas;
-    [SerializeField] private ConversationHelper _salidaTiroAlBlanco;
-    [SerializeField] private ConversationHelper _salidaPatos;
-    [SerializeField] private ConversationHelper _salidaCaballos;
+    public ConversationHelper _salidaCanicas;
+    public ConversationHelper _salidaTiroAlBlanco;
+    public ConversationHelper _salidaPatos;
+    public ConversationHelper _salidaCaballos;
 
     #endregion Variables
 
@@ -61,26 +61,54 @@ public partial class PlayerController : MonoBehaviour
             _titleScreen.SetActive(false);
             //if (AudioManager.instance != null) AudioManager.instance.changeTheme(3);
             //_uiManager._playerInput.SwitchCurrentActionMap("ActionMap");
-        }
-        yield return null;
-        FadeController.FinishLoad();
+        
+            yield return null;
+            FadeController.FinishLoad();
 
-        int prog = PlayerPrefs.GetInt("Progression", 0);
-        if (prog == 2 && PlayerPrefs.GetInt("Stars-4", 0) > 0)
-        {
-            _salidaCanicas.StartConversation();
+            int prog = PlayerPrefs.GetInt("Progression", 0);
+            if (prog == 2 && PlayerPrefs.GetInt("Stars-4", 0) > 0)
+            {
+                _salidaCanicas.StartConversation();
+            }
+            else if (prog == 4 && PlayerPrefs.GetInt("Stars-1", 0) > 0)
+            {
+                _salidaTiroAlBlanco.StartConversation();
+            }
+            else if (prog == 7 && PlayerPrefs.GetInt("Stars-3", 0) > 0)
+            {
+                _salidaPatos.StartConversation();
+            }
+            else if (prog == 9 && PlayerPrefs.GetInt("Stars-2", 0) > 0)
+            {
+                _salidaCaballos.StartConversation();
+            }
         }
-        else if (prog == 4 && PlayerPrefs.GetInt("Stars-1", 0) > 0)
+        else
         {
-            _salidaTiroAlBlanco.StartConversation();
-        }
-        else if (prog == 7 && PlayerPrefs.GetInt("Stars-3", 0) > 0)
-        {
-            _salidaPatos.StartConversation();
-        }
-        else if (prog == 9 && PlayerPrefs.GetInt("Stars-2", 0) > 0)
-        {
-            _salidaCaballos.StartConversation();
+            FollowPlayerScript _follower = FindObjectOfType<FollowPlayerScript>();
+            int prog = PlayerPrefs.GetInt("Progression", 0);
+            if (prog == 2 && PlayerPrefs.GetInt("Stars-4", 0) > 0)
+            {
+                transform.position = new Vector3(-41.25999f, 4.9f, 110.5f);
+                _follower.transform.position = new Vector3(-47.92f, 4.9f, 110.5f);
+            }
+            else if (prog == 4 && PlayerPrefs.GetInt("Stars-1", 0) > 0)
+            {
+                transform.position = new Vector3(-40.93999f, 4.9f, -30.8f);
+                _follower.transform.position = new Vector3(-47.6f, 4.9f, -30.8f);
+            }
+            else if (prog == 7 && PlayerPrefs.GetInt("Stars-3", 0) > 0)
+            {
+                transform.position = new Vector3(-137.93f, 4.9f, -30.8f);
+                _follower.transform.position = new Vector3(-144.59f, 4.9f, -30.8f);
+            }
+            else if (prog == 9 && PlayerPrefs.GetInt("Stars-2", 0) > 0)
+            {
+                transform.position = new Vector3(-154.14f, 4.9f, 85.7f);
+                _follower.transform.position = new Vector3(-160.8f, 4.9f, 85.7f);
+            }
+            yield return null;
+            FadeController.FinishLoad();
         }
     }
 
