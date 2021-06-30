@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     #region Variables
     [Header("Player")]
     [SerializeField] public PlayerInput _playerInput;
+    [SerializeField] public PlayerController _player;
 
     [Header("Pause menu")]
     [SerializeField] private GameObject _basePauseMenu;
@@ -66,7 +67,7 @@ public class UIManager : MonoBehaviour
 
     public void StartGame()
     {
-        _playerInput.gameObject.transform.position = new Vector3(-188.84f, 4.9f, 0.4f);
+        //_playerInput.gameObject.transform.position = new Vector3(-188.84f, 4.9f, 0.4f);
         _playerInput.SwitchCurrentActionMap("UIMap");
         _titleScreen.SetActive(false);
         _virtualCameras[0].SetActive(true);
@@ -210,7 +211,29 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            _playerInput.SwitchCurrentActionMap("ActionMap");
+            _player = FindObjectOfType<PlayerController>();
+
+            int prog = PlayerPrefs.GetInt("Progression", 0);
+            if (prog == 2 && PlayerPrefs.GetInt("Stars-4", 0) > 0)
+            {
+                _player._salidaCanicas.StartConversation();
+            }
+            else if (prog == 4 && PlayerPrefs.GetInt("Stars-1", 0) > 0)
+            {
+                _player._salidaTiroAlBlanco.StartConversation();
+            }
+            else if (prog == 7 && PlayerPrefs.GetInt("Stars-3", 0) > 0)
+            {
+                _player._salidaPatos.StartConversation();
+            }
+            else if (prog == 9 && PlayerPrefs.GetInt("Stars-2", 0) > 0)
+            {
+                _player._salidaCaballos.StartConversation();
+            }
+            else
+            {
+                _playerInput.SwitchCurrentActionMap("ActionMap");
+            }
         }
     }
     public void Exit()
