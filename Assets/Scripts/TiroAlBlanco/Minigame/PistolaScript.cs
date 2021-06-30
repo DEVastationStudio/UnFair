@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 public class PistolaScript : MonoBehaviour
 {
     #region Variables
@@ -13,6 +12,7 @@ public class PistolaScript : MonoBehaviour
     [Header("VFX")]
     [SerializeField] private GameObject _sparks;
     [SerializeField] private float _sparksTime;
+    [SerializeField] private GameObject _shot;
 
     [Header("Otros Scripts")]
     [SerializeField] private ShootingMinigameManager _gameManager;
@@ -67,6 +67,7 @@ public class PistolaScript : MonoBehaviour
         RaycastHit hit;
         Physics.Raycast(Camera.main.ScreenPointToRay(_mira.transform.position), out hit, 100);
         if (hit.transform == null) return;
+        Instantiate(_shot, hit.transform.position, Quaternion.identity);
         if (hit.transform.tag == "Diana" || hit.transform.tag == "DianaDorada" || hit.transform.tag == "Reloj" || hit.transform.tag == "DianaConLetra" || hit.transform.tag == "DianaDoradaGR")
         {
             hit.transform.gameObject.GetComponent<Diana>().Hit(true, hit.point);

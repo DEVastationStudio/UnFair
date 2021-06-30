@@ -101,7 +101,6 @@ public class SpawnerDianas : MonoBehaviour
         numDianas--;
         if (d != null)
         {
-            d.GetComponentInParent<Animator>().SetBool("isActive",false);
             d._dianaContainer.SleepTarget();
             StartCoroutine(WaitAnimation(targetPos));
         }
@@ -131,7 +130,9 @@ public class SpawnerDianas : MonoBehaviour
                 break;
         }
         targetsInUse[posInArray] = true;
-        _possibleTargetContainers[posInArray].GetComponent<Animator>().SetBool("isActive", true);
+        _possibleTargetContainers[posInArray].GetComponent<Animator>().Play("DianaShow_Anim");
+        //_possibleTargetContainers[posInArray].GetComponent<Animator>().SetBool("isActive", true);
+        //_possibleTargetContainers[posInArray].GetComponent<Animator>().SetBool("isHit", false);
         _possibleTargetContainers[posInArray].WakeUpTarget(type, posInArray, letter);
     }
     #endregion Metodos

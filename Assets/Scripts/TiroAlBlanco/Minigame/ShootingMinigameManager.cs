@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Diagnostics;
 
 public class ShootingMinigameManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class ShootingMinigameManager : MonoBehaviour
     public VFXManager _vfxManager;
     public LetrasUnfairManager _letrasManager;
     public ShootingLogSystem _logSystem;
+
+    [HideInInspector] public Stopwatch _stopwatch;
     #endregion Variables
 
     #region Metodos

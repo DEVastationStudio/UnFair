@@ -25,7 +25,6 @@ public class VFXManager : MonoBehaviour
         GameObject t = Instantiate(_TRAILS[trail], pA.position, pA.rotation);
         while (actualT <= 1) 
         {
-            Debug.Log("Paso");
             t.transform.position = Vector3.Lerp(pA.position, pB.position, actualT);
             yield return new WaitForSeconds(timeStep);
             actualT += 0.016f*2;
