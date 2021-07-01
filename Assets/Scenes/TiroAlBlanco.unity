@@ -316,7 +316,7 @@ PrefabInstance:
     - target: {fileID: 637451277175273066, guid: 63837462ea71cbf4cba84541622754d2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.713979
+      value: -10.736
       objectReference: {fileID: 0}
     - target: {fileID: 637451277175273066, guid: 63837462ea71cbf4cba84541622754d2,
         type: 3}
@@ -9246,7 +9246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameManager: {fileID: 371035726}
-  _dataName: ShootingMinigame_v0.2.2a
+  _dataName: ShootingMinigame_v0.2.3a
   _DN: 0
   _DD: 0
   _DR: 0
