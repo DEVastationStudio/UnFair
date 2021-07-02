@@ -12,6 +12,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: borde
+    second: {fileID: 2100000, guid: 28f4dfa106e5fee478239a706096c1ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: bordes
     second: {fileID: 2100000, guid: 95d720b6827a5664fa36429b68329ca9, type: 2}
   - first:
@@ -24,6 +29,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: metal
     second: {fileID: 2100000, guid: 9872c05341b39e14b9ffa8e5ba7d2207, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tablon
+    second: {fileID: 2100000, guid: 9dadbd8ed5614ef499183263c6374f99, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
