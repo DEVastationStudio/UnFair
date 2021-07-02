@@ -59,22 +59,27 @@ Ratio de dianas doradas y de tiempo dependiendo de la dificultad. Las dianas en 
 ## Pesca de patos:
 
 ### 1. Concepto
-En una charca hay patos. El juego es “multijugador”, pues se juega contra otro NPC.
+Hay una piscina con agua. Cada 3 segundos, aparecen 4 patos. El juego es “multijugador”, pues se juega contra otro NPC.
 Hay cinco tipos de patos:
 
 1. Pato normal: Otorga un punto a quien lo pesque
 2. Pato verde: Otorga dos puntos al pescador controlado por el jugador
-3. Pato rojo: Otorga dos puntos al pescador controlado por la IA
+3. Pato azul: Añade 5 segundos al tiempo restante de la partida
 4. Pato dorado: Otorga cinco puntos a quien lo pesque
-5. Pato negro: Quita dos puntos a quien lo pesque
+5. Pato morado: Quita dos puntos a quien lo pesque
 6. Pato supremo: Aparece al final de la partida, otorga siete puntos a quien lo pesque
+
+Además, el jugador podrá depositar los patos en dos cestas diferentes:
+
+* La primera cesta le otorgará los puntos correspondientes según el pato pescado
+* La segunda cesta no otorgará puntos, pero le proporcionará un _boost_ de velocidad cuya duración equivale a la cantidad de puntos que otorgaría el pato pescado
 
 ### 2. Victoria y obtención de estrellas
 Se gana consiguiendo más patos que el otro jugador. Los requisitos para obtener cada una de las estrellas son los siguientes:
 
 * Conseguir más puntos que el otro jugador (requisito mínimo para obtener más estrellas)
 * Conseguir por lo menos cinco puntos más que el otro jugador
-* Conseguir no pescar patos rojos y negros
+* Conseguir no pescar patos morados (puede que cambie en el futuro)
 
 ### 3. IA
 La IA controla el movimiento de la caña enemiga, e intenta buscar el mejor pato para pescar.
@@ -96,6 +101,8 @@ Los outputs del DDS utilizados en este minijuego son:
 1. El radio de búsqueda de la IA
 
 2. La tolerancia a pescar patos peores
+
+3. El tiempo que espera la IA tras pescar un pato
 
 ## Carrera de caballos:
 
