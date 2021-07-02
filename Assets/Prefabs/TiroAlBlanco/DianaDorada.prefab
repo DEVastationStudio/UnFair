@@ -96,6 +96,13 @@ MonoBehaviour:
   _points: 50
   _pos: 0
   _hit: 0
+  _first: 0
+  _numLetraDiana: 0
+  _activeLetter: 0
+  _dianaContainer: {fileID: 0}
+  isInit: 0
+  _lifeTime: 0
+  _maxLifeTime: 0
 --- !u!64 &1420922709433942487
 MeshCollider:
   m_ObjectHideFlags: 0
