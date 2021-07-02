@@ -30,6 +30,7 @@ public class DucksGameManager : MonoBehaviour
 
     [Header("VFX Manager")]
     public VFXManager _vfxManager;
+    public DucksLogSystem logSystem;
 
     public int playerScore
     {
@@ -156,6 +157,9 @@ public class DucksGameManager : MonoBehaviour
     public void StartGame()
     {
         AudioManager.instance.FadeOut(13,0.1f);
+        logSystem.ResetVariables();
+        logSystem._GT = maxTime;
+        logSystem._DDMValStart = _ddm.GetSkillLevel();
         StartCoroutine(Countdown());
     }
     private IEnumerator Countdown() 
@@ -289,6 +293,12 @@ public class DucksGameManager : MonoBehaviour
         _ddm.SaveParameters();
         endGameText.text += "\nStars: " + stars;
         menu.SetActive(true);
+
+        logSystem._PS = _playerScore;
+        logSystem._ES = _aiScore;
+        logSystem._DDMValEnd = _ddm.GetSkillLevel();
+
+        logSystem.SaveData();
         
         _npcConversationHelper.StartConversation();
     }
@@ -423,6 +433,7 @@ public class DucksGameManager : MonoBehaviour
         {
             _actualTime += 5;
             timerText.text = "Time: " + _actualTime;
+            logSystem._GT += 5;
         }
     }
 

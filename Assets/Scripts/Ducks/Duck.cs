@@ -70,8 +70,12 @@ public class Duck : FloatingObject
                 {
                     _gameManager.playerScore++;
                     _gameManager.SetLastDuck(0.5f);
+                    _gameManager.logSystem._PD1++;
                 }
-                else if (!player) _gameManager.aiScore++;
+                else if (!player) {
+                    _gameManager.aiScore++;
+                    _gameManager.logSystem._ED1++;
+                }
                 _gameManager._vfxManager.InstantiateVFX(0, transform.position);
                 break;
             case Type.BLACK:
@@ -79,8 +83,12 @@ public class Duck : FloatingObject
                 {
                     _gameManager.playerScore = Mathf.Max(_gameManager.playerScore - 2, 0);
                     _gameManager.SetLastDuck(0);
+                    _gameManager.logSystem._PD0++;
                 }
-                else if (!player) _gameManager.aiScore = Mathf.Max(_gameManager.aiScore - 2, 0);
+                else if (!player) {
+                    _gameManager.aiScore = Mathf.Max(_gameManager.aiScore - 2, 0);
+                    _gameManager.logSystem._ED0++;
+                }
                 _gameManager._vfxManager.InstantiateVFX(1, transform.position);
                 break;
             case Type.GOLD:
@@ -88,8 +96,12 @@ public class Duck : FloatingObject
                 {
                     _gameManager.playerScore += 5;
                     _gameManager.SetLastDuck(1);
+                    _gameManager.logSystem._PD4++;
                 }
-                else if (!player) _gameManager.aiScore += 5;
+                else if (!player) {
+                    _gameManager.aiScore += 5;
+                    _gameManager.logSystem._ED4++;
+                }
                 _gameManager._vfxManager.InstantiateVFX(2, transform.position);
                 break;
             case Type.BIG:
@@ -97,8 +109,12 @@ public class Duck : FloatingObject
                 {
                     _gameManager.playerScore += 7;
                     _gameManager.SetLastDuck(1);
+                    _gameManager.logSystem._PD5++;
                 }
-                else if (!player) _gameManager.aiScore += 7;
+                else if (!player) {
+                    _gameManager.aiScore += 7;
+                    _gameManager.logSystem._ED5++;
+                }
                 _gameManager._vfxManager.InstantiateVFX(3, transform.position);
                 break;
             case Type.PLAYER:
@@ -111,8 +127,12 @@ public class Duck : FloatingObject
                 {
                     _gameManager.playerScore += 2;
                     _gameManager.SetLastDuck(0.75f);
+                    _gameManager.logSystem._PD2++;
                 }
-                else if (!player) _gameManager.aiScore += 2;
+                else if (!player) {
+                    _gameManager.aiScore += 2;
+                    _gameManager.logSystem._ED2++;
+                }
 
                 _gameManager._vfxManager.InstantiateVFX(4, transform.position);
                 break;
@@ -127,8 +147,19 @@ public class Duck : FloatingObject
             case Type.TIME:
                 _gameManager.IncreaseTimer();
                 _gameManager._vfxManager.InstantiateVFX(5, transform.position);
+                if (player) 
+                {
+                    _gameManager.logSystem._PD3++;
+                }
+                else {
+                    _gameManager.logSystem._ED3++;
+                }
                 break;
         }
+        if (player)
+            _gameManager.logSystem._PD++;
+        else
+            _gameManager.logSystem._ED++;
 
         if (player && (type == Type.BLACK || type == Type.AI))
         {
@@ -147,22 +178,27 @@ public class Duck : FloatingObject
             case Type.NORMAL:
                 boostTime = 1;
                 _gameManager._vfxManager.InstantiateVFX(0, transform.position);
+                _gameManager.logSystem._BD1++;
                 break;
             case Type.BLACK:
                 boostTime = -2;
                 _gameManager._vfxManager.InstantiateVFX(1, transform.position);
+                _gameManager.logSystem._BD0++;
                 break;
             case Type.GOLD:
                 boostTime = 5;
                 _gameManager._vfxManager.InstantiateVFX(2, transform.position);
+                _gameManager.logSystem._BD4++;
                 break;
             case Type.BIG:
                 boostTime = 7;
                 _gameManager._vfxManager.InstantiateVFX(3, transform.position);
+                _gameManager.logSystem._BD5++;
                 break;
             case Type.PLAYER:
                 boostTime = 2;
                 _gameManager._vfxManager.InstantiateVFX(4, transform.position);
+                _gameManager.logSystem._BD2++;
                 break;
             case Type.AI:
                 boostTime = 2;
@@ -171,10 +207,12 @@ public class Duck : FloatingObject
             case Type.TIME:
                 boostTime = 5;
                 _gameManager._vfxManager.InstantiateVFX(5, transform.position);
+                _gameManager.logSystem._BD3++;
                 break;
         }
 
         _gameManager.BoostPlayer(boostTime);
+        _gameManager.logSystem._BD++;
 
     }
 }

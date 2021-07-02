@@ -1294,6 +1294,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1172530605}
+  - {fileID: 1783230668}
   - {fileID: 347551334}
   - {fileID: 1942569385}
   - {fileID: 1464649390}
@@ -2063,7 +2064,7 @@ RectTransform:
   - {fileID: 1063059643}
   - {fileID: 1385887744}
   m_Father: {fileID: 312630978}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5508,6 +5509,7 @@ MonoBehaviour:
   _npcConversationHelper: {fileID: 1391722646}
   _playerInput: {fileID: 894907343}
   _vfxManager: {fileID: 1879507284}
+  logSystem: {fileID: 1783230667}
   gameOver: 0
   totalDucks: 100
   gameStarted: 0
@@ -7626,7 +7628,7 @@ Transform:
   - {fileID: 2059688117}
   - {fileID: 808111273}
   m_Father: {fileID: 312630978}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1466782517
 GameObject:
@@ -10082,6 +10084,77 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774204717}
   m_CullTransparentMesh: 0
+--- !u!1 &1783230666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1783230668}
+  - component: {fileID: 1783230667}
+  m_Layer: 0
+  m_Name: Log System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1783230667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783230666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db99d354050b1a41b1ac1ad15e7257c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameManager: {fileID: 1172530604}
+  _dataName: Ducks_v0.2.3a
+  _PD: 0
+  _ED: 0
+  _BD: 0
+  _PS: 0
+  _ES: 0
+  _PD0: 0
+  _PD1: 0
+  _PD2: 0
+  _PD3: 0
+  _PD4: 0
+  _PD5: 0
+  _ED0: 0
+  _ED1: 0
+  _ED2: 0
+  _ED3: 0
+  _ED4: 0
+  _ED5: 0
+  _BD0: 0
+  _BD1: 0
+  _BD2: 0
+  _BD3: 0
+  _BD4: 0
+  _BD5: 0
+  _GT: 0
+  _DDMValStart: 0
+  _DDMValEnd: 0
+--- !u!4 &1783230668
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783230666}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.1073456, y: -47.070953, z: -42.0106}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 312630978}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1879118948
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10195,6 +10268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 785a8490dc8315a4eb5876139835a8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
   _VFX:
   - {fileID: 7601530972683808113, guid: 6a6a16b81f266e84faadd36dfe9dc9f8, type: 3}
   - {fileID: 6234415875203716683, guid: 058835a51d33179409913c2d48eb1aba, type: 3}
@@ -10202,6 +10276,7 @@ MonoBehaviour:
   - {fileID: 4432245599659858546, guid: d9fa49bf875a8f042914e8a64500d0a1, type: 3}
   - {fileID: 1802149244798018649, guid: 54763d7ad19bc094f85fe55ed6bca9b2, type: 3}
   - {fileID: 6234415875203716683, guid: 490372a6081b1394c856101ef5c457f6, type: 3}
+  _TRAILS: []
   _VFXtime:
   - 1
   - 1
@@ -10570,7 +10645,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 312630978}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1946974450
 PrefabInstance:
