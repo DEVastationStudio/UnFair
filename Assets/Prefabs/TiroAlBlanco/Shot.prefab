@@ -355,8 +355,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sprite:
   - {fileID: 1266003973778599187}
-  - {fileID: 1266003973778599187}
-  - {fileID: 1266003973778599187}
+  - {fileID: 3407830591090625322}
+  - {fileID: 8031948919062243590}
 --- !u!1 &4003007588435592537
 GameObject:
   m_ObjectHideFlags: 0
