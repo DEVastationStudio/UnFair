@@ -21,10 +21,10 @@ public class SplashScript : MonoBehaviour
             if (PlayerPrefs.GetInt("fpsValue") == 0)
             {
                 PlayerPrefs.SetFloat("Audio", 0.5f);
-                PlayerPrefs.SetFloat("Sound", 0.5f);
+                PlayerPrefs.SetFloat("Sounds", 0.5f);
                 PlayerPrefs.SetFloat("Music", 0.5f);
                 mixer.SetFloat("Audio", ConvertToDecibel(PlayerPrefs.GetFloat("Audio")));
-                mixer.SetFloat("Sound", ConvertToDecibel(PlayerPrefs.GetFloat("Sound")));
+                mixer.SetFloat("Sounds", ConvertToDecibel(PlayerPrefs.GetFloat("Sounds")));
                 mixer.SetFloat("Music", ConvertToDecibel(PlayerPrefs.GetFloat("Music")));
                 Application.targetFrameRate = (int)Screen.currentResolution.refreshRate;
             }
