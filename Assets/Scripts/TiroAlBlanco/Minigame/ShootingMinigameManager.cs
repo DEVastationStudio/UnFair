@@ -13,6 +13,7 @@ public class ShootingMinigameManager : MonoBehaviour
     public VFXManager _vfxManager;
     public LetrasUnfairManager _letrasManager;
     public ShootingLogSystem _logSystem;
+    public ComboCounter _comboCounter;
 
     [HideInInspector] public Stopwatch _stopwatch;
     #endregion Variables

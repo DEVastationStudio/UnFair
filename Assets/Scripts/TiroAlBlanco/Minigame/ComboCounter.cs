@@ -10,13 +10,18 @@ public class ComboCounter : MonoBehaviour
     [SerializeField] private float _decayVel;
     [SerializeField] private int _decayStep;
     [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private ShootingMinigameManager _gameManager;
 
-    private int _combo = 0;
+    [HideInInspector] public int _maxCombo = 0;
+    [HideInInspector] public int _combo = 0;
+
     private float _timePassed = 0;
 
-    public void HitCombo() 
+    public void HitCombo()
     {
         _combo++;
+        if (_combo > _maxCombo)
+            _maxCombo = _combo;
         _text.text = "X" + _combo;
         _text.fontSize = _MaxFont;
     }

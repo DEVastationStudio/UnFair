@@ -36,6 +36,7 @@ public class ShootingLogSystem : MonoBehaviour
     [HideInInspector] public float _DDMValStart = 0;
     [HideInInspector] public float _DDMValEnd = 0;
     [HideInInspector] public float _Score = 0;
+    [HideInInspector] public int _Combo = 0;
 
     private string _fileName;
     private const string _DATA_PATH = "/../Minigame_Data/ShootingMinigame/";
@@ -84,7 +85,8 @@ public class ShootingLogSystem : MonoBehaviour
                 "TOTAL_GAME_TIME" + " " +
                 "START_DIFFICULTY" + " " +
                 "END_DIFFICULTY" + " " +
-                "SCORE"
+                "SCORE" + " " +
+                "MAX_COMBO"
             );
             sw.Close();
         }
@@ -113,7 +115,8 @@ public class ShootingLogSystem : MonoBehaviour
                 _TP + " " +
                 _DDMValStart + " " +
                 _DDMValEnd + " " +
-                _Score
+                _Score + " " +
+                _Combo
             );
             sw.Close();
         }
@@ -141,6 +144,7 @@ public class ShootingLogSystem : MonoBehaviour
         _DDMValStart = 0;
         _DDMValEnd = 0;
         _Score = 0;
+        _Combo = 0;
     }
 #endregion
 }

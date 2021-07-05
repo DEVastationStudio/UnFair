@@ -27,6 +27,10 @@ public partial class UIGeneral : MonoBehaviour
         _estrellasTxt.text += "1xStar -> " + _estrella1 + "\n";
         _estrellasTxt.text += "2xStar -> " + _estrella2 + "\n";
         _estrellasTxt.text += "3xStar -> " + _estrella3;
+
+        if (!PlayerPrefs.HasKey("MaxScoreShootingMinigame"))
+            PlayerPrefs.SetInt("MaxScoreShootingMinigame",0);
+
         _eventSystem.SetSelectedGameObject(_startButton);
         _playerInput.SwitchCurrentActionMap("UIMap");
         Debug.Log("Scheme cambiado");
@@ -51,21 +55,25 @@ public partial class UIGeneral : MonoBehaviour
         if (_puntuacionActual >= _estrella3)
         {
             GameProgress.SetStars(1,3);
-            _estrellasConseguidasTxt.text = "3 Stars";
+            _estrellasConseguidasTxt.text = "3 Estrellas";
         }
         else if (_puntuacionActual >= _estrella2)
         {
             GameProgress.SetStars(1, 2);
-            _estrellasConseguidasTxt.text = "2 Stars";
+            _estrellasConseguidasTxt.text = "2 Estrellas";
         }
         else if (_puntuacionActual >= _estrella1)
         {
             GameProgress.SetStars(1, 1);
-            _estrellasConseguidasTxt.text = "1 Star";
+            _estrellasConseguidasTxt.text = "1 Estrella";
         }
-        else _estrellasConseguidasTxt.text = "No Stars";
+        else _estrellasConseguidasTxt.text = "0 Estrellas";
 
-        _puntuacionFinalTxt.text = "Score: " + _puntuacionActual;
+        if (_puntuacionActual > PlayerPrefs.GetInt("MaxScoreShootingMinigame"))
+            PlayerPrefs.SetInt("MaxScoreShootingMinigame", _puntuacionActual);
+        _puntuacionFinalTxt.text = "Puntuación" + "\n" + _puntuacionActual;
+        _puntuacionMaximaTxt.text = "Max Puntuación" + "\n" + PlayerPrefs.GetInt("MaxScoreShootingMinigame");
+        _maxComboTxt.text = "Combo mas largo: X" + _gameManager._comboCounter._maxCombo;
         _gameManager._logSystem._Score = _puntuacionActual;
         for (int i = 0; i < DianasRestantes.Length; i++) 
         {
@@ -77,7 +85,10 @@ public partial class UIGeneral : MonoBehaviour
         _gameManager._spawnerDianas._isOnGoldRush = false;
         _playerInput.SwitchCurrentActionMap("UIMap");
         _npcConversationHelper.StartConversation();
+        _gameManager._logSystem._Combo = _gameManager._comboCounter._maxCombo;
         _gameManager._logSystem.SaveData();
+        _gameManager._comboCounter._maxCombo = 0;
+        _gameManager._comboCounter._combo = 0;
     }
 
     public void Pause()
