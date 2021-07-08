@@ -83,6 +83,7 @@ public class LetrasUnfairManager : MonoBehaviour
     IEnumerator WinningUnfair()
     {
         _gameManager._logSystem._GR++;
+        _gameManager._starManager.CheckStar(2);
         foreach (GameObject g in Letras) 
         {
             SpriteRenderer s = g.GetComponent<SpriteRenderer>();

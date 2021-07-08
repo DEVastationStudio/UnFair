@@ -24,12 +24,14 @@ public partial class UIGeneral : MonoBehaviour
         _PostGameContainer.SetActive(false);
         _PreGameContainer.SetActive(true);
         _estrellasTxt.text = "";
-        _estrellasTxt.text += "1xStar -> " + _estrella1 + "\n";
-        _estrellasTxt.text += "2xStar -> " + _estrella2 + "\n";
-        _estrellasTxt.text += "3xStar -> " + _estrella3;
+        _estrellasTxt.text += "1xStar -> " + "Get " + _gameManager._starManager._condition1 + " points or more" + "\n";
+        _estrellasTxt.text += "2xStar -> " + "Activate gold rush" + "\n";
+        _estrellasTxt.text += "3xStar -> " + "Get a combo of " + _gameManager._starManager._condition3 + " or more";
 
         if (!PlayerPrefs.HasKey("MaxScoreShootingMinigame"))
             PlayerPrefs.SetInt("MaxScoreShootingMinigame",0);
+
+        _gameManager._starManager.ResetStars();
 
         _eventSystem.SetSelectedGameObject(_startButton);
         _playerInput.SwitchCurrentActionMap("UIMap");
@@ -52,22 +54,30 @@ public partial class UIGeneral : MonoBehaviour
         _gameManager._logSystem._DDMValEnd = _gameManager._dynamicDifficultyManager.GetSkillLevel();
         _gameManager._letrasManager.ResetWord(true);
         Diana[] DianasRestantes = FindObjectsOfType<Diana>();
-        if (_puntuacionActual >= _estrella3)
-        {
-            GameProgress.SetStars(1,3);
-            _estrellasConseguidasTxt.text = "3 Estrellas";
-        }
-        else if (_puntuacionActual >= _estrella2)
-        {
-            GameProgress.SetStars(1, 2);
-            _estrellasConseguidasTxt.text = "2 Estrellas";
-        }
-        else if (_puntuacionActual >= _estrella1)
+
+        _gameManager._starManager.CheckStar(1);
+        _gameManager._starManager.CheckStar(3);
+
+        if (_gameManager._starManager.GetStar(1))
         {
             GameProgress.SetStars(1, 1);
-            _estrellasConseguidasTxt.text = "1 Estrella";
+            _estrella1.color = _StarDoneColor;
         }
-        else _estrellasConseguidasTxt.text = "0 Estrellas";
+        else _estrella1.color = _StarNotDoneColor;
+
+        if (_gameManager._starManager.GetStar(2))
+        {
+            GameProgress.SetStars(1, 2);
+            _estrella2.color = _StarDoneColor;
+        }
+        else _estrella2.color = _StarNotDoneColor;
+
+        if (_gameManager._starManager.GetStar(3))
+        {
+            GameProgress.SetStars(1,3);
+            _estrella3.color = _StarDoneColor;
+        }
+        else _estrella3.color = _StarNotDoneColor;
 
         if (_puntuacionActual > PlayerPrefs.GetInt("MaxScoreShootingMinigame"))
             PlayerPrefs.SetInt("MaxScoreShootingMinigame", _puntuacionActual);

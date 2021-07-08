@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public partial class UIGeneral : MonoBehaviour
 {
@@ -36,10 +37,11 @@ public partial class UIGeneral : MonoBehaviour
     //Puntuaciones necesarias
     [Header("Retos")]
     [SerializeField] private TextMeshProUGUI _estrellasTxt;
-    [SerializeField] private int _estrella1;
-    [SerializeField] private int _estrella2;
-    [SerializeField] private int _estrella3;
-    [SerializeField] private TextMeshProUGUI _estrellasConseguidasTxt;
+    [SerializeField] private Image _estrella1;
+    [SerializeField] private Image _estrella2;
+    [SerializeField] private Image _estrella3;
+    [SerializeField] private Color _StarDoneColor;
+    [SerializeField] private Color _StarNotDoneColor;
 
     //Botonoes necesarios para la navegación por mando
     [Header("Control por mando")]

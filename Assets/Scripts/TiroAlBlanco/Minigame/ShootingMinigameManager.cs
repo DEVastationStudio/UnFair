@@ -14,6 +14,7 @@ public class ShootingMinigameManager : MonoBehaviour
     public LetrasUnfairManager _letrasManager;
     public ShootingLogSystem _logSystem;
     public ComboCounter _comboCounter;
+    public ShootStarManager _starManager;
 
     [HideInInspector] public Stopwatch _stopwatch;
     #endregion Variables
