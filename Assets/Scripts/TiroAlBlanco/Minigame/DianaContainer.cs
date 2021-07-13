@@ -40,6 +40,4 @@ public class DianaContainer : MonoBehaviour
         _targets[_targetInUse].SetActive(false);
     }
     #endregion
-
-
 }

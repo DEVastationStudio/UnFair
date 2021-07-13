@@ -38,12 +38,12 @@ public class PistolaScript : MonoBehaviour
         PointerUpdate();
     }
 
-    void OnLook(InputValue value) 
+    private void OnLook(InputValue value) 
     {
         _pos = value.Get<Vector2>();
     }
 
-    void OnEscAction()
+    private void OnEscAction()
     {
         if (_gameManager._uiGeneral.faseActual == UIGeneral.Fases.GAME) 
         {
@@ -69,12 +69,12 @@ public class PistolaScript : MonoBehaviour
         Physics.Raycast(Camera.main.ScreenPointToRay(_mira.transform.position), out hit, 100);
         if (hit.transform == null) return;
         GameObject shotObj = Instantiate(_shot, new Vector3(hit.point.x, hit.point.y, hit.point.z), Quaternion.identity);
-        if (hit.transform.tag == "Diana" || hit.transform.tag == "DianaDorada" || hit.transform.tag == "Reloj" || hit.transform.tag == "DianaConLetra" || hit.transform.tag == "DianaDoradaGR")
+        if (hit.transform.CompareTag("Diana") || hit.transform.CompareTag("DianaDorada") || hit.transform.CompareTag("Reloj") || hit.transform.CompareTag("DianaConLetra") || hit.transform.CompareTag("DianaDoradaGR"))
         {
             shotObj.transform.SetParent(hit.transform.parent);
             hit.transform.gameObject.GetComponent<Diana>().Hit(true, hit.point);
         }
-        else if(hit.transform.tag == "Pared") 
+        else if(hit.transform.CompareTag("Pared")) 
         {
             _ComboCounter.MissCombo();
             shotObj.transform.SetParent(hit.transform);

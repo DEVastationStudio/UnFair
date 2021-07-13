@@ -57,22 +57,22 @@ public partial class UIGeneral : MonoBehaviour
 
         _gameManager._starManager.CheckStar(1);
         _gameManager._starManager.CheckStar(3);
-
-        if (_gameManager._starManager.GetStar(1))
+        int starCount = _gameManager._starManager.GetStars();
+        if (starCount >= 1)
         {
             GameProgress.SetStars(1, 1);
             _estrella1.color = _StarDoneColor;
         }
         else _estrella1.color = _StarNotDoneColor;
 
-        if (_gameManager._starManager.GetStar(2))
+        if (starCount >= 2)
         {
             GameProgress.SetStars(1, 2);
             _estrella2.color = _StarDoneColor;
         }
         else _estrella2.color = _StarNotDoneColor;
 
-        if (_gameManager._starManager.GetStar(3))
+        if (starCount >= 3)
         {
             GameProgress.SetStars(1,3);
             _estrella3.color = _StarDoneColor;

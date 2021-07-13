@@ -44,9 +44,13 @@ public class Diana : MonoBehaviour
 
     public void Hit(bool isHit, Vector3 point)
     {
-        string tag = transform.tag;
         if (isHit)
-            this.GetComponentInParent<Animator>().Play("Diana_Hit");
+        {
+            if(point.x >= transform.position.x)
+                this.GetComponentInParent<Animator>().Play("Diana_Hit_AntiClockwise");
+            else
+                this.GetComponentInParent<Animator>().Play("Diana_Hit_Clockwise");
+        }
         else
             this.GetComponentInParent<Animator>().Play("DianaHide_Anim");
         _gameManager._spawnerDianas.DestroyTarget(_pos, this);

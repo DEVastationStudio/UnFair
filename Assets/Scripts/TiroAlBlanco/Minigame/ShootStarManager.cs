@@ -50,19 +50,13 @@ public class ShootStarManager : MonoBehaviour
         _isStar3Complete = false;
     }
 
-    public bool GetStar(int star)
+    public int GetStars()
     {
-        switch (star)
-        {
-            case 1:
-                return _isStar1Complete;
-            case 2:
-                return _isStar2Complete && _isStar1Complete;
-            case 3:
-                return _isStar3Complete && _isStar2Complete && _isStar1Complete;
-            default:
-                return false;
-        }
+        int count = 0;
+        if (_isStar1Complete) count++;
+        if (_isStar2Complete) count++;
+        if (_isStar3Complete) count++;
+        return count;
     }
 
     #endregion Metodos
