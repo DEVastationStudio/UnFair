@@ -2444,6 +2444,59 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+--- !u!1 &566557062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 566557064}
+  - component: {fileID: 566557063}
+  m_Layer: 0
+  m_Name: LogSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &566557063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566557062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd1d339e17c1b864dbb2914851e8facc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hudManager: {fileID: 1512164816}
+  _playerHorse: {fileID: 575654284}
+  _horseSpawner: {fileID: 1512164817}
+  _T: 0
+  _S: 0
+  _PH: 0
+  _CC: 0
+  _FC: 0
+  _SD: 0
+  _FD: 0
+--- !u!4 &566557064
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566557062}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &575654283 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6036972002631801551, guid: 17acc3cfbdd5f0b4d8d91081603d1d6b,
@@ -6744,6 +6797,7 @@ MonoBehaviour:
   countdownText: {fileID: 548791555}
   conversation: {fileID: 1079027777}
   conversationTutorial: {fileID: 1464507625}
+  _logSystem: {fileID: 566557063}
   _eventSystem: {fileID: 1652449293}
   _startGame: {fileID: 1019818135}
   _resetGame: {fileID: 546680636}
@@ -6771,6 +6825,7 @@ MonoBehaviour:
   - {fileID: 2042441977}
   - {fileID: 1763105565}
   playerHorse: {fileID: 575654283}
+  _logSystem: {fileID: 566557063}
 --- !u!1 &1562606227
 GameObject:
   m_ObjectHideFlags: 0
@@ -9178,6 +9233,11 @@ PrefabInstance:
       propertyPath: hud
       value: 
       objectReference: {fileID: 1512164816}
+    - target: {fileID: 6847384431891426947, guid: 17acc3cfbdd5f0b4d8d91081603d1d6b,
+        type: 3}
+      propertyPath: _logSystem
+      value: 
+      objectReference: {fileID: 566557063}
     - target: {fileID: 6847384431891426947, guid: 17acc3cfbdd5f0b4d8d91081603d1d6b,
         type: 3}
       propertyPath: initialPos
