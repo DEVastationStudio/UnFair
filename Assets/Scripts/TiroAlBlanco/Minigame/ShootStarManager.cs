@@ -56,13 +56,10 @@ public class ShootStarManager : MonoBehaviour
         {
             case 1:
                 return _isStar1Complete;
-                break;
             case 2:
                 return _isStar2Complete;
-                break;
             case 3:
                 return _isStar3Complete;
-                break;
             default: return false;
         }
     }

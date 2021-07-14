@@ -61,7 +61,7 @@ public class ShootingLogSystem : MonoBehaviour
     }
 
 
-    public void StartData()
+    private void StartData()
     {
         using (StreamWriter sw = new StreamWriter(_fileName, true))
         {
@@ -91,7 +91,7 @@ public class ShootingLogSystem : MonoBehaviour
         }
     }
 
-    private void SaveData()
+    public void SaveData()
     {
         using (StreamWriter sw = new StreamWriter(_fileName, true))
         {
