@@ -29,9 +29,10 @@ public class SpawnerDianas : MonoBehaviour
         _currentLetter = 0;
         _countToCheatLetter = MAX_LETTER_COUNT;
         targetsInUse = new bool[_spawnPoints.Count];
-        SpawnNewTarget(0);
-        SpawnNewTarget(0);
-        SpawnNewTarget(0);
+        for (int i = 0; i < _maxNumDianas; i++)
+        {   
+            SpawnNewTarget(0);
+        }
     }
 
     public void SpawnNewTarget(int type) 

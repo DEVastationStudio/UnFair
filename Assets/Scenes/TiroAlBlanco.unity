@@ -4985,7 +4985,7 @@ MonoBehaviour:
   - {fileID: 1089344615}
   - {fileID: 1030876115}
   _gameManager: {fileID: 371035726}
-  _maxNumDianas: 3
+  _maxNumDianas: 4
   numDianas: 0
   _activeLetter: 0
   _currentLetter: 0
@@ -14960,7 +14960,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _MaxFont: 70
   _MinFont: 10
-  _decayVel: 0.016666668
+  _decayVel: 0.02
   _decayStep: 1
   _text: {fileID: 2133617203}
   _gameManager: {fileID: 371035726}
