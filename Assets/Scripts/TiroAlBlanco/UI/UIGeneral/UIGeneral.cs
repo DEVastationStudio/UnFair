@@ -24,7 +24,10 @@ public partial class UIGeneral : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _puntuacionText;
     [SerializeField] private TextMeshProUGUI _puntuacionFinalTxt;
     [SerializeField] private TextMeshProUGUI _puntuacionMaximaTxt;
-    [SerializeField] private TextMeshProUGUI _maxComboTxt;
+    [SerializeField] private TextMeshProUGUI _reto1Conseguido;
+    [SerializeField] private TextMeshProUGUI _reto2Conseguido;
+    [SerializeField] private TextMeshProUGUI _reto3Conseguido;
+
 
     //Containers de las fases
     [Header("Fases")]

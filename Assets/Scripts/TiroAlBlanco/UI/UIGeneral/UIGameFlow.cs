@@ -57,22 +57,21 @@ public partial class UIGeneral : MonoBehaviour
 
         _gameManager._starManager.CheckStar(1);
         _gameManager._starManager.CheckStar(3);
-        int starCount = _gameManager._starManager.GetStars();
-        if (starCount >= 1)
+        if (_gameManager._starManager.GetStar(1))
         {
             GameProgress.SetStars(1, 1);
             _estrella1.color = _StarDoneColor;
         }
         else _estrella1.color = _StarNotDoneColor;
 
-        if (starCount >= 2)
+        if (_gameManager._starManager.GetStar(2))
         {
             GameProgress.SetStars(1, 2);
             _estrella2.color = _StarDoneColor;
         }
         else _estrella2.color = _StarNotDoneColor;
 
-        if (starCount >= 3)
+        if (_gameManager._starManager.GetStar(3))
         {
             GameProgress.SetStars(1,3);
             _estrella3.color = _StarDoneColor;
@@ -81,9 +80,13 @@ public partial class UIGeneral : MonoBehaviour
 
         if (_puntuacionActual > PlayerPrefs.GetInt("MaxScoreShootingMinigame"))
             PlayerPrefs.SetInt("MaxScoreShootingMinigame", _puntuacionActual);
+        
+        _reto1Conseguido.text = "1. Puntuación de 500 o mas: " + _puntuacionActual + "/" + _gameManager._starManager._condition1;
+        _reto2Conseguido.text = "2. Conseguir la palabra unfair: " + _gameManager._logSystem._GR +"/1";
+        _reto3Conseguido.text = "3. Combo de 25 o mas: " + _gameManager._comboCounter._maxCombo + "/" + _gameManager._starManager._condition3;
+        
         _puntuacionFinalTxt.text = "Puntuación" + "\n" + _puntuacionActual;
         _puntuacionMaximaTxt.text = "Max Puntuación" + "\n" + PlayerPrefs.GetInt("MaxScoreShootingMinigame");
-        _maxComboTxt.text = "Combo mas largo: X" + _gameManager._comboCounter._maxCombo;
         _gameManager._logSystem._Score = _puntuacionActual;
         for (int i = 0; i < DianasRestantes.Length; i++) 
         {
