@@ -39,8 +39,7 @@ public class DucksLogSystem : MonoBehaviour
     */
     #region Variables
     [SerializeField] private DucksGameManager _gameManager;
-    [SerializeField] private string _dataName;
-    
+
     [HideInInspector] public int _PD = 0;
     [HideInInspector] public int _ED = 0;
     [HideInInspector] public int _BD = 0;
@@ -70,7 +69,7 @@ public class DucksLogSystem : MonoBehaviour
     [HideInInspector] public int _BD5 = 0;
 
     [HideInInspector] public int _GT = 0;
-    
+
     [HideInInspector] public float _DDMValStart = 0;
     [HideInInspector] public float _DDMValEnd = 0;
 
@@ -84,7 +83,7 @@ public class DucksLogSystem : MonoBehaviour
     private void Start()
     {
         _directoryPath = Application.dataPath + _DATA_PATH;
-        _fileName = Application.dataPath + _DATA_PATH + _dataName + ".csv";
+        _fileName = Application.dataPath + _DATA_PATH + "Ducks_v" + Application.version + ".csv";
 
         if (!Directory.Exists(_directoryPath))
         {
@@ -98,36 +97,36 @@ public class DucksLogSystem : MonoBehaviour
     }
 
 
-    public void StartData()
+    private void StartData()
     {
         using (StreamWriter sw = new StreamWriter(_fileName, true))
         {
-            
+
             sw.WriteLine(
                 "DATE" + " " +
-                "PLAYER_DUCKS" + " " + 
-                "ENEMY_DUCKS" + " " + 
-                "BOOST_DUCKS" + " " + 
-                "PLAYER_SCORE" + " " + 
-                "ENEMY_SCORE" + " " + 
-                "PLAYER_DUCKS_0" + " " + 
-                "PLAYER_DUCKS_1" + " " + 
-                "PLAYER_DUCKS_2" + " " + 
-                "PLAYER_DUCKS_3" + " " + 
-                "PLAYER_DUCKS_4" + " " + 
-                "PLAYER_DUCKS_5" + " " + 
-                "ENEMY_DUCKS_0" + " " + 
-                "ENEMY_DUCKS_1" + " " + 
-                "ENEMY_DUCKS_2" + " " + 
-                "ENEMY_DUCKS_3" + " " + 
-                "ENEMY_DUCKS_4" + " " + 
-                "ENEMY_DUCKS_5" + " " + 
-                "BOOST_DUCKS_0" + " " + 
-                "BOOST_DUCKS_1" + " " + 
-                "BOOST_DUCKS_2" + " " + 
-                "BOOST_DUCKS_3" + " " + 
-                "BOOST_DUCKS_4" + " " + 
-                "BOOST_DUCKS_5" + " " + 
+                "PLAYER_DUCKS" + " " +
+                "ENEMY_DUCKS" + " " +
+                "BOOST_DUCKS" + " " +
+                "PLAYER_SCORE" + " " +
+                "ENEMY_SCORE" + " " +
+                "PLAYER_DUCKS_0" + " " +
+                "PLAYER_DUCKS_1" + " " +
+                "PLAYER_DUCKS_2" + " " +
+                "PLAYER_DUCKS_3" + " " +
+                "PLAYER_DUCKS_4" + " " +
+                "PLAYER_DUCKS_5" + " " +
+                "ENEMY_DUCKS_0" + " " +
+                "ENEMY_DUCKS_1" + " " +
+                "ENEMY_DUCKS_2" + " " +
+                "ENEMY_DUCKS_3" + " " +
+                "ENEMY_DUCKS_4" + " " +
+                "ENEMY_DUCKS_5" + " " +
+                "BOOST_DUCKS_0" + " " +
+                "BOOST_DUCKS_1" + " " +
+                "BOOST_DUCKS_2" + " " +
+                "BOOST_DUCKS_3" + " " +
+                "BOOST_DUCKS_4" + " " +
+                "BOOST_DUCKS_5" + " " +
                 "GAME_TIME" + " " +
                 "START_DIFFICULTY" + " " +
                 "END_DIFFICULTY"
@@ -143,30 +142,30 @@ public class DucksLogSystem : MonoBehaviour
         {
             sw.WriteLine(
                 DateTime.Today.Day + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year + " " +
-                _PD  + " " + 
-                _ED  + " " + 
-                _BD  + " " + 
-                _PS  + " " + 
-                _ES  + " " + 
-                _PD0 + " " + 
-                _PD1 + " " + 
-                _PD2 + " " + 
-                _PD3 + " " + 
-                _PD4 + " " + 
-                _PD5 + " " + 
-                _ED0 + " " + 
-                _ED1 + " " + 
-                _ED2 + " " + 
-                _ED3 + " " + 
-                _ED4 + " " + 
-                _ED5 + " " + 
-                _BD0 + " " + 
-                _BD1 + " " + 
-                _BD2 + " " + 
-                _BD3 + " " + 
-                _BD4 + " " + 
-                _BD5 + " " + 
-                _GT  + " " + 
+                _PD + " " +
+                _ED + " " +
+                _BD + " " +
+                _PS + " " +
+                _ES + " " +
+                _PD0 + " " +
+                _PD1 + " " +
+                _PD2 + " " +
+                _PD3 + " " +
+                _PD4 + " " +
+                _PD5 + " " +
+                _ED0 + " " +
+                _ED1 + " " +
+                _ED2 + " " +
+                _ED3 + " " +
+                _ED4 + " " +
+                _ED5 + " " +
+                _BD0 + " " +
+                _BD1 + " " +
+                _BD2 + " " +
+                _BD3 + " " +
+                _BD4 + " " +
+                _BD5 + " " +
+                _GT + " " +
                 _DDMValStart + " " +
                 _DDMValEnd
             );
@@ -206,5 +205,5 @@ public class DucksLogSystem : MonoBehaviour
         _DDMValStart = 0;
         _DDMValEnd = 0;
     }
-#endregion
+    #endregion
 }

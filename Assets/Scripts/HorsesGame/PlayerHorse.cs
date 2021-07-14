@@ -57,6 +57,8 @@ public class PlayerHorse : MonoBehaviour
     private Transform initialPos;
     private Vector3 _initialNewPosPlayer;
     private bool finishingRace;
+    [SerializeField] private HorsesLogSystem _logSystem;
+    private int totalFailedCombos;
 
     #region UnityMethods
 
@@ -317,6 +319,7 @@ public class PlayerHorse : MonoBehaviour
 
     public void Init(Transform pos)
     {
+        _logSystem._SD = DDM.GetSkillLevel();
         newPosPlayer.transform.position = _initialNewPosPlayer;
         finishingRace = false;
         for (int i = 0; i < hudImages.Length; i++)
@@ -355,6 +358,7 @@ public class PlayerHorse : MonoBehaviour
         endedCurrentCombo = false;
         endedCombos = 0;
         endedTotalCombos = 0;
+        totalFailedCombos = 0;
         currentTime = 0.0f;
         combCreated = false;
         GenerateCombination();
@@ -370,6 +374,9 @@ public class PlayerHorse : MonoBehaviour
     public void EndGame()
     {
         gameStarted = false;
+        _logSystem._FD = DDM.GetSkillLevel();
+        _logSystem._CC = endedTotalCombos;
+        _logSystem._FC = totalFailedCombos;
         DDM.SaveParameters();
     }
 
@@ -615,6 +622,7 @@ public class PlayerHorse : MonoBehaviour
             comboFailed = true;
             failedCombosDDM++;
             combosFinishedDDM = 0;
+            totalFailedCombos++;
             DDM.SetValue(2, 0.0f);
         }
 
@@ -656,10 +664,9 @@ public class PlayerHorse : MonoBehaviour
         }*/
     }
 
-    
+
     private void DisableComboPanel()
     {
-        print("que llegas mi loco");
         gameStarted = false;
         for (int i = 0; i < hudImages.Length; i++)
         {

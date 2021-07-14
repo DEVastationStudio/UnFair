@@ -65,12 +65,12 @@ public class EnemyHorse : MonoBehaviour
 
     IEnumerator Movement()
     {
-        mov = Random.Range(0.05f, DDM.GetValue(0));
+        mov = Random.Range(0.05f, DDM.GetValue(0));//cambiar esto a la velocdidad más que a la posición porque ahora no tiene sentido
         aux = (Vector3.forward * mov);
         newPos = new Vector3(transform.position.x + aux.x, transform.position.y + aux.y, transform.position.z + aux.z);
         while (transform.position != newPos)
         {
-            float step = Random.Range(0.22f, 0.27f/*0.05f, 0.08f*/) * Time.deltaTime;
+            float step = Random.Range(0.20f, 0.24f/*0.05f, 0.08f*/) * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, newPos, step);
             yield return new WaitForFixedUpdate();
         }

@@ -26,6 +26,7 @@ public class HUD_Manager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI countdownText;
     [SerializeField] private ConversationHelper conversation;
     [SerializeField] private ConversationHelper conversationTutorial;
+    [SerializeField] private HorsesLogSystem _logSystem;
     //[SerializeField] private PlayerInput playerInput;
 
     [Header("Control por mando")]
@@ -110,6 +111,7 @@ public class HUD_Manager : MonoBehaviour
     public void RaceFinished(int position)
     {
         raceTime = timeCounter.GetTimeSpent();
+        _logSystem._T = raceTime;
         timeSpent.text = FormatTime();
         playerHorse.EndGame();
         CalculateStars(position); //comprobar que no se llame al reset combo una vez se haya finalizado la carrera
@@ -163,6 +165,7 @@ public class HUD_Manager : MonoBehaviour
         {
             starsEndedGameText.text = "Sorry you got no stars ;( ";
         }
+        _logSystem.SaveData();
     }
 
     public void OpenSettingsMenu()
@@ -302,6 +305,7 @@ public class HUD_Manager : MonoBehaviour
 
         }
         stars = auxStars;
+        _logSystem._S = stars;
         /*if (position == 1 && !playerHorse.GetComboFailed() && raceTime <= 30.0f) { stars = 3; }
         else if (position == 1 && raceTime <= 30.0f) { stars = 2; }
         else if (position == 1) { stars = 1; }

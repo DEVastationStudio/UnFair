@@ -16,7 +16,6 @@ public class ShootingLogSystem : MonoBehaviour
     */
     #region Variables
     [SerializeField] private ShootingMinigameManager _gameManager;
-    [SerializeField] private string _dataName;
 
     [HideInInspector] public int _DN = 0;
     [HideInInspector] public int _DD = 0;
@@ -48,7 +47,7 @@ public class ShootingLogSystem : MonoBehaviour
     private void Start()
     {
         _directoryPath = Application.dataPath + _DATA_PATH;
-        _fileName = Application.dataPath + _DATA_PATH + _dataName + ".csv";
+        _fileName = Application.dataPath + _DATA_PATH + "ShootingMinigame_v" + Application.version + ".csv";
 
         if (!Directory.Exists(_directoryPath))
         {
@@ -92,7 +91,7 @@ public class ShootingLogSystem : MonoBehaviour
         }
     }
 
-    public void SaveData()
+    private void SaveData()
     {
         using (StreamWriter sw = new StreamWriter(_fileName, true))
         {
@@ -146,5 +145,5 @@ public class ShootingLogSystem : MonoBehaviour
         _Score = 0;
         _Combo = 0;
     }
-#endregion
+    #endregion
 }
