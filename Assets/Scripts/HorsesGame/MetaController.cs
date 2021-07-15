@@ -8,6 +8,7 @@ public class MetaController : MonoBehaviour
     [SerializeField] private TimeCounter timeCounter;
     private int playerPos;
     private bool playerFinished;
+    private bool createNewCombo;
     void Start()
     {
         Init();
@@ -21,6 +22,12 @@ public class MetaController : MonoBehaviour
     {
         playerPos = 1;
         playerFinished = false;
+        createNewCombo = true;
+    }
+
+    public bool GetCreateNewCombo()
+    {
+        return createNewCombo;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -42,6 +49,7 @@ public class MetaController : MonoBehaviour
         }
         if (other.CompareTag("NewPosPlayer"))
         {
+            createNewCombo = false;
             hUD_Manager.DisableComboPanel();
         }
     }

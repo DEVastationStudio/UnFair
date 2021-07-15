@@ -59,6 +59,7 @@ public class PlayerHorse : MonoBehaviour
     private bool finishingRace;
     [SerializeField] private HorsesLogSystem _logSystem;
     private int totalFailedCombos;
+    [SerializeField] private MetaController meta;
 
     #region UnityMethods
 
@@ -577,7 +578,7 @@ public class PlayerHorse : MonoBehaviour
 
         float aux = Random.Range(40.0f, 99.0f);
         //print("Random number: " + aux);
-        if ((endedCombos >= 2) || (DDM.GetValue(1) > aux))//REPASAR
+        if (meta.GetCreateNewCombo() && (endedCombos >= 2) || (DDM.GetValue(1) > aux))//REPASAR
         {
             combCreated = false;
             GenerateCombination();
