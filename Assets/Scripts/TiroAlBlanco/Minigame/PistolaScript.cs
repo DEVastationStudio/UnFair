@@ -17,7 +17,6 @@ public class PistolaScript : MonoBehaviour
     [Header("Otros Scripts")]
     [SerializeField] private ShootingMinigameManager _gameManager;
     [SerializeField] private PlayerInput input;
-    public ComboCounter _ComboCounter;
 
     [Header("Probabilidades")]
     [SerializeField] private int _restaDianaDorada = 10;
@@ -76,7 +75,7 @@ public class PistolaScript : MonoBehaviour
         }
         else if(hit.transform.CompareTag("Pared")) 
         {
-            _ComboCounter.MissCombo();
+            _gameManager._comboCounter.MissCombo();
             shotObj.transform.SetParent(hit.transform);
             _gameManager._logSystem._Miss++;
             _gameManager._dynamicDifficultyManager.SetValue(0, 0f);
