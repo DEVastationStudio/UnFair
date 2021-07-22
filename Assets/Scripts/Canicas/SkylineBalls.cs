@@ -25,13 +25,13 @@ public class SkylineBalls : MonoBehaviour
         {
             DDM.SetValue(2, 1.0f);
             Destroy(other.gameObject);
-            hud.SetFailBall();
+            //hud.SetFailBall();
             if (thrower.GetBallsLeft() <= 0)
             {
                 StopCoroutine(FinishGame());
                 StartCoroutine(FinishGame());
             }
-            thrower.SetCanThrow();
+            //thrower.SetCanThrow();
         }
     }
 
