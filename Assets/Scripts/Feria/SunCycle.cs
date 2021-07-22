@@ -9,6 +9,9 @@ public class SunCycle : MonoBehaviour
     [SerializeField] private Vector3[] _posDay;
     [SerializeField] private Vector3[] _rotDay;
     [SerializeField] private PostProcessVolume _postProcessVolume;
+    [SerializeField] private Material _sky1;
+    [SerializeField] private Material _sky2;
+    [SerializeField] private Material _sky3;
     private ColorGrading _colorGrading;
 
     public void SetLight(int idx)
@@ -18,12 +21,18 @@ public class SunCycle : MonoBehaviour
         {
             case 0:
                 temp = -5;
+                RenderSettings.skybox = _sky1;
+                this.GetComponent<Light>().shadowStrength  = 0.277f;
                 break;
             case 1:
                 temp = -5;
+                RenderSettings.skybox = _sky2;
+                this.GetComponent<Light>().shadowStrength  = 0.277f;
                 break;
             case 2:
                 temp = -15;
+                RenderSettings.skybox = _sky3;
+                this.GetComponent<Light>().shadowStrength  = 0.0f;
                 break;
 
         }
@@ -35,6 +44,7 @@ public class SunCycle : MonoBehaviour
         _colorGrading.temperature.value = temp;
         transform.position = _posDay[idx];
         transform.rotation = Quaternion.Euler(_rotDay[idx]);
-        transform.LookAt(Vector3.zero);
+        Debug.Log("rot:" + _rotDay[idx]);
+        //transform.LookAt(Vector3.zero);
     }
 }

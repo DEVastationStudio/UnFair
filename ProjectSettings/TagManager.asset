@@ -30,7 +30,7 @@ TagManager:
   - Ducks
   - PostProcessing
   - NewPos
-  - IgnorePostProcessing
+  - SpritePostProcessing
   - 
   - 
   - 

@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sky
+  m_Name: Sky3
   m_Shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _SUNDISK_HIGH_QUALITY
   m_LightmapFlags: 4
@@ -20,11 +20,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - _AtmosphereThickness: 0.42
-    - _Exposure: 1.3
+    - _AtmosphereThickness: 0.96
+    - _Exposure: 0
     - _SunDisk: 2
-    - _SunSize: 0
-    - _SunSizeConvergence: 5
+    - _SunSize: 0.022
+    - _SunSizeConvergence: 2.89
     m_Colors:
     - _GroundColor: {r: 0.369, g: 0.349, b: 0.341, a: 1}
-    - _SkyTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _SkyTint: {r: 1, g: 0.475543, b: 0.062745094, a: 1}

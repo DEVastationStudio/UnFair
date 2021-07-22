@@ -1126,7 +1126,7 @@ MonoBehaviour:
     FieldOfView: 60
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 1000
+    FarClipPlane: 10000
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -3733,7 +3733,7 @@ MonoBehaviour:
     FieldOfView: 60
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 1000
+    FarClipPlane: 10000
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -9867,7 +9867,7 @@ MonoBehaviour:
     FieldOfView: 60
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 1000
+    FarClipPlane: 10000
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -11168,7 +11168,7 @@ MonoBehaviour:
     FieldOfView: 60
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 1000
+    FarClipPlane: 10000
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -21946,7 +21946,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &404160902
 Light:
   m_ObjectHideFlags: 0
@@ -30849,7 +30849,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 10000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -45819,6 +45819,90 @@ Transform:
   m_Father: {fileID: 1367078729}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &706892699
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7634607306834503571, guid: 49335fbfdc40b5a4dbeec12985508be2,
+        type: 3}
+      propertyPath: m_Name
+      value: Nubes
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634607306834503580, guid: 49335fbfdc40b5a4dbeec12985508be2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634607306834503580, guid: 49335fbfdc40b5a4dbeec12985508be2,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634607306834503580, guid: 49335fbfdc40b5a4dbeec12985508be2,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634607306834503580, guid: 49335fbfdc40b5a4dbeec12985508be2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634607306834503580, guid: 49335fbfdc40b5a4dbeec12985508be2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 940
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634607306834503580, guid: 49335fbfdc40b5a4dbeec12985508be2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 587
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634607306834503580, guid: 49335fbfdc40b5a4dbeec12985508be2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1822
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634607306834503580, guid: 49335fbfdc40b5a4dbeec12985508be2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.68268245
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634607306834503580, guid: 49335fbfdc40b5a4dbeec12985508be2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.68268245
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634607306834503580, guid: 49335fbfdc40b5a4dbeec12985508be2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.18424077
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634607306834503580, guid: 49335fbfdc40b5a4dbeec12985508be2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.18424077
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634607306834503580, guid: 49335fbfdc40b5a4dbeec12985508be2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -120.20599
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634607306834503580, guid: 49335fbfdc40b5a4dbeec12985508be2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634607306834503580, guid: 49335fbfdc40b5a4dbeec12985508be2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 89.99999
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 49335fbfdc40b5a4dbeec12985508be2, type: 3}
 --- !u!1 &706954118 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3935362907994667512, guid: 0b2f93dfd6e8423478440b637c55077e,
@@ -66113,7 +66197,7 @@ MonoBehaviour:
     FieldOfView: 60
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 1000
+    FarClipPlane: 10000
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -88253,7 +88337,7 @@ MonoBehaviour:
     FieldOfView: 60
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 1000
+    FarClipPlane: 10000
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -99923,7 +100007,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.277
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -99994,10 +100078,13 @@ MonoBehaviour:
   - {x: 2.7, y: 1.32, z: 0}
   - {x: 3, y: -0.41, z: 0}
   _rotDay:
-  - {x: 8.76, y: 40.83, z: 82.2}
-  - {x: 1.15, y: -41.6, z: -86.5}
-  - {x: 13, y: -39, z: 73}
+  - {x: 41.22, y: 90, z: 0}
+  - {x: 26.053, y: -90, z: 0}
+  - {x: 7, y: -90, z: 0}
   _postProcessVolume: {fileID: 151110447}
+  _sky1: {fileID: 2100000, guid: d68bd1208271b2048bfc2bac198077b5, type: 2}
+  _sky2: {fileID: 2100000, guid: 57c92b2ac6fa0294b814c57264f1e71c, type: 2}
+  _sky3: {fileID: 2100000, guid: d5b9f508031e9344ba7405d21b370d3d, type: 2}
 --- !u!1 &1690083284
 GameObject:
   m_ObjectHideFlags: 0
@@ -101364,7 +101451,7 @@ MonoBehaviour:
     FieldOfView: 60
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 1000
+    FarClipPlane: 10000
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -101945,6 +102032,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1748265023}
   - component: {fileID: 1748265024}
+  - component: {fileID: 1748265025}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -102009,6 +102097,66 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1748265025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748265022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 1748265023}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1 &1750496994 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5748297941899593569, guid: 0b2f93dfd6e8423478440b637c55077e,
@@ -115596,7 +115744,7 @@ MonoBehaviour:
     FieldOfView: 60
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 1000
+    FarClipPlane: 10000
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -121156,7 +121304,7 @@ MonoBehaviour:
     FieldOfView: 60
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 1000
+    FarClipPlane: 10000
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -122362,7 +122510,7 @@ MonoBehaviour:
     FieldOfView: 60
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 1000
+    FarClipPlane: 10000
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
