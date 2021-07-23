@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.IO;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
@@ -72,7 +73,7 @@ namespace testing
             PlayerPrefs.SetInt("playedGamesCaballos", 0);
             //PlayerPrefs.SetInt("playedGamesCanicas", 0);
             LoadNumOfGames();
-            FileUtil.DeleteFileOrDirectory(Application.dataPath + "/../Minigame_Data");
+            Directory.Delete(Application.dataPath + "/../Minigame_Data");
         }
 
         public void QuitGame()
