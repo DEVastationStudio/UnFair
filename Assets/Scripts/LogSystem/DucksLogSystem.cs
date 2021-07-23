@@ -174,6 +174,7 @@ public class DucksLogSystem : MonoBehaviour
         }
         ResetVariables();
         Debug.Log("Data Saved");
+        PlayerPrefs.SetInt("playedGamesPatos",PlayerPrefs.GetInt("playedGamesPatos")+1);
     }
 
     public void ResetVariables()

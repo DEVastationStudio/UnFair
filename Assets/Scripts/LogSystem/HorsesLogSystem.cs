@@ -87,6 +87,7 @@ public class HorsesLogSystem : MonoBehaviour
         }
         ResetVariables();
         Debug.Log("Data Saved");
+        PlayerPrefs.SetInt("playedGamesCaballos",PlayerPrefs.GetInt("playedGamesCaballos")+1);
     }
 
     private void ResetVariables()

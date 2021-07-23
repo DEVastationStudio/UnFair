@@ -14,7 +14,7 @@ public class GoBackToFair : MonoBehaviour
         }
         if (!FadeController.instance.fading)
         {
-            FadeController.Fade("Feria");
+            FadeController.Fade("MinigameTestingMenu");
         }
     }
     public void ResetTimeScale()

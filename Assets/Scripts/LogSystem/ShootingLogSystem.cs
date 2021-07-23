@@ -132,6 +132,7 @@ public class ShootingLogSystem : MonoBehaviour
         }
         ResetVariables();
         Debug.Log("Data Saved");
+        PlayerPrefs.SetInt("playedGamesTiroAlBlanco",PlayerPrefs.GetInt("playedGamesTiroAlBlanco")+1);
     }
 
     private void ResetVariables()

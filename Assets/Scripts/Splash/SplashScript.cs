@@ -75,7 +75,7 @@ public class SplashScript : MonoBehaviour
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
-            FadeController.Fade("Feria");
+            FadeController.Fade("MinigameTestingMenu");
         }
     }
 
@@ -96,7 +96,7 @@ public class SplashScript : MonoBehaviour
             yield return null;
         }
 
-        FadeController.Fade("Feria");
+        FadeController.Fade("MinigameTestingMenu");
     }
 
     private void OnEscAction()

@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Noria.unity
     guid: 51f54ae168679f14c876096c695b21e4
+  - enabled: 1
+    path: Assets/Scenes/MinigameTestingMenu.unity
+    guid: cec351a440ed04d40bca4e0e34c5a93b
   m_configObjects: {}

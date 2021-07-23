@@ -7132,7 +7132,7 @@ PrefabInstance:
     - target: {fileID: 4355682930610415241, guid: 5b83a25e296a1a540bde3f2c770b5326,
         type: 3}
       propertyPath: OnConversationPath.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Feria
+      value: MinigameTestingMenu
       objectReference: {fileID: 0}
     - target: {fileID: 4355682930610415241, guid: 5b83a25e296a1a540bde3f2c770b5326,
         type: 3}

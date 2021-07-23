@@ -2661,7 +2661,7 @@ PrefabInstance:
     - target: {fileID: 1035944151629041989, guid: 4700b75196ea73b478a0a22f2d2f21e4,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1035944151629041990, guid: 4700b75196ea73b478a0a22f2d2f21e4,
         type: 3}
@@ -10417,6 +10417,9 @@ MonoBehaviour:
   _DDMValEnd: 0
   _Score: 0
   _Combo: 0
+  _Star1: 0
+  _Star2: 0
+  _Star3: 0
 --- !u!1 &1490467351
 GameObject:
   m_ObjectHideFlags: 0
