@@ -46,6 +46,7 @@ public class Thrower : MonoBehaviour
     private bool savedShake;
     private float yRealRot;
     private bool shakeStarted;
+    public bool useShake;
     /*private bool leftRotation;
     private bool rightRotation;*/
 
@@ -62,7 +63,7 @@ public class Thrower : MonoBehaviour
         rotx = staticRotX;
         if (!gameStarted || isPaused) { return; }
         Rotate();
-        if (alreadyMoved)
+        if (alreadyMoved && useShake)
         {
             if (!shakeStarted)
             {
@@ -92,9 +93,10 @@ public class Thrower : MonoBehaviour
 
             hitPos = hit.point;
             //Instantiate(sphere, hitPos, Quaternion.identity);
-            CreatePrediction(ray.origin, hitPos);
+            //CreatePrediction(ray.origin, hitPos);
 
         }
+        CreatePrediction(transform.position, (transform.forward * 4) + transform.position);
 
         //}
 
@@ -236,6 +238,7 @@ public class Thrower : MonoBehaviour
     }
     private IEnumerator Shake()
     {
+        if (!useShake) { yield return null; }
         yRealRot = transform.localEulerAngles.y;//((transform.rotation.y > 180) ? transform.rotation.y - 360 : transform.rotation.y);
         yRealRot = ((yRealRot > 180) ? yRealRot - 360 : yRealRot);
         float direction = 1;
@@ -286,6 +289,7 @@ public class Thrower : MonoBehaviour
     {
         ballsLeft--;
         GameObject ball = Instantiate(ballPref, firePoint.transform.position, Quaternion.identity);
+        Invoke("SetCanThrow", 1.25f);
         ball.GetComponent<Rigidbody>().AddForce(CalculateForce(), ForceMode.Impulse);
     }
 
@@ -435,9 +439,15 @@ public class Thrower : MonoBehaviour
         return ballsLeft;
     }
 
-    public void SetCanThrow()
+    public void SetCanThrow()//called in the invoke after instantiate the ball
     {
         canThrow = true;
+        Vector3 currentRot = transform.localEulerAngles;
+        currentRot.y = 0;
+        currentRot.x = rotx;
+        currentRot.z = rotz;
+        transform.localRotation = Quaternion.Euler(currentRot);
+
         backgroundSlider.color = new Color(backgroundSlider.color.r, backgroundSlider.color.g, backgroundSlider.color.b, 1.0f);
         fillSlider.color = new Color(fillSlider.color.r, fillSlider.color.g, fillSlider.color.b, 1.0f);
         RandomizeStatusBar();

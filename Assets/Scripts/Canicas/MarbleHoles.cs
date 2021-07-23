@@ -40,7 +40,7 @@ public class MarbleHoles : MonoBehaviour
                 StopCoroutine(FinishGame());
                 StartCoroutine(FinishGame());
             }
-            thrower.SetCanThrow();
+            //thrower.SetCanThrow();
         }
     }
 

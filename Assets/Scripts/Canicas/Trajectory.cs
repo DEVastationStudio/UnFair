@@ -126,7 +126,8 @@ public class Trajectory : MonoBehaviour
     public void LineCreation(Vector3 origin, Vector3 dst)
     {
         Vector3 vector = dst - origin;
-        Vector3 pointFinal = RectPoint(origin, vector, 0.80f); //obtener un punto anterior al de la colisión del rayo con el obstáculo
+        //Vector3 pointFinal = RectPoint(origin, vector, 0.80f); //obtener un punto anterior al de la colisión del rayo con el obstáculo
+        Vector3 pointFinal = RectPoint(origin, vector, 1f); //obtener un punto anterior al de la colisión del rayo con el obstáculo
         pathLine.positionCount = 0;
         pathLine.positionCount = 2;
         pathLine.SetPosition(0, origin);
