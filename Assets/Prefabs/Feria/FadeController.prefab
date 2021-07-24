@@ -116,8 +116,12 @@ MonoBehaviour:
   loading: {fileID: 5397791145603455288}
   lastPlayerPosition: {x: 0, y: 0, z: 0}
   lastPlayerDirection: {x: 0, y: 0}
+  lastFollowerPosition: {x: 0, y: 0, z: 0}
+  lastFollowerDirection: {x: 0, y: 0, z: 0}
   player: {fileID: 0}
+  follower: {fileID: 0}
   storedPlayerPosition: 0
+  fading: 0
 --- !u!1 &1035944151996151415
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +232,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -49.500122, y: 50}
+  m_AnchoredPosition: {x: -49.5, y: 50}
   m_SizeDelta: {x: 99, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6699588735267745832
@@ -258,7 +262,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 662efe88aa7dfb9418c60f5ffcba0d7b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6b0d6aced449a084bae0e86c606ac6ef, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -73,7 +73,27 @@ namespace testing
             PlayerPrefs.SetInt("playedGamesCaballos", 0);
             //PlayerPrefs.SetInt("playedGamesCanicas", 0);
             LoadNumOfGames();
-            Directory.Delete(Application.dataPath + "/../Minigame_Data");
+            if(Directory.Exists(Application.dataPath + "/../Minigame_Data"))
+                DeleteDirectory(Application.dataPath + "/../Minigame_Data");
+        }
+        
+        private void DeleteDirectory(string target_dir)
+        {
+            string[] files = Directory.GetFiles(target_dir);
+            string[] dirs = Directory.GetDirectories(target_dir);
+
+            foreach (string file in files)
+            {
+                File.SetAttributes(file, FileAttributes.Normal);
+                File.Delete(file);
+            }
+
+            foreach (string dir in dirs)
+            {
+                DeleteDirectory(dir);
+            }
+
+            Directory.Delete(target_dir, false);
         }
 
         public void QuitGame()

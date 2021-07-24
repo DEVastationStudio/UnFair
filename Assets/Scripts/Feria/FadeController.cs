@@ -149,7 +149,7 @@ public class FadeController : MonoBehaviour
                     return 3;
                 else
                     return 2;
-            case "Canicas":
+            case "MinigameTestingMenu":
                 return 6;
             case "Ducks":
                 return 12;
