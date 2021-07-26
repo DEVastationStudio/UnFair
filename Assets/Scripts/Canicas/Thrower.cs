@@ -191,7 +191,8 @@ public class Thrower : MonoBehaviour
     public void SetGameStarted()
     {
         gameStarted = true;
-        RandomizeStatusBar();
+        ResetForceBar();
+        //RandomizeStatusBar();
         input.SwitchCurrentActionMap("ActionMap");
     }
 
@@ -450,7 +451,8 @@ public class Thrower : MonoBehaviour
 
         backgroundSlider.color = new Color(backgroundSlider.color.r, backgroundSlider.color.g, backgroundSlider.color.b, 1.0f);
         fillSlider.color = new Color(fillSlider.color.r, fillSlider.color.g, fillSlider.color.b, 1.0f);
-        RandomizeStatusBar();
+        //RandomizeStatusBar();
+        ResetForceBar();
     }
 
     /*

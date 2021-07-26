@@ -16,6 +16,8 @@ public class HUD_Manager : MonoBehaviour
     [SerializeField] private GameObject postGameCanvas;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject exitConfirmationMenu;
+    [SerializeField] private GameObject noButton;
     [SerializeField] private GameObject continueButton;
     [SerializeField] private GameObject firstSettingButton;
     [SerializeField] private GameObject startGameButtonPregame;
@@ -74,6 +76,7 @@ public class HUD_Manager : MonoBehaviour
         pauseMenu.SetActive(false);
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
+        exitConfirmationMenu.SetActive(false);
         preGameCanvas.SetActive(true);
         preGameButtonsCanvas.SetActive(true);
         _eventSystem.SetSelectedGameObject(_startGame);
@@ -315,6 +318,18 @@ public class HUD_Manager : MonoBehaviour
     public void DisableComboPanel()
     {
         playerHorse.NextMoveEnd();
+    }
+
+    public void OpenConfirmationPanel()
+    {
+        exitConfirmationMenu.SetActive(true);
+        _eventSystem.SetSelectedGameObject(noButton);
+    }
+
+    public void CloseConfirmationPanel()
+    {        
+        exitConfirmationMenu.SetActive(false);
+        _eventSystem.SetSelectedGameObject(continueButton);
     }
 
     IEnumerator Countdown()
