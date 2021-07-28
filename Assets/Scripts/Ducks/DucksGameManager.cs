@@ -334,6 +334,8 @@ public class DucksGameManager : MonoBehaviour
         {
             Destroy(g);
         }
+        
+        _spawnedDucks.Clear();
 
         //Respawn ducks
         /*

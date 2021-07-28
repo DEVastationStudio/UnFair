@@ -41,9 +41,14 @@ public partial class PlayerController : MonoBehaviour
 
         //Set Animator direction
 
+        UpdateAnimations();
+    }
+
+    private void UpdateAnimations()
+    {
         float angle = Vector3.SignedAngle(_mainCamera.transform.forward, Vector3.forward, Vector3.up);
-        Vector2 rotatedLastDir = Quaternion.Euler(0,0,-angle-90)*lastDir;
-        
+        Vector2 rotatedLastDir = Quaternion.Euler(0, 0, -angle - 90) * lastDir;
+
         float up = Mathf.Max(rotatedLastDir.y, 0);
         float down = -Mathf.Min(rotatedLastDir.y, 0);
         float left = -Mathf.Min(rotatedLastDir.x, 0);
@@ -53,76 +58,103 @@ public partial class PlayerController : MonoBehaviour
         {
             if (right > 0.4f)
             {
-                _animator.SetLayerWeight(1,0);
-                _animator.SetLayerWeight(2,1);
-                _animator.SetLayerWeight(8,0);
+                _animator.SetLayerWeight(1, 0);
+                _animator.SetLayerWeight(2, 1);
+                _animator.SetLayerWeight(8, 0);
             }
             else if (left > 0.4f)
             {
-                _animator.SetLayerWeight(1,0);
-                _animator.SetLayerWeight(2,0);
-                _animator.SetLayerWeight(8,1);
+                _animator.SetLayerWeight(1, 0);
+                _animator.SetLayerWeight(2, 0);
+                _animator.SetLayerWeight(8, 1);
             }
             else
             {
-                _animator.SetLayerWeight(1,1);
-                _animator.SetLayerWeight(2,0);
-                _animator.SetLayerWeight(8,0);
+                _animator.SetLayerWeight(1, 1);
+                _animator.SetLayerWeight(2, 0);
+                _animator.SetLayerWeight(8, 0);
             }
-            _animator.SetLayerWeight(3,0);
-            _animator.SetLayerWeight(4,0);
-            _animator.SetLayerWeight(5,0);
-            _animator.SetLayerWeight(6,0);
-            _animator.SetLayerWeight(7,0);
+            _animator.SetLayerWeight(3, 0);
+            _animator.SetLayerWeight(4, 0);
+            _animator.SetLayerWeight(5, 0);
+            _animator.SetLayerWeight(6, 0);
+            _animator.SetLayerWeight(7, 0);
         }
         else if (down > 0.4f)
         {
             if (right > 0.4f)
             {
-                _animator.SetLayerWeight(5,0);
-                _animator.SetLayerWeight(4,1);
-                _animator.SetLayerWeight(6,0);
+                _animator.SetLayerWeight(5, 0);
+                _animator.SetLayerWeight(4, 1);
+                _animator.SetLayerWeight(6, 0);
             }
             else if (left > 0.4f)
             {
-                _animator.SetLayerWeight(5,0);
-                _animator.SetLayerWeight(4,0);
-                _animator.SetLayerWeight(6,1);
+                _animator.SetLayerWeight(5, 0);
+                _animator.SetLayerWeight(4, 0);
+                _animator.SetLayerWeight(6, 1);
             }
             else
             {
-                _animator.SetLayerWeight(5,1);
-                _animator.SetLayerWeight(4,0);
-                _animator.SetLayerWeight(6,0);
+                _animator.SetLayerWeight(5, 1);
+                _animator.SetLayerWeight(4, 0);
+                _animator.SetLayerWeight(6, 0);
             }
-            _animator.SetLayerWeight(1,0);
-            _animator.SetLayerWeight(2,0);
-            _animator.SetLayerWeight(3,0);
-            _animator.SetLayerWeight(7,0);
-            _animator.SetLayerWeight(8,0);
+            _animator.SetLayerWeight(1, 0);
+            _animator.SetLayerWeight(2, 0);
+            _animator.SetLayerWeight(3, 0);
+            _animator.SetLayerWeight(7, 0);
+            _animator.SetLayerWeight(8, 0);
         }
         else if (right > 0.4f)
         {
-            _animator.SetLayerWeight(1,0);
-            _animator.SetLayerWeight(2,0);
-            _animator.SetLayerWeight(3,1);
-            _animator.SetLayerWeight(4,0);
-            _animator.SetLayerWeight(5,0);
-            _animator.SetLayerWeight(6,0);
-            _animator.SetLayerWeight(7,0);
-            _animator.SetLayerWeight(8,0);
+            _animator.SetLayerWeight(1, 0);
+            _animator.SetLayerWeight(2, 0);
+            _animator.SetLayerWeight(3, 1);
+            _animator.SetLayerWeight(4, 0);
+            _animator.SetLayerWeight(5, 0);
+            _animator.SetLayerWeight(6, 0);
+            _animator.SetLayerWeight(7, 0);
+            _animator.SetLayerWeight(8, 0);
         }
         else if (left > 0.4f)
         {
-            _animator.SetLayerWeight(1,0);
-            _animator.SetLayerWeight(2,0);
-            _animator.SetLayerWeight(3,0);
-            _animator.SetLayerWeight(4,0);
-            _animator.SetLayerWeight(5,0);
-            _animator.SetLayerWeight(6,0);
-            _animator.SetLayerWeight(7,1);
-            _animator.SetLayerWeight(8,0);
+            _animator.SetLayerWeight(1, 0);
+            _animator.SetLayerWeight(2, 0);
+            _animator.SetLayerWeight(3, 0);
+            _animator.SetLayerWeight(4, 0);
+            _animator.SetLayerWeight(5, 0);
+            _animator.SetLayerWeight(6, 0);
+            _animator.SetLayerWeight(7, 1);
+            _animator.SetLayerWeight(8, 0);
         }
+    }
+
+    public void MovePlayer(Vector2 position, float duration)
+    {
+        StartCoroutine(MovePlayerCR(position, duration));
+    }
+    public IEnumerator MovePlayerCR(Vector2 position, float duration)
+    {
+        float elapsedTime = 0;
+        Vector3 oldPos = transform.position;
+        Vector3 newPos = new Vector3(position.x, oldPos.y, position.y);
+        float vel = _velocity;
+        _velocity = 0;
+
+        SetDirection(newPos-oldPos);
+
+        while (elapsedTime < duration)
+        {
+            transform.position = Vector3.Lerp(oldPos, newPos, elapsedTime/duration);
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        transform.position = newPos;
+        _animator.SetBool("Moving", false);
+        _dir = new Vector2(0, 0);
+        _velocity = vel;
     }
 
     #endregion Metodos

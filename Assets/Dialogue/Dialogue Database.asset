@@ -1700,7 +1700,13 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: Delay(2.5)
+        value: 'Delay({{end}});
+
+          SetDialoguePanel(false);
+
+          Delay(2);
+
+          SetDialoguePanel(true)@2;'
         type: 0
         typeString: CustomFieldType_Text
       - title: Response Menu Sequence
@@ -1805,8 +1811,8 @@ MonoBehaviour:
         y: 187
         width: 160
         height: 30
-    canvasScrollPosition: {x: 49.25489, y: 18.250307}
-    canvasZoom: 0.85000014
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 1.5699995
   - id: 3
     fields:
     - title: Title
@@ -7058,9 +7064,9 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "Joe Dianne, tu siempre tan negativa. \xBFPor qu\xE9 por una vez no
-          ves el lado bueno y piensas que no tendremos que hacer colas y que todas
-          las atracciones ser\xE1n para nosotros?"
+        value: "Joe Dianne, t\xFA siempre tan negativa. \xBFPor qu\xE9 no ves por
+          una vez el lado bueno y piensas que no tendremos que hacer colas y que
+          todas las atracciones ser\xE1n para nosotros?"
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -7135,8 +7141,8 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "No se\u2026 \xBFNo se supone que lo divertido de estas ferias es
-          ir acompa\xF1ado de cuanta m\xE1s gente mejor?"
+        value: "No s\xE9\u2026 \xBFNo se supone que lo divertido de estas ferias
+          es ir acompa\xF1ado de cuanta m\xE1s gente mejor?"
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -7367,7 +7373,7 @@ MonoBehaviour:
       - title: Dialogue Text
         value: "T\xFA no te preocupes, aunque sea el \xFAnico ni\xF1o que queda en
           el pueblo, seguro que vendr\xE1n nuevos. Adem\xE1s, seguro que nos vemos
-          todos los veranos \xBFVerdad?"
+          todos los veranos, \xBFverdad?"
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -7484,8 +7490,94 @@ MonoBehaviour:
         y: 398
         width: 160
         height: 30
-    canvasScrollPosition: {x: 235, y: 0}
-    canvasZoom: 1
+    - id: 8
+      fields:
+      - title: Title
+        value: New Dialogue Entry
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 4
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: en
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 'SetDialoguePanel(false, immediate);
+
+          SetContinueMode(false);
+
+          Fade(stay,
+          4, #000000)@2;
+
+          Fade(in, 1, #000000)@6;
+
+          //Delay(4)@5;
+
+          SetDialoguePanel(true)@9;
+
+          SetContinueMode(true)@9;
+
+          Continue()@9;
+
+'
+        type: 0
+        typeString: CustomFieldType_Text
+      conversationID: 15
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 722.5825
+        y: 74.69902
+        width: 160
+        height: 30
+    canvasScrollPosition: {x: 157.7655, y: 0}
+    canvasZoom: 0.7900002
   - id: 16
     fields:
     - title: Title
@@ -7577,7 +7669,13 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: None()
+        value: 'SetDialoguePanel(false, immediate);
+
+          SetContinueMode(false);
+
+          Delay(3);
+
+          Continue()@3;'
         type: 0
         typeString: 
       - title: en
@@ -7599,7 +7697,7 @@ MonoBehaviour:
       - originConversationID: 16
         originDialogueID: 0
         destinationConversationID: 16
-        destinationDialogueID: 1
+        destinationDialogueID: 34
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -7609,8 +7707,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 518
-        y: 52
+        x: 548.9278
+        y: 30.350502
         width: 160
         height: 30
     - id: 1
@@ -7663,6 +7761,10 @@ MonoBehaviour:
         value: 
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: ce905902-b293-4c95-9717-ed8ce7727c72
+        type: 0
+        typeString: 
       conversationID: 16
       isRoot: 0
       isGroup: 0
@@ -8328,8 +8430,8 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "\xBFNo tienes clase? \xA1Que envidia! A lo mejor no es tan mala idea
-          vivir para siempre en una feria itinerante\u2026 "
+        value: "\xBFNo tienes clase? \xA1Qu\xE9 envidia! A lo mejor no es tan mala
+          idea vivir para siempre en una feria itinerante\u2026 "
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -8555,10 +8657,10 @@ MonoBehaviour:
         typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: "No est\xE1 tan mal como pens\xE1is. En la feria hay muchas cosas
-          que hacer. Mirad, aqu\xED ten\xE9is un mapa donde pone todas las actividades
-          que pod\xE9is hacer a lo largo de un d\xEDa. Adem\xE1s, si consegu\xEDs
-          reunir todas las insignias que he dejado repartidas por los puestos, os
-          permitir\xE9 entrar en la noria."
+          que hacer. Mirad, aqu\xED ten\xE9is un mapa con todas las actividades que
+          pod\xE9is hacer a lo largo de un d\xEDa. Adem\xE1s, si consegu\xEDs reunir
+          todas las insignias que he dejado repartidas por los puestos, os permitir\xE9
+          entrar en la noria."
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -8784,7 +8886,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "Eso son cosas que mejor hablar en otro momento, \xBFNo creeis?"
+        value: "Mejor hablar de eso en otro momento, \xBFno cre\xE9is?"
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -8859,7 +8961,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "Si Dianne, ya te contar\xE9 cuando tengamos tiempo."
+        value: "S\xED Dianne, ya te contar\xE9 cuando tengamos tiempo."
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -8935,8 +9037,7 @@ MonoBehaviour:
         typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: "Eso, eso. Ahora lo que ten\xE9is que hacer es probar todos los puestos
-          que hay en la feria y conseguir las insignias de todos los lugares. \xA1Mucha
-          suerte!"
+          que hay en la feria y conseguir las insignias de todos los lugares."
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -9388,7 +9489,8 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "Eso lo tendr\xE9is que descubrir por vosotros mismos. \xA1MUCHA SUERTE!"
+        value: "Eso lo tendr\xE9is que descubrir por vosotros mismos. \n\xA1Mucha
+          Suerte!"
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -9422,7 +9524,7 @@ MonoBehaviour:
       - originConversationID: 16
         originDialogueID: 25
         destinationConversationID: 16
-        destinationDialogueID: 26
+        destinationDialogueID: 35
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -9455,7 +9557,7 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 6
+        value: 1
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -9498,7 +9600,7 @@ MonoBehaviour:
       - originConversationID: 16
         originDialogueID: 26
         destinationConversationID: 16
-        destinationDialogueID: 27
+        destinationDialogueID: 36
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -9576,7 +9678,7 @@ MonoBehaviour:
       - originConversationID: 16
         originDialogueID: 27
         destinationConversationID: 16
-        destinationDialogueID: 28
+        destinationDialogueID: 37
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -9652,7 +9754,7 @@ MonoBehaviour:
       - originConversationID: 16
         originDialogueID: 28
         destinationConversationID: 16
-        destinationDialogueID: 29
+        destinationDialogueID: 39
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -9962,8 +10064,554 @@ MonoBehaviour:
         y: 1601
         width: 160
         height: 30
-    canvasScrollPosition: {x: 0, y: 1144.7322}
-    canvasZoom: 0.8199999
+    - id: 34
+      fields:
+      - title: Title
+        value: New Dialogue Entry
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 5
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: en
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 'SetDialoguePanel(false, immediate);
+
+          SetContinueMode(false);
+
+          SetDialoguePanel(true)@2;
+
+          SetContinueMode(true)@2;
+
+          Delay(2);
+
+          Continue()@2;
+
+'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: EventGuid
+        value: 8c0a9351-db50-4189-94ad-31670daf506e
+        type: 0
+        typeString: 
+      conversationID: 16
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 16
+        originDialogueID: 34
+        destinationConversationID: 16
+        destinationDialogueID: 1
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 724.05286
+        y: 80.436646
+        width: 160
+        height: 30
+    - id: 35
+      fields:
+      - title: Title
+        value: New Dialogue Entry
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 6
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: en
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 'SetDialoguePanel(false, immediate);
+
+          SetContinueMode(false);
+
+          SetDialoguePanel(true)@2;
+
+          SetContinueMode(true)@2;
+
+          Delay(2);
+
+          Continue()@2;
+
+'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: EventGuid
+        value: ec70013e-ecfa-48aa-b909-334e7da6a5b8
+        type: 0
+        typeString: 
+      conversationID: 16
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 16
+        originDialogueID: 35
+        destinationConversationID: 16
+        destinationDialogueID: 26
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 593.447
+        y: 1261.1583
+        width: 160
+        height: 30
+    - id: 36
+      fields:
+      - title: Title
+        value: New Dialogue Entry
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 6
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: en
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 'SetDialoguePanel(false, immediate);
+
+          SetContinueMode(false);
+
+          SetDialoguePanel(true)@2;
+
+          SetContinueMode(true)@2;
+
+          Delay(2);
+
+          Continue()@2;
+
+'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: EventGuid
+        value: 9fc3b47e-d1f2-4701-8459-f5a066b5abd9
+        type: 0
+        typeString: 
+      conversationID: 16
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 16
+        originDialogueID: 36
+        destinationConversationID: 16
+        destinationDialogueID: 27
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 597.9231
+        y: 1303.3903
+        width: 160
+        height: 30
+    - id: 37
+      fields:
+      - title: Title
+        value: New Dialogue Entry
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 6
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: en
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 'SetDialoguePanel(false, immediate);
+
+          SetContinueMode(false);
+
+          SetDialoguePanel(true)@2;
+
+          SetContinueMode(true)@2;
+
+          Delay(2);
+
+          Continue()@2;
+
+'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: EventGuid
+        value: 991332f5-f3fc-4f86-a35a-606a420e8d2c
+        type: 0
+        typeString: 
+      conversationID: 16
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 16
+        originDialogueID: 37
+        destinationConversationID: 16
+        destinationDialogueID: 38
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 623.99835
+        y: 1341.4403
+        width: 160
+        height: 30
+    - id: 38
+      fields:
+      - title: Title
+        value: New Dialogue Entry
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 6
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: en
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 'SetDialoguePanel(false, immediate);
+
+          SetContinueMode(false);
+
+          SetDialoguePanel(true)@1;
+
+          SetContinueMode(true)@1;
+
+          Delay(1);
+
+          Continue()@1;
+
+'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: EventGuid
+        value: 252fd8bd-5eb9-4c55-aac7-c300131ca094
+        type: 0
+        typeString: 
+      conversationID: 16
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 16
+        originDialogueID: 38
+        destinationConversationID: 16
+        destinationDialogueID: 28
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 627.6569
+        y: 1379.2452
+        width: 160
+        height: 30
+    - id: 39
+      fields:
+      - title: Title
+        value: New Dialogue Entry
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 6
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: en
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 'SetDialoguePanel(false, immediate);
+
+          SetContinueMode(false);
+
+          SetDialoguePanel(true)@2;
+
+          SetContinueMode(true)@2;
+
+          Delay(2);
+
+          Continue()@2;
+
+'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: EventGuid
+        value: 4f6ac286-8c85-4c95-b32c-cd5b6da34eb2
+        type: 0
+        typeString: 
+      conversationID: 16
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 16
+        originDialogueID: 39
+        destinationConversationID: 16
+        destinationDialogueID: 29
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 620.3398
+        y: 1429.2454
+        width: 160
+        height: 30
+    canvasScrollPosition: {x: 207.40929, y: 1075.9503}
+    canvasZoom: 0.78999925
   - id: 17
     fields:
     - title: Title
@@ -10193,8 +10841,8 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "\xA1No se te ocurra volver a sacar este tema, porque si mal no recuerdas,
-          Rick, fuiste tu quien te acercaste a mi!"
+        value: "\xA1No se te ocurra volver a sacar este tema, porque si mal no recuerdo,
+          Rick, fuiste t\xFA quien se acerc\xF3 a m\xED!"
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -10345,7 +10993,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "\xA1Tu me pediste que me fuese a vivir contigo!"
+        value: "\xA1T\xFA me pediste que me fuese a vivir contigo!"
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -10421,8 +11069,8 @@ MonoBehaviour:
         typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: "\xA1Y por eso perd\xED mi casa! Mira que mis padres me lo dijeron\u2026
-          Como te juntes con Eliza, para nosotros est\xE1s muerto. Pero claro, \xA1Me
-          atrapaste como podr\xEDas haber hecho con cualquiera!"
+          Como te juntes con Eliza, para nosotros est\xE1s muerto. \xA1Pero claro,
+          me atrapaste como podr\xEDas haber hecho con cualquiera!"
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -10542,7 +11190,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 526
+        x: 525
         y: 339
         width: 160
         height: 30
@@ -10923,7 +11571,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "\xBFY que se supone que quieres que haga? \xA1Cuando puedas darme
+        value: "\xBFY qu\xE9 se supone que quieres que haga? \xA1Cuando puedas darme
           un hijo ya hablaremos!"
         type: 0
         typeString: CustomFieldType_Text
@@ -12285,7 +12933,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: None()
+        value: 
         type: 0
         typeString: 
       - title: en
@@ -12586,13 +13234,21 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: 'SetContinueMode(false);
+
+          Delay(2);
+
+          SetContinueMode(true);'
         type: 0
         typeString: CustomFieldType_Text
       - title: en
         value: 
         type: 4
         typeString: CustomFieldType_Localization
+      - title: Response Menu Sequence
+        value: 
+        type: 0
+        typeString: 
       conversationID: 21
       isRoot: 0
       isGroup: 0
@@ -12766,7 +13422,7 @@ MonoBehaviour:
         y: 332
         width: 160
         height: 30
-    canvasScrollPosition: {x: 102, y: 0}
+    canvasScrollPosition: {x: 268, y: 0}
     canvasZoom: 1
   - id: 22
     fields:
@@ -63650,9 +64306,10 @@ MonoBehaviour:
     syncItemsDatabase: {fileID: 0}
     syncLocationsDatabase: {fileID: 0}
     syncVariablesDatabase: {fileID: 0}
-  templateJson: '{"treatItemsAsQuests":true,"actorFields":[{"title":"Name","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"en","value":"","type":4,"typeString":"CustomFieldType_Localization"},{"title":"Pictures","value":"[]","type":3,"typeString":"CustomFieldType_Files"},{"title":"Description","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"IsPlayer","value":"False","type":2,"typeString":"CustomFieldType_Boolean"}],"itemFields":[{"title":"Name","value":"","type":0,"typeString":""},{"title":"Pictures","value":"[]","type":3,"typeString":"CustomFieldType_Files"},{"title":"Description","value":"","type":0,"typeString":""},{"title":"Is
-    Item","value":"True","type":2,"typeString":"CustomFieldType_Boolean"}],"questFields":[{"title":"Name","value":"","type":0,"typeString":""},{"title":"Pictures","value":"[]","type":3,"typeString":"CustomFieldType_Files"},{"title":"Description","value":"","type":0,"typeString":""},{"title":"Success
-    Description","value":"","type":0,"typeString":""},{"title":"Failure Description","value":"","type":0,"typeString":""},{"title":"State","value":"unassigned","type":0,"typeString":""},{"title":"Is
+  templateJson: '{"treatItemsAsQuests":true,"actorFields":[{"title":"Name","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"en","value":"","type":4,"typeString":"CustomFieldType_Localization"},{"title":"Pictures","value":"[]","type":3,"typeString":"CustomFieldType_Files"},{"title":"Description","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"IsPlayer","value":"False","type":2,"typeString":"CustomFieldType_Boolean"}],"itemFields":[{"title":"Name","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Pictures","value":"[]","type":3,"typeString":"CustomFieldType_Files"},{"title":"Description","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Is
+    Item","value":"True","type":2,"typeString":"CustomFieldType_Boolean"}],"questFields":[{"title":"Name","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Pictures","value":"[]","type":3,"typeString":"CustomFieldType_Files"},{"title":"Description","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Success
+    Description","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Failure
+    Description","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"State","value":"unassigned","type":0,"typeString":"CustomFieldType_QuestState"},{"title":"Is
     Item","value":"False","type":2,"typeString":"CustomFieldType_Boolean"}],"locationFields":[{"title":"Name","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Pictures","value":"[]","type":3,"typeString":"CustomFieldType_Files"},{"title":"Description","value":"","type":0,"typeString":"CustomFieldType_Text"}],"variableFields":[{"title":"Name","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Initial
     Value","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Description","value":"","type":0,"typeString":"CustomFieldType_Text"}],"conversationFields":[{"title":"Title","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Pictures","value":"[]","type":3,"typeString":"CustomFieldType_Files"},{"title":"Description","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Actor","value":"0","type":5,"typeString":"CustomFieldType_Actor"},{"title":"Conversant","value":"0","type":5,"typeString":"CustomFieldType_Actor"}],"dialogueEntryFields":[{"title":"Title","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Pictures","value":"[]","type":3,"typeString":"CustomFieldType_Files"},{"title":"Description","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Actor","value":"","type":5,"typeString":"CustomFieldType_Actor"},{"title":"Conversant","value":"","type":5,"typeString":"CustomFieldType_Actor"},{"title":"Menu
     Text","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Dialogue

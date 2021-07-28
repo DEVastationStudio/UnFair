@@ -4,6 +4,7 @@ using PixelCrushers.DialogueSystem;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using System.Globalization;
 
 public class ConversationHelper : MonoBehaviour
 {
@@ -149,6 +150,48 @@ public class ConversationHelper : MonoBehaviour
     public void ChangeSong(int index)
     {
         if (AudioManager.instance != null) AudioManager.instance.changeTheme(index);
+    }
+
+    public void MoveNpc(string args)
+    {
+        string[] data = args.Split(';');
+        if (data.Length != 2 && data.Length != 3)
+        {
+            Debug.LogError("MoveNpc needs at least two coordinates, in x;y[;duration] format.");
+        }
+        Vector2 position = new Vector2(float.Parse(data[0], CultureInfo.InvariantCulture), float.Parse(data[1], CultureInfo.InvariantCulture));
+        float duration = data.Length == 3 ? float.Parse(data[2], CultureInfo.InvariantCulture) : 2;
+        StartCoroutine(MoveNpcCR(position, duration));
+    }
+
+    private IEnumerator MoveNpcCR(Vector2 position, float duration)
+    {
+        float elapsedTime = 0;
+        Vector3 oldPos = transform.position;
+        Vector3 newPos = new Vector3(position.x, oldPos.y, position.y);
+        Quaternion oldRot = transform.rotation;
+        Quaternion newRot = oldRot * Quaternion.Euler(0, 180, 0);
+
+        while (elapsedTime < duration)
+        {
+            transform.position = Vector3.Lerp(oldPos, newPos, elapsedTime/duration);
+            elapsedTime += Time.deltaTime;
+            transform.rotation = Quaternion.Slerp(oldRot, newRot, elapsedTime/duration);
+            yield return new WaitForEndOfFrame();
+        }
+        transform.position = newPos;
+        transform.rotation = newRot;
+    }
+    public void MovePlayer(string args)
+    {
+        string[] data = args.Split(';');
+        if (data.Length != 2 && data.Length != 3)
+        {
+            Debug.LogError("MoveNpc needs at least two coordinates, in x;y[;duration] format.");
+        }
+        Vector2 position = new Vector2(float.Parse(data[0], CultureInfo.InvariantCulture), float.Parse(data[1], CultureInfo.InvariantCulture));
+        float duration = data.Length == 3 ? float.Parse(data[2], CultureInfo.InvariantCulture) : 2;
+        _player.MovePlayer(position, duration);
     }
 
 }
