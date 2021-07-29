@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using System.Globalization;
+using UnityEngine.UI;
 
 public class ConversationHelper : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class ConversationHelper : MonoBehaviour
     public ConversationEvent[] OnConversationPath;
     public PrefsInt[] requisites;
     [SerializeField] private GameObject _interactUI;
+    private Image _interactUISprite;
     private PlayerInput _playerInput;
     private PlayerController _player;
     private int _conversationPath;
@@ -25,6 +27,18 @@ public class ConversationHelper : MonoBehaviour
         _trigger = GetComponent<DialogueSystemTrigger>();
         if (_player == null) _player = FindObjectOfType<PlayerController>();
         _playerInput = FindObjectOfType<PlayerInput>();
+        if (_interactUI != null)
+        {
+            _interactUISprite = _interactUI.GetComponent<Image>();
+        }
+    }
+
+    void Update()
+    {
+        if (_interactUI != null && _interactUI.activeSelf)
+        {
+            _interactUISprite.enabled = _playerInput.currentActionMap.name.Equals("ActionMap");
+        }
     }
 
     public void SetConversationEnd(int path)
@@ -169,18 +183,18 @@ public class ConversationHelper : MonoBehaviour
         float elapsedTime = 0;
         Vector3 oldPos = transform.position;
         Vector3 newPos = new Vector3(position.x, oldPos.y, position.y);
-        Quaternion oldRot = transform.rotation;
-        Quaternion newRot = oldRot * Quaternion.Euler(0, 180, 0);
+        //Quaternion oldRot = transform.rotation;
+        //Quaternion newRot = oldRot * Quaternion.Euler(0, 180, 0);
 
         while (elapsedTime < duration)
         {
             transform.position = Vector3.Lerp(oldPos, newPos, elapsedTime/duration);
             elapsedTime += Time.deltaTime;
-            transform.rotation = Quaternion.Slerp(oldRot, newRot, elapsedTime/duration);
+            //transform.rotation = Quaternion.Slerp(oldRot, newRot, elapsedTime/duration);
             yield return new WaitForEndOfFrame();
         }
         transform.position = newPos;
-        transform.rotation = newRot;
+        //transform.rotation = newRot;
     }
     public void MovePlayer(string args)
     {

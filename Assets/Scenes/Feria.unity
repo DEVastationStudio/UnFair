@@ -1011,7 +1011,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 188185761}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10861,9 +10861,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 25947750}
   - {fileID: 963437500}
   - {fileID: 1021979656}
-  - {fileID: 25947750}
   - {fileID: 1834406446}
   - {fileID: 578800051}
   - {fileID: 1522125395}
@@ -17381,7 +17381,7 @@ PrefabInstance:
     - target: {fileID: 4355682930610415242, guid: 5b83a25e296a1a540bde3f2c770b5326,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -37.981197
+      value: -38
       objectReference: {fileID: 0}
     - target: {fileID: 4355682930610415242, guid: 5b83a25e296a1a540bde3f2c770b5326,
         type: 3}
@@ -17391,7 +17391,7 @@ PrefabInstance:
     - target: {fileID: 4355682930610415242, guid: 5b83a25e296a1a540bde3f2c770b5326,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -39.95
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 4355682930610415242, guid: 5b83a25e296a1a540bde3f2c770b5326,
         type: 3}
@@ -36128,6 +36128,17 @@ MonoBehaviour:
             m_StringArgument: -105;0;3
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1295458037}
+          m_MethodName: set_flipX
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   - guid: ce905902-b293-4c95-9717-ed8ce7727c72
     onExecute:
       m_PersistentCalls:
@@ -36158,21 +36169,6 @@ MonoBehaviour:
             m_StringArgument: -103;9;2
             m_BoolArgument: 0
           m_CallState: 2
-  - guid: ec70013e-ecfa-48aa-b909-334e7da6a5b8
-    onExecute:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 925079377}
-          m_MethodName: MoveNpc
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: -103;75;2
-            m_BoolArgument: 0
-          m_CallState: 2
   - guid: 9fc3b47e-d1f2-4701-8459-f5a066b5abd9
     onExecute:
       m_PersistentCalls:
@@ -36187,6 +36183,17 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: -103;18;2
             m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1295458037}
+          m_MethodName: set_flipX
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
           m_CallState: 2
   - guid: 991332f5-f3fc-4f86-a35a-606a420e8d2c
     onExecute:
@@ -36203,20 +36210,31 @@ MonoBehaviour:
             m_StringArgument: -103;28;2
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1295458037}
+          m_MethodName: set_flipX
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - guid: 252fd8bd-5eb9-4c55-aac7-c300131ca094
     onExecute:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 925079377}
-          m_MethodName: MoveNpc
-          m_Mode: 5
+        - m_Target: {fileID: 1295458037}
+          m_MethodName: set_flipX
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: -103;18;1
-            m_BoolArgument: 0
+            m_BoolArgument: 1
           m_CallState: 2
   - guid: 4f6ac286-8c85-4c95-b32c-cd5b6da34eb2
     onExecute:
@@ -36231,6 +36249,115 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: -103;75;2
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1295458037}
+          m_MethodName: set_flipX
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 0d23763c-afe1-4cfc-87b4-992117fee018
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 925079377}
+          m_MethodName: MoveNpc
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: -103;75;2
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1295458037}
+          m_MethodName: set_flipX
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 63f188fd-ce0b-4e3e-8cec-90bfbf2aa762
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 278456433}
+          m_MethodName: MoveNpc
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: -28;-40;1
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: e2a5bf64-aa96-4d64-818a-748d3f0fe9f7
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 278456433}
+          m_MethodName: MoveNpc
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: -38;-40;1
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 6a6285c8-cbc3-4ebd-8556-21f0d223f7f1
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 278456433}
+          m_MethodName: MoveNpc
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: -38;-46;2
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 04d37a2b-5a31-4827-ae4a-f7294706fac8
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 321356944}
+          m_MethodName: set_sprite
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 21300000, guid: 925987cee7ceb6944bc905eb0e753585,
+              type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 278456433}
+          m_MethodName: MoveNpc
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: -38;-40;1
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!4 &630230074
@@ -60733,7 +60860,7 @@ RectTransform:
   - {fileID: 1183827969}
   - {fileID: 642777121}
   m_Father: {fileID: 188185761}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -63648,7 +63775,7 @@ PrefabInstance:
     - target: {fileID: 2936616270885881886, guid: 5b07f5eecb729d04dac8a33d5f01be19,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2936616270885881886, guid: 5b07f5eecb729d04dac8a33d5f01be19,
         type: 3}
@@ -93831,7 +93958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
       propertyPath: displaySettings.subtitleSettings.skipPCSubtitleAfterResponseMenu
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
