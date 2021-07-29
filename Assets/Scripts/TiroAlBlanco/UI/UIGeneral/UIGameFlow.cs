@@ -97,7 +97,9 @@ public partial class UIGeneral : MonoBehaviour
         _gameManager._spawnerDianas._currentLetter = 0;
         _gameManager._spawnerDianas._isOnGoldRush = false;
         _playerInput.SwitchCurrentActionMap("UIMap");
-        _npcConversationHelper.StartConversation();
+        
+        //_npcConversationHelper.StartConversation();
+        
         _gameManager._logSystem._Combo = _gameManager._comboCounter._maxCombo;
         _gameManager._logSystem.SaveData();
         _gameManager._comboCounter._maxCombo = 0;
