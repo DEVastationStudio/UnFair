@@ -45,6 +45,10 @@ public partial class UIGeneral : MonoBehaviour
     [SerializeField] private Image _estrella3;
     [SerializeField] private Color _StarDoneColor;
     [SerializeField] private Color _StarNotDoneColor;
+    [SerializeField] private Image _estrellaPreGame1;
+    [SerializeField] private Image _estrellaPreGame2;
+    [SerializeField] private Image _estrellaPreGame3;
+    
 
     //Botonoes necesarios para la navegación por mando
     [Header("Control por mando")]

@@ -14,12 +14,17 @@ public partial class UIGeneral : MonoBehaviour
         POSTGAME
     }
     [HideInInspector] public Fases faseActual;
-
+    private int starNum = 0;
     #endregion Variables
 
     #region Metodos
     public void FasePreGame() 
     {
+        starNum = GameProgress.GetStars(1);
+        _estrellaPreGame1.color = starNum >= 1 ? _StarDoneColor : _StarNotDoneColor;
+        _estrellaPreGame2.color = starNum >= 2 ? _StarDoneColor : _StarNotDoneColor;
+        _estrellaPreGame3.color = starNum >= 3 ? _StarDoneColor : _StarNotDoneColor;
+
         faseActual = Fases.PREGAME;
         _PostGameContainer.SetActive(false);
         _PreGameContainer.SetActive(true);
