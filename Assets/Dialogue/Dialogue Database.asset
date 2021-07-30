@@ -761,6 +761,20 @@ MonoBehaviour:
       value: 
       type: 0
       typeString: CustomFieldType_Text
+  - id: 5
+    fields:
+    - title: Name
+      value: _talkedHorseman
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Initial Value
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Description
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
   conversations:
   - id: 1
     fields:
@@ -25598,8 +25612,8 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "\xBFAntes si tienen alguna utilidad? Pensaba que simplemente eran
-          piezas coleccionables."
+        value: "\xBFAntes s\xED ten\xEDan alguna utilidad? Pensaba que simplemente
+          eran piezas coleccionables."
         type: 0
         typeString: CustomFieldType_Text
       - title: en
@@ -26133,8 +26147,8 @@ MonoBehaviour:
         typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: "Me temo que no, aunque si le veis por la feria, seguro que le alegra
-          poder hablar con un par de ni\xF1os como vosotros. Hablando de ni\xF1os.
-          \xBFVosotros no hab\xEDais venido a jugar?"
+          poder hablar con un par de ni\xF1os como vosotros. Hablando de ni\xF1os,
+          \xBFvosotros no hab\xEDais venido a jugar?"
         type: 0
         typeString: CustomFieldType_Text
       - title: en
@@ -26209,7 +26223,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "\xA1Tienes raz\xF3n! \xA1Vamos Dianne! \xA1Esta vez no me ganar\xE1s!"
+        value: "\xA1Tienes raz\xF3n! \xA1Vamos, Dianne! \xA1Esta vez no me ganar\xE1s!"
         type: 0
         typeString: CustomFieldType_Text
       - title: en
@@ -26255,8 +26269,8 @@ MonoBehaviour:
         y: 1025
         width: 160
         height: 30
-    canvasScrollPosition: {x: 331.82846, y: 42.180496}
-    canvasZoom: 1.12
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 0.49000046
   - id: 38
     fields:
     - title: Title
@@ -26412,7 +26426,7 @@ MonoBehaviour:
         typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: "Para no apostar nada por vosotros, me hab\xE9is sorprendido gratamente.
-          \xA1Tomad esta insignia!, os la merec\xE9is."
+          \xA1Tomad esta insignia, os la merec\xE9is!"
         type: 0
         typeString: CustomFieldType_Text
       - title: en
@@ -27248,7 +27262,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "\xA1Oh! Eliza\u2026 "
+        value: "Oh, Eliza\u2026 "
         type: 0
         typeString: CustomFieldType_Text
       - title: en
@@ -27444,7 +27458,7 @@ MonoBehaviour:
         destinationDialogueID: 17
         isConnector: 0
         priority: 2
-      conditionsString: 
+      conditionsString: Variable["_talkedHorseman"] == true
       userScript: 
       onExecute:
         m_PersistentCalls:
@@ -27519,7 +27533,7 @@ MonoBehaviour:
         destinationDialogueID: 20
         isConnector: 0
         priority: 2
-      conditionsString: 
+      conditionsString: Variable["_talkedHorseman"] == false
       userScript: 
       onExecute:
         m_PersistentCalls:
@@ -27906,8 +27920,8 @@ MonoBehaviour:
         y: 925.85864
         width: 160
         height: 30
-    canvasScrollPosition: {x: 0, y: 453.6585}
-    canvasZoom: 0.8200001
+    canvasScrollPosition: {x: 269.7138, y: 674.5967}
+    canvasZoom: 0.91
   - id: 39
     fields:
     - title: Title

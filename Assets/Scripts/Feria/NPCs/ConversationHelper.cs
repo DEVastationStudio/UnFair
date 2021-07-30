@@ -208,6 +208,11 @@ public class ConversationHelper : MonoBehaviour
         _player.MovePlayer(position, duration);
     }
 
+    public void CheckHorseman()
+    {
+        DialogueLua.SetVariable("_talkedHorseman", PlayerPrefs.GetInt("CaballosProgression", 0) > 0);
+    }
+
 }
 
 [System.Serializable]
