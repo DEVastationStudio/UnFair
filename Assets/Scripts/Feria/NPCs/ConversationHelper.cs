@@ -213,6 +213,17 @@ public class ConversationHelper : MonoBehaviour
         DialogueLua.SetVariable("_talkedHorseman", PlayerPrefs.GetInt("CaballosProgression", 0) > 0);
     }
 
+    public void CheckEightStars()
+    {
+        int numStars = 0;
+        numStars += GameProgress.GetStars(1);
+        numStars += GameProgress.GetStars(2);
+        numStars += GameProgress.GetStars(3);
+        numStars += GameProgress.GetStars(4);
+
+        DialogueLua.SetVariable("_stars", numStars);
+    }
+
 }
 
 [System.Serializable]

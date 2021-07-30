@@ -22835,6 +22835,10 @@ MonoBehaviour:
         value: 
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: a1aedc8a-3f0f-42bd-b52a-a6652001fc44
+        type: 0
+        typeString: 
       conversationID: 32
       isRoot: 0
       isGroup: 0
@@ -28351,7 +28355,7 @@ MonoBehaviour:
         y: 200
         width: 160
         height: 30
-    canvasScrollPosition: {x: 0.0000019073486, y: 0}
+    canvasScrollPosition: {x: 266, y: 0}
     canvasZoom: 1
   - id: 40
     fields:
@@ -28783,7 +28787,7 @@ MonoBehaviour:
         y: 226
         width: 160
         height: 30
-    canvasScrollPosition: {x: 2, y: 2}
+    canvasScrollPosition: {x: 98, y: 0}
     canvasZoom: 1
   - id: 41
     fields:
@@ -29772,7 +29776,7 @@ MonoBehaviour:
         typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: "Lo siento jovencita, pero solo uno de los caballos puede utilizarse
-          por los jugadores\u2026 A\xFAn as\xED, os animo a que os intent\xE9is superar
+          por los jugadores\u2026 Aun as\xED, os animo a que os intent\xE9is superar
           el uno al otro en dos turnos diferentes."
         type: 0
         typeString: CustomFieldType_Text
@@ -30120,7 +30124,7 @@ MonoBehaviour:
         y: 873
         width: 160
         height: 30
-    canvasScrollPosition: {x: 231.52188, y: 0}
+    canvasScrollPosition: {x: 215.03842, y: 445.0548}
     canvasZoom: 0.9100002
   - id: 42
     fields:
@@ -30652,8 +30656,8 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "\xBFPero qu\xE9 os creeis? \xA1Sois los ni\xF1os m\xE1s famosos de
-          la feria! Despu\xE9s de tanto tiempo sin recibir visita en este pueblo,
+        value: "\xBFPero qu\xE9 os cre\xE9is? \xA1Sois los ni\xF1os m\xE1s famosos
+          de la feria! Despu\xE9s de tanto tiempo sin recibir visita en este pueblo,
           vosotros hab\xE9is devuelto la vida a los puestos. \xA1Estamos todos muy
           interesados en lo que est\xE1is haciendo!"
         type: 0
@@ -30855,7 +30859,7 @@ MonoBehaviour:
         destinationDialogueID: 10
         isConnector: 0
         priority: 2
-      conditionsString: 
+      conditionsString: Variable["_stars"] >= 8
       userScript: 
       onExecute:
         m_PersistentCalls:
@@ -30930,7 +30934,7 @@ MonoBehaviour:
         destinationDialogueID: 12
         isConnector: 0
         priority: 2
-      conditionsString: 
+      conditionsString: Variable["_stars"] < 8
       userScript: 
       onExecute:
         m_PersistentCalls:
@@ -31112,7 +31116,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "\xA1No pasa nada! Will, seguro que podemos volver a los puestos que
+        value: "\xA1No pasa nada, Will! Seguro que podemos volver a los puestos que
           hemos superado para conseguir m\xE1s estrellas."
         type: 0
         typeString: CustomFieldType_Text
@@ -31306,7 +31310,7 @@ MonoBehaviour:
         y: 732.65216
         width: 160
         height: 30
-    canvasScrollPosition: {x: 0, y: 90.15202}
+    canvasScrollPosition: {x: 201.36975, y: 160.27396}
     canvasZoom: 0.73000014
   - id: 43
     fields:
@@ -31406,6 +31410,10 @@ MonoBehaviour:
         value: None()
         type: 0
         typeString: CustomFieldType_Text
+      - title: EventGuid
+        value: 331c943c-eb4f-431f-841d-a050aa41d19a
+        type: 0
+        typeString: 
       conversationID: 43
       isRoot: 0
       isGroup: 0
@@ -31506,7 +31514,7 @@ MonoBehaviour:
         y: 122
         width: 160
         height: 30
-    canvasScrollPosition: {x: 0, y: 0}
+    canvasScrollPosition: {x: 164, y: 0}
     canvasZoom: 1
   - id: 44
     fields:
@@ -31938,7 +31946,7 @@ MonoBehaviour:
         y: 239
         width: 160
         height: 30
-    canvasScrollPosition: {x: 0, y: 0}
+    canvasScrollPosition: {x: 185, y: 0}
     canvasZoom: 1
   - id: 45
     fields:
@@ -32756,8 +32764,8 @@ MonoBehaviour:
         y: 502
         width: 160
         height: 30
-    canvasScrollPosition: {x: 272.9252, y: 0}
-    canvasZoom: 0.8800001
+    canvasScrollPosition: {x: 282.95413, y: 31.570759}
+    canvasZoom: 0.9100001
   - id: 46
     fields:
     - title: Title
@@ -33299,7 +33307,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "Es sobre que me voy del pueblo \xBFNo?"
+        value: "Es sobre que me voy del pueblo, \xBFno?"
         type: 0
         typeString: CustomFieldType_Text
       - title: en
@@ -33337,7 +33345,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 288.82025
+        x: 287.60074
         y: 361.66006
         width: 160
         height: 30
@@ -33368,7 +33376,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "Es sobre lo que pas\xF3 hace dos a\xF1os \xBFNo?"
+        value: "Es sobre lo que pas\xF3 hace dos a\xF1os, \xBFno?"
         type: 0
         typeString: CustomFieldType_Text
       - title: en
@@ -33406,8 +33414,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 491.11523
-        y: 361.60376
+        x: 511.847
+        y: 372.57938
         width: 160
         height: 30
     - id: 8
@@ -33437,7 +33445,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "Es sobre la pregunta de si quer\xEDa quedarme contigo \xBFNo?"
+        value: "Es sobre la pregunta de si quer\xEDa quedarme contigo, \xBFno?"
         type: 0
         typeString: CustomFieldType_Text
       - title: en
@@ -33479,8 +33487,8 @@ MonoBehaviour:
         y: 364.1101
         width: 160
         height: 30
-    canvasScrollPosition: {x: 17.9104, y: 0}
-    canvasZoom: 0.6700002
+    canvasScrollPosition: {x: 109.10069, y: 22.934082}
+    canvasZoom: 0.82000005
   - id: 47
     fields:
     - title: Title
