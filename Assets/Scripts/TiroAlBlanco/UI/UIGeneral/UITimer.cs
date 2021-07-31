@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,31 +7,45 @@ public partial class UIGeneral : MonoBehaviour
 {
     #region Variables
     private int actualTime;
+    private bool _timerOn;
+    private float _timePassed;
     #endregion Variables
 
     #region Metodos
     private void StartTimer() 
     {
         ResetTimer();
-        StartCoroutine(TimerUpdate());
+        _timerOn = true;
     }
-    private void ResetTimer() 
+    public void ResetTimer()
     {
+        _timerOn = false;
         actualTime = _timeForLevel;
+        _timePassed = 0;
         _timerText.text = "Time: " + _timeForLevel;
         _gameManager._logSystem._TP += _timeForLevel;
     }
 
-    IEnumerator TimerUpdate()
+    private void Update()
     {
-        while (actualTime >= 0)
+        if (_timerOn)
         {
-            _timerText.text = "Time: " + actualTime;
-            yield return new WaitForSeconds(1);
-            actualTime--;
+            if (_timePassed >= 1)
+            {
+                _timerText.text = "Time: " + actualTime;
+                actualTime--;
+                _timePassed = 0;
+            }
+            else if(_timePassed < 1)
+                _timePassed += Time.deltaTime;
+            else
+            {
+                faseActual = Fases.POSTGAME;
+                _timerOn = false;
+                FasePostGame(); 
+            }
         }
-        faseActual = Fases.POSTGAME;
-        FasePostGame();
+        
     }
 
     public void AddTime(int t) 

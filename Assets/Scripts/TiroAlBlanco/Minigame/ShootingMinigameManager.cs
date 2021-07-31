@@ -38,6 +38,7 @@ public class ShootingMinigameManager : MonoBehaviour
     {
         AudioManager.instance.changeTheme(9);
         _pistolaScript._probDianaDorada = 110;
+        _uiGeneral.ResetTimer();
         _uiGeneral.FasePreGame();
     }
     #endregion Metodos

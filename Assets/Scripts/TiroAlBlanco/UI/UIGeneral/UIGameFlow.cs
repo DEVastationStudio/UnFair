@@ -18,8 +18,16 @@ public partial class UIGeneral : MonoBehaviour
     #endregion Variables
 
     #region Metodos
-    public void FasePreGame() 
+    public void FasePreGame()
     {
+        Diana[] DianasRestantes = FindObjectsOfType<Diana>();
+        for (int i = 0; i < DianasRestantes.Length; i++) 
+        {
+            DianasRestantes[i]._dianaContainer.SleepTarget();
+            DianasRestantes[i].GetComponentInParent<Animator>().SetBool("isActive", false);
+        }
+        Time.timeScale = 1;
+        _countdown.text = "";
         starNum = GameProgress.GetStars(1);
         _estrellaPreGame1.color = starNum >= 1 ? _StarDoneColor : _StarNotDoneColor;
         _estrellaPreGame2.color = starNum >= 2 ? _StarDoneColor : _StarNotDoneColor;
@@ -113,6 +121,7 @@ public partial class UIGeneral : MonoBehaviour
 
     public void Pause()
     {
+        if(_isCountdown) return;
         _isPaused = !_isPaused;
         if (_isPaused)
         {
@@ -164,8 +173,9 @@ public partial class UIGeneral : MonoBehaviour
         FadeController.Fade("TiroAlBlanco");
     }
 
-    IEnumerator Countdown() 
+    IEnumerator Countdown()
     {
+        _isCountdown = true;
         _countdown.gameObject.SetActive(true);
         int count = 3;
         while (count > 0)
@@ -184,6 +194,7 @@ public partial class UIGeneral : MonoBehaviour
         InitUI();
         AudioManager.instance.FadeIn(10,0.1f);
         _playerInput.SwitchCurrentActionMap("ActionMap");
+        _isCountdown = false;
     }
     #endregion Metodos
 }

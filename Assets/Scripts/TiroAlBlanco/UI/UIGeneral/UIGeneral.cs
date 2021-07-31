@@ -36,6 +36,7 @@ public partial class UIGeneral : MonoBehaviour
     [SerializeField] private GameObject _outGameContainer;
     [SerializeField] private GameObject _PostGameContainer;
     [SerializeField] private TextMeshProUGUI _countdown;
+    [HideInInspector] public bool _isCountdown;
 
     //Puntuaciones necesarias
     [Header("Retos")]
@@ -61,7 +62,7 @@ public partial class UIGeneral : MonoBehaviour
     [SerializeField] private ConversationHelper _npcConversationHelper;
 
     //Menú de pausa
-    [Header("Menú de pausa")]
+    [Header("Menu de pausa")]
     [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private GameObject _continuarBtn;
     [HideInInspector] public bool _isPaused;
