@@ -375,6 +375,7 @@ public class PlayerHorse : MonoBehaviour
     public void EndGame()
     {
         gameStarted = false;
+        input.SwitchCurrentActionMap("UIMap");
         _logSystem._FD = DDM.GetSkillLevel();
         _logSystem._CC = endedTotalCombos;
         _logSystem._FC = totalFailedCombos;

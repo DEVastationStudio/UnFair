@@ -16,20 +16,37 @@ public class HUD_Manager : MonoBehaviour
     [SerializeField] private GameObject postGameCanvas;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject exitConfirmationPregame;
+    [SerializeField] private GameObject exitConfirmationPostGame;
     [SerializeField] private GameObject exitConfirmationMenu;
-    [SerializeField] private GameObject noButton;
+    [SerializeField] private GameObject resetConfirmationMenu;
     [SerializeField] private GameObject continueButton;
-    [SerializeField] private GameObject firstSettingButton;
-    [SerializeField] private GameObject startGameButtonPregame;
-    [SerializeField] private TextMeshProUGUI positionText;
-    [SerializeField] private TextMeshProUGUI timeSpent;
-    [SerializeField] private TextMeshProUGUI starsEndedGameText;
+    [SerializeField] private GameObject settingButtonPause;
+    [SerializeField] private GameObject settingButtonPregame;
+    //[SerializeField] private TextMeshProUGUI positionText;
+    //[SerializeField] private TextMeshProUGUI timeSpent;
+    //[SerializeField] private TextMeshProUGUI starsEndedGameText;
     [SerializeField] private TextMeshProUGUI starsObtained;
     [SerializeField] private TextMeshProUGUI countdownText;
     [SerializeField] private ConversationHelper conversation;
     [SerializeField] private ConversationHelper conversationTutorial;
     [SerializeField] private HorsesLogSystem _logSystem;
     //[SerializeField] private PlayerInput playerInput;
+    [Header("Estrellas Pregame")]
+    [SerializeField] private Image _star1Pregame;
+    [SerializeField] private Image _star2Pregame;
+    [SerializeField] private Image _star3Pregame;
+    [Header("Resumen Estrellas PostGame")]
+    [SerializeField] private TextMeshProUGUI _textStar1;
+    [SerializeField] private TextMeshProUGUI _textStar2;
+    [SerializeField] private TextMeshProUGUI _textStar3;
+    [SerializeField] private Image _star1;
+    [SerializeField] private Image _star2;
+    [SerializeField] private Image _star3;
+    [SerializeField] private Color _starDoneColor;
+    [SerializeField] private Color _starNotDoneColor;
+    [SerializeField] private TextMeshProUGUI _textCurrentTime;
+    [SerializeField] private TextMeshProUGUI _textBestTime;
 
     [Header("Control por mando")]
     [SerializeField] private EventSystem _eventSystem;
@@ -46,6 +63,7 @@ public class HUD_Manager : MonoBehaviour
     private bool paused;
     private bool isReseting;
     private bool gameStarted;
+    private int starNum;
     void Start()
     {
         playerHorse = FindObjectOfType<PlayerHorse>();
@@ -77,10 +95,17 @@ public class HUD_Manager : MonoBehaviour
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
         exitConfirmationMenu.SetActive(false);
-        preGameCanvas.SetActive(true);
+        exitConfirmationPregame.SetActive(false);
+        exitConfirmationPostGame.SetActive(false);
+        resetConfirmationMenu.SetActive(false);
+        preGameCanvas.SetActive(true);        
+        starNum = GameProgress.GetStars(2);
+        _star1Pregame.color = starNum >= 1 ? _starDoneColor : _starNotDoneColor;
+        _star2Pregame.color = starNum >= 2 ? _starDoneColor : _starNotDoneColor;
+        _star3Pregame.color = starNum >= 3 ? _starDoneColor : _starNotDoneColor;
         preGameButtonsCanvas.SetActive(true);
         _eventSystem.SetSelectedGameObject(_startGame);
-        starsObtained.text = "Stars obtained: " + GameProgress.GetStars(2);
+        starsObtained.text = "Estrellas obtenidas: " + GameProgress.GetStars(2);
     }
 
     private void StartGame()
@@ -115,7 +140,7 @@ public class HUD_Manager : MonoBehaviour
     {
         raceTime = timeCounter.GetTimeSpent();
         _logSystem._T = raceTime;
-        timeSpent.text = FormatTime();
+        //timeSpent.text = FormatTime();
         playerHorse.EndGame();
         CalculateStars(position); //comprobar que no se llame al reset combo una vez se haya finalizado la carrera
 
@@ -127,8 +152,8 @@ public class HUD_Manager : MonoBehaviour
         inGameCanvas.SetActive(false);
         timeCanvas.SetActive(false);
         postGameCanvas.SetActive(true);
-        conversation.StartConversation();
-        //_eventSystem.SetSelectedGameObject(_resetGame);
+        //conversation.StartConversation();
+        _eventSystem.SetSelectedGameObject(_resetGame);
 
         string ordinal = "";
         switch (position)
@@ -149,16 +174,16 @@ public class HUD_Manager : MonoBehaviour
         }
         if (position > 1)
         {
-            positionText.text = "You lost the race ;(";
+            //positionText.text = "Has perdido ;(";
         }
         else
         {
-            positionText.text = "You finished at " + position + "" + ordinal;
+            //positionText.text = "Posición: " + position;
         }
 
         if (stars > 0)
         {
-            starsEndedGameText.text = "You got " + stars + " stars";
+            //starsEndedGameText.text = "Estrellas: " + stars;
             if (stars > GameProgress.GetStars(2))
             {
                 GameProgress.SetStars(2, stars);
@@ -166,7 +191,7 @@ public class HUD_Manager : MonoBehaviour
         }
         else
         {
-            starsEndedGameText.text = "Sorry you got no stars ;( ";
+            //starsEndedGameText.text = "No conseguiste estrellas ;( ";
         }
         _logSystem.SaveData();
     }
@@ -176,7 +201,7 @@ public class HUD_Manager : MonoBehaviour
         playerHorse.SetInSettings(true);
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(true);
-        _eventSystem.SetSelectedGameObject(firstSettingButton);
+        //_eventSystem.SetSelectedGameObject(firstSettingButton);
     }
 
     public void OpenSettingsMenuPregame()
@@ -184,7 +209,7 @@ public class HUD_Manager : MonoBehaviour
         playerHorse.SetInSettings(true);
         preGameCanvas.SetActive(false);
         settingsMenu.SetActive(true);
-        _eventSystem.SetSelectedGameObject(firstSettingButton);
+        //_eventSystem.SetSelectedGameObject(firstSettingButton);
     }
 
     public void CloseSettingsMenu()
@@ -204,7 +229,7 @@ public class HUD_Manager : MonoBehaviour
         playerHorse.SetInSettings(false);
         pauseMenu.SetActive(true);
         settingsMenu.SetActive(false);
-        _eventSystem.SetSelectedGameObject(continueButton);
+        _eventSystem.SetSelectedGameObject(settingButtonPause);
     }
 
     public void CloseSettingsMenuPregame()
@@ -212,7 +237,7 @@ public class HUD_Manager : MonoBehaviour
         playerHorse.SetInSettings(false);
         preGameCanvas.SetActive(true);
         settingsMenu.SetActive(false);
-        _eventSystem.SetSelectedGameObject(startGameButtonPregame);
+        _eventSystem.SetSelectedGameObject(settingButtonPregame);
     }
 
     public void ResetGame()
@@ -293,18 +318,43 @@ public class HUD_Manager : MonoBehaviour
     void CalculateStars(int position)
     {
         int auxStars = 0;
+        _textStar1.text = "1. Acabar en primera posición: " + position + "/1";
+        _textStar2.text = "2. 30 segungos o menos: " + Mathf.Floor(raceTime) + "/30";
         if (position == 1)
         {
             auxStars++;
-            if (!playerHorse.GetComboFailed())
-            {
-                auxStars++;
-            }
+            _star1.color = _starDoneColor;
+        }
+        else
+        {
+            _star1.color = _starNotDoneColor;
+        }
+        if (PlayerPrefs.GetInt("BestTimeHorse", 0) == 0 || ((int)Mathf.Floor(raceTime)) < PlayerPrefs.GetInt("BestTimeHorse", 0))
+        {
+            PlayerPrefs.SetInt("BestTimeHorse", ((int)Mathf.Floor(raceTime)));
+        }
+        _textCurrentTime.text = "Tiempo" + "\n" + ((int)Mathf.Floor(raceTime));
+        _textBestTime.text = "Mejor Tiempo" + "\n" + PlayerPrefs.GetInt("BestTimeHorse");
+        if (raceTime < 31.0f)
+        {
+            auxStars++;
+            _star2.color = _starDoneColor;
+        }
+        else
+        {
+            _star2.color = _starNotDoneColor;
+        }
 
-            if (raceTime < 31.0f)
-            {
-                auxStars++;
-            }
+        if (!playerHorse.GetComboFailed())
+        {
+            auxStars++;
+            _star3.color = _starDoneColor;
+            _textStar3.text = "3. No fallar ningún combo: 1/1";
+        }
+        else
+        {
+            _star3.color = _starNotDoneColor;
+            _textStar3.text = "3. No fallar ningún combo: 0/1";
 
         }
         stars = auxStars;
@@ -319,17 +369,51 @@ public class HUD_Manager : MonoBehaviour
     {
         playerHorse.NextMoveEnd();
     }
+    public void OpenConfirmationPregamePanel()
+    {
+        exitConfirmationPregame.SetActive(true);
+    }
+
+    public void CloseConfirmationPregamePanel()
+    {
+        exitConfirmationPregame.SetActive(false);
+        //_eventSystem.SetSelectedGameObject(_startGame);
+    }
+
+    public void OpenConfirmationPostgamePanel()
+    {
+        exitConfirmationPostGame.SetActive(true);
+        //_eventSystem.SetSelectedGameObject(noButtonExitPostgame);
+    }
+
+
+    public void CloseConfirmationPostgamePanel()
+    {
+        exitConfirmationPostGame.SetActive(false);
+        //_eventSystem.SetSelectedGameObject(noButtonExitPostgame);
+    }
 
     public void OpenConfirmationPanel()
     {
         exitConfirmationMenu.SetActive(true);
-        _eventSystem.SetSelectedGameObject(noButton);
+        //_eventSystem.SetSelectedGameObject(noButtonExit);
     }
 
     public void CloseConfirmationPanel()
-    {        
+    {
         exitConfirmationMenu.SetActive(false);
-        _eventSystem.SetSelectedGameObject(continueButton);
+        //_eventSystem.SetSelectedGameObject(continueButton);
+    }
+    public void OpenConfirmationResetPanel()
+    {
+        resetConfirmationMenu.SetActive(true);
+        //_eventSystem.SetSelectedGameObject(noButtonReset);
+    }
+
+    public void CloseConfirmationResetPanel()
+    {
+        resetConfirmationMenu.SetActive(false);
+        //_eventSystem.SetSelectedGameObject(continueButton);
     }
 
     IEnumerator Countdown()
