@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using System.Globalization;
+using UnityEngine.UI;
 
 public class ConversationHelper : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class ConversationHelper : MonoBehaviour
     public ConversationEvent[] OnConversationPath;
     public PrefsInt[] requisites;
     [SerializeField] private GameObject _interactUI;
+    private Image _interactUISprite;
     private PlayerInput _playerInput;
     private PlayerController _player;
     private int _conversationPath;
@@ -25,6 +27,18 @@ public class ConversationHelper : MonoBehaviour
         _trigger = GetComponent<DialogueSystemTrigger>();
         if (_player == null) _player = FindObjectOfType<PlayerController>();
         _playerInput = FindObjectOfType<PlayerInput>();
+        if (_interactUI != null)
+        {
+            _interactUISprite = _interactUI.GetComponent<Image>();
+        }
+    }
+
+    void Update()
+    {
+        if (_interactUI != null && _interactUI.activeSelf)
+        {
+            _interactUISprite.enabled = _playerInput.currentActionMap.name.Equals("ActionMap");
+        }
     }
 
     public void SetConversationEnd(int path)
@@ -169,18 +183,18 @@ public class ConversationHelper : MonoBehaviour
         float elapsedTime = 0;
         Vector3 oldPos = transform.position;
         Vector3 newPos = new Vector3(position.x, oldPos.y, position.y);
-        Quaternion oldRot = transform.rotation;
-        Quaternion newRot = oldRot * Quaternion.Euler(0, 180, 0);
+        //Quaternion oldRot = transform.rotation;
+        //Quaternion newRot = oldRot * Quaternion.Euler(0, 180, 0);
 
         while (elapsedTime < duration)
         {
             transform.position = Vector3.Lerp(oldPos, newPos, elapsedTime/duration);
             elapsedTime += Time.deltaTime;
-            transform.rotation = Quaternion.Slerp(oldRot, newRot, elapsedTime/duration);
+            //transform.rotation = Quaternion.Slerp(oldRot, newRot, elapsedTime/duration);
             yield return new WaitForEndOfFrame();
         }
         transform.position = newPos;
-        transform.rotation = newRot;
+        //transform.rotation = newRot;
     }
     public void MovePlayer(string args)
     {
@@ -192,6 +206,22 @@ public class ConversationHelper : MonoBehaviour
         Vector2 position = new Vector2(float.Parse(data[0], CultureInfo.InvariantCulture), float.Parse(data[1], CultureInfo.InvariantCulture));
         float duration = data.Length == 3 ? float.Parse(data[2], CultureInfo.InvariantCulture) : 2;
         _player.MovePlayer(position, duration);
+    }
+
+    public void CheckHorseman()
+    {
+        DialogueLua.SetVariable("_talkedHorseman", PlayerPrefs.GetInt("CaballosProgression", 0) > 0);
+    }
+
+    public void CheckEightStars()
+    {
+        int numStars = 0;
+        numStars += GameProgress.GetStars(1);
+        numStars += GameProgress.GetStars(2);
+        numStars += GameProgress.GetStars(3);
+        numStars += GameProgress.GetStars(4);
+
+        DialogueLua.SetVariable("_stars", numStars);
     }
 
 }

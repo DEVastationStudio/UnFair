@@ -101,7 +101,15 @@ public class FadeController : MonoBehaviour
 
         if (storedPlayerPosition && _songIndex == GetSong("Feria"))
         {
-            FindObjectOfType<PlayerInput>().SwitchCurrentActionMap("ActionMap");
+            if (player.skipActionMap)
+            {
+                player.skipActionMap = false;
+                FindObjectOfType<PlayerInput>().SwitchCurrentActionMap("UIMap");
+            }
+            else
+            {
+                FindObjectOfType<PlayerInput>().SwitchCurrentActionMap("ActionMap");
+            }
         }
     }
     private IEnumerator FadeImageOut(Image image)

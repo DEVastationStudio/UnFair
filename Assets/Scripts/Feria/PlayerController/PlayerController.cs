@@ -30,6 +30,8 @@ public partial class PlayerController : MonoBehaviour
     public ConversationHelper _salidaPatos;
     public ConversationHelper _salidaCaballos;
 
+    public bool skipActionMap;
+
     #endregion Variables
 
     #region Metodos
@@ -69,18 +71,22 @@ public partial class PlayerController : MonoBehaviour
             if (prog == 2 && PlayerPrefs.GetInt("Stars-4", 0) > 0)
             {
                 _salidaCanicas.StartConversation();
+                skipActionMap = true;
             }
             else if (prog == 4 && PlayerPrefs.GetInt("Stars-1", 0) > 0)
             {
                 _salidaTiroAlBlanco.StartConversation();
+                skipActionMap = true;
             }
             else if (prog == 7 && PlayerPrefs.GetInt("Stars-3", 0) > 0)
             {
                 _salidaPatos.StartConversation();
+                skipActionMap = true;
             }
             else if (prog == 9 && PlayerPrefs.GetInt("Stars-2", 0) > 0)
             {
                 _salidaCaballos.StartConversation();
+                skipActionMap = true;
             }
         }
         else

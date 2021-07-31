@@ -92,11 +92,11 @@ public class RodAiScript : MonoBehaviour
                         //Calculate future positions based on rigidbody speed
                         for (int i = 0; i < nearDuckColliders.Length; i++)
                         {
-                            futurePositions[i] = nearDucks[i].transform.position + nearDucks[i].rigidBody.velocity * Time.deltaTime;
+                            futurePositions[i] = nearDucks[i].transform.position + nearDucks[i].rigidBody.velocity * Time.fixedDeltaTime;
                         }
 
                         //Calculate future position of the magnet
-                        futureMagnetPos = magnet.transform.position + magnetRB.velocity * Time.deltaTime;
+                        futureMagnetPos = magnet.transform.position + magnetRB.velocity * Time.fixedDeltaTime;
 
                         //Calculate weight of all ducks (based on duck type)
                         for (int i = 0; i < nearDuckColliders.Length; i++)
@@ -158,7 +158,7 @@ public class RodAiScript : MonoBehaviour
                     }
                 //}
             
-                if (_targetDuck != null) _targetPos = _targetDuck.transform.position + _targetDuck.rigidBody.velocity * 2 * Time.deltaTime;
+                if (_targetDuck != null) _targetPos = _targetDuck.transform.position + _targetDuck.rigidBody.velocity * 2 * Time.fixedDeltaTime;
                 else _targetPos = new Vector3(10,0,0);
                 //Debug.DrawLine(magnet.transform.position, _targetPos, Color.magenta);
             }
@@ -177,11 +177,11 @@ public class RodAiScript : MonoBehaviour
 
         if (_height < 1 && magnet.tag == "Magnet" && goDown && _targetDuck != null)
         {
-            _height = Mathf.Min(_height + 1 * Time.deltaTime, 1);
+            _height = Mathf.Min(_height + 1 * Time.fixedDeltaTime, 1);
         }
         else if (_height > 0/* && magnet.tag != "Magnet"*/)
         {
-            _height = Mathf.Max(_height - 0.5f * Time.deltaTime, 0);
+            _height = Mathf.Max(_height - 0.5f * Time.fixedDeltaTime, 0);
         }
 
         //magnetHitbox.enabled = (_height >= 1);
@@ -200,7 +200,7 @@ public class RodAiScript : MonoBehaviour
 
             if (Vector3.Distance(magnet.transform.position, targetLevel) < 2) speed = 20;
 
-            transform.position = Vector3.MoveTowards(transform.position, newPos, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, newPos, speed * Time.fixedDeltaTime);
             /*Debug.DrawLine(transform.position, newPos, Color.yellow);
             Debug.DrawRay(transform.position, Vector3.up, Color.yellow);
             Debug.DrawRay(newPos, Vector3.up, Color.yellow);
