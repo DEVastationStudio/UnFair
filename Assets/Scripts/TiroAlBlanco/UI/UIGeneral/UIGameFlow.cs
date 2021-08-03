@@ -24,7 +24,7 @@ public partial class UIGeneral : MonoBehaviour
         for (int i = 0; i < DianasRestantes.Length; i++) 
         {
             DianasRestantes[i]._dianaContainer.SleepTarget();
-            DianasRestantes[i].GetComponentInParent<Animator>().SetBool("isActive", false);
+            DianasRestantes[i].GetComponentInParent<Animator>().Play("DianaHide_Anim");
         }
         Time.timeScale = 1;
         _countdown.text = "";
@@ -104,7 +104,7 @@ public partial class UIGeneral : MonoBehaviour
         for (int i = 0; i < DianasRestantes.Length; i++) 
         {
            DianasRestantes[i]._dianaContainer.SleepTarget();
-           DianasRestantes[i].GetComponentInParent<Animator>().SetBool("isActive", false);
+           DianasRestantes[i].GetComponentInParent<Animator>().Play("DianaHide_Anim");
         }
         _gameManager._spawnerDianas._activeLetter = false;
         _gameManager._spawnerDianas._currentLetter = 0;

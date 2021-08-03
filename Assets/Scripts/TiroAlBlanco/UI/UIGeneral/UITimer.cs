@@ -30,13 +30,13 @@ public partial class UIGeneral : MonoBehaviour
     {
         if (_timerOn)
         {
-            if (_timePassed >= 1)
+            if (_timePassed >= 1 && actualTime>0)
             {
                 _timerText.text = "Time: " + actualTime;
                 actualTime--;
                 _timePassed = 0;
             }
-            else if(_timePassed < 1)
+            else if(_timePassed < 1 && actualTime > 0)
                 _timePassed += Time.deltaTime;
             else
             {
