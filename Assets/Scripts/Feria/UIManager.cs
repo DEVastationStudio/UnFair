@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -65,10 +66,17 @@ public class UIManager : MonoBehaviour
 
     #region Metodos
 
+    private void Start()
+    {
+        if (PlayerPrefs.GetInt("PartidaEmpezada") == 2)
+            StartGame();
+    }
+
     public void StartGame()
     {
         //_playerInput.gameObject.transform.position = new Vector3(-188.84f, 4.9f, 0.4f);
         _playerInput.SwitchCurrentActionMap("UIMap");
+        PlayerPrefs.SetInt("PartidaEmpezada", 1);
         _titleScreen.SetActive(false);
         _virtualCameras[0].SetActive(true);
         StartCoroutine(WaitXSeconds(4));
@@ -94,7 +102,6 @@ public class UIManager : MonoBehaviour
     }
     public void OpenPauseMenu()
     {
-
         _playerInput.SwitchCurrentActionMap("UIMap");
         _basePauseMenu.SetActive(true);
         int totalStars = 0;
@@ -244,6 +251,7 @@ public class UIManager : MonoBehaviour
     public void RemoveData()
     {
         PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt("PartidaEmpezada", 2);
         FadeController.Fade("Feria");
     }
     #endregion Metodos
