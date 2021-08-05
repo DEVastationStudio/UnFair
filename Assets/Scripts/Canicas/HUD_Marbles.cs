@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class HUD_Marbles : MonoBehaviour
 {
@@ -16,8 +17,12 @@ public class HUD_Marbles : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject continuePauseButton;
     [SerializeField] private GameObject settingsMenu;
-    [SerializeField] private GameObject firstSettingsButton;
-    [SerializeField] private GameObject startGameButtonPregame;
+    [SerializeField] private GameObject settingsMenuPregameButton;
+    [SerializeField] private GameObject settingsMenuIngameButton;
+    [SerializeField] private GameObject exitConfirmationPregame;
+    [SerializeField] private GameObject exitConfirmationIngame;
+    [SerializeField] private GameObject resetConfirmationIngame;
+    [SerializeField] private GameObject exitConfirmationPostgame;
     [SerializeField] private TextMeshProUGUI finalScoreText;
     [SerializeField] private TextMeshProUGUI finalTimeText;
     [SerializeField] private TextMeshProUGUI preStarsObtainedText;
@@ -30,6 +35,23 @@ public class HUD_Marbles : MonoBehaviour
     [SerializeField] private ConversationHelper conversationTutorial;
     [SerializeField] private ObstacleSpawner obstacleSpawner;
     [SerializeField] private LineRenderer _lineRenderer;
+    
+    //[SerializeField] private PlayerInput playerInput;
+    [Header("Estrellas Pregame")]
+    [SerializeField] private Image _star1Pregame;
+    [SerializeField] private Image _star2Pregame;
+    [SerializeField] private Image _star3Pregame;
+    [Header("Resumen Estrellas PostGame")]
+    [SerializeField] private TextMeshProUGUI _textStar1;
+    [SerializeField] private TextMeshProUGUI _textStar2;
+    [SerializeField] private TextMeshProUGUI _textStar3;
+    [SerializeField] private Image _star1;
+    [SerializeField] private Image _star2;
+    [SerializeField] private Image _star3;
+    [SerializeField] private Color _starDoneColor;
+    [SerializeField] private Color _starNotDoneColor;
+    [SerializeField] private TextMeshProUGUI _textCurrentScore;
+    [SerializeField] private TextMeshProUGUI _textBestScore;
 
     [Header("Control por mando")]
     [SerializeField] private EventSystem _eventSystem;
@@ -48,6 +70,7 @@ public class HUD_Marbles : MonoBehaviour
     [HideInInspector] public static bool isPaused;
     private bool isReseting;
     public static bool startedPressed; //para impedir que los obstáculos se muevan
+    private int starNum;
 
     void Start()
     {
@@ -89,6 +112,10 @@ public class HUD_Marbles : MonoBehaviour
         isPaused = false;
         isReseting = false;
         velocityHits = 0.0f;
+        exitConfirmationPregame.SetActive(false);
+        exitConfirmationIngame.SetActive(false);
+        resetConfirmationIngame.SetActive(false);
+        exitConfirmationPostgame.SetActive(false);
         inGameCanvas.SetActive(false);
         ballsCanvas.SetActive(false);
         postGameCanvas.SetActive(false);
@@ -96,7 +123,11 @@ public class HUD_Marbles : MonoBehaviour
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
         preGameButtonsCanvas.SetActive(true);
-        preGameCanvas.SetActive(true);
+        preGameCanvas.SetActive(true);        
+        starNum = GameProgress.GetStars(4);
+        _star1Pregame.color = starNum >= 1 ? _starDoneColor : _starNotDoneColor;
+        _star2Pregame.color = starNum >= 2 ? _starDoneColor : _starNotDoneColor;
+        _star3Pregame.color = starNum >= 3 ? _starDoneColor : _starNotDoneColor;
         _eventSystem.SetSelectedGameObject(_startButton);
         gameStarted = false;
         failedBall = false;
@@ -155,7 +186,7 @@ public class HUD_Marbles : MonoBehaviour
         thrower.SetInSettings(true);
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(true);
-        _eventSystem.SetSelectedGameObject(firstSettingsButton);
+        //_eventSystem.SetSelectedGameObject(firstSettingsButton);
 
     }
     public void OpenSettingsMenuPregame()
@@ -163,7 +194,7 @@ public class HUD_Marbles : MonoBehaviour
         thrower.SetInSettings(true);
         preGameCanvas.SetActive(false);
         settingsMenu.SetActive(true);
-        _eventSystem.SetSelectedGameObject(firstSettingsButton);
+        //_eventSystem.SetSelectedGameObject(firstSettingsButton);
     }
 
     public void CloseSettingsMenu()
@@ -183,14 +214,14 @@ public class HUD_Marbles : MonoBehaviour
         thrower.SetInSettings(false);
         pauseMenu.SetActive(true);
         settingsMenu.SetActive(false);
-        _eventSystem.SetSelectedGameObject(continuePauseButton);
+        _eventSystem.SetSelectedGameObject(settingsMenuIngameButton);
     }
     public void CloseSettingsMenuPregame()
     {
         thrower.SetInSettings(false);
         settingsMenu.SetActive(false);
         preGameCanvas.SetActive(true);
-        _eventSystem.SetSelectedGameObject(startGameButtonPregame);
+        _eventSystem.SetSelectedGameObject(settingsMenuPregameButton);
 
     }
     public void UnPauseGame()
@@ -206,9 +237,9 @@ public class HUD_Marbles : MonoBehaviour
         inGameCanvas.SetActive(false);
         ballsCanvas.SetActive(false);
         postGameCanvas.SetActive(true);
-        //_eventSystem.SetSelectedGameObject(_resetButton);
         preGameCanvas.SetActive(false);
-        conversation.StartConversation();
+        //conversation.StartConversation();
+        _eventSystem.SetSelectedGameObject(_resetButton);
         thrower.SetGameFinished();
         finalScoreText.text = "Score: " + score;
         CalculateStars();
@@ -296,6 +327,45 @@ public class HUD_Marbles : MonoBehaviour
         else if (score >= 50) { stars = 2; }
         else if (score > 0) { stars = 1; }
         else { stars = 0; }
+        
+        /* TO DO: Estrellas del minijuego, que no estén anidadas        
+        _textStar1.text = "1. xxxxxxxxxxxxxxxxxxx: " + x + "/x";
+        _textStar2.text = "2. xxxxxxxxxxxxxxxxxxx: " + x + "/x";
+        _textStar3.text = "2. xxxxxxxxxxxxxxxxxxx: " + x + "/x";
+        if (condition1)
+        {            
+            _star1.color = _starDoneColor;
+        }
+        else
+        {
+            _star1.color = _starNotDoneColor;
+        }
+
+        if (condition2)
+        {            
+            _star2.color = _starDoneColor;
+        }
+        else
+        {
+            _star2.color = _starNotDoneColor;
+        }
+
+        if (condition3)
+        {            
+            _star3.color = _starDoneColor;
+        }
+        else
+        {
+            _star3.color = _starNotDoneColor;
+        }
+        */
+        
+        if (PlayerPrefs.GetInt("BestScoreMarble", 0) == 0 || ((int)Mathf.Floor(score)) < PlayerPrefs.GetInt("BestScoreMarble", 0))
+        {
+            PlayerPrefs.SetInt("BestScoreMarble", ((int)Mathf.Floor(score)));
+        }
+        _textCurrentScore.text = "Tiempo" + "\n" + ((int)Mathf.Floor(score));
+        _textBestScore.text = "Mejor Tiempo" + "\n" + PlayerPrefs.GetInt("BestScoreMarble");
     }
 
 
@@ -315,5 +385,46 @@ public class HUD_Marbles : MonoBehaviour
         countdownText.gameObject.SetActive(false);
         AudioManager.instance.FadeIn(7, 0.1f);
         StartGame();
+    }
+
+    public void OpenExitConfirmationPregame()
+    {
+        exitConfirmationPregame.SetActive(true);
+    }
+
+    public void OpenExitConfirmationIngame()
+    {
+        exitConfirmationIngame.SetActive(true);
+    }
+
+    public void OpenResetConfirmationIngame()
+    {
+        resetConfirmationIngame.SetActive(true);
+    }
+
+    public void OpenExitConfirmationPostgame()
+    {
+        exitConfirmationPostgame.SetActive(true);
+    }
+
+    
+    public void CloseExitConfirmationPregame()
+    {
+        exitConfirmationPregame.SetActive(false);
+    }
+
+    public void CloseExitConfirmationIngame()
+    {
+        exitConfirmationIngame.SetActive(false);
+    }
+
+    public void CloseResetConfirmationIngame()
+    {
+        resetConfirmationIngame.SetActive(false);
+    }
+
+    public void CloseExitConfirmationPostgame()
+    {
+        exitConfirmationPostgame.SetActive(false);
     }
 }

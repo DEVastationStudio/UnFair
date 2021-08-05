@@ -199,6 +199,8 @@ public class Thrower : MonoBehaviour
     public void SetGameFinished()
     {
         gameStarted = false;
+        input.SwitchCurrentActionMap("UIMap");
+
     }
 
     private void ShakeLine()

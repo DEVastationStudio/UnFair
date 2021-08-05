@@ -98,7 +98,7 @@ public class HUD_Manager : MonoBehaviour
         exitConfirmationPregame.SetActive(false);
         exitConfirmationPostGame.SetActive(false);
         resetConfirmationMenu.SetActive(false);
-        preGameCanvas.SetActive(true);        
+        preGameCanvas.SetActive(true);
         starNum = GameProgress.GetStars(2);
         _star1Pregame.color = starNum >= 1 ? _starDoneColor : _starNotDoneColor;
         _star2Pregame.color = starNum >= 2 ? _starDoneColor : _starNotDoneColor;
