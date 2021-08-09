@@ -2392,6 +2392,10 @@ MonoBehaviour:
       progressionValue: 10
       disableGameObject: 0
     checkMinigameStars: 1
+  spritesColor:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.6313726, g: 0.6313726, b: 0.6313726, a: 1}
+  - {r: 0.28235295, g: 0.28235295, b: 0.36078432, a: 1}
 --- !u!1 &46122333 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1971048749810936941, guid: 0b2f93dfd6e8423478440b637c55077e,
@@ -11551,6 +11555,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7118982431895059877, guid: a5543c142fa8b2244ab8d0bbe6c5905c,
+        type: 3}
+      propertyPath: priority
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7118982431895059898, guid: a5543c142fa8b2244ab8d0bbe6c5905c,
         type: 3}
@@ -88787,7 +88796,7 @@ PrefabInstance:
     - target: {fileID: 1035944151996151409, guid: 4700b75196ea73b478a0a22f2d2f21e4,
         type: 3}
       propertyPath: m_Color.a
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6808544849791928551, guid: 4700b75196ea73b478a0a22f2d2f21e4,
         type: 3}
@@ -124055,6 +124064,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PostprocessingPause
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669541334191929472, guid: a7bb5c498af71bd48b632ab7f8110585,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7bb5c498af71bd48b632ab7f8110585, type: 3}

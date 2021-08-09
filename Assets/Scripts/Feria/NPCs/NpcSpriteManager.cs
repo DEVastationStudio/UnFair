@@ -6,6 +6,7 @@ using UnityEngine;
 public class NpcSpriteManager : MonoBehaviour
 {
     public NpcSprite[] sprites;
+    [SerializeField] private Color[] spritesColor;
 
     void Start()
     {
@@ -23,13 +24,13 @@ public class NpcSpriteManager : MonoBehaviour
             case 1:
             case 2:
             case 3:
-                FindObjectOfType<SunCycle>().SetLight(0);
+                ChangeSpritesColors(0);//FindObjectOfType<SunCycle>().SetLight(0);
                 break;
             case 4:
                 if (PlayerPrefs.GetInt("Stars-1", 0) > 0)
-                    FindObjectOfType<SunCycle>().SetLight(1);
+                    ChangeSpritesColors(1);//FindObjectOfType<SunCycle>().SetLight(1);
                 else
-                    FindObjectOfType<SunCycle>().SetLight(0);
+                    ChangeSpritesColors(0);//FindObjectOfType<SunCycle>().SetLight(0);
                 break;
             case 5:
             case 6:
@@ -37,14 +38,14 @@ public class NpcSpriteManager : MonoBehaviour
             case 8:
             case 9:
                 if (PlayerPrefs.GetInt("Stars-3", 0) > 0)
-                    FindObjectOfType<SunCycle>().SetLight(2);
+                    ChangeSpritesColors(2);//FindObjectOfType<SunCycle>().SetLight(2);
                 else
-                    FindObjectOfType<SunCycle>().SetLight(1);
+                    ChangeSpritesColors(1);//FindObjectOfType<SunCycle>().SetLight(1);
                 break;
             case 10:
             case 11:
             default:
-                FindObjectOfType<SunCycle>().SetLight(2);
+                ChangeSpritesColors(2);//FindObjectOfType<SunCycle>().SetLight(2);
                 break;
         }
 
@@ -74,6 +75,19 @@ public class NpcSpriteManager : MonoBehaviour
                 {
                     break;
                 }
+            }
+        }
+    }
+
+    private void ChangeSpritesColors(int idx)
+    {
+
+        FindObjectOfType<SunCycle>().SetLight(idx);
+        foreach (NpcSprite npc in sprites)
+        {
+            if (npc.npc != null)
+            {
+                npc.npc.color = spritesColor[idx];
             }
         }
     }
