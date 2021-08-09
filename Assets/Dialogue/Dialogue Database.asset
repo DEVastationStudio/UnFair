@@ -41463,8 +41463,8 @@ MonoBehaviour:
         y: 527
         width: 160
         height: 30
-    canvasScrollPosition: {x: 138, y: 171}
-    canvasZoom: 1
+    canvasScrollPosition: {x: 59.07312, y: 17.142853}
+    canvasZoom: 0.7000003
   - id: 56
     fields:
     - title: Title
