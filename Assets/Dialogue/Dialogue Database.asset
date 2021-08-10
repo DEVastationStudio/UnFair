@@ -22919,9 +22919,9 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: Estimados invitados. Nos complace informarles de que la CASA DEL TERROR
-          oficialmente ha abierto las puertas. Les invitamos a que pasen a verlo
-          si se atreven.
+        value: <size=100>Estimados invitados. Nos complace informarles de que la
+          CASA DEL TERROR oficialmente ha abierto las puertas. Les invitamos a que
+          pasen a verlo si se atreven.
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -31494,9 +31494,9 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: Estimados invitados. Nos complace informarles de que la CASA DE LOS
-          ESPEJOS oficialmente ha abierto las puertas. Les invitamos a que pasen
-          a verlo si se atreven.
+        value: <size=100>Estimados invitados. Nos complace informarles de que la
+          CASA DE LOS ESPEJOS oficialmente ha abierto las puertas. Les invitamos
+          a que pasen a verlo si se atreven.
         type: 0
         typeString: CustomFieldType_Text
       - title: en
@@ -41463,8 +41463,8 @@ MonoBehaviour:
         y: 527
         width: 160
         height: 30
-    canvasScrollPosition: {x: 59.07312, y: 17.142853}
-    canvasZoom: 0.7000003
+    canvasScrollPosition: {x: 54.441055, y: 46.748135}
+    canvasZoom: 0.7900003
   - id: 56
     fields:
     - title: Title
