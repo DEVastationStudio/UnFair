@@ -47,6 +47,7 @@ public class HUD_Manager : MonoBehaviour
     [SerializeField] private Color _starNotDoneColor;
     [SerializeField] private TextMeshProUGUI _textCurrentTime;
     [SerializeField] private TextMeshProUGUI _textBestTime;
+    [SerializeField] private GameObject _youLoseText;
 
     [Header("Control por mando")]
     [SerializeField] private EventSystem _eventSystem;
@@ -97,6 +98,10 @@ public class HUD_Manager : MonoBehaviour
         exitConfirmationMenu.SetActive(false);
         exitConfirmationPregame.SetActive(false);
         exitConfirmationPostGame.SetActive(false);
+        _star1.gameObject.SetActive(true);
+        _star2.gameObject.SetActive(true);
+        _star3.gameObject.SetActive(true);
+        _youLoseText.SetActive(false);
         resetConfirmationMenu.SetActive(false);
         preGameCanvas.SetActive(true);
         starNum = GameProgress.GetStars(2);
@@ -318,45 +323,59 @@ public class HUD_Manager : MonoBehaviour
     void CalculateStars(int position)
     {
         int auxStars = 0;
-        _textStar1.text = "1. Acabar en primera posición: " + position + "/1";
-        _textStar2.text = "2. 30 segungos o menos: " + Mathf.Floor(raceTime) + "/30";
+
         if (position == 1)
         {
             auxStars++;
             _star1.color = _starDoneColor;
+            //
+            _textStar1.text = "1. Ganar la carrera: " + position + "/1";
+            _textStar2.text = "2. 30 segungos o menos: " + Mathf.Floor(raceTime) + "/30";
+
+            if (PlayerPrefs.GetInt("BestTimeHorse", 0) == 0 || ((int)Mathf.Floor(raceTime)) < PlayerPrefs.GetInt("BestTimeHorse", 0))
+            {
+                PlayerPrefs.SetInt("BestTimeHorse", ((int)Mathf.Floor(raceTime)));
+            }
+
+            _textBestTime.text = "Mejor Tiempo" + "\n" + PlayerPrefs.GetInt("BestTimeHorse");
+            _textCurrentTime.text = "Tiempo" + "\n" + ((int)Mathf.Floor(raceTime));
+            if (raceTime < 31.0f)
+            {
+                auxStars++;
+                _star2.color = _starDoneColor;
+            }
+            else
+            {
+                _star2.color = _starNotDoneColor;
+            }
+
+            if (!playerHorse.GetComboFailed() && position == 1)
+            {
+                auxStars++;
+                _star3.color = _starDoneColor;
+                _textStar3.text = "3. No fallar ningún combo: 1/1";
+            }
+            else
+            {
+                _star3.color = _starNotDoneColor;
+                _textStar3.text = "3. No fallar ningún combo: 0/1";
+
+            }
+
         }
         else
         {
             _star1.color = _starNotDoneColor;
-        }
-        if (PlayerPrefs.GetInt("BestTimeHorse", 0) == 0 || ((int)Mathf.Floor(raceTime)) < PlayerPrefs.GetInt("BestTimeHorse", 0))
-        {
-            PlayerPrefs.SetInt("BestTimeHorse", ((int)Mathf.Floor(raceTime)));
-        }
-        _textCurrentTime.text = "Tiempo" + "\n" + ((int)Mathf.Floor(raceTime));
-        _textBestTime.text = "Mejor Tiempo" + "\n" + PlayerPrefs.GetInt("BestTimeHorse");
-        if (raceTime < 31.0f)
-        {
-            auxStars++;
-            _star2.color = _starDoneColor;
-        }
-        else
-        {
-            _star2.color = _starNotDoneColor;
+            _star1.gameObject.SetActive(false);
+            _star2.gameObject.SetActive(false);
+            _star3.gameObject.SetActive(false);
+            _youLoseText.SetActive(true);
+            
+            _textBestTime.text = "Mejor Tiempo" + "\n" + "-";
+            _textCurrentTime.text = "Tiempo" + "\n" + "-";
         }
 
-        if (!playerHorse.GetComboFailed())
-        {
-            auxStars++;
-            _star3.color = _starDoneColor;
-            _textStar3.text = "3. No fallar ningún combo: 1/1";
-        }
-        else
-        {
-            _star3.color = _starNotDoneColor;
-            _textStar3.text = "3. No fallar ningún combo: 0/1";
 
-        }
         stars = auxStars;
         _logSystem._S = stars;
         /*if (position == 1 && !playerHorse.GetComboFailed() && raceTime <= 30.0f) { stars = 3; }
