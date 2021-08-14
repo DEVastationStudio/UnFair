@@ -32,6 +32,7 @@ public class HUD_Manager : MonoBehaviour
     [SerializeField] private ConversationHelper conversationTutorial;
     [SerializeField] private HorsesLogSystem _logSystem;
     //[SerializeField] private PlayerInput playerInput;
+    [SerializeField] private FirstPositionController _firstPosController;
     [Header("Estrellas Pregame")]
     [SerializeField] private Image _star1Pregame;
     [SerializeField] private Image _star2Pregame;
@@ -111,6 +112,7 @@ public class HUD_Manager : MonoBehaviour
         preGameButtonsCanvas.SetActive(true);
         _eventSystem.SetSelectedGameObject(_startGame);
         starsObtained.text = "Estrellas obtenidas: " + GameProgress.GetStars(2);
+        _firstPosController.Init();
     }
 
     private void StartGame()
@@ -250,7 +252,6 @@ public class HUD_Manager : MonoBehaviour
         if (isReseting) { return; }
         isReseting = true;
         AudioManager.instance.changeTheme(16);
-        Init();
 
         //playerHorse.Init();
         /*foreach (var enemy in enemyHorses)
@@ -261,6 +262,7 @@ public class HUD_Manager : MonoBehaviour
         timeCounter.Init();
         metaController.Init();
 
+        Init();
         //FadeController.Fade("HorsesRace");
     }
 
@@ -370,7 +372,7 @@ public class HUD_Manager : MonoBehaviour
             _star2.gameObject.SetActive(false);
             _star3.gameObject.SetActive(false);
             _youLoseText.SetActive(true);
-            
+
             _textBestTime.text = "Mejor Tiempo" + "\n" + "-";
             _textCurrentTime.text = "Tiempo" + "\n" + "-";
         }
