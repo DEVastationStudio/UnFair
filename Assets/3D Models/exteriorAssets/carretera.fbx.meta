@@ -3,7 +3,19 @@ guid: 95d43cfb487e09443905a422841df517
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: asfalto
+    second: {fileID: -6796508776286440829, guid: 8529f47267236234fa6b4e7ca73bb0d2,
+      type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bordilo
+    second: {fileID: -9163163211885300892, guid: 8529f47267236234fa6b4e7ca73bb0d2,
+      type: 3}
   materials:
     materialImportMode: 1
     materialName: 0
