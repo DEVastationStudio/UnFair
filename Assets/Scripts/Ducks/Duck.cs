@@ -177,36 +177,35 @@ public class Duck : FloatingObject
         {
             case Type.NORMAL:
                 boostTime = 1;
-                _gameManager._vfxManager.InstantiateVFX(0, transform.position);
+                _gameManager._vfxManager.InstantiateVFX(6, transform.position);
                 _gameManager.logSystem._BD1++;
                 break;
             case Type.BLACK:
                 boostTime = -2;
-                _gameManager._vfxManager.InstantiateVFX(1, transform.position);
                 _gameManager.logSystem._BD0++;
                 break;
             case Type.GOLD:
                 boostTime = 5;
-                _gameManager._vfxManager.InstantiateVFX(2, transform.position);
+                _gameManager._vfxManager.InstantiateVFX(8, transform.position);
                 _gameManager.logSystem._BD4++;
                 break;
             case Type.BIG:
                 boostTime = 7;
-                _gameManager._vfxManager.InstantiateVFX(3, transform.position);
+                _gameManager._vfxManager.InstantiateVFX(9, transform.position);
                 _gameManager.logSystem._BD5++;
                 break;
             case Type.PLAYER:
                 boostTime = 2;
-                _gameManager._vfxManager.InstantiateVFX(4, transform.position);
+                _gameManager._vfxManager.InstantiateVFX(7, transform.position);
                 _gameManager.logSystem._BD2++;
                 break;
             case Type.AI:
                 boostTime = 2;
-                _gameManager._vfxManager.InstantiateVFX(4, transform.position);
+                _gameManager._vfxManager.InstantiateVFX(7, transform.position);
                 break;
             case Type.TIME:
                 boostTime = 5;
-                _gameManager._vfxManager.InstantiateVFX(5, transform.position);
+                _gameManager._vfxManager.InstantiateVFX(8, transform.position);
                 _gameManager.logSystem._BD3++;
                 break;
         }

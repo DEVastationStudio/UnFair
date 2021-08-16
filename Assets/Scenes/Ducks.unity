@@ -10386,8 +10386,16 @@ MonoBehaviour:
   - {fileID: 4432245599659858546, guid: d9fa49bf875a8f042914e8a64500d0a1, type: 3}
   - {fileID: 1802149244798018649, guid: 54763d7ad19bc094f85fe55ed6bca9b2, type: 3}
   - {fileID: 6234415875203716683, guid: 490372a6081b1394c856101ef5c457f6, type: 3}
+  - {fileID: 7601530972683808113, guid: 882e14e9f8e36d7428dbcf56f4996950, type: 3}
+  - {fileID: 7601530972683808113, guid: 4dfcd8bdd77516845b4ce78f02d99b82, type: 3}
+  - {fileID: 7601530972683808113, guid: b32f341efeb76154e85080b47c9f23a0, type: 3}
+  - {fileID: 7601530972683808113, guid: 7c04cbb1a1b90da4887c2c7ff06968e0, type: 3}
   _TRAILS: []
   _VFXtime:
+  - 1
+  - 1
+  - 1
+  - 1
   - 1
   - 1
   - 1
