@@ -20,14 +20,15 @@ public class RodController : MonoBehaviour
     private bool _isGamepad;
     private Vector2 _gamepadCoords;
     public DucksGameManager gameManager;
-    public BoxCollider rodBounds;
-    private Bounds _bounds;
+    public BoxCollider rodBounds, rodMagnetZone, altRodMagnetZone;
+    private Bounds _bounds, _magnetBounds, _altMagnetBounds;
     private bool _isPaused;
     private float _boostTimer, _badBoostTimer;
     [SerializeField] GameObject _pauseMenu;
     [SerializeField] private EventSystem _eventSystem;
     [SerializeField] private GameObject _continueBtn;
     [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private Transform _basketLock, _altBasketLock;
 
     void Start()
     {
@@ -39,6 +40,12 @@ public class RodController : MonoBehaviour
 
         _bounds = rodBounds.bounds;
         rodBounds.enabled = false;
+
+        _magnetBounds = rodMagnetZone.bounds;
+        rodMagnetZone.enabled = false;
+
+        _altMagnetBounds = altRodMagnetZone.bounds;
+        altRodMagnetZone.enabled = false;
     }
 
 
@@ -65,7 +72,14 @@ public class RodController : MonoBehaviour
         //Move rod
         if (!gameManager.gameOver)
         {
-            Vector3 newPos = new Vector3(_mousePos.x, _initialHeight - _height, _mousePos.z) + positionOffset;
+            Vector3 newPos;
+
+            if (magnet.tag.Equals("Untagged") && _mousePos.x > _magnetBounds.min.x && _mousePos.x < _magnetBounds.max.x && _mousePos.z > _magnetBounds.min.z && _mousePos.z < _magnetBounds.max.z)
+                newPos = new Vector3(_basketLock.position.x, _initialHeight - _height, _basketLock.position.z) + positionOffset;
+            else if (magnet.tag.Equals("Untagged") && _mousePos.x > _altMagnetBounds.min.x && _mousePos.x < _altMagnetBounds.max.x && _mousePos.z > _altMagnetBounds.min.z && _mousePos.z < _altMagnetBounds.max.z)
+                newPos = new Vector3(_altBasketLock.position.x, _initialHeight - _height, _altBasketLock.position.z) + positionOffset;
+            else
+                newPos = new Vector3(_mousePos.x, _initialHeight - _height, _mousePos.z) + positionOffset;
 
             newPos.x = Mathf.Clamp(newPos.x, _bounds.min.x, _bounds.max.x);
             newPos.z = Mathf.Clamp(newPos.z, _bounds.min.z, _bounds.max.z);

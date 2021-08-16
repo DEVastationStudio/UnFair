@@ -1266,6 +1266,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230506673}
   m_CullTransparentMesh: 0
+--- !u!1 &233850064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 233850065}
+  m_Layer: 0
+  m_Name: Basket Lock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &233850065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 233850064}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -4, z: -4.52}
+  m_LocalScale: {x: 0.59272, y: 0.59272, z: 0.59272}
+  m_Children: []
+  m_Father: {fileID: 354793482}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &312630977
 GameObject:
   m_ObjectHideFlags: 0
@@ -2071,6 +2101,51 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &354793480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 354793482}
+  - component: {fileID: 354793481}
+  m_Layer: 0
+  m_Name: Rod Magnet Zone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &354793481
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354793480}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 13.27, y: 4.73, z: 7.08}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &354793482
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354793480}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 6.7485495, z: 1.0628952}
+  m_LocalScale: {x: 1.6871374, y: 1.6871374, z: 1.6871374}
+  m_Children:
+  - {fileID: 233850065}
+  m_Father: {fileID: 809512144}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &382028660
 GameObject:
   m_ObjectHideFlags: 0
@@ -2095,8 +2170,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 382028660}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.32, y: -3.75, z: -23.72}
-  m_LocalScale: {x: 0.33334497, y: 0.59272, z: 0.59272}
+  m_LocalPosition: {x: -18.32, y: -2.54, z: -23.896}
+  m_LocalScale: {x: 0.4263149, y: 0.7580296, z: 0.7580296}
   m_Children:
   - {fileID: 1501450529}
   - {fileID: 2047278771}
@@ -2105,6 +2180,7 @@ Transform:
   - {fileID: 737881716}
   - {fileID: 570828179}
   - {fileID: 1501910405}
+  - {fileID: 2110739833}
   m_Father: {fileID: 0}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2827,7 +2903,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.2520164, y: 32.60319, z: 0.90960807}
+  m_Size: {x: 1.7, y: 32.60319, z: 1.31}
   m_Center: {x: -0.04286445, y: 5.6981483, z: 0.012837313}
 --- !u!33 &570828181
 MeshFilter:
@@ -4202,6 +4278,7 @@ Transform:
   - {fileID: 108468556}
   - {fileID: 321045699}
   - {fileID: 2127725410}
+  - {fileID: 354793482}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4492,10 +4569,14 @@ MonoBehaviour:
   magnet: {fileID: 1690188174}
   gameManager: {fileID: 1172530604}
   rodBounds: {fileID: 1523615443}
+  rodMagnetZone: {fileID: 354793481}
+  altRodMagnetZone: {fileID: 2110739834}
   _pauseMenu: {fileID: 1164459993}
   _eventSystem: {fileID: 1942569384}
   _continueBtn: {fileID: 1513492691}
   _playerInput: {fileID: 894907343}
+  _basketLock: {fileID: 233850065}
+  _altBasketLock: {fileID: 1719534405}
 --- !u!4 &894907345
 Transform:
   m_ObjectHideFlags: 0
@@ -9589,6 +9670,36 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 1
+--- !u!1 &1719534404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1719534405}
+  m_Layer: 0
+  m_Name: Alternate Basket Lock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1719534405
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719534404}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -4, z: -4.52}
+  m_LocalScale: {x: 0.59272, y: 0.59272, z: 0.59272}
+  m_Children: []
+  m_Father: {fileID: 2110739833}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1728500152
 GameObject:
   m_ObjectHideFlags: 0
@@ -11521,6 +11632,51 @@ Transform:
   m_Father: {fileID: 1464649390}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2110739832
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2110739833}
+  - component: {fileID: 2110739834}
+  m_Layer: 0
+  m_Name: Alternate Rod Magnet Zone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2110739833
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110739832}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 6.326765, z: 1.0628952}
+  m_LocalScale: {x: 2.9998956, y: 1.6871374, z: 1.6871374}
+  m_Children:
+  - {fileID: 1719534405}
+  m_Father: {fileID: 382028661}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2110739834
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110739832}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.46, y: 4.73, z: 12.52}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2121357760
 GameObject:
   m_ObjectHideFlags: 0
