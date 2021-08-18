@@ -61,6 +61,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _panelSegundaConfirmacionMenuPrincipal;
     [SerializeField] private GameObject _botonSegundaConfirmacionMenuPrincipal;
     [SerializeField] private GameObject _botonSalirMenuPrincipal;
+    
+    [Header("Segunda confirmación partida nueva")]
+    [SerializeField] private GameObject _panelSegundaConfirmacionResetearPartida;
 
     #endregion Variables
 
@@ -246,6 +249,14 @@ public class UIManager : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
+    }
+
+    public void NewGame()
+    {
+        if(PlayerPrefs.GetInt("PartidaEmpezada") != 0)
+            _panelSegundaConfirmacionResetearPartida.SetActive(true);
+        else
+            RemoveData();
     }
 
     public void RemoveData()
