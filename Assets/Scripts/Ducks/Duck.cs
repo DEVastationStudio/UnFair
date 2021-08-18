@@ -161,9 +161,16 @@ public class Duck : FloatingObject
         else
             _gameManager.logSystem._ED++;
 
-        if (player && (type == Type.BLACK || type == Type.AI))
+        if (player && type == Type.BIG)
         {
-            _gameManager.noBadDucks = false;
+            _gameManager.caughtBigBoy = true;
+            Debug.Log("Supreme Duck Caught");
+        }
+
+        if (player && type == Type.GOLD && _gameManager.IsBoosted())
+        {
+            _gameManager.boostedCaught = true;
+            Debug.Log("Golden duck under boost caught");
         }
     }
 

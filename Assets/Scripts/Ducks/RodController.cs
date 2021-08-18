@@ -175,4 +175,9 @@ public class RodController : MonoBehaviour
         else
             _badBoostTimer -= boostTime;
     }
+
+    public bool IsBoosted()
+    {
+        return (_boostTimer > 0);
+    }
 }

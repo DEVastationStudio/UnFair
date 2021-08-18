@@ -32,6 +32,13 @@ public class DucksGameManager : MonoBehaviour
     public VFXManager _vfxManager;
     public DucksLogSystem logSystem;
 
+    [Header("Post-Game")]
+    [SerializeField] private TextMeshProUGUI _star1Text;
+    [SerializeField] private TextMeshProUGUI _star2Text, _star3Text, _playerScoreText, _aiScoreText;
+    [SerializeField] private Button _exitButton;
+    [SerializeField] private Image _star1, _star2, _star3;
+    [SerializeField] private Color _starFull, _starEmpty;
+
     public int playerScore
     {
         get { return _playerScore; }
@@ -50,7 +57,7 @@ public class DucksGameManager : MonoBehaviour
 
     private int _goldDucks, _blackDucks, _greenDucks, _redDucks;
     public bool gameStarted;
-    public bool noBadDucks;
+    public bool caughtBigBoy, boostedCaught;
 
     [SerializeField] private GameObject _ajustes, _basePauseMenu, _titleScreen, _primerAjustesBtn, _startBtn, _entrarAjustesBtn;
     private bool _isPause = false;
@@ -68,7 +75,8 @@ public class DucksGameManager : MonoBehaviour
         _spawnPositions = new List<Vector3>();
 
         titleText.text += "\nStars: " + GameProgress.GetStars(3);
-        noBadDucks = true;
+        caughtBigBoy = false;
+        boostedCaught = false;
         _goldDucks  = Mathf.RoundToInt(totalDucks*0.05f);
         _blackDucks = _goldDucks + Mathf.RoundToInt(totalDucks*0.12f);
         _greenDucks = _blackDucks + Mathf.RoundToInt(totalDucks*0.3f);
@@ -147,11 +155,11 @@ public class DucksGameManager : MonoBehaviour
 
     private void OnPlayerScoreUpdate(int value)
     {
-        pScoreText.text = "Player: " + value;
+        pScoreText.text = "Jugador: " + value;
     }
     private void OnAiScoreUpdate(int value)
     {
-        aScoreText.text = "Opponent: " + value;
+        aScoreText.text = "Rival: " + value;
     }
 
     public void StartGame()
@@ -192,7 +200,7 @@ public class DucksGameManager : MonoBehaviour
     {
         while (_actualTime >= 0)
         {
-            timerText.text = "Time: " + _actualTime;
+            timerText.text = "Tiempo: " + _actualTime;
             yield return new WaitForSeconds(1);
             _actualTime--;
 
@@ -270,18 +278,25 @@ public class DucksGameManager : MonoBehaviour
 
         //Calculate stars
         int stars = 0;
+        bool[] starsEarned = new bool[3];
         if (_playerScore > _aiScore)
         {
             stars = 1;
+            starsEarned[0] = true;
             int difference = Mathf.Abs(_playerScore-_aiScore);
-            if (noBadDucks && difference >= 5)
+
+            if (caughtBigBoy)
             {
-                stars = 3;
+                starsEarned[1] = true;
+                stars++;
             }
-            else if (noBadDucks || difference >= 5)
+
+            if (boostedCaught)
             {
-                stars = 2;
+                starsEarned[2] = true;
+                stars++;
             }
+            
         }
         GameProgress.SetStars(3, stars);
         _ddm.SetValue(1, (stars)/3f);
@@ -300,7 +315,25 @@ public class DucksGameManager : MonoBehaviour
 
         logSystem.SaveData();
         
-        _npcConversationHelper.StartConversation();
+        //_npcConversationHelper.StartConversation();
+
+        _playerInput.SwitchCurrentActionMap("UIMap");
+
+        _star1.color = starsEarned[0] ? _starFull : _starEmpty;
+        _star2.color = starsEarned[1] ? _starFull : _starEmpty;
+        _star3.color = starsEarned[2] ? _starFull : _starEmpty;
+
+        
+        _star1Text.text = "1. Conseguir más puntos: " + (starsEarned[0] ? "1" : "0") + "/1";
+        _star2Text.text = "2. Pescar el pato supremo: " + (starsEarned[1] ? "1" : "0") + "/1";
+        _star3Text.text = "3. Pato dorado con boost: " + (starsEarned[2] ? "1" : "0") + "/1";
+
+        _playerScoreText.text = "Jugador\n" + _playerScore;
+        _aiScoreText.text = "Rival\n" + _aiScore;
+
+        _exitButton.Select();
+
+
     }
 
     public void ResetScene()
@@ -319,13 +352,13 @@ public class DucksGameManager : MonoBehaviour
 
         //Reset variables
         titleText.text += "\nStars: " + GameProgress.GetStars(3);
-        noBadDucks = true;
+        caughtBigBoy = true;
         gameOver = false;
         playerScore = 0;
         aiScore = 0;
         gameStarted = false;
         aiScript.enabled = false;
-        noBadDucks = true;
+        boostedCaught = true;
 
         timerText.text = "Time: 0";
 
@@ -442,5 +475,10 @@ public class DucksGameManager : MonoBehaviour
     public void BoostPlayer(int boostTime)
     {
         rodController.Boost(boostTime);
+    }
+
+    public bool IsBoosted()
+    {
+        return rodController.IsBoosted();
     }
 }
