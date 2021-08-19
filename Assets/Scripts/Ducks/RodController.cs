@@ -79,10 +79,12 @@ public class RodController : MonoBehaviour
             else if (magnet.tag.Equals("Untagged") && _mousePos.x > _altMagnetBounds.min.x && _mousePos.x < _altMagnetBounds.max.x && _mousePos.z > _altMagnetBounds.min.z && _mousePos.z < _altMagnetBounds.max.z)
                 newPos = new Vector3(_altBasketLock.position.x, _initialHeight - _height, _altBasketLock.position.z) + positionOffset;
             else
+            {
                 newPos = new Vector3(_mousePos.x, _initialHeight - _height, _mousePos.z) + positionOffset;
-
-            newPos.x = Mathf.Clamp(newPos.x, _bounds.min.x, _bounds.max.x);
-            newPos.z = Mathf.Clamp(newPos.z, _bounds.min.z, _bounds.max.z);
+             
+                newPos.x = Mathf.Clamp(newPos.x, _bounds.min.x, _bounds.max.x);
+                newPos.z = Mathf.Clamp(newPos.z, _bounds.min.z, _bounds.max.z);
+            }
 
             float multiplier = 1.0f;
             float badMultiplier = 1.0f;
