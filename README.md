@@ -78,8 +78,8 @@ Además, el jugador podrá depositar los patos en dos cestas diferentes:
 Se gana consiguiendo más patos que el otro jugador. Los requisitos para obtener cada una de las estrellas son los siguientes:
 
 * Conseguir más puntos que el otro jugador (requisito mínimo para obtener más estrellas)
-* Conseguir por lo menos cinco puntos más que el otro jugador
-* Conseguir no pescar patos morados (puede que cambie en el futuro)
+* Pescar el pato supremo
+* Pescar un pato dorado bajo la influencia del _boost_ de velocidad
 
 ### 3. IA
 La IA controla el movimiento de la caña enemiga, e intenta buscar el mejor pato para pescar.
@@ -103,6 +103,9 @@ Los outputs del DDS utilizados en este minijuego son:
 2. La tolerancia a pescar patos peores
 
 3. El tiempo que espera la IA tras pescar un pato
+
+Por otro lado, la generación de patos tiene en cuenta las puntuaciones de ambos jugadores. 
+Los patos que aparecerán cerca del jugador que va perdiendo serán en general mejores que los que aparecerán cerca del jugador que va ganando.
 
 ## Carrera de caballos:
 
