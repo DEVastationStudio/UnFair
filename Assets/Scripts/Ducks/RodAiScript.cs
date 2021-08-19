@@ -122,7 +122,7 @@ public class RodAiScript : MonoBehaviour
                                     weights[i] = 5;
                                     break;
                                 case Duck.Type.BIG:
-                                    weights[i] = -100;
+                                    weights[i] = -99999;
                                     break;
                             }
                         }
