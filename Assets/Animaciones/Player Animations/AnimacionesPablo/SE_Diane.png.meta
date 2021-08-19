@@ -3,20 +3,20 @@ guid: a6e1641512c3bd14cb08133090b6ff6e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4521350487640039858
-    second: "DelanteDerechaNi\xF1aSpriteSheet_0"
+      213: 4537878832963039289
+    second: SE_Diane_0
   - first:
-      213: -8442170006097194961
-    second: "DelanteDerechaNi\xF1aSpriteSheet_1"
+      213: -5243460400907415521
+    second: SE_Diane_1
   - first:
-      213: -5926711962203873564
-    second: "DelanteDerechaNi\xF1aSpriteSheet_2"
+      213: 5851585878999617877
+    second: SE_Diane_2
   - first:
-      213: -2036299902092427647
-    second: "DelanteDerechaNi\xF1aSpriteSheet_3"
+      213: 9075179422743147897
+    second: SE_Diane_3
   - first:
-      213: -1697383328233570806
-    second: "DelanteDerechaNi\xF1aSpriteSheet_4"
+      213: -1405963304807925292
+    second: SE_Diane_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -102,7 +102,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "DelanteDerechaNi\xF1aSpriteSheet_0"
+      name: SE_Diane_0
       rect:
         serializedVersion: 2
         x: 0
@@ -116,14 +116,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4e1d27cfafe041c0800000000000000
-      internalID: -4521350487640039858
+      spriteID: 930b68081c8c9fe30800000000000000
+      internalID: 4537878832963039289
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "DelanteDerechaNi\xF1aSpriteSheet_1"
+      name: SE_Diane_1
       rect:
         serializedVersion: 2
         x: 1314
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f209e15ab1367da80800000000000000
-      internalID: -8442170006097194961
+      spriteID: f101612eb8c7b37b0800000000000000
+      internalID: -5243460400907415521
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "DelanteDerechaNi\xF1aSpriteSheet_2"
+      name: SE_Diane_2
       rect:
         serializedVersion: 2
         x: 2628
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ee97c61fd610cda0800000000000000
-      internalID: -5926711962203873564
+      spriteID: 551d67a9a52053150800000000000000
+      internalID: 5851585878999617877
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "DelanteDerechaNi\xF1aSpriteSheet_3"
+      name: SE_Diane_3
       rect:
         serializedVersion: 2
         x: 3942
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18e3e9f170c9db3e0800000000000000
-      internalID: -2036299902092427647
+      spriteID: 9753a854a9381fd70800000000000000
+      internalID: 9075179422743147897
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "DelanteDerechaNi\xF1aSpriteSheet_4"
+      name: SE_Diane_4
       rect:
         serializedVersion: 2
         x: 5256
@@ -200,8 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0eb7f82bdea178e0800000000000000
-      internalID: -1697383328233570806
+      spriteID: 4d970b9c2d30d7ce0800000000000000
+      internalID: -1405963304807925292
       vertices: []
       indices: 
       edges: []
@@ -209,7 +209,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 8c6a77a0148a7ca4da189b37d7be9b74
+    spriteID: 0eaba51aaf1936a4188fda29fb412fdd
     internalID: 0
     vertices: []
     indices: 
