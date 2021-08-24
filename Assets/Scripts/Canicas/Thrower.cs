@@ -452,7 +452,10 @@ public class Thrower : MonoBehaviour
         transform.localRotation = Quaternion.Euler(currentRot);
 
         backgroundSlider.color = new Color(backgroundSlider.color.r, backgroundSlider.color.g, backgroundSlider.color.b, 1.0f);
-        fillSlider.color = new Color(fillSlider.color.r, fillSlider.color.g, fillSlider.color.b, 1.0f);
+        if (fillSlider.color.a != 0.0f)
+        {
+            fillSlider.color = new Color(fillSlider.color.r, fillSlider.color.g, fillSlider.color.b, 1.0f);
+        }
         //RandomizeStatusBar();
         ResetForceBar();
     }
