@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<GameObject> _virtualCameras;
     [SerializeField] private GameObject _titleScreen;
     [SerializeField] private GameObject _startBtn;
+    [SerializeField] private GameObject _newGameBtn;
 
     [Header("Ajustes")]
     [SerializeField] private GameObject _ajustes;
@@ -73,6 +74,8 @@ public class UIManager : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("PartidaEmpezada") == 2)
             StartGame();
+        else
+            SelectStartBtn();
     }
 
     public void StartGame()
@@ -153,10 +156,10 @@ public class UIManager : MonoBehaviour
     }
     public void OpenNoriaNotAvailable()
     {
-        Debug.Log("Si que entro");
+        //Debug.Log("Si que entro");
         _noriaNotAvailable.SetActive(true);
         _playerInput.SwitchCurrentActionMap("UIMap");
-        Debug.Log("Si que termino");
+        //Debug.Log("Si que termino");
     }
     public void CloseNoriaNotAvailable()
     {
@@ -182,7 +185,7 @@ public class UIManager : MonoBehaviour
         if (_isPause)
         {
             _titleScreen.SetActive(true);
-            _eventSystem.SetSelectedGameObject(_startBtn);
+            SelectStartBtn();
         }
         else
         {
@@ -264,6 +267,14 @@ public class UIManager : MonoBehaviour
         PlayerPrefs.DeleteAll();
         PlayerPrefs.SetInt("PartidaEmpezada", 2);
         FadeController.Fade("Feria");
+    }
+
+    public void SelectStartBtn()
+    {
+        if (_startBtn.gameObject.activeSelf)
+            _eventSystem.SetSelectedGameObject(_startBtn);
+        else
+            _eventSystem.SetSelectedGameObject(_newGameBtn);
     }
     #endregion Metodos
 

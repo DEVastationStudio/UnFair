@@ -54,7 +54,7 @@ public partial class PlayerController : MonoBehaviour
         float left = -Mathf.Min(rotatedLastDir.x, 0);
         float right = Mathf.Max(rotatedLastDir.x, 0);
 
-        if (up > 0.4f)
+        if (up > 0.3f)
         {
             if (right > 0.4f)
             {
@@ -80,7 +80,7 @@ public partial class PlayerController : MonoBehaviour
             _animator.SetLayerWeight(6, 0);
             _animator.SetLayerWeight(7, 0);
         }
-        else if (down > 0.4f)
+        else if (down > 0.3f)
         {
             if (right > 0.4f)
             {
@@ -141,8 +141,9 @@ public partial class PlayerController : MonoBehaviour
         Vector3 newPos = new Vector3(position.x, oldPos.y, position.y);
         float vel = _velocity;
         _velocity = 0;
+        Vector2 dir = new Vector3(newPos.x - oldPos.x, oldPos.z - newPos.z);
 
-        SetDirection(newPos-oldPos);
+        SetDirection(dir);
 
         while (elapsedTime < duration)
         {
