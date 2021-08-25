@@ -332,7 +332,7 @@ public class HUD_Manager : MonoBehaviour
             _star1.color = _starDoneColor;
             //
             _textStar1.text = "1. Ganar la carrera: " + position + "/1";
-            _textStar2.text = "2. 30 segungos o menos: " + Mathf.Floor(raceTime) + "/30";
+            _textStar2.text = "2. 30 segundos o menos: " + Mathf.Floor(raceTime) + "/30";
 
             if (PlayerPrefs.GetInt("BestTimeHorse", 0) == 0 || ((int)Mathf.Floor(raceTime)) < PlayerPrefs.GetInt("BestTimeHorse", 0))
             {
