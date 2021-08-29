@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Noria.unity
     guid: 51f54ae168679f14c876096c695b21e4
+  - enabled: 1
+    path: Assets/Scenes/HauntedHouse.unity
+    guid: a9bfb08dae634e64bbcf96a981c4ed01
+  - enabled: 1
+    path: Assets/Scenes/MrrorMaze.unity
+    guid: 27f55a7d22ca26149992207e43bd3c33
   m_configObjects: {}
