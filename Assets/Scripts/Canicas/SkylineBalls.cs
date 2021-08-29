@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SkylineBalls : MonoBehaviour
 {
+    private TotalBallsCounter _totalBallsCounter;
     private HUD_Marbles hud;
     private Thrower thrower;
     private DynamicDifficultyManager DDM;
@@ -12,6 +13,7 @@ public class SkylineBalls : MonoBehaviour
         DDM = FindObjectOfType<DynamicDifficultyManager>();
         hud = FindObjectOfType<HUD_Marbles>();
         thrower = FindObjectOfType<Thrower>();
+        _totalBallsCounter = FindObjectOfType<TotalBallsCounter>();
     }
 
     void Update()
@@ -23,10 +25,12 @@ public class SkylineBalls : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Canica"))
         {
-            DDM.SetValue(2, 1.0f);
+            //DDM.SetValue(2, 1.0f);
             Destroy(other.gameObject);
+            thrower.missedMarbles++;
             //hud.SetFailBall();
-            if (thrower.GetBallsLeft() <= 0)
+            _totalBallsCounter.ReduceBalls();
+            if (_totalBallsCounter.GetBalls() <= 0/*thrower.GetBallsLeft() <= 0*/)
             {
                 StopCoroutine(FinishGame());
                 StartCoroutine(FinishGame());
