@@ -22,6 +22,8 @@ public class Thrower : MonoBehaviour
     [SerializeField] private float staticRotX = -20.0f;
     [SerializeField] private Transform initialPos;
     [SerializeField] private float timeForShake = 2.0f;
+    [SerializeField] private TotalBallsCounter _totalBallsCounter;
+    [SerializeField] private DynamicDifficultyManager _ddm;
     private float currentTimeStopped;
     private float throwerForce;
     private float increaserForceSpeed = 0.5f;
@@ -47,6 +49,7 @@ public class Thrower : MonoBehaviour
     private float yRealRot;
     private bool shakeStarted;
     public bool useShake;
+    public int missedMarbles;
     /*private bool leftRotation;
     private bool rightRotation;*/
 
@@ -112,7 +115,7 @@ public class Thrower : MonoBehaviour
             forceBar.value += increaserForceSpeed * Time.deltaTime;
         }*/
 
-        if (forceBar.value >= 1.0f)
+        if (forceBar.value >= 2.0f)
         {
             increasingForce = false;
         }
@@ -134,7 +137,7 @@ public class Thrower : MonoBehaviour
                     //IncreaseThrowForce(0.5f);//fuerza que va aumentando
                     //if (forceBar.value < throwerForce)
                     //{
-                    forceBar.value += increaserForceSpeed * Time.deltaTime;
+                    forceBar.value += ((increaserForceSpeed/2) + (increaserForceSpeed/2)*_ddm.GetValue(0)) * Time.deltaTime;
                     //}
                 }
                 else
@@ -142,7 +145,7 @@ public class Thrower : MonoBehaviour
                     //IncreaseThrowForce(-0.5f);//fuerza que va disminuyendo
                     //if (forceBar.value > throwerForce)
                     //{
-                    forceBar.value -= increaserForceSpeed * Time.deltaTime;
+                    forceBar.value -= ((increaserForceSpeed/2) + (increaserForceSpeed/2)*_ddm.GetValue(0)) * Time.deltaTime;
                     //}
                 }
             }
@@ -158,6 +161,7 @@ public class Thrower : MonoBehaviour
 
     public void Init()
     {
+        SetActivationTrajectory(true);
         transform.position = initialPos.position;
         transform.rotation = initialPos.rotation;
         input.SwitchCurrentActionMap("UIMap");
@@ -166,6 +170,7 @@ public class Thrower : MonoBehaviour
         savedShake = false;
         alreadyMoved = false;
         ballsLeft = ballsLeftEditor;
+        _totalBallsCounter.SetThrowerBalls(ballsLeft);
         gameStarted = false;
         increasingForce = true;
         pressingShoot = false;
@@ -184,8 +189,14 @@ public class Thrower : MonoBehaviour
         backgroundSlider.color = new Color(backgroundSlider.color.r, backgroundSlider.color.g, backgroundSlider.color.b, 1.0f);
         fillSlider.color = new Color(fillSlider.color.r, fillSlider.color.g, fillSlider.color.b, 1.0f);
         currentTimeStopped = 0.0f;
+        missedMarbles = 0;
         //CreatePrediction();
 
+    }
+
+    public void SetActivationTrajectory(bool activate)
+    {
+        trajectory.gameObject.SetActive(activate);
     }
 
     public void SetGameStarted()
@@ -199,6 +210,7 @@ public class Thrower : MonoBehaviour
     public void SetGameFinished()
     {
         gameStarted = false;
+        SetActivationTrajectory(false);
         input.SwitchCurrentActionMap("UIMap");
 
     }
@@ -277,15 +289,15 @@ public class Thrower : MonoBehaviour
     {
         transform.Rotate(0, rotationSpeed * rotation, 0.0f);
         Vector3 currentRot = transform.localEulerAngles;
-        currentRot.y = Mathf.Clamp(((currentRot.y > 180) ? currentRot.y - 360 : currentRot.y), -45.0f, 45.0f);
+        currentRot.y = Mathf.Clamp(((currentRot.y > 180) ? currentRot.y - 360 : currentRot.y), -80.0f, 80.0f);
         currentRot.x = rotx;
         currentRot.z = rotz;
         transform.localRotation = Quaternion.Euler(currentRot);
     }
     public Vector3 CalculateForce()
     {
-        print("Force: " + transform.forward * (power * (forceBar.value * 1.5f)));
-        return transform.forward * (power / 2 + (power / 2) * forceBar.value/** Mathf.Clamp(forceBar.value * 1.5f, 0.5f, 1.5f)*/);
+        //print("Force: " + transform.forward * (power * (forceBar.value * 1.5f)));
+        return transform.forward * (power / 2 + (power / 2) * forceBar.value);
     }
 
     void ThrowBall()
@@ -452,7 +464,10 @@ public class Thrower : MonoBehaviour
         transform.localRotation = Quaternion.Euler(currentRot);
 
         backgroundSlider.color = new Color(backgroundSlider.color.r, backgroundSlider.color.g, backgroundSlider.color.b, 1.0f);
-        fillSlider.color = new Color(fillSlider.color.r, fillSlider.color.g, fillSlider.color.b, 1.0f);
+        if (fillSlider.color.a != 0.0f)
+        {
+            fillSlider.color = new Color(fillSlider.color.r, fillSlider.color.g, fillSlider.color.b, 1.0f);
+        }
         //RandomizeStatusBar();
         ResetForceBar();
     }

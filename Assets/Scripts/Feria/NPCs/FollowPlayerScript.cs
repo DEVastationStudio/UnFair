@@ -37,17 +37,19 @@ public class FollowPlayerScript : MonoBehaviour
         _dir.Normalize();
         lastDir = _dir;
 
-        if (Vector3.Distance(transform.position, _player.transform.position) > 6)
+        if (Vector3.Distance(transform.position, _player.transform.position) > 8)
         {
             if (Vector3.Distance(transform.position, positions.Peek()) < 0.01f)
             {
                 positions.Dequeue();
             }
             _rigidbody.velocity = new Vector3(_dir.x * Time.deltaTime * _velocity, 0, _dir.z * Time.deltaTime * _velocity);
+            _animator.SetBool("Moving", true);
         }
-        else
+        else if (Vector3.Distance(transform.position, _player.transform.position) < 6)
         {
             _rigidbody.velocity = Vector3.zero;
+            _animator.SetBool("Moving", false);
         }
 
         //Set Animator direction

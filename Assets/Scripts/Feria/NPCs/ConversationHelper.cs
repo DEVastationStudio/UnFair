@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class ConversationHelper : MonoBehaviour
 {
-    public enum CompareMode { LT, LTE, EQ, GTE, GT }
+    public enum CompareMode { LT, LTE, EQ, GTE, GT, NEQ }
     public ConversationEvent[] OnConversationEndEvents;
     public ConversationEvent[] OnConversationPath;
     public PrefsInt[] requisites;
@@ -91,7 +91,7 @@ public class ConversationHelper : MonoBehaviour
                     if (!success) continue;
                     
                     bool condition = false;
-                    int testValue = PlayerPrefs.GetInt(f.name, 0);
+                    int testValue = PlayerPrefs.GetInt(f.name, 0);print("Checking " + f.name + ": " + testValue + " " + f.compareMode + " " + f.value);
                     switch (f.compareMode)
                     {
                         case ConversationHelper.CompareMode.LT:
@@ -106,11 +106,14 @@ public class ConversationHelper : MonoBehaviour
                         case ConversationHelper.CompareMode.GTE:
                             condition = (testValue >= f.value);
                             break;
+                        case ConversationHelper.CompareMode.NEQ:
+                            condition = (testValue != f.value);
+                            break;
                         case ConversationHelper.CompareMode.EQ:
                         default:
                             condition = (testValue == f.value);
                             break;
-                    }
+                    }print("Result: " + condition);
                     if (!condition)
                     {
                         success = false;
@@ -119,6 +122,7 @@ public class ConversationHelper : MonoBehaviour
                 if (success)
                 {
                     _trigger.conversation = p.conversation;
+                    break; //IF ANYTHING BREAKS A LOT, THIS IS WHY
                 }
             }
         }
@@ -222,6 +226,27 @@ public class ConversationHelper : MonoBehaviour
         numStars += GameProgress.GetStars(4);
 
         DialogueLua.SetVariable("_stars", numStars);
+    }
+
+    //Alternate routes
+    public void SetAlt1Progression(int progression)
+    {
+        PlayerPrefs.SetInt("ProgAlt1", progression);
+        if (npcSpriteManager != null) npcSpriteManager.UpdateSprites();
+    }
+    public void SetAlt2Progression(int progression)
+    {
+        PlayerPrefs.SetInt("ProgAlt2", progression);
+        if (npcSpriteManager != null) npcSpriteManager.UpdateSprites();
+    }
+    public void SetAltFinished(int ending)
+    {
+        PlayerPrefs.SetInt("AltFinal" + ending, 1);
+    }
+    public void CheckAltFinished()
+    {
+        DialogueLua.SetVariable("_secretEnding1", (PlayerPrefs.GetInt("AltFinal1", 0) == 1));
+        DialogueLua.SetVariable("_secretEnding2", (PlayerPrefs.GetInt("AltFinal2", 0) == 1));
     }
 
 }

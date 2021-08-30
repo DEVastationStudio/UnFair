@@ -35,7 +35,7 @@ public class HUD_Marbles : MonoBehaviour
     [SerializeField] private ConversationHelper conversationTutorial;
     [SerializeField] private ObstacleSpawner obstacleSpawner;
     [SerializeField] private LineRenderer _lineRenderer;
-    
+
     //[SerializeField] private PlayerInput playerInput;
     [Header("Estrellas Pregame")]
     [SerializeField] private Image _star1Pregame;
@@ -71,6 +71,7 @@ public class HUD_Marbles : MonoBehaviour
     private bool isReseting;
     public static bool startedPressed; //para impedir que los obstáculos se muevan
     private int starNum;
+    public bool hitBasket;
 
     void Start()
     {
@@ -123,7 +124,7 @@ public class HUD_Marbles : MonoBehaviour
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
         preGameButtonsCanvas.SetActive(true);
-        preGameCanvas.SetActive(true);        
+        preGameCanvas.SetActive(true);
         starNum = GameProgress.GetStars(4);
         _star1Pregame.color = starNum >= 1 ? _starDoneColor : _starNotDoneColor;
         _star2Pregame.color = starNum >= 2 ? _starDoneColor : _starNotDoneColor;
@@ -136,6 +137,7 @@ public class HUD_Marbles : MonoBehaviour
         stars = 0;
         timeSpent = 0.0f;
         preStarsObtainedText.text = "Stars obtained: " + GameProgress.GetStars(4);
+        hitBasket = false;
     }
 
     public void OpenTutorial()
@@ -268,7 +270,7 @@ public class HUD_Marbles : MonoBehaviour
                         break;
                 }
 
-                DDM.SetValue(0, auxStarDDM);
+                //DDM.SetValue(0, auxStarDDM);
             }
             postStarsObtainedText.text = "You got " + stars + " stars";
 
@@ -291,14 +293,15 @@ public class HUD_Marbles : MonoBehaviour
         //FadeController.Fade("Canicas");
         Init();
         obstacleSpawner.DestroyObstacles();
-        obstacleSpawner.Init();
+        //obstacleSpawner.Init();
+        thrower.SetActivationTrajectory(false);
         thrower.Init();
 
     }
 
     public void AddScore(int holeScore)
     {
-        if (velocityHits >= MaxTimeHits)//bajas dificultad por hacerlo muy lento
+        /*if (velocityHits >= MaxTimeHits)//bajas dificultad por hacerlo muy lento
         {
             DDM.SetValue(1, 0.1f);
 
@@ -310,7 +313,7 @@ public class HUD_Marbles : MonoBehaviour
         else
         {
             DDM.SetValue(1, 0.45f);
-        }
+        }*/
         velocityHits = 0.0f;
         score += holeScore;
         scoreText.text = "Score: " + score.ToString();
@@ -323,17 +326,20 @@ public class HUD_Marbles : MonoBehaviour
 
     private void CalculateStars()
     {
-        if (!failedBall && score >= 50) { stars = 3; }
+        int auxStars = 0;
+        int missedMarbles = thrower.missedMarbles;
+        /*if (!failedBall && score >= 50) { stars = 3; }
         else if (score >= 50) { stars = 2; }
         else if (score > 0) { stars = 1; }
-        else { stars = 0; }
-        
-        /* TO DO: Estrellas del minijuego, que no estén anidadas        
-        _textStar1.text = "1. xxxxxxxxxxxxxxxxxxx: " + x + "/x";
-        _textStar2.text = "2. xxxxxxxxxxxxxxxxxxx: " + x + "/x";
-        _textStar3.text = "2. xxxxxxxxxxxxxxxxxxx: " + x + "/x";
-        if (condition1)
-        {            
+        else { stars = 0; }*/
+
+        /* TO DO: Estrellas del minijuego, que no estén anidadas   */
+        _textStar1.text = "1. Consigue 80 puntos: " + score + "/80";
+        _textStar2.text = "2. Acierta en la cesta: " + (hitBasket ? 1 : 0) + "/1";
+        _textStar3.text = "3. Falla menos de 3 veces: " + missedMarbles + "/3";
+        if (score > 80)
+        {
+            auxStars++;
             _star1.color = _starDoneColor;
         }
         else
@@ -341,8 +347,9 @@ public class HUD_Marbles : MonoBehaviour
             _star1.color = _starNotDoneColor;
         }
 
-        if (condition2)
-        {            
+        if (hitBasket)
+        {
+            auxStars++;
             _star2.color = _starDoneColor;
         }
         else
@@ -350,22 +357,23 @@ public class HUD_Marbles : MonoBehaviour
             _star2.color = _starNotDoneColor;
         }
 
-        if (condition3)
-        {            
+        if (missedMarbles < 3)
+        {
+            auxStars++;
             _star3.color = _starDoneColor;
         }
         else
         {
             _star3.color = _starNotDoneColor;
         }
-        */
-        
+
+        stars = auxStars;
         if (PlayerPrefs.GetInt("BestScoreMarble", 0) == 0 || ((int)Mathf.Floor(score)) < PlayerPrefs.GetInt("BestScoreMarble", 0))
         {
             PlayerPrefs.SetInt("BestScoreMarble", ((int)Mathf.Floor(score)));
         }
-        _textCurrentScore.text = "Tiempo" + "\n" + ((int)Mathf.Floor(score));
-        _textBestScore.text = "Mejor Tiempo" + "\n" + PlayerPrefs.GetInt("BestScoreMarble");
+        _textCurrentScore.text = "Puntos" + "\n" + ((int)Mathf.Floor(score));
+        _textBestScore.text = "Mejores Puntos" + "\n" + PlayerPrefs.GetInt("BestScoreMarble");
     }
 
 
@@ -407,7 +415,7 @@ public class HUD_Marbles : MonoBehaviour
         exitConfirmationPostgame.SetActive(true);
     }
 
-    
+
     public void CloseExitConfirmationPregame()
     {
         exitConfirmationPregame.SetActive(false);

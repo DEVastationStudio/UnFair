@@ -379,31 +379,31 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Down
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Left
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Right
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Moving
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -424,7 +424,7 @@ AnimatorController:
     m_Motions:
     - serializedVersion: 2
       m_State: {fileID: -7008185724725171121}
-      m_Motion: {fileID: 7400000, guid: 944fd97ad44ad934783404df8c45a52c, type: 2}
+      m_Motion: {fileID: 7400000, guid: 322c70695c34b194b99396159850b214, type: 2}
     m_Behaviours: []
     m_BlendingMode: 0
     m_SyncedLayerIndex: 0
@@ -457,7 +457,7 @@ AnimatorController:
     m_Motions:
     - serializedVersion: 2
       m_State: {fileID: -7008185724725171121}
-      m_Motion: {fileID: 7400000, guid: 0ed5f8b40aa391744a1a7903ea765fde, type: 2}
+      m_Motion: {fileID: 7400000, guid: 0ab27f9202f56bc459e3188d1805cc82, type: 2}
     m_Behaviours: []
     m_BlendingMode: 0
     m_SyncedLayerIndex: 0
@@ -487,7 +487,7 @@ AnimatorController:
     m_Motions:
     - serializedVersion: 2
       m_State: {fileID: -7008185724725171121}
-      m_Motion: {fileID: 7400000, guid: 0bb03e4decd811e4891e24246ebf8128, type: 2}
+      m_Motion: {fileID: 7400000, guid: 0ab27f9202f56bc459e3188d1805cc82, type: 2}
     m_Behaviours: []
     m_BlendingMode: 0
     m_SyncedLayerIndex: 0
@@ -517,7 +517,7 @@ AnimatorController:
     m_Motions:
     - serializedVersion: 2
       m_State: {fileID: -7008185724725171121}
-      m_Motion: {fileID: 7400000, guid: 806726c64b0261f4dbf16bb61344a0bf, type: 2}
+      m_Motion: {fileID: 7400000, guid: 98f744e661dfefe41b351f7b0d031a15, type: 2}
     m_Behaviours: []
     m_BlendingMode: 0
     m_SyncedLayerIndex: 0

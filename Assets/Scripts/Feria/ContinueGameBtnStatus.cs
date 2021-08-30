@@ -11,7 +11,6 @@ public class ContinueGameBtnStatus : MonoBehaviour
     
     private void Start()
     {
-        Vector3 pos;
         if (PlayerPrefs.GetInt("PartidaEmpezada") == 0)
         {
             for (int i = 0; i < 3; i++)
@@ -20,6 +19,11 @@ public class ContinueGameBtnStatus : MonoBehaviour
             }
             
             btns[3].gameObject.SetActive(false);
+            btns[0].GetComponent<Button>().Select();
+        }
+        else
+        {
+            btns[3].GetComponent<Button>().Select();
         }
     }
 }
