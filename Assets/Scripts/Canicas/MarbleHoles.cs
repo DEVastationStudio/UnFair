@@ -17,11 +17,6 @@ public class MarbleHoles : MonoBehaviour
         DDM = FindObjectOfType<DynamicDifficultyManager>();
     }
 
-    void Update()
-    {
-
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Canica"))
@@ -31,19 +26,25 @@ public class MarbleHoles : MonoBehaviour
             {
                 hudMarbles.AddScore(this.points > 5 ? (this.points * 2) - 5 : (this.points * 2));
                 hudMarbles.hitBasket = true;
+                
+                vfxManager.InstantiateVFX(1,
+                    new Vector3(
+                        other.gameObject.transform.position.x,
+                        other.gameObject.transform.position.y + 0.4f,
+                        other.gameObject.transform.position.z)
+                );
             }
             else
             {
                 hudMarbles.AddScore(this.points);
+                
+                vfxManager.InstantiateVFX(0,
+                    new Vector3(
+                        other.gameObject.transform.position.x,
+                        other.gameObject.transform.position.y + 0.4f,
+                        other.gameObject.transform.position.z)
+                );
             }
-            //Spawnear +15 --->
-            /*vfxManager.InstantiateVFX(0,
-                new Vector3(
-                    other.gameObject.transform.position.x,
-                    other.gameObject.transform.position.y + 0.4f,
-                    other.gameObject.transform.position.z)
-                );*/
-            //<--- EndSpawn
             Destroy(other.gameObject);
             _totalBallsCounter.ReduceBalls();
             if (_totalBallsCounter.GetBalls() <= 0/*thrower.GetBallsLeft() <= 0*/)

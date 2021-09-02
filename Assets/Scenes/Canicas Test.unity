@@ -565,8 +565,10 @@ MonoBehaviour:
   _gameManager: {fileID: 0}
   _VFX:
   - {fileID: 5310782411772580173, guid: b715abcf7c401a545a5bc0c70be7bcc9, type: 3}
+  - {fileID: 5310782411772580173, guid: 2ff5b95667f49874ebbd8be74d9220d7, type: 3}
   _TRAILS: []
   _VFXtime:
+  - 1
   - 1
 --- !u!4 &49337114
 Transform:
@@ -10998,7 +11000,7 @@ MonoBehaviour:
   isBasket: 0
   hudMarbles: {fileID: 1279387235}
   thrower: {fileID: 905994870}
-  vfxManager: {fileID: 0}
+  vfxManager: {fileID: 49337113}
   _totalBallsCounter: {fileID: 905994875}
 --- !u!64 &980757046
 MeshCollider:
@@ -14319,7 +14321,7 @@ MonoBehaviour:
   isBasket: 0
   hudMarbles: {fileID: 1279387235}
   thrower: {fileID: 905994870}
-  vfxManager: {fileID: 0}
+  vfxManager: {fileID: 49337113}
   _totalBallsCounter: {fileID: 905994875}
 --- !u!64 &1248787192
 MeshCollider:
@@ -18187,7 +18189,7 @@ MonoBehaviour:
   isBasket: 1
   hudMarbles: {fileID: 1279387235}
   thrower: {fileID: 905994870}
-  vfxManager: {fileID: 0}
+  vfxManager: {fileID: 49337113}
   _totalBallsCounter: {fileID: 905994875}
 --- !u!65 &1571213873
 BoxCollider:
@@ -19135,7 +19137,7 @@ MonoBehaviour:
   isBasket: 0
   hudMarbles: {fileID: 1279387235}
   thrower: {fileID: 905994870}
-  vfxManager: {fileID: 0}
+  vfxManager: {fileID: 49337113}
   _totalBallsCounter: {fileID: 905994875}
 --- !u!64 &1654095989
 MeshCollider:
@@ -22541,7 +22543,7 @@ MonoBehaviour:
   isBasket: 0
   hudMarbles: {fileID: 1279387235}
   thrower: {fileID: 905994870}
-  vfxManager: {fileID: 0}
+  vfxManager: {fileID: 49337113}
   _totalBallsCounter: {fileID: 905994875}
 --- !u!64 &1963565900
 MeshCollider:
@@ -23693,7 +23695,7 @@ MonoBehaviour:
   isBasket: 0
   hudMarbles: {fileID: 1279387235}
   thrower: {fileID: 905994870}
-  vfxManager: {fileID: 0}
+  vfxManager: {fileID: 49337113}
   _totalBallsCounter: {fileID: 905994875}
 --- !u!64 &2030447183
 MeshCollider:
@@ -24161,7 +24163,7 @@ MonoBehaviour:
   isBasket: 0
   hudMarbles: {fileID: 1279387235}
   thrower: {fileID: 905994870}
-  vfxManager: {fileID: 0}
+  vfxManager: {fileID: 49337113}
   _totalBallsCounter: {fileID: 905994875}
 --- !u!64 &2063190560
 MeshCollider:
