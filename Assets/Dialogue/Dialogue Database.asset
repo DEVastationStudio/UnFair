@@ -63491,7 +63491,7 @@ MonoBehaviour:
       - title: EventGuid
         value: 477740b9-4f63-4ba1-86cb-7738ab3a9c16
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       conversationID: 79
       isRoot: 0
       isGroup: 0
@@ -63768,7 +63768,7 @@ MonoBehaviour:
       - title: EventGuid
         value: ecf460c6-cc4a-414c-b365-9d80c8b0e387
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       conversationID: 80
       isRoot: 0
       isGroup: 0
@@ -63797,7 +63797,7 @@ MonoBehaviour:
     - id: 2
       fields:
       - title: Title
-        value: New Dialogue Entry
+        value: 
         type: 0
         typeString: CustomFieldType_Text
       - title: Pictures
@@ -63821,8 +63821,8 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "El objetivo es encestar todas las bolas posibles en los agujeros
-          de la tabla, esquivando los obst\xE1culos y los huecos de las paredes."
+        value: El objetivo es encestar todas las canicas en los agujeros situados
+          en la tabla.
         type: 0
         typeString: CustomFieldType_Text
       - title: en
@@ -63936,7 +63936,7 @@ MonoBehaviour:
       - originConversationID: 80
         originDialogueID: 3
         destinationConversationID: 80
-        destinationDialogueID: 4
+        destinationDialogueID: 6
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -63946,14 +63946,14 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 30
-        y: 170
+        x: 28.823517
+        y: 174.7059
         width: 160
         height: 30
-    - id: 4
+    - id: 6
       fields:
       - title: Title
-        value: New Dialogue Entry
+        value: 
         type: 0
         typeString: CustomFieldType_Text
       - title: Pictures
@@ -63973,13 +63973,12 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
-        value: 
+        value: "Si consigues acertar en la cesta situada a lo lejos, obtendr\xE1s
+          25 puntos en lugar de 15."
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "Aqu\xED puedes ver los controles en mando y teclado que tienes disponibles
-          para mover el \xE1ngulo de disparo de izquierda a derecha y el bot\xF3n
-          de lanzar que deber\xE1s mantener hasta conseguir un nivel de fuerza deseado."
+        value: 
         type: 0
         typeString: CustomFieldType_Text
       - title: en
@@ -64003,7 +64002,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: EventGuid
-        value: 655516aa-19ff-408d-9a4a-546ccb00ca0a
+        value: 7f12d39a-b2f2-4fd0-92ec-7404e7fe01af
         type: 0
         typeString: 
       conversationID: 80
@@ -64015,9 +64014,9 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks:
       - originConversationID: 80
-        originDialogueID: 4
+        originDialogueID: 6
         destinationConversationID: 80
-        destinationDialogueID: 5
+        destinationDialogueID: 7
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -64028,13 +64027,13 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 30
-        y: 220
+        y: 222
         width: 160
         height: 30
-    - id: 5
+    - id: 7
       fields:
       - title: Title
-        value: New Dialogue Entry
+        value: 
         type: 0
         typeString: CustomFieldType_Text
       - title: Pictures
@@ -64054,11 +64053,91 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
-        value: 
+        value: "Estos son los controles que deber\xE1s usar para ajustar el lanzamiento
+          y la fuerza a usar."
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: en
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: EventGuid
+        value: b80351e4-a408-4290-a8e6-2871c86c613d
+        type: 0
+        typeString: 
+      conversationID: 80
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 80
+        originDialogueID: 7
+        destinationConversationID: 80
+        destinationDialogueID: 8
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 30.588234
+        y: 267.64706
+        width: 160
+        height: 30
+    - id: 8
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 14
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: -1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
         value: "\xA1Mucha suerte!"
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: 
         type: 0
         typeString: CustomFieldType_Text
       - title: en
@@ -64096,12 +64175,12 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 30
-        y: 270
+        x: 39
+        y: 331
         width: 160
         height: 30
     canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 1
+    canvasZoom: 0.85000014
   - id: 81
     fields:
     - title: Title
