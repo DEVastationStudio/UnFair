@@ -55,16 +55,13 @@ public class UIManager : MonoBehaviour
 
     [Header("Segunda confirmación pausa")]
     [SerializeField] private GameObject _panelSegundaConfirmacionPausa;
-    [SerializeField] private GameObject _botonSegundaConfirmacionPausa;
-    [SerializeField] private GameObject _botonSalirPausa;
 
     [Header("Segunda confirmación menu principal")]
     [SerializeField] private GameObject _panelSegundaConfirmacionMenuPrincipal;
-    [SerializeField] private GameObject _botonSegundaConfirmacionMenuPrincipal;
-    [SerializeField] private GameObject _botonSalirMenuPrincipal;
-    
+
     [Header("Segunda confirmación partida nueva")]
     [SerializeField] private GameObject _panelSegundaConfirmacionResetearPartida;
+    [SerializeField] private GameObject _noButtonNewGame;
 
     #endregion Variables
 
@@ -197,21 +194,21 @@ public class UIManager : MonoBehaviour
     public void OpenSegundaConfirmacionPausa()
     {
         _panelSegundaConfirmacionPausa.SetActive(true);
-        _eventSystem.SetSelectedGameObject(_botonSegundaConfirmacionPausa);
+        //_eventSystem.SetSelectedGameObject(_botonSegundaConfirmacionPausa);
     }
     public void OpenSegundaConfirmacionMenuPrincipal()
     {
         _panelSegundaConfirmacionMenuPrincipal.SetActive(true);
-        _eventSystem.SetSelectedGameObject(_botonSegundaConfirmacionMenuPrincipal);
+        //_eventSystem.SetSelectedGameObject(_botonSegundaConfirmacionMenuPrincipal);
     }
     public void CloseSegundaConfirmacionPausa()
     {
-        _eventSystem.SetSelectedGameObject(_botonSalirPausa);
+        //_eventSystem.SetSelectedGameObject(_botonSalirPausa);
         _panelSegundaConfirmacionPausa.SetActive(false);
     }
     public void CloseSegundaConfirmacionMenuPrincipal()
     {
-        _eventSystem.SetSelectedGameObject(_botonSalirMenuPrincipal);
+        //_eventSystem.SetSelectedGameObject(_botonSalirMenuPrincipal);
         _panelSegundaConfirmacionMenuPrincipal.SetActive(false);
     }
 
@@ -256,8 +253,12 @@ public class UIManager : MonoBehaviour
 
     public void NewGame()
     {
-        if(PlayerPrefs.GetInt("PartidaEmpezada") != 0)
+        if (PlayerPrefs.GetInt("PartidaEmpezada") != 0)
+        {
             _panelSegundaConfirmacionResetearPartida.SetActive(true);
+            _eventSystem.SetSelectedGameObject(_noButtonNewGame);
+
+        }
         else
             RemoveData();
     }
