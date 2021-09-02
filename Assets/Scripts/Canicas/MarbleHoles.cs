@@ -10,6 +10,7 @@ public class MarbleHoles : MonoBehaviour
     [SerializeField] private Thrower thrower;
     [SerializeField] private VFXManager vfxManager;
     [SerializeField] private TotalBallsCounter _totalBallsCounter;
+    [SerializeField] private Transform _vfxSpawnPoint;
     private DynamicDifficultyManager DDM;
 
     void Start()
@@ -29,9 +30,12 @@ public class MarbleHoles : MonoBehaviour
                 
                 vfxManager.InstantiateVFX(1,
                     new Vector3(
-                        other.gameObject.transform.position.x,
+                        _vfxSpawnPoint.position.x,
+                        _vfxSpawnPoint.position.y + 0.4f,
+                        _vfxSpawnPoint.position.z)
+                        /*other.gameObject.transform.position.x,
                         other.gameObject.transform.position.y + 0.4f,
-                        other.gameObject.transform.position.z)
+                        other.gameObject.transform.position.z)*/
                 );
             }
             else
@@ -40,9 +44,12 @@ public class MarbleHoles : MonoBehaviour
                 
                 vfxManager.InstantiateVFX(0,
                     new Vector3(
-                        other.gameObject.transform.position.x,
+                        _vfxSpawnPoint.position.x,
+                        _vfxSpawnPoint.position.y + 0.4f,
+                        _vfxSpawnPoint.position.z)
+                        /*other.gameObject.transform.position.x,
                         other.gameObject.transform.position.y + 0.4f,
-                        other.gameObject.transform.position.z)
+                        other.gameObject.transform.position.z)*/
                 );
             }
             Destroy(other.gameObject);

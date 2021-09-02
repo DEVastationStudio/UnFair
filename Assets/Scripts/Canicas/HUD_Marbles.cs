@@ -368,7 +368,7 @@ public class HUD_Marbles : MonoBehaviour
         }
 
         stars = auxStars;
-        if (PlayerPrefs.GetInt("BestScoreMarble", 0) == 0 || ((int)Mathf.Floor(score)) < PlayerPrefs.GetInt("BestScoreMarble", 0))
+        if (PlayerPrefs.GetInt("BestScoreMarble", 0) == 0 || ((int)Mathf.Floor(score)) > PlayerPrefs.GetInt("BestScoreMarble", 0))
         {
             PlayerPrefs.SetInt("BestScoreMarble", ((int)Mathf.Floor(score)));
         }
