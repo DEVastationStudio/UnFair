@@ -160,11 +160,13 @@ public partial class UIGeneral : MonoBehaviour
     public void OpenTutorial() 
     {
         _npcTutorialConversationHelper.StartConversation();
+        _mainMenu.SetActive(false);
     }
 
     public void CloseTutorial()
     {
         _playerInput.SwitchCurrentActionMap("UIMap");
+        _mainMenu.SetActive(true);
     }
 
     public void ExitCurrentGame() 

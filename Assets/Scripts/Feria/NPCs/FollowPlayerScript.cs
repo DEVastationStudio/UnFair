@@ -32,7 +32,7 @@ public class FollowPlayerScript : MonoBehaviour
         positions.Enqueue(_player.transform.position);
         if (positions.Count >= 10) positions.Dequeue();
 
-        _dir = positions.Peek() - transform.position;
+        _dir = /*positions.Peek()*/ _player.transform.position - transform.position;
         Debug.DrawRay(transform.position, _dir, Color.red);
         _dir.Normalize();
         lastDir = _dir;
