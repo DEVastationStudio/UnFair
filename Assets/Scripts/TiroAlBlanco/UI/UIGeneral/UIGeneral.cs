@@ -76,6 +76,7 @@ public partial class UIGeneral : MonoBehaviour
 
     [Header("Tutorial")]
     [SerializeField] private ConversationHelper _npcTutorialConversationHelper;
+    [SerializeField] private GameObject _mainMenu;
 
     [Header("Player")]
     [SerializeField] public PlayerInput _playerInput;
