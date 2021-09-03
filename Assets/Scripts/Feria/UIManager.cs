@@ -260,7 +260,7 @@ public class UIManager : MonoBehaviour
 
         }
         else
-            RemoveData();
+            StartGame();
     }
 
     public void RemoveData()
