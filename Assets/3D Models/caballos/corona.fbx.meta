@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: oro
-    second: {fileID: 2100000, guid: 1aba575d964eb59498abce8d8bb929af, type: 2}
+    second: {fileID: 2100000, guid: 2277bb8ad19ef59448e8f28bcc1fb8c0, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
