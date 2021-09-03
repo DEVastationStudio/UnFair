@@ -5701,7 +5701,7 @@ MonoBehaviour:
   _puntuacionMaximaTxt: {fileID: 548618014}
   _reto1Conseguido: {fileID: 2090456320}
   _reto2Conseguido: {fileID: 1141226549}
-  _reto3Conseguido: {fileID: 2090456320}
+  _reto3Conseguido: {fileID: 1399102283}
   _PreGameContainer: {fileID: 1362339707}
   _inGameContainer: {fileID: 296799873}
   _outGameContainer: {fileID: 889022966}

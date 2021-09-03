@@ -37,9 +37,9 @@ public partial class UIGeneral : MonoBehaviour
         _PostGameContainer.SetActive(false);
         _PreGameContainer.SetActive(true);
         _estrellasTxt.text = "";
-        _estrellasTxt.text += "1xStar -> " + "Get " + _gameManager._starManager._condition1 + " points or more" + "\n";
-        _estrellasTxt.text += "2xStar -> " + "Activate gold rush" + "\n";
-        _estrellasTxt.text += "3xStar -> " + "Get a combo of " + _gameManager._starManager._condition3 + " or more";
+        _estrellasTxt.text += "1. " + "Consigue " + _gameManager._starManager._condition1 + " puntos o más" + "\n";
+        _estrellasTxt.text += "2. " + "Activa la fiebre del oro" + "\n";
+        _estrellasTxt.text += "3. " + "Consigue un combo de " + _gameManager._starManager._condition3 + " o más";
 
         if (!PlayerPrefs.HasKey("MaxScoreShootingMinigame"))
             PlayerPrefs.SetInt("MaxScoreShootingMinigame",0);
@@ -94,8 +94,8 @@ public partial class UIGeneral : MonoBehaviour
         if (_puntuacionActual > PlayerPrefs.GetInt("MaxScoreShootingMinigame"))
             PlayerPrefs.SetInt("MaxScoreShootingMinigame", _puntuacionActual);
         
-        _reto1Conseguido.text = "1. Puntuación de 500 o mas: " + _puntuacionActual + "/" + _gameManager._starManager._condition1;
-        _reto2Conseguido.text = "2. Conseguir la palabra unfair: " + _gameManager._logSystem._GR +"/1";
+        _reto1Conseguido.text = "1. 500 puntos o mas: " + _puntuacionActual + "/" + _gameManager._starManager._condition1;
+        _reto2Conseguido.text = "2. Activa la fiebre del oro: " + _gameManager._logSystem._GR +"/1";
         _reto3Conseguido.text = "3. Combo de 25 o mas: " + _gameManager._comboCounter._maxCombo + "/" + _gameManager._starManager._condition3;
         
         _puntuacionFinalTxt.text = "Puntuación" + "\n" + _puntuacionActual;
