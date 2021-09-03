@@ -63718,7 +63718,7 @@ MonoBehaviour:
     - id: 1
       fields:
       - title: Title
-        value: New Dialogue Entry
+        value: 
         type: 0
         typeString: CustomFieldType_Text
       - title: Pictures
@@ -63742,7 +63742,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: Voy a explicarte como debes jugar en este puesto.
+        value: "Voy a explicarte c\xF3mo debes jugar en este puesto."
         type: 0
         typeString: CustomFieldType_Text
       - title: en
@@ -63790,8 +63790,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 30
-        y: 70
+        x: 32.352943
+        y: 72.352936
         width: 160
         height: 30
     - id: 2
@@ -64053,8 +64053,8 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
-        value: "Estos son los controles que deber\xE1s usar para ajustar el lanzamiento
-          y la fuerza a usar."
+        value: "Estos son los controles que deber\xE1s usar para ajustar el \xE1ngulo
+          de lanzamiento y la fuerza."
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
