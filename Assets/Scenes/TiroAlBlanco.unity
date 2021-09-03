@@ -5408,7 +5408,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Time 0
+  m_text: Tiempo 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 91020b79c4fc80044b02338d09b778ab, type: 2}
   m_sharedMaterial: {fileID: -4165509631488029807, guid: 91020b79c4fc80044b02338d09b778ab,
@@ -5436,7 +5436,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 43.5
+  m_fontSize: 36.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -17496,7 +17496,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Score 0
+  m_text: Puntos 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 91020b79c4fc80044b02338d09b778ab, type: 2}
   m_sharedMaterial: {fileID: -4165509631488029807, guid: 91020b79c4fc80044b02338d09b778ab,
@@ -17524,7 +17524,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.8
+  m_fontSize: 37.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

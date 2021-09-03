@@ -15,7 +15,7 @@ public partial class UIGeneral : MonoBehaviour
     private void ResetPuntuacion()
     {
         _puntuacionActual = 0;
-        _puntuacionText.text = "Score: " + _puntuacionActual;
+        _puntuacionText.text = "Puntos: " + _puntuacionActual;
     } 
 
     public void IncreasePuntuacion(int points) 
@@ -24,7 +24,7 @@ public partial class UIGeneral : MonoBehaviour
             _puntuacionActual = 0;
         else 
             _puntuacionActual += points;
-        _puntuacionText.text = "Score: " + _puntuacionActual;
+        _puntuacionText.text = "Puntos: " + _puntuacionActual;
     }
 
     public int GetPuntuacion() { return _puntuacionActual; }

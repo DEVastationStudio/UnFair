@@ -22,7 +22,7 @@ public partial class UIGeneral : MonoBehaviour
         _timerOn = false;
         actualTime = _timeForLevel;
         _timePassed = 0;
-        _timerText.text = "Time: " + _timeForLevel;
+        _timerText.text = "Tiempo: " + _timeForLevel;
         _gameManager._logSystem._TP += _timeForLevel;
     }
 
@@ -32,7 +32,7 @@ public partial class UIGeneral : MonoBehaviour
         {
             if (_timePassed >= 1 && actualTime>0)
             {
-                _timerText.text = "Time: " + actualTime;
+                _timerText.text = "Tiempo: " + actualTime;
                 actualTime--;
                 _timePassed = 0;
             }
@@ -51,7 +51,7 @@ public partial class UIGeneral : MonoBehaviour
     public void AddTime(int t) 
     {
         actualTime += t;
-        _timerText.text = "Time: " + actualTime;
+        _timerText.text = "Tiempo: " + actualTime;
     }
     #endregion Metodos
 }
