@@ -90,4 +90,25 @@ public class AudioManager : MonoBehaviour
         AudioListener.volume = 1;
     }
 
+    public void TempAudioFade(bool audioPlays)
+    {
+        StartCoroutine(TempFade(audioPlays));
+    }
+
+    public IEnumerator TempFade(bool audioPlays)
+    {
+        int vol1 = audioPlays ? 0 : 1;
+        int vol2 = audioPlays ? 1 : 0;
+
+        float time = 0;
+
+        while (time < 1)
+        {
+            audioSrc.volume = Mathf.Lerp(vol1, vol2, time);print(audioSrc.volume);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        audioSrc.volume = vol2;
+    }
+
 }

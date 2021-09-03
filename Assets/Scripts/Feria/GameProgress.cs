@@ -23,6 +23,7 @@ public class GameProgress : MonoBehaviour
         else
         {
             PlayerPrefs.SetInt("Stars-" + minigame, stars);
+            Debug.Log("Set stars of minigame " + minigame + " to " + stars + ".");
         }
     } 
 

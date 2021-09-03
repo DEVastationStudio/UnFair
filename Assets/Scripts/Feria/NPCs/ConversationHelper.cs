@@ -155,14 +155,7 @@ public class ConversationHelper : MonoBehaviour
     {
         int value = PlayerPrefs.GetInt(name, 0);
         value++;
-        if (value <= 2)
-        {
-            PlayerPrefs.SetInt(name, value);
-        }
-        else
-        {
-            PlayerPrefs.SetInt(name, 2);
-        }
+        PlayerPrefs.SetInt(name, value);
     }
 
     public void ChangeSong(int index)
@@ -247,6 +240,56 @@ public class ConversationHelper : MonoBehaviour
     {
         DialogueLua.SetVariable("_secretEnding1", (PlayerPrefs.GetInt("AltFinal1", 0) == 1));
         DialogueLua.SetVariable("_secretEnding2", (PlayerPrefs.GetInt("AltFinal2", 0) == 1));
+    }
+
+    public void CalculateExcessStars()
+    {
+        int numStars = 0;
+        int excessStars;
+
+        numStars += GameProgress.GetStars(1);
+        numStars += GameProgress.GetStars(2);
+        numStars += GameProgress.GetStars(3);
+        numStars += GameProgress.GetStars(4);
+
+        DialogueLua.SetVariable("_stars", numStars);
+
+        excessStars = Mathf.Max(numStars-8-PlayerPrefs.GetInt("EarnedTokens", 0)-PlayerPrefs.GetInt("UsedTokens", 0), 0);
+
+        DialogueLua.SetVariable("_excessStars", excessStars);
+
+    }
+
+    public void GetTokens()
+    {
+        int numStars = 0;
+        int excessStars;
+
+        numStars += GameProgress.GetStars(1);
+        numStars += GameProgress.GetStars(2);
+        numStars += GameProgress.GetStars(3);
+        numStars += GameProgress.GetStars(4);
+
+        excessStars = Mathf.Max(numStars-8-PlayerPrefs.GetInt("EarnedTokens", 0)-PlayerPrefs.GetInt("UsedTokens", 0), 0);
+
+        PlayerPrefs.SetInt("EarnedTokens", PlayerPrefs.GetInt("EarnedTokens", 0) + excessStars);
+
+    }
+
+    public void SpendTokens()
+    {
+        if (PlayerPrefs.GetInt("EarnedTokens", 0) <= 0)
+        {
+            Debug.LogError("Error: Attempted to use a token, but there were no tokens available.");
+            return;
+        }
+        PlayerPrefs.SetInt("EarnedTokens", PlayerPrefs.GetInt("EarnedTokens", 0) - 1);
+        PlayerPrefs.SetInt("UsedTokens", PlayerPrefs.GetInt("UsedTokens", 0) + 1);
+    }
+
+    public void TempAudioFade(bool audioPlays)
+    {
+        AudioManager.instance.TempAudioFade(audioPlays);
     }
 
 }

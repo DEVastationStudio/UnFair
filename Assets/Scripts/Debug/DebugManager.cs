@@ -26,5 +26,20 @@ public class DebugManager : MonoBehaviour
         PlayerPrefs.SetInt("ProgAlt2", ProgAlt2);
         if (Application.isPlaying) npcSpriteManager.UpdateSprites();
     }
-    //Set Stars
+    public int Stars1 = 0;
+    public int Stars2 = 0;
+    public int Stars3 = 0;
+    public int Stars4 = 0;
+    public void SetStars(int minigame, int stars)
+    {
+        if (stars < 0 || stars > 3)
+        {
+            Debug.LogError("Error: Stars must be between 0 and 3.");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Stars-" + minigame, stars);
+            Debug.Log("Set stars of minigame " + minigame + " to " + stars + ".");
+        }
+    } 
 }
