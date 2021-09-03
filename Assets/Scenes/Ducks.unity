@@ -3534,7 +3534,7 @@ GameObject:
   - component: {fileID: 347551332}
   - component: {fileID: 347551331}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Canvas (old)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12174,6 +12174,9 @@ MonoBehaviour:
   startGameButton: {fileID: 2124532536}
   aiScript: {fileID: 1387093492}
   rodController: {fileID: 894907344}
+  mmStar1: {fileID: 1049164993}
+  mmStar2: {fileID: 1888658811}
+  mmStar3: {fileID: 752863421}
   _eventSystem: {fileID: 1942569384}
   _startButton: {fileID: 817772447}
   _resetButton: {fileID: 1067669851}
@@ -18945,7 +18948,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1719534404}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.31, y: -4, z: 0.81}
+  m_LocalPosition: {x: 3.49, y: -4, z: -2.3}
   m_LocalScale: {x: 0.59272, y: 0.59272, z: 0.59272}
   m_Children: []
   m_Father: {fileID: 2110739833}

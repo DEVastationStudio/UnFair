@@ -19,6 +19,7 @@ public class DucksGameManager : MonoBehaviour
     private bool _spawnedBigDuck;
     private const int maxTime = 60;
     private float _bigDuckSpawnTime;
+    public Image mmStar1, mmStar2, mmStar3;
 
     [Header("Control por mando")]
     [SerializeField] private EventSystem _eventSystem;
@@ -74,7 +75,11 @@ public class DucksGameManager : MonoBehaviour
         _spawnedDucks = new List<GameObject>();
         _spawnPositions = new List<Vector3>();
 
-        titleText.text += "\nStars: " + GameProgress.GetStars(3);
+        //titleText.text += "\nStars: " + GameProgress.GetStars(3);
+        int stars = GameProgress.GetStars(3);
+        if (stars >= 1) mmStar1.color = _starFull; else mmStar1.color = _starEmpty;
+        if (stars >= 2) mmStar2.color = _starFull; else mmStar2.color = _starEmpty;
+        if (stars >= 3) mmStar3.color = _starFull; else mmStar3.color = _starEmpty;
         caughtBigBoy = false;
         boostedCaught = false;
         _goldDucks  = Mathf.RoundToInt(totalDucks*0.05f);
@@ -419,6 +424,12 @@ public class DucksGameManager : MonoBehaviour
         _aiMagnet.tag = "Magnet";
 
         //Show start-of-game HUD
+        
+        int stars = GameProgress.GetStars(3);
+        if (stars >= 1) mmStar1.color = _starFull; else mmStar1.color = _starEmpty;
+        if (stars >= 2) mmStar2.color = _starFull; else mmStar2.color = _starEmpty;
+        if (stars >= 3) mmStar3.color = _starFull; else mmStar3.color = _starEmpty;
+        
         mainMenu.SetActive(true);
         _eventSystem.SetSelectedGameObject(_startButton);
         _playerInput.SwitchCurrentActionMap("UIMap");
