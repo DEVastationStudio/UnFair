@@ -5495,6 +5495,11 @@ PrefabInstance:
       propertyPath: conversationActor
       value: 
       objectReference: {fileID: 530682677}
+    - target: {fileID: 4355682930610415243, guid: 5b83a25e296a1a540bde3f2c770b5326,
+        type: 3}
+      propertyPath: conversationConversant
+      value: 
+      objectReference: {fileID: 1032988746}
     - target: {fileID: 4355682930610415245, guid: 5b83a25e296a1a540bde3f2c770b5326,
         type: 3}
       propertyPath: m_Enabled
