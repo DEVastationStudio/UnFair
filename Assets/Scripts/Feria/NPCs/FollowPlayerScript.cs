@@ -62,15 +62,15 @@ public class FollowPlayerScript : MonoBehaviour
         float left = Mathf.Max(rotatedLastDir.z, 0);
         float right = -Mathf.Min(rotatedLastDir.z, 0);
 
-        if (up > 0.4f)
+        if (up > 0.1f)
         {
-            if (right > 0.4f)
+            if (right > 0.1f)
             {
                 _animator.SetLayerWeight(1,0);
                 _animator.SetLayerWeight(2,1);
                 _animator.SetLayerWeight(8,0);
             }
-            else if (left > 0.4f)
+            else if (left > 0.1f)
             {
                 _animator.SetLayerWeight(1,0);
                 _animator.SetLayerWeight(2,0);
@@ -88,15 +88,15 @@ public class FollowPlayerScript : MonoBehaviour
             _animator.SetLayerWeight(6,0);
             _animator.SetLayerWeight(7,0);
         }
-        else if (down > 0.4f)
+        else if (down > 0.1f)
         {
-            if (right > 0.4f)
+            if (right > 0.1f)
             {
                 _animator.SetLayerWeight(5,0);
                 _animator.SetLayerWeight(4,1);
                 _animator.SetLayerWeight(6,0);
             }
-            else if (left > 0.4f)
+            else if (left > 0.1f)
             {
                 _animator.SetLayerWeight(5,0);
                 _animator.SetLayerWeight(4,0);
@@ -114,7 +114,7 @@ public class FollowPlayerScript : MonoBehaviour
             _animator.SetLayerWeight(7,0);
             _animator.SetLayerWeight(8,0);
         }
-        else if (right > 0.4f)
+        else if (right > 0.1f)
         {
             _animator.SetLayerWeight(1,0);
             _animator.SetLayerWeight(2,0);
@@ -125,7 +125,7 @@ public class FollowPlayerScript : MonoBehaviour
             _animator.SetLayerWeight(7,0);
             _animator.SetLayerWeight(8,0);
         }
-        else if (left > 0.4f)
+        else if (left > 0.1f)
         {
             _animator.SetLayerWeight(1,0);
             _animator.SetLayerWeight(2,0);

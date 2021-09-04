@@ -292,6 +292,12 @@ public class ConversationHelper : MonoBehaviour
         AudioManager.instance.TempAudioFade(audioPlays);
     }
 
+    public void ForgetPlayerPositions()
+    {
+        FadeController.instance.player = null;
+        FadeController.instance.storedPlayerPosition = false;
+    }
+
 }
 
 [System.Serializable]
