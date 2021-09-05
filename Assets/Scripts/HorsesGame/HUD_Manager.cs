@@ -150,6 +150,7 @@ public class HUD_Manager : MonoBehaviour
 
     public void RaceFinished(int position)
     {
+        AudioManager.instance.FadeOut(-1,0.1f);
         raceTime = timeCounter.GetTimeSpent();
         _logSystem._T = raceTime;
         //timeSpent.text = FormatTime();

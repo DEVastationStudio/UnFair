@@ -157,7 +157,7 @@ public class FadeController : MonoBehaviour
                     return 3;
                 else
                     return 2;
-            case "Canicas":
+            case "Canicas Test":
                 return 6;
             case "Ducks":
                 return 12;
@@ -165,6 +165,10 @@ public class FadeController : MonoBehaviour
                 return 16;
             case "TiroAlBlanco":
                 return 9;
+            case "HauntedHouse":
+                return 0;
+            case "MrrorMaze":
+                return 0;
             default:
                 return 1;
         }

@@ -282,6 +282,8 @@ public class DucksGameManager : MonoBehaviour
             }
             
         }
+        
+        AudioManager.instance.FadeOut(-1,0.1f);
         //Finish game
         gameOver = true;
         endGameText.text = "Score: " + _playerScore + "/" + _aiScore;

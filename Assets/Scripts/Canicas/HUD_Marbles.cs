@@ -237,6 +237,7 @@ public class HUD_Marbles : MonoBehaviour
     }
     public void EndGame()
     {
+        AudioManager.instance.FadeOut(-1,0.1f);
         //Physics.autoSimulation = true;
         startedPressed = false;
         gameStarted = false;

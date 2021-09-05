@@ -59,6 +59,7 @@ public partial class UIGeneral : MonoBehaviour
     }
     public void FasePostGame()
     {
+        AudioManager.instance.FadeOut(-1,0.1f);
         faseActual = Fases.POSTGAME;
         _inGameContainer.SetActive(false);
         _outGameContainer.SetActive(false);
