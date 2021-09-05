@@ -44,10 +44,7 @@ public class PistolaScript : MonoBehaviour
 
     private void OnEscAction()
     {
-        if (_gameManager._uiGeneral.faseActual == UIGeneral.Fases.GAME) 
-        {
-            _gameManager._uiGeneral.Pause();
-        }
+        _gameManager._uiGeneral.Pause();
     }
 
     private void PointerUpdate() 

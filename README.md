@@ -43,7 +43,7 @@ A su vez, la IA de cada minijuego tiene acceso a una serie de **outputs**, que d
 ## Tiro al blanco:
 
 ### 1. Concepto
-Dianas aparecen en pantalla según son destruidas dejando siempre en pantalla 3 dianas a las que disparar. Cuando se acierta el jugador obtiene puntos (10), en cambio si falla se le resta una cantidad de puntos (5). Cada cierto tiempo una de esas dianas aparece dorada la cual da mas puntos (50) y dura 2 segundos en pantalla. Todo esto ocurre mientras hay una cuenta atrás. Esta cuenta atrás puede crecer disparando a dianas de reloj que suman 5 segundos al tiempo que tiene el jugador (Estas dianas funcionan igual que las doradas solo que suman tiempo y son menos probables de aparecer).
+Dianas aparecen en pantalla según son destruidas dejando siempre en pantalla 3 dianas a las que disparar. Cuando se acierta el jugador obtiene puntos (10), en cambio si falla se le resta una cantidad de puntos (5). Cada cierto tiempo una de esas dianas aparece dorada la cual da más puntos (50) y dura 2 segundos en pantalla. Todo esto ocurre mientras hay una cuenta atrás. Esta cuenta atrás puede crecer disparando a dianas de reloj que suman 5 segundos al tiempo que tiene el jugador (Estas dianas funcionan igual que las doradas solo que suman tiempo y son menos probables de aparecer).
  
 ### 2. Victoria y obtención de estrellas
 El juego se completa al obtener una o más estrellas. Los puntos aumentan conforme se dispara a las dianas. Según la puntuación obtenida se conseguirán 1, 2 o 3 estrellas. Los puntos para conseguir las estrellas son 100, 250 y  500 puntos respectivamente.

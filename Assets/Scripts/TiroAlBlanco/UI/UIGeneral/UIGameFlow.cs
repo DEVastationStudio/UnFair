@@ -94,9 +94,9 @@ public partial class UIGeneral : MonoBehaviour
         if (_puntuacionActual > PlayerPrefs.GetInt("MaxScoreShootingMinigame"))
             PlayerPrefs.SetInt("MaxScoreShootingMinigame", _puntuacionActual);
         
-        _reto1Conseguido.text = "1. 500 puntos o mas: " + _puntuacionActual + "/" + _gameManager._starManager._condition1;
+        _reto1Conseguido.text = "1. 500 puntos o más: " + _puntuacionActual + "/" + _gameManager._starManager._condition1;
         _reto2Conseguido.text = "2. Activa la fiebre del oro: " + _gameManager._logSystem._GR +"/1";
-        _reto3Conseguido.text = "3. Combo de 25 o mas: " + _gameManager._comboCounter._maxCombo + "/" + _gameManager._starManager._condition3;
+        _reto3Conseguido.text = "3. Combo de 25 o más: " + _gameManager._comboCounter._maxCombo + "/" + _gameManager._starManager._condition3;
         
         _puntuacionFinalTxt.text = "Puntuación" + "\n" + _puntuacionActual;
         _puntuacionMaximaTxt.text = "Max Puntuación" + "\n" + PlayerPrefs.GetInt("MaxScoreShootingMinigame");
@@ -122,19 +122,27 @@ public partial class UIGeneral : MonoBehaviour
     public void Pause()
     {
         if(_isCountdown) return;
-        _isPaused = !_isPaused;
-        if (_isPaused)
+        
+        if (_menuAjustes.activeSelf)
         {
-            Time.timeScale = 0;
-            _pauseMenu.SetActive(true);
-            _eventSystem.SetSelectedGameObject(_continuarBtn);
-            _playerInput.SwitchCurrentActionMap("UIMap");
+            CloseAjustes();
         }
-        else
+        else if (_gameManager._uiGeneral.faseActual == UIGeneral.Fases.GAME) 
         {
-            Time.timeScale = 1;
-            _pauseMenu.SetActive(false);
-            _playerInput.SwitchCurrentActionMap("ActionMap");
+            _isPaused = !_isPaused;
+            if (_isPaused)
+            {
+                Time.timeScale = 0;
+                _pauseMenu.SetActive(true);
+                _eventSystem.SetSelectedGameObject(_continuarBtn);
+                _playerInput.SwitchCurrentActionMap("UIMap");
+            }
+            else
+            {
+                Time.timeScale = 1;
+                _pauseMenu.SetActive(false);
+                _playerInput.SwitchCurrentActionMap("ActionMap");
+            }
         }
     }
 

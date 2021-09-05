@@ -60,7 +60,7 @@ public class DucksGameManager : MonoBehaviour
     public bool gameStarted;
     public bool caughtBigBoy, boostedCaught;
 
-    [SerializeField] private GameObject _ajustes, _basePauseMenu, _titleScreen, _primerAjustesBtn, _startBtn, _entrarAjustesBtn;
+    public GameObject _ajustes, _basePauseMenu, _titleScreen, _primerAjustesBtn, _startBtn, _entrarAjustesBtn;
     private bool _isPause = false;
 
     private List<Vector3> _spawnPositions;

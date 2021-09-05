@@ -139,26 +139,37 @@ public class RodController : MonoBehaviour
 
     void OnEscAction(InputValue value)
     {       
-        if (gameManager.gameStarted && !gameManager.gameOver) 
+        /*if (gameManager.gameStarted && !gameManager.gameOver) 
         {
             Pause();
-        }
+        }*/
+        Pause();
     }
     public void Pause()
     {
-        _isPaused = !_isPaused;
-        if (_isPaused)
+        if (gameManager._ajustes.activeSelf)
         {
-            _playerInput.SwitchCurrentActionMap("UIMap");
-            Time.timeScale = 0;
-            _pauseMenu.SetActive(true);
-            _eventSystem.SetSelectedGameObject(_continueBtn);
+            gameManager.CloseAjustes();
         }
         else
         {
-            _playerInput.SwitchCurrentActionMap("ActionMap");
-            Time.timeScale = 1;
-            _pauseMenu.SetActive(false);
+            if (gameManager.gameStarted && !gameManager.gameOver)
+            {
+                //_isPaused = !_isPaused;
+                if (!_pauseMenu.activeSelf)
+                {
+                    _playerInput.SwitchCurrentActionMap("UIMap");
+                    Time.timeScale = 0;
+                    _pauseMenu.SetActive(true);
+                    _eventSystem.SetSelectedGameObject(_continueBtn);
+                }
+                else // if (_pauseMenu.activeSelf)
+                {
+                    _playerInput.SwitchCurrentActionMap("ActionMap");
+                    Time.timeScale = 1;
+                    _pauseMenu.SetActive(false);
+                }
+            }
         }
     }
     public void ExitCurrentGame() 

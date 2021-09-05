@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _ajustes;
     [SerializeField] private GameObject _primerAjustesBtn;
     [SerializeField] private GameObject _entrarAjustesBtn;
+    [SerializeField] private Button _ajustesBtn;
     private bool _isPause = false;
 
     [Header("Iconos")]
@@ -94,6 +95,8 @@ public class UIManager : MonoBehaviour
             {
                 ClosePauseMenu();
             }
+            else if (_ajustes.activeSelf)
+                CloseAjustes();
         }
         else
         {
@@ -182,7 +185,7 @@ public class UIManager : MonoBehaviour
         if (_isPause)
         {
             _titleScreen.SetActive(true);
-            SelectStartBtn();
+            _ajustesBtn.Select();
         }
         else
         {
