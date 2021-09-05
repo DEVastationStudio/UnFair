@@ -265,7 +265,25 @@ public class UIManager : MonoBehaviour
 
     public void RemoveData()
     {
+        //Store settings
+        float Audio = PlayerPrefs.GetFloat("Audio", 1);
+        float Music = PlayerPrefs.GetFloat("Music", 0.5f);
+        float Sounds = PlayerPrefs.GetFloat("Sounds", 1);
+        int qualityIndex = PlayerPrefs.GetInt("qualityIndex");
+        int fpsValue = PlayerPrefs.GetInt("fpsValue");
+        int vSyncState = PlayerPrefs.GetInt("vSyncState");
+
         PlayerPrefs.DeleteAll();
+
+        //Restore settings
+        PlayerPrefs.SetFloat("Audio", Audio);
+        PlayerPrefs.SetFloat("Music", Music);
+        PlayerPrefs.SetFloat("Sounds", Sounds);
+        PlayerPrefs.SetInt("qualityIndex", qualityIndex);
+        PlayerPrefs.SetInt("fpsValue", fpsValue);
+        PlayerPrefs.SetInt("vSyncState", vSyncState);
+
+
         PlayerPrefs.SetInt("PartidaEmpezada", 2);
         FadeController.Fade("Feria");
     }
