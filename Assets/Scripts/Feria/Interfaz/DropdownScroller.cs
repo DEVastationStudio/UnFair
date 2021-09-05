@@ -18,16 +18,44 @@ public class DropdownScroller : MonoBehaviour, ISelectHandler
         float contentTop = content.anchoredPosition.y;
         float contentBottom = contentTop + 140;
 
-        if ((374-top) < contentTop)
+        float posOffset = content.sizeDelta.y - 14;
+        
+        if (posOffset == 14) StartCoroutine(PositionFix());
+
+        if ((posOffset-top) < contentTop)
         {
             Vector2 pos = content.anchoredPosition;
-            pos.y = Mathf.Clamp(374-top, 0, 238);
+            pos.y = posOffset-top;
             content.anchoredPosition = pos;
         }
-        else if ((374-bottom) > contentBottom)
+        else if ((posOffset-bottom) > contentBottom)
         {
             Vector2 pos = content.anchoredPosition;
-            pos.y = Mathf.Clamp(374-top-120, 0, 238);
+            pos.y =posOffset-top-120;
+            content.anchoredPosition = pos;
+        }
+    }
+    private IEnumerator PositionFix()
+    {
+        yield return new WaitForEndOfFrame();
+        float top = rectTransform.anchoredPosition.y;
+        float bottom = top - rectTransform.rect.height;
+
+        float contentTop = content.anchoredPosition.y;
+        float contentBottom = contentTop + 140;
+
+        float posOffset = content.sizeDelta.y - 14;
+
+        if ((posOffset-top) < contentTop)
+        {
+            Vector2 pos = content.anchoredPosition;
+            pos.y = posOffset-top;
+            content.anchoredPosition = pos;
+        }
+        else if ((posOffset-bottom) > contentBottom)
+        {
+            Vector2 pos = content.anchoredPosition;
+            pos.y =posOffset-top-120;
             content.anchoredPosition = pos;
         }
     }
