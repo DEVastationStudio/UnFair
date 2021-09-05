@@ -391,6 +391,16 @@ public class Thrower : MonoBehaviour
     }
     void OnEscAction(InputValue value)
     {
+        if (hud._quitConfirmationMenu.activeSelf)
+        {
+            hud._quitConfirmationNoButton.onClick.Invoke();
+            return;
+        }
+        else if (hud._restartConfirmationMenu.activeSelf)
+        {
+            hud._restartConfirmationNoButton.onClick.Invoke();
+            return;
+        }
         if (gameStarted)
         {
             if (inSettingsMenu)

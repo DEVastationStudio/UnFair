@@ -121,6 +121,17 @@ public partial class UIGeneral : MonoBehaviour
 
     public void Pause()
     {
+        if (_quitConfirmationMenu.activeSelf)
+        {
+            _quitConfirmationNoButton.onClick.Invoke();
+            return;
+        }
+        else if (_restartConfirmationMenu.activeSelf)
+        {
+            _restartConfirmationNoButton.onClick.Invoke();
+            return;
+        }
+
         if(_isCountdown) return;
         
         if (_menuAjustes.activeSelf)

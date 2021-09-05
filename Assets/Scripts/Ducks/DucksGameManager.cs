@@ -28,6 +28,11 @@ public class DucksGameManager : MonoBehaviour
     [SerializeField] private DynamicDifficultyManager _ddm;
     [SerializeField] private ConversationHelper _npcConversationHelper;
     [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] public GameObject _quitConfirmationMenu;
+    [SerializeField] public Button _quitConfirmationNoButton;
+    [SerializeField] public GameObject _restartConfirmationMenu;
+    [SerializeField] public Button _restartConfirmationNoButton;
+    
 
     [Header("VFX Manager")]
     public VFXManager _vfxManager;

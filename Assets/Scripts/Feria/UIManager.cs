@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
     [Header("Pause menu")]
     [SerializeField] private GameObject _basePauseMenu;
     [SerializeField] private GameObject _exitConfirmationPause;
+    [SerializeField] private GameObject _quitConfirmationMenu;
+    [SerializeField] private Button _quitConfirmationNoButton;
 
     [Header("Title screen")]
     [SerializeField] private List<GameObject> _virtualCameras;
@@ -89,7 +91,11 @@ public class UIManager : MonoBehaviour
 
     public void TogglePauseMenu()
     {
-        if (_playerInput.currentActionMap.name.Equals("UIMap"))
+        if (_quitConfirmationMenu.activeSelf)
+        {
+            _quitConfirmationNoButton.onClick.Invoke();
+        }
+        else if (_playerInput.currentActionMap.name.Equals("UIMap"))
         {
             if (_basePauseMenu.activeSelf)
             {

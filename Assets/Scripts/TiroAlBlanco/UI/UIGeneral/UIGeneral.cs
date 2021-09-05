@@ -55,7 +55,12 @@ public partial class UIGeneral : MonoBehaviour
     [Header("Control por mando")]
     [SerializeField] private EventSystem _eventSystem;
     [SerializeField] private GameObject _startButton;
-    [SerializeField] private GameObject _resetButton;
+    [SerializeField] private GameObject _resetButton;    
+    [SerializeField] private GameObject _quitConfirmationMenu;
+    [SerializeField] private Button _quitConfirmationNoButton;
+    [SerializeField] private GameObject _restartConfirmationMenu;
+    [SerializeField] private Button _restartConfirmationNoButton;
+    
 
     //Dialogos
     [Header("NPC")]

@@ -57,6 +57,10 @@ public class HUD_Marbles : MonoBehaviour
     [SerializeField] private EventSystem _eventSystem;
     [SerializeField] private GameObject _startButton;
     [SerializeField] private GameObject _resetButton;
+    [SerializeField] public GameObject _quitConfirmationMenu;
+    [SerializeField] public Button _quitConfirmationNoButton;
+    [SerializeField] public GameObject _restartConfirmationMenu;
+    [SerializeField] public Button _restartConfirmationNoButton;
     private int score;
     private bool gameStarted;
     private string minutes;

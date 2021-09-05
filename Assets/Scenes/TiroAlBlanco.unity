@@ -6994,6 +6994,10 @@ MonoBehaviour:
   _eventSystem: {fileID: 758372595}
   _startButton: {fileID: 0}
   _resetButton: {fileID: 0}
+  _quitConfirmationMenu: {fileID: 1889304135}
+  _quitConfirmationNoButton: {fileID: 1089180046}
+  _restartConfirmationMenu: {fileID: 517624939}
+  _restartConfirmationNoButton: {fileID: 1024384942}
   _npcConversationHelper: {fileID: 321117328}
   _pauseMenu: {fileID: 227362298}
   _continuarBtn: {fileID: 1418117604}

@@ -54,6 +54,11 @@ public class HUD_Manager : MonoBehaviour
     [SerializeField] private EventSystem _eventSystem;
     [SerializeField] private GameObject _startGame;
     [SerializeField] private GameObject _resetGame;
+    [SerializeField] public GameObject _quitConfirmationMenu;
+    [SerializeField] public Button _quitConfirmationNoButton;
+    [SerializeField] public GameObject _restartConfirmationMenu;
+    [SerializeField] public Button _restartConfirmationNoButton;
+    
 
     private TimeCounter timeCounter;
     private MetaController metaController;

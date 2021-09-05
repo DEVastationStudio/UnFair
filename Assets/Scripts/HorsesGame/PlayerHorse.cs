@@ -218,6 +218,18 @@ public class PlayerHorse : MonoBehaviour
     void OnEscAction(InputValue value)
     {
         if (input.currentControlScheme.Equals("GamepadScheme")) { validButton = true; }
+        
+        if (hud._quitConfirmationMenu.activeSelf)
+        {
+            hud._quitConfirmationNoButton.onClick.Invoke();
+            return;
+        }
+        else if (hud._restartConfirmationMenu.activeSelf)
+        {
+            hud._restartConfirmationNoButton.onClick.Invoke();
+            return;
+        }
+        
         if (gameStarted)
         {
             if (inSettingsMenu)

@@ -12183,6 +12183,10 @@ MonoBehaviour:
   _ddm: {fileID: 1237185697}
   _npcConversationHelper: {fileID: 1391722646}
   _playerInput: {fileID: 894907343}
+  _quitConfirmationMenu: {fileID: 1699743844}
+  _quitConfirmationNoButton: {fileID: 906499014}
+  _restartConfirmationMenu: {fileID: 208732561}
+  _restartConfirmationNoButton: {fileID: 927891706}
   _vfxManager: {fileID: 1879507284}
   logSystem: {fileID: 1783230667}
   _star1Text: {fileID: 834860152}

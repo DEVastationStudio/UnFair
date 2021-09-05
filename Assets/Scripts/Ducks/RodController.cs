@@ -147,7 +147,15 @@ public class RodController : MonoBehaviour
     }
     public void Pause()
     {
-        if (gameManager._ajustes.activeSelf)
+        if (gameManager._quitConfirmationMenu.activeSelf)
+        {
+            gameManager._quitConfirmationNoButton.onClick.Invoke();
+        }
+        else if (gameManager._restartConfirmationMenu.activeSelf)
+        {
+            gameManager._restartConfirmationNoButton.onClick.Invoke();
+        }
+        else if (gameManager._ajustes.activeSelf)
         {
             gameManager.CloseAjustes();
         }

@@ -15655,6 +15655,10 @@ MonoBehaviour:
   _eventSystem: {fileID: 1652449293}
   _startGame: {fileID: 2055270335}
   _resetGame: {fileID: 1941656980}
+  _quitConfirmationMenu: {fileID: 1423663708}
+  _quitConfirmationNoButton: {fileID: 880082256}
+  _restartConfirmationMenu: {fileID: 10031344}
+  _restartConfirmationNoButton: {fileID: 951909065}
 --- !u!114 &1512164817
 MonoBehaviour:
   m_ObjectHideFlags: 0

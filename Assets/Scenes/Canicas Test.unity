@@ -19259,6 +19259,10 @@ MonoBehaviour:
   _eventSystem: {fileID: 1024452216}
   _startButton: {fileID: 955055614}
   _resetButton: {fileID: 871926297}
+  _quitConfirmationMenu: {fileID: 1700370436}
+  _quitConfirmationNoButton: {fileID: 1616417259}
+  _restartConfirmationMenu: {fileID: 442258251}
+  _restartConfirmationNoButton: {fileID: 1761807768}
   hitBasket: 0
 --- !u!4 &1279387236
 Transform:
