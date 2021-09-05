@@ -33323,7 +33323,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Actor
-        value: 24
+        value: 25
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -33386,8 +33386,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 745.94116
-        y: 538.64703
+        x: 816.6959
+        y: 547.13763
         width: 160
         height: 30
     - id: 11
@@ -33538,8 +33538,8 @@ MonoBehaviour:
         y: 491.58826
         width: 160
         height: 30
-    canvasScrollPosition: {x: 284.22076, y: 124.70587}
-    canvasZoom: 0.85000014
+    canvasScrollPosition: {x: 423.00092, y: 282.74652}
+    canvasZoom: 1.06
   - id: 46
     fields:
     - title: Title
@@ -38359,9 +38359,9 @@ MonoBehaviour:
 
           SetContinueMode(false);
 
-          SetDialoguePanel(true)@60;
+          SetDialoguePanel(true)@59;
 
-          SetContinueMode(true)@60;
+          SetContinueMode(true)@59;
 
           Delay(59);
 

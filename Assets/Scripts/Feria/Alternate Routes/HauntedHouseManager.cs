@@ -12,8 +12,10 @@ public class HauntedHouseManager : MonoBehaviour
     public GameObject credits;
     void Start()
     {
-        FadeController.FinishLoad();
-        if (cutscene != null) cutscene.StartConversation();
+        if (cutscene != null) {
+           FadeController.FinishLoad();
+           cutscene.StartConversation();
+        }
     }
 
     public void FadeOut()

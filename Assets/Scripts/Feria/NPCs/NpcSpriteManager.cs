@@ -7,6 +7,7 @@ public class NpcSpriteManager : MonoBehaviour
 {
     public NpcSprite[] sprites;
     [SerializeField] private Color[] spritesColor;
+    public SpriteRenderer[] tintSprites;
 
     void Start()
     {
@@ -37,7 +38,7 @@ public class NpcSpriteManager : MonoBehaviour
             case 7:
             case 8:
             case 9:
-                if (PlayerPrefs.GetInt("Stars-3", 0) > 0)
+                if (PlayerPrefs.GetInt("Stars-2", 0) > 0)
                     ChangeSpritesColors(2);//FindObjectOfType<SunCycle>().SetLight(2);
                 else
                     ChangeSpritesColors(1);//FindObjectOfType<SunCycle>().SetLight(1);
@@ -83,12 +84,9 @@ public class NpcSpriteManager : MonoBehaviour
     {
 
         FindObjectOfType<SunCycle>().SetLight(idx);
-        foreach (NpcSprite npc in sprites)
+        foreach (SpriteRenderer npc in tintSprites)
         {
-            if (npc.npc != null)
-            {
-                npc.npc.color = spritesColor[idx];
-            }
+            npc.color = spritesColor[idx];
         }
     }
     void OnDestroy()
