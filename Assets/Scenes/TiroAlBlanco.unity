@@ -6992,8 +6992,8 @@ MonoBehaviour:
   _estrellaPreGame2: {fileID: 103081502}
   _estrellaPreGame3: {fileID: 1769094131}
   _eventSystem: {fileID: 758372595}
-  _startButton: {fileID: 0}
-  _resetButton: {fileID: 0}
+  _startButton: {fileID: 383269026}
+  _resetButton: {fileID: 2096365753}
   _quitConfirmationMenu: {fileID: 1889304135}
   _quitConfirmationNoButton: {fileID: 1089180046}
   _restartConfirmationMenu: {fileID: 517624939}
