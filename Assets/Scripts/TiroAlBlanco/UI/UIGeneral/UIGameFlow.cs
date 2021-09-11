@@ -162,6 +162,7 @@ public partial class UIGeneral : MonoBehaviour
     {
         _isPause = isPause;
         _menuAjustes.SetActive(true);
+        _menuAjustes.GetComponent<AjustesManager>().ChangePestaña(0);
         _eventSystem.SetSelectedGameObject(_primerAjuste);
     }
     public void CloseAjustes()
