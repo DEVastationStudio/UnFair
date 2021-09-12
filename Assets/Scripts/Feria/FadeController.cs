@@ -166,9 +166,9 @@ public class FadeController : MonoBehaviour
             case "TiroAlBlanco":
                 return 9;
             case "HauntedHouse":
-                return 0;
+                return 18;
             case "MrrorMaze":
-                return 0;
+                return 20;
             default:
                 return 1;
         }

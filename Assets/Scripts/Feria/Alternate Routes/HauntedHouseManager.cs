@@ -10,8 +10,10 @@ public class HauntedHouseManager : MonoBehaviour
     public SpriteRenderer sprite;
     public Vector3 creditsPos1, creditsPos2;
     public GameObject credits;
+    public int creditsSong;
     void Start()
     {
+        creditsSong = 24;
         if (cutscene != null) {
            FadeController.FinishLoad();
            cutscene.StartConversation();
@@ -90,11 +92,18 @@ public class HauntedHouseManager : MonoBehaviour
         StartCoroutine(Credits());
     }
 
+    public void SetCreditsSong(int song)
+    {
+        creditsSong = song;
+    }
+
     private IEnumerator Credits()
     {
         float time = 0;
         credits.SetActive(true);
         Vector3 temp;
+
+        if (AudioManager.instance != null) AudioManager.instance.changeTheme(creditsSong);
         
         while (time < 60)
         {

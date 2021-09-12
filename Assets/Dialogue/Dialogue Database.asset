@@ -34982,6 +34982,10 @@ MonoBehaviour:
         value: 
         type: 0
         typeString: CustomFieldType_Text
+      - title: EventGuid
+        value: 
+        type: 0
+        typeString: 
       conversationID: 46
       isRoot: 0
       isGroup: 0
@@ -35208,6 +35212,10 @@ MonoBehaviour:
         value: 
         type: 0
         typeString: CustomFieldType_Text
+      - title: EventGuid
+        value: 9d62211f-5f0b-418d-bff6-23dd189236c9
+        type: 0
+        typeString: 
       conversationID: 46
       isRoot: 0
       isGroup: 0
@@ -36899,6 +36907,10 @@ MonoBehaviour:
         value: 
         type: 0
         typeString: CustomFieldType_Text
+      - title: EventGuid
+        value: 0e24f604-6dbd-480a-9b7e-30f7ef4e800a
+        type: 0
+        typeString: 
       conversationID: 46
       isRoot: 0
       isGroup: 0
@@ -37516,6 +37528,10 @@ MonoBehaviour:
         value: 
         type: 0
         typeString: CustomFieldType_Text
+      - title: EventGuid
+        value: 8ffd260d-85b5-4c86-b197-a30d74ff3e62
+        type: 0
+        typeString: 
       conversationID: 46
       isRoot: 0
       isGroup: 0
@@ -38476,8 +38492,8 @@ MonoBehaviour:
         y: 1427.401
         width: 160
         height: 30
-    canvasScrollPosition: {x: 110.389755, y: 1040.2781}
-    canvasZoom: 0.76
+    canvasScrollPosition: {x: 37.63453, y: 522.4572}
+    canvasZoom: 0.73
   - id: 47
     fields:
     - title: Title
@@ -56957,6 +56973,10 @@ MonoBehaviour:
 '
         type: 0
         typeString: CustomFieldType_Text
+      - title: EventGuid
+        value: 17e2e904-6856-4328-ba81-609ceed2c226
+        type: 0
+        typeString: 
       conversationID: 64
       isRoot: 0
       isGroup: 0
@@ -57508,7 +57528,7 @@ MonoBehaviour:
         y: 2028.428
         width: 160
         height: 30
-    canvasScrollPosition: {x: 295.72726, y: 0}
+    canvasScrollPosition: {x: 397.0972, y: 790.41113}
     canvasZoom: 0.7299999
   - id: 65
     fields:
@@ -73435,7 +73455,7 @@ MonoBehaviour:
         y: 99.040146
         width: 160
         height: 30
-    canvasScrollPosition: {x: 1048.8044, y: 1470.6992}
+    canvasScrollPosition: {x: 975.367, y: 675.38684}
     canvasZoom: 0.6400002
   - id: 82
     fields:

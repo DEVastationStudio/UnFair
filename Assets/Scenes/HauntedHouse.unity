@@ -6147,6 +6147,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cutscene: {fileID: 530682672}
   fade: {fileID: 1636726499}
+  sprite: {fileID: 0}
+  creditsPos1: {x: 0, y: 0, z: 0}
+  creditsPos2: {x: 0, y: 0, z: 0}
+  credits: {fileID: 0}
 --- !u!114 &1032988748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8178,6 +8182,21 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 17e2e904-6856-4328-ba81-609ceed2c226
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 530682672}
+          m_MethodName: ChangeSong
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 19
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
