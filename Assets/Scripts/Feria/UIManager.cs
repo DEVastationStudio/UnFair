@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _exitConfirmationPause;
     [SerializeField] private GameObject _quitConfirmationMenu;
     [SerializeField] private Button _quitConfirmationNoButton;
+    [SerializeField] private AudioSource _openMapSnd;
 
     [Header("Title screen")]
     [SerializeField] private List<GameObject> _virtualCameras;
@@ -114,6 +115,7 @@ public class UIManager : MonoBehaviour
     }
     public void OpenPauseMenu()
     {
+        _openMapSnd.Play();
         _playerInput.SwitchCurrentActionMap("UIMap");
         _basePauseMenu.SetActive(true);
         int totalStars = 0;
@@ -149,6 +151,7 @@ public class UIManager : MonoBehaviour
     }
     public void ClosePauseMenu()
     {
+        _openMapSnd.Play();
         _basePauseMenu.SetActive(false);
         _playerInput.SwitchCurrentActionMap("ActionMap");
     }

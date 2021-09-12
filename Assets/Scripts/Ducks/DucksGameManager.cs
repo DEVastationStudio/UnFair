@@ -73,6 +73,13 @@ public class DucksGameManager : MonoBehaviour
     [SerializeField] private GameObject _playerMagnet, _aiMagnet;
     public GameObject[] duckSpawnPoints;
 
+    [Header("Sound Effects")]
+    [SerializeField] private AudioSource _countdownSfx1;
+    [SerializeField] private AudioSource _countdownSfx2;
+    [SerializeField] private AudioSource _victorySfx;
+    [SerializeField] private AudioSource _defeatSfx;
+    [SerializeField] private AudioSource _supremeDuckSfx;
+
     void Start()
     {
         _playerInput.SwitchCurrentActionMap("UIMap");
@@ -186,10 +193,12 @@ public class DucksGameManager : MonoBehaviour
         int count = 3;
         while (count > 0)
         {
+            _countdownSfx1.Play();
             countdownText.text = count.ToString();
             yield return new WaitForSeconds(1);
             count--;
         }
+        _countdownSfx2.Play();
         countdownText.text = "";
         countdownText.gameObject.SetActive(false);
         
@@ -278,6 +287,7 @@ public class DucksGameManager : MonoBehaviour
                     duck._gameManager = this;
                     duck.type = Duck.Type.BIG;
                     _spawnedDucks.Add(duck.gameObject);
+                    _supremeDuckSfx.Play();
                 }
             }
             
@@ -309,6 +319,15 @@ public class DucksGameManager : MonoBehaviour
                 stars++;
             }
             
+        }
+
+        if (stars > 0)
+        {
+            _victorySfx.Play();
+        }
+        else
+        {
+            _defeatSfx.Play();            
         }
         GameProgress.SetStars(3, stars);
         _ddm.SetValue(1, (stars)/3f);

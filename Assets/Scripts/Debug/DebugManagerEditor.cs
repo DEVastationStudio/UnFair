@@ -51,8 +51,9 @@ public class DebugManagerEditor : Editor
         }
         if (GUILayout.Button("Reset Zenobia Tokens"))
         {
-            PlayerPrefs.SetFloat("EarnedTokens", 0);
-            PlayerPrefs.SetFloat("UsedTokens", 0);
+            PlayerPrefs.SetInt("EarnedTokens", 0);
+            PlayerPrefs.SetInt("UsedTokens", 0);
+            PlayerPrefs.SetInt("ProgZenobia", 0);
         }
     }
 }

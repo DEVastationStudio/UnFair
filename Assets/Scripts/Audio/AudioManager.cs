@@ -67,9 +67,9 @@ public class AudioManager : MonoBehaviour
     private static IEnumerator AudioFadeOut(AudioSource auSrc, float speed) 
     {
         if (auSrc.clip == null) yield break;
-        while (AudioListener.volume > 0)
+        while (auSrc.volume > 0)
         {
-            AudioListener.volume -= speed;
+            auSrc.volume -= speed;
             yield return new WaitForSeconds(0.1f);
         }
         auSrc.Stop();
@@ -81,13 +81,13 @@ public class AudioManager : MonoBehaviour
         if (clip == null) yield break;
 
         auSrc.Play();
-        while (AudioListener.volume < 1)
+        while (auSrc.volume < 1)
         {
-            AudioListener.volume += speed;
+            auSrc.volume += speed;
             yield return new WaitForSeconds(0.1f);
         }
 
-        AudioListener.volume = 1;
+        auSrc.volume = 1;
     }
 
     public void TempAudioFade(bool audioPlays)

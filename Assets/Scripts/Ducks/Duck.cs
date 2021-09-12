@@ -11,6 +11,8 @@ public class Duck : FloatingObject
 
     public DucksGameManager _gameManager;
 
+    [SerializeField] private AudioSource _goodDuckSfx, _badDuckSfx, _timeDuckSfx, _boostSfx;
+
     protected override void Start()
     {
         base.Start();
@@ -76,6 +78,7 @@ public class Duck : FloatingObject
                     _gameManager.aiScore++;
                     _gameManager.logSystem._ED1++;
                 }
+                _goodDuckSfx.Play();
                 _gameManager._vfxManager.InstantiateVFX(0, transform.position);
                 break;
             case Type.BLACK:
@@ -89,6 +92,7 @@ public class Duck : FloatingObject
                     _gameManager.aiScore = Mathf.Max(_gameManager.aiScore - 2, 0);
                     _gameManager.logSystem._ED0++;
                 }
+                _badDuckSfx.Play();
                 _gameManager._vfxManager.InstantiateVFX(1, transform.position);
                 break;
             case Type.GOLD:
@@ -102,6 +106,7 @@ public class Duck : FloatingObject
                     _gameManager.aiScore += 5;
                     _gameManager.logSystem._ED4++;
                 }
+                _goodDuckSfx.Play();
                 _gameManager._vfxManager.InstantiateVFX(2, transform.position);
                 break;
             case Type.BIG:
@@ -115,6 +120,7 @@ public class Duck : FloatingObject
                     _gameManager.aiScore += 7;
                     _gameManager.logSystem._ED5++;
                 }
+                _goodDuckSfx.Play();
                 _gameManager._vfxManager.InstantiateVFX(3, transform.position);
                 break;
             case Type.PLAYER:
@@ -134,6 +140,7 @@ public class Duck : FloatingObject
                     _gameManager.logSystem._ED2++;
                 }
 
+                _goodDuckSfx.Play();
                 _gameManager._vfxManager.InstantiateVFX(4, transform.position);
                 break;
             case Type.AI:
@@ -142,10 +149,12 @@ public class Duck : FloatingObject
                 {
                     _gameManager.SetLastDuck(0.25f);
                 }
+                _goodDuckSfx.Play();
                 _gameManager._vfxManager.InstantiateVFX(4, transform.position);
                 break;
             case Type.TIME:
                 _gameManager.IncreaseTimer();
+                _timeDuckSfx.Play();
                 _gameManager._vfxManager.InstantiateVFX(5, transform.position);
                 if (player) 
                 {
@@ -184,34 +193,41 @@ public class Duck : FloatingObject
         {
             case Type.NORMAL:
                 boostTime = 1;
+                _boostSfx.Play();
                 _gameManager._vfxManager.InstantiateVFX(6, transform.position);
                 _gameManager.logSystem._BD1++;
                 break;
             case Type.BLACK:
                 boostTime = -2;
                 _gameManager.logSystem._BD0++;
+                _badDuckSfx.Play();
                 break;
             case Type.GOLD:
                 boostTime = 5;
+                _boostSfx.Play();
                 _gameManager._vfxManager.InstantiateVFX(8, transform.position);
                 _gameManager.logSystem._BD4++;
                 break;
             case Type.BIG:
                 boostTime = 7;
+                _boostSfx.Play();
                 _gameManager._vfxManager.InstantiateVFX(9, transform.position);
                 _gameManager.logSystem._BD5++;
                 break;
             case Type.PLAYER:
                 boostTime = 2;
+                _boostSfx.Play();
                 _gameManager._vfxManager.InstantiateVFX(7, transform.position);
                 _gameManager.logSystem._BD2++;
                 break;
             case Type.AI:
                 boostTime = 2;
+                _boostSfx.Play();
                 _gameManager._vfxManager.InstantiateVFX(7, transform.position);
                 break;
             case Type.TIME:
                 boostTime = 5;
+                _boostSfx.Play();
                 _gameManager._vfxManager.InstantiateVFX(8, transform.position);
                 _gameManager.logSystem._BD3++;
                 break;
