@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: e157daae32f472e458d40bca06019604,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -1680,6 +1681,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cutscene: {fileID: 920284043}
   fade: {fileID: 2067428503}
+  sprite: {fileID: 0}
+  creditsPos1: {x: 0, y: 0, z: 0}
+  creditsPos2: {x: 0, y: 0, z: 0}
+  credits: {fileID: 0}
+  creditsSong: 0
 --- !u!4 &1883394500
 Transform:
   m_ObjectHideFlags: 0
