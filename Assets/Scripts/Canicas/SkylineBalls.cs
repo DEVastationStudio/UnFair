@@ -25,7 +25,7 @@ public class SkylineBalls : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Canica"))
         {
-            //DDM.SetValue(2, 1.0f);
+            DDM.SetValue(2, 0.0f);
             Destroy(other.gameObject);
             thrower.missedMarbles++;
             //hud.SetFailBall();

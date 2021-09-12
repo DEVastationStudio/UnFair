@@ -12,45 +12,50 @@ public class MarbleHoles : MonoBehaviour
     [SerializeField] private TotalBallsCounter _totalBallsCounter;
     [SerializeField] private Transform _vfxSpawnPoint;
     private DynamicDifficultyManager DDM;
+    private MarblesLogSystem _logSystem;
 
     void Start()
     {
         DDM = FindObjectOfType<DynamicDifficultyManager>();
+        _logSystem = FindObjectOfType<MarblesLogSystem>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Canica"))
         {
-            DDM.SetValue(2, 0.0f);
             if (isBasket)
             {
                 hudMarbles.AddScore(this.points > 5 ? (this.points * 2) - 5 : (this.points * 2));
                 hudMarbles.hitBasket = true;
-                
+
                 vfxManager.InstantiateVFX(1,
                     new Vector3(
                         _vfxSpawnPoint.position.x,
                         _vfxSpawnPoint.position.y + 0.4f,
                         _vfxSpawnPoint.position.z)
-                        /*other.gameObject.transform.position.x,
-                        other.gameObject.transform.position.y + 0.4f,
-                        other.gameObject.transform.position.z)*/
+                /*other.gameObject.transform.position.x,
+                other.gameObject.transform.position.y + 0.4f,
+                other.gameObject.transform.position.z)*/
                 );
+                DDM.SetValue(0, 1.0f);
+                _logSystem._BH += 1;
             }
             else
             {
                 hudMarbles.AddScore(this.points);
-                
+
                 vfxManager.InstantiateVFX(0,
                     new Vector3(
                         _vfxSpawnPoint.position.x,
                         _vfxSpawnPoint.position.y + 0.4f,
                         _vfxSpawnPoint.position.z)
-                        /*other.gameObject.transform.position.x,
-                        other.gameObject.transform.position.y + 0.4f,
-                        other.gameObject.transform.position.z)*/
+                /*other.gameObject.transform.position.x,
+                other.gameObject.transform.position.y + 0.4f,
+                other.gameObject.transform.position.z)*/
                 );
+                DDM.SetValue(1, 1.0f);
+                _logSystem._NH += 1;
             }
             Destroy(other.gameObject);
             _totalBallsCounter.ReduceBalls();

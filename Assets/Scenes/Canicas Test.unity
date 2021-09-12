@@ -3424,51 +3424,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  - serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 2
-      inSlope: 1.5384616
-      outSlope: 1.5384616
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.65
-      value: 3
-      inSlope: -0.0076877684
-      outSlope: -0.0076877684
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.448095
-    - serializedVersion: 3
-      time: 0.8
-      value: 3
-      inSlope: -0.03945252
-      outSlope: -0.03945252
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.60790336
-    - serializedVersion: 3
-      time: 1
-      value: 4
-      inSlope: 1.9841007
-      outSlope: 1.9841007
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.23066968
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
   weights:
-  - 0.35
-  - 0.5
-  - 0.15
+  - 0.4
+  - 0.3
+  - 0.2
+  - 0.1
   _values:
   - 0
   - 0
@@ -19496,6 +19456,7 @@ MonoBehaviour:
   countdownText: {fileID: 758009441}
   thrower: {fileID: 905994870}
   DDM: {fileID: 251333289}
+  _logSystem: {fileID: 2141830958}
   MaxTimeHits: 6
   conversation: {fileID: 1700041150}
   conversationTutorial: {fileID: 1280776158}
@@ -34538,6 +34499,57 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140040549}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2141830956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2141830957}
+  - component: {fileID: 2141830958}
+  m_Layer: 0
+  m_Name: LogSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2141830957
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141830956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 42
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2141830958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141830956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60186c7df2d719d4184a5209c3f0abf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hud: {fileID: 1279387235}
+  _T: 0
+  _S: 0
+  _TP: 0
+  _BH: 0
+  _NH: 0
+  _SD: 0
+  _FD: 0
 --- !u!4 &2144217775 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 338597315916491591, guid: e620b9ff46b9ba840ba3ce0fab776c06,

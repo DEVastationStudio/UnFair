@@ -30,6 +30,7 @@ public class HUD_Marbles : MonoBehaviour
     [SerializeField] private TextMeshProUGUI countdownText;
     [SerializeField] private Thrower thrower;
     [SerializeField] private DynamicDifficultyManager DDM;
+    [SerializeField] private MarblesLogSystem _logSystem;
     [SerializeField] private float MaxTimeHits = 6; // si se supera este tiempo, bajará la dificultad
     [SerializeField] private ConversationHelper conversation;
     [SerializeField] private ConversationHelper conversationTutorial;
@@ -113,6 +114,7 @@ public class HUD_Marbles : MonoBehaviour
 
     private void Init()
     {
+        _logSystem._SD = DDM.GetSkillLevel();
         startedPressed = false;
         isPaused = false;
         isReseting = false;
@@ -130,6 +132,7 @@ public class HUD_Marbles : MonoBehaviour
         preGameButtonsCanvas.SetActive(true);
         preGameCanvas.SetActive(true);
         starNum = GameProgress.GetStars(4);
+        DDM.SetValue(3, (float)(starNum / 3));
         _star1Pregame.color = starNum >= 1 ? _starDoneColor : _starNotDoneColor;
         _star2Pregame.color = starNum >= 2 ? _starDoneColor : _starNotDoneColor;
         _star3Pregame.color = starNum >= 3 ? _starDoneColor : _starNotDoneColor;
@@ -237,7 +240,7 @@ public class HUD_Marbles : MonoBehaviour
     }
     public void EndGame()
     {
-        AudioManager.instance.FadeOut(-1,0.1f);
+        AudioManager.instance.FadeOut(-1, 0.1f);
         //Physics.autoSimulation = true;
         startedPressed = false;
         gameStarted = false;
@@ -286,6 +289,9 @@ public class HUD_Marbles : MonoBehaviour
         }
         DDM.SaveParameters();
         finalTimeText.text = ((Mathf.Floor(timeSpent / 60).ToString("00")) + " : " + (Mathf.Floor(timeSpent) % 60).ToString("00"));
+        _logSystem._FD = DDM.GetSkillLevel();
+        _logSystem._T = timeSpent;
+        _logSystem.SaveData();
     }
 
     public void ResetGame()
@@ -373,6 +379,8 @@ public class HUD_Marbles : MonoBehaviour
         }
 
         stars = auxStars;
+        _logSystem._S = stars;
+        _logSystem._TP = score;
         if (PlayerPrefs.GetInt("BestScoreMarble", 0) == 0 || ((int)Mathf.Floor(score)) > PlayerPrefs.GetInt("BestScoreMarble", 0))
         {
             PlayerPrefs.SetInt("BestScoreMarble", ((int)Mathf.Floor(score)));
