@@ -78,6 +78,12 @@ public class HUD_Marbles : MonoBehaviour
     private int starNum;
     public bool hitBasket;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource _victoryMusic;
+    [SerializeField] private AudioSource _defeatMusic;
+    [SerializeField] private AudioSource _countdown1;
+    [SerializeField] private AudioSource _countdown2;
+
     void Start()
     {
         Init();
@@ -281,11 +287,12 @@ public class HUD_Marbles : MonoBehaviour
                 //DDM.SetValue(0, auxStarDDM);
             }
             postStarsObtainedText.text = "You got " + stars + " stars";
-
+            _victoryMusic.Play();
         }
         else
         {
             postStarsObtainedText.text = "Sorry you got no star ;(";
+            _defeatMusic.Play();
         }
         DDM.SaveParameters();
         finalTimeText.text = ((Mathf.Floor(timeSpent / 60).ToString("00")) + " : " + (Mathf.Floor(timeSpent) % 60).ToString("00"));
@@ -398,10 +405,12 @@ public class HUD_Marbles : MonoBehaviour
         int count = 3;
         while (count > 0)
         {
+            _countdown1.Play();
             countdownText.text = count.ToString();
             yield return new WaitForSeconds(1);
             count--;
         }
+        _countdown2.Play();
         countdownText.text = "";
         countdownText.gameObject.SetActive(false);
         AudioManager.instance.FadeIn(7, 0.1f);

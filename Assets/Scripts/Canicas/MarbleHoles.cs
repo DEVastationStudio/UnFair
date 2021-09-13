@@ -13,6 +13,7 @@ public class MarbleHoles : MonoBehaviour
     [SerializeField] private Transform _vfxSpawnPoint;
     private DynamicDifficultyManager DDM;
     private MarblesLogSystem _logSystem;
+    [SerializeField] private AudioSource _goodSfx;
 
     void Start()
     {
@@ -24,6 +25,7 @@ public class MarbleHoles : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Canica"))
         {
+            _goodSfx.Play();
             if (isBasket)
             {
                 hudMarbles.AddScore(this.points > 5 ? (this.points * 2) - 5 : (this.points * 2));

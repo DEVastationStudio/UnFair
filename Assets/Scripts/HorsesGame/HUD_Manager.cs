@@ -71,6 +71,11 @@ public class HUD_Manager : MonoBehaviour
     private bool isReseting;
     private bool gameStarted;
     private int starNum;
+    [Header("Audio")]
+    [SerializeField] private AudioSource _victoryMusic;
+    [SerializeField] private AudioSource _defeatMusic;
+    [SerializeField] private AudioSource _countdownSfx1;
+    [SerializeField] private AudioSource _countdownSfx2;
     void Start()
     {
         playerHorse = FindObjectOfType<PlayerHorse>();
@@ -390,6 +395,16 @@ public class HUD_Manager : MonoBehaviour
         else if (position == 1 && raceTime <= 30.0f) { stars = 2; }
         else if (position == 1) { stars = 1; }
         else { stars = 0; }*/
+
+        if (stars > 0)
+        {
+            _victoryMusic.Play();
+        }
+        else
+        {
+            _defeatMusic.Play();
+        }
+        
     }
 
     public void DisableComboPanel()
@@ -450,10 +465,12 @@ public class HUD_Manager : MonoBehaviour
         int count = 3;
         while (count > 0)
         {
+            _countdownSfx1.Play();
             countdownText.text = count.ToString();
             yield return new WaitForSeconds(1);
             count--;
         }
+        _countdownSfx2.Play();
         countdownText.text = "";
         countdownText.gameObject.SetActive(false);
         AudioManager.instance.FadeIn(17, 0.1f);

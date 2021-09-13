@@ -15,8 +15,12 @@ public class ShootingMinigameManager : MonoBehaviour
     public ShootingLogSystem _logSystem;
     public ComboCounter _comboCounter;
     public ShootStarManager _starManager;
-
     [HideInInspector] public Stopwatch _stopwatch;
+
+    [Header("Audio")]
+    public AudioSource _goldRushSfx;
+    public AudioSource _shootSfx;
+    public AudioSource _badSfx;
     #endregion Variables
 
     #region Metodos

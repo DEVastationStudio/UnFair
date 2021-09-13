@@ -85,6 +85,12 @@ public partial class UIGeneral : MonoBehaviour
 
     [Header("Player")]
     [SerializeField] public PlayerInput _playerInput;
+    
+    [Header("Audio")]
+    [SerializeField] private AudioSource _victoryMusic;
+    [SerializeField] private AudioSource _defeatMusic;
+    [SerializeField] private AudioSource _countdownSfx1;
+    [SerializeField] private AudioSource _countdownSfx2;
 
     #endregion Variables
 

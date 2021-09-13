@@ -52,7 +52,7 @@ public class Thrower : MonoBehaviour
     public int missedMarbles;
     /*private bool leftRotation;
     private bool rightRotation;*/
-
+    [SerializeField] private AudioSource _shootSfx, _chargeSfx;
 
     void Start()
     {
@@ -124,10 +124,13 @@ public class Thrower : MonoBehaviour
             increasingForce = true;
         }
 
+        _chargeSfx.volume = 0;
         if (canThrow)
         {
             if (pressingShoot && canThrow)
             {
+                _chargeSfx.volume = 0.5f;
+                _chargeSfx.pitch = 0.75f + (forceBar.value/4f);
                 /*if (!randomized)
                 {
                     RandomizeStatusBar();
@@ -148,6 +151,7 @@ public class Thrower : MonoBehaviour
                     forceBar.value -= ((increaserForceSpeed/2) + (increaserForceSpeed/2)*_ddm.GetValue(0)) * Time.deltaTime;
                     //}
                 }
+
             }
 
         }
@@ -302,6 +306,7 @@ public class Thrower : MonoBehaviour
 
     void ThrowBall()
     {
+        _shootSfx.Play();
         ballsLeft--;
         GameObject ball = Instantiate(ballPref, firePoint.transform.position, Quaternion.identity);
         Invoke("SetCanThrow", 1.25f);

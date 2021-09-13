@@ -60,6 +60,7 @@ public class PistolaScript : MonoBehaviour
     {
         _disparo = !_disparo;
         if (_disparo != true) return;
+        _gameManager._shootSfx.Play();
         if (_gameManager._uiGeneral.faseActual != UIGeneral.Fases.GAME) return;
         RaycastHit hit;
         Physics.Raycast(Camera.main.ScreenPointToRay(_mira.transform.position), out hit, 100);
@@ -72,6 +73,7 @@ public class PistolaScript : MonoBehaviour
         }
         else if(hit.transform.CompareTag("Pared")) 
         {
+            _gameManager._badSfx.Play();
             _gameManager._comboCounter.MissCombo();
             shotObj.transform.SetParent(hit.transform);
             _gameManager._logSystem._Miss++;

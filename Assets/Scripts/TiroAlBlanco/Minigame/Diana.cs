@@ -17,6 +17,13 @@ public class Diana : MonoBehaviour
     [SerializeField] private bool isInit;
     [SerializeField] private float _lifeTime;
     [SerializeField] private float _maxLifeTime;
+    
+    [Header("Audio")]
+    [SerializeField] private AudioSource _goodSfx;
+    [SerializeField] private AudioSource _badSfx;
+    [SerializeField] private AudioSource _letterSfx;
+    [SerializeField] private AudioSource _goldHitSfx;
+    [SerializeField] private AudioSource _timeSfx;
     #endregion
 
     #region Metodos
@@ -72,6 +79,7 @@ public class Diana : MonoBehaviour
                 _gameManager._pistolaScript.AutomaticDespawn();
                 if (isHit)
                 {
+                    _goodSfx.Play();
                     _gameManager._comboCounter.HitCombo();
                     _gameManager._logSystem._DNDisp++;
                     _gameManager._dynamicDifficultyManager.SetValue(0, 0.50f);
@@ -83,6 +91,7 @@ public class Diana : MonoBehaviour
                 _gameManager._pistolaScript.CallSpawnRetard(0);
                 if (isHit)
                 {
+                    _goldHitSfx.Play();
                     _gameManager._comboCounter.HitCombo();
                     _gameManager._dynamicDifficultyManager.SetValue(0, 0.9f);
                     _gameManager._logSystem._DDDisp++;
@@ -94,6 +103,7 @@ public class Diana : MonoBehaviour
                 _gameManager._pistolaScript.CallSpawnRetard(0);
                 if (isHit)
                 {
+                    _timeSfx.Play();
                     _gameManager._comboCounter.HitCombo();
                     _gameManager._logSystem._DRDisp++;
                     _gameManager._logSystem._TP += _points;
@@ -110,6 +120,8 @@ public class Diana : MonoBehaviour
                 {
                     if (_activeLetter == _gameManager._spawnerDianas._currentLetter)
                     {
+                        _letterSfx.pitch = 1 + (_activeLetter/10f);
+                        _letterSfx.Play();
                         _gameManager._comboCounter.HitCombo();
                         _gameManager._logSystem._DLDispT++;
                         _gameManager._pistolaScript._timeToSpawnLetter = 2f;
@@ -117,6 +129,7 @@ public class Diana : MonoBehaviour
                     }
                     else
                     {
+                        _badSfx.Play();
                         _gameManager._comboCounter.MissCombo();
                         _gameManager._logSystem._DLDispF++;
                         _gameManager._letrasManager.ResetWord();
@@ -127,6 +140,7 @@ public class Diana : MonoBehaviour
                 _gameManager._pistolaScript.CallSpawnRetard(0);
                 if (isHit)
                 {
+                    _goldHitSfx.Play();
                     _gameManager._comboCounter.HitCombo();
                     _gameManager._dynamicDifficultyManager.SetValue(0, 0.7f);
                     _gameManager._logSystem._DGRDisp++;

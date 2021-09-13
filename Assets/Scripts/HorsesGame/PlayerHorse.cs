@@ -60,6 +60,9 @@ public class PlayerHorse : MonoBehaviour
     [SerializeField] private HorsesLogSystem _logSystem;
     private int totalFailedCombos;
     [SerializeField] private MetaController meta;
+    [Header("Audio")]
+    [SerializeField] private AudioSource _goodSfx;
+    [SerializeField] private AudioSource _badSfx;
 
     #region UnityMethods
 
@@ -628,11 +631,13 @@ public class PlayerHorse : MonoBehaviour
 
         if (ended)
         {
+            _goodSfx.Play();
             endedCurrentCombo = true;
             DDM.SetValue(2, 1.0f);
         }
         else if (failedCombo && !endedCurrentCombo)
         {
+            _badSfx.Play();
             comboFailed = true;
             failedCombosDDM++;
             combosFinishedDDM = 0;

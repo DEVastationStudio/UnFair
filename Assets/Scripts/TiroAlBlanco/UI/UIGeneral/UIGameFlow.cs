@@ -92,6 +92,15 @@ public partial class UIGeneral : MonoBehaviour
         }
         else _estrella3.color = _StarNotDoneColor;
 
+        if (_gameManager._starManager.GetStar(1) || _gameManager._starManager.GetStar(2) || _gameManager._starManager.GetStar(3))
+        {
+            _victoryMusic.Play();
+        }
+        else
+        {
+            _defeatMusic.Play();
+        }
+
         if (_puntuacionActual > PlayerPrefs.GetInt("MaxScoreShootingMinigame"))
             PlayerPrefs.SetInt("MaxScoreShootingMinigame", _puntuacionActual);
         
@@ -203,12 +212,14 @@ public partial class UIGeneral : MonoBehaviour
         int count = 3;
         while (count > 0)
         {
+            _countdownSfx1.Play();
             _countdown.text = count.ToString();
             yield return new WaitForSeconds(1);
             count--;
             if(count == 1)
                 _gameManager._spawnerDianas.SpawnInit();
         }
+        _countdownSfx2.Play();
         _gameManager._logSystem._DDMValStart = _gameManager._dynamicDifficultyManager.GetSkillLevel();
         _countdown.text = "";
         _countdown.gameObject.SetActive(false);

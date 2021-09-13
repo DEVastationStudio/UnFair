@@ -8,6 +8,7 @@ public class SkylineBalls : MonoBehaviour
     private HUD_Marbles hud;
     private Thrower thrower;
     private DynamicDifficultyManager DDM;
+    [SerializeField] private AudioSource _badSfx;
     void Start()
     {
         DDM = FindObjectOfType<DynamicDifficultyManager>();
@@ -25,6 +26,7 @@ public class SkylineBalls : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Canica"))
         {
+            _badSfx.Play();
             DDM.SetValue(2, 0.0f);
             Destroy(other.gameObject);
             thrower.missedMarbles++;
