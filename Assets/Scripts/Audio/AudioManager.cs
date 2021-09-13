@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour
     private int curSong = -1;
     public static AudioManager instance;
     public UnityEngine.Audio.AudioMixer mixer;
+    private bool _fadingIn;
 
     void Awake()
     {
@@ -69,6 +70,7 @@ public class AudioManager : MonoBehaviour
         if (auSrc.clip == null) yield break;
         while (auSrc.volume > 0)
         {
+            if (instance._fadingIn) yield break;
             auSrc.volume -= speed;
             yield return new WaitForSeconds(0.1f);
         }
@@ -81,11 +83,13 @@ public class AudioManager : MonoBehaviour
         if (clip == null) yield break;
 
         auSrc.Play();
+        instance._fadingIn = true;
         while (auSrc.volume < 1)
         {
             auSrc.volume += speed;
             yield return new WaitForSeconds(0.1f);
         }
+        instance._fadingIn = false;
 
         auSrc.volume = 1;
     }
