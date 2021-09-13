@@ -101,17 +101,22 @@ public class HauntedHouseManager : MonoBehaviour
     {
         float time = 0;
         credits.SetActive(true);
-        Vector3 temp;
+        RectTransform rt = credits.GetComponent<RectTransform>();
+        rt.anchorMin = new Vector2(rt.anchorMin.x, 1);
+        rt.anchorMax = new Vector2(rt.anchorMax.x, 1);
+        rt.pivot = new Vector2(rt.pivot.x, 0);
+        Vector2 originalPos = new Vector2(rt.anchoredPosition.x, -rt.sizeDelta.y - 1080);
+        Vector2 endPos = new Vector2(originalPos.x, 0);
+        rt.anchoredPosition = originalPos;
 
         if (AudioManager.instance != null) AudioManager.instance.changeTheme(creditsSong);
         
         while (time < 60)
         {
-            temp = Vector3.Lerp(creditsPos1, creditsPos2, time/60);
-            credits.transform.position = new Vector3(credits.transform.position.x, temp.y, credits.transform.position.z);
+            rt.anchoredPosition = Vector2.Lerp(originalPos, endPos, time/60);
             time += Time.deltaTime;
             yield return null;
         }
-        credits.transform.position = creditsPos2;
+        rt.anchoredPosition = endPos;
     }
 }
