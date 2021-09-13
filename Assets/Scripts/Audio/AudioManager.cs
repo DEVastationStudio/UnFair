@@ -38,10 +38,14 @@ public class AudioManager : MonoBehaviour
 
     public void changeTheme(int index)
     {
-        if (index != curSong)
+        if (index != -1 && index != curSong)
         {
             curSong = index;
             StartCoroutine(AudioFade(audioClips[index], 0.2f, 0.2f, audioSrc));
+        }
+        else if (index == -1)
+        {
+            StartCoroutine(AudioFadeOut(audioSrc, 0.2f));
         }
     }
     private static IEnumerator AudioFade(AudioClip newClip, float speedOut, float speedIn, AudioSource auSrc)

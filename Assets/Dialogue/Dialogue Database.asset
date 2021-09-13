@@ -36986,6 +36986,10 @@ MonoBehaviour:
         value: 
         type: 0
         typeString: CustomFieldType_Text
+      - title: EventGuid
+        value: 0e945bea-b33a-4e0b-a781-e7ff3926ce0b
+        type: 0
+        typeString: 
       conversationID: 46
       isRoot: 0
       isGroup: 0
@@ -37114,7 +37118,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: '[EL SUELO TIEMBLA, SFX, FADEOUT]'
+        value: ' '
         type: 0
         typeString: CustomFieldType_Text
       - title: en
@@ -37147,6 +37151,10 @@ MonoBehaviour:
           Continue()@2;'
         type: 0
         typeString: CustomFieldType_Text
+      - title: EventGuid
+        value: 29405854-ad68-4406-b992-341d268c83b4
+        type: 0
+        typeString: 
       conversationID: 46
       isRoot: 0
       isGroup: 0
@@ -38492,7 +38500,7 @@ MonoBehaviour:
         y: 1427.401
         width: 160
         height: 30
-    canvasScrollPosition: {x: 37.63453, y: 522.4572}
+    canvasScrollPosition: {x: 235.6165, y: 569.8633}
     canvasZoom: 0.73
   - id: 47
     fields:
@@ -56789,6 +56797,10 @@ MonoBehaviour:
 '
         type: 0
         typeString: CustomFieldType_Text
+      - title: EventGuid
+        value: 918936de-259f-47b0-8e0d-53de445362a7
+        type: 0
+        typeString: 
       conversationID: 64
       isRoot: 0
       isGroup: 0
@@ -56904,8 +56916,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 955.5294
-        y: 951.8824
+        x: 1024.3817
+        y: 981.39056
         width: 160
         height: 30
     - id: 67
@@ -57528,8 +57540,8 @@ MonoBehaviour:
         y: 2028.428
         width: 160
         height: 30
-    canvasScrollPosition: {x: 397.0972, y: 790.41113}
-    canvasZoom: 0.7299999
+    canvasScrollPosition: {x: 451.43536, y: 905.4876}
+    canvasZoom: 0.6099998
   - id: 65
     fields:
     - title: Title
@@ -72881,6 +72893,10 @@ MonoBehaviour:
 '
         type: 0
         typeString: CustomFieldType_Text
+      - title: EventGuid
+        value: 4a10f62c-3dfd-4003-9ba8-c590f46fd8d6
+        type: 0
+        typeString: 
       conversationID: 81
       isRoot: 0
       isGroup: 0
@@ -73065,6 +73081,10 @@ MonoBehaviour:
 '
         type: 0
         typeString: CustomFieldType_Text
+      - title: EventGuid
+        value: 0290b666-a972-447b-b081-518c2a1bf8a6
+        type: 0
+        typeString: 
       conversationID: 81
       isRoot: 0
       isGroup: 0
@@ -73249,6 +73269,10 @@ MonoBehaviour:
 '
         type: 0
         typeString: CustomFieldType_Text
+      - title: EventGuid
+        value: a8ddd5fa-8e02-4543-aec5-1dbcc0f0adc3
+        type: 0
+        typeString: 
       conversationID: 81
       isRoot: 0
       isGroup: 0
@@ -73455,8 +73479,8 @@ MonoBehaviour:
         y: 99.040146
         width: 160
         height: 30
-    canvasScrollPosition: {x: 975.367, y: 675.38684}
-    canvasZoom: 0.6400002
+    canvasScrollPosition: {x: 898.08545, y: 796.1246}
+    canvasZoom: 0.64000016
   - id: 82
     fields:
     - title: Title

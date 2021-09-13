@@ -13,7 +13,7 @@ public class HauntedHouseManager : MonoBehaviour
     public int creditsSong;
     void Start()
     {
-        creditsSong = 24;
+        creditsSong = 21;
         if (cutscene != null) {
            FadeController.FinishLoad();
            cutscene.StartConversation();
