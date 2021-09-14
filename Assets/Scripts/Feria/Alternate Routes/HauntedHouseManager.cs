@@ -14,10 +14,16 @@ public class HauntedHouseManager : MonoBehaviour
     void Start()
     {
         creditsSong = 21;
-        if (cutscene != null) {
-           FadeController.FinishLoad();
-           cutscene.StartConversation();
+        if (cutscene != null)
+        {
+            StartCoroutine(DelayConversation());
         }
+    }
+    public IEnumerator DelayConversation()
+    {
+        yield return new WaitForSeconds(1.0f);
+        FadeController.FinishLoad();
+        cutscene.StartConversation();
     }
 
     public void FadeOut()
@@ -37,7 +43,7 @@ public class HauntedHouseManager : MonoBehaviour
         Color oldCol = fade.color;
         while (time < duration)
         {
-            fade.color = Color.Lerp(oldCol, Color.black, time/duration);
+            fade.color = Color.Lerp(oldCol, Color.black, time / duration);
             time += Time.deltaTime;
             yield return null;
         }
@@ -49,7 +55,7 @@ public class HauntedHouseManager : MonoBehaviour
         Color oldCol = fade.color;
         while (time < duration)
         {
-            fade.color = Color.Lerp(oldCol, Color.clear, time/duration);
+            fade.color = Color.Lerp(oldCol, Color.clear, time / duration);
             time += Time.deltaTime;
             yield return null;
         }
@@ -79,7 +85,7 @@ public class HauntedHouseManager : MonoBehaviour
         Color oldCol = sprite.color;
         while (time < duration)
         {
-            sprite.color = Color.Lerp(oldCol, Color.clear, time/duration);
+            sprite.color = Color.Lerp(oldCol, Color.clear, time / duration);
             time += Time.deltaTime;
             yield return null;
         }
@@ -110,10 +116,10 @@ public class HauntedHouseManager : MonoBehaviour
         rt.anchoredPosition = originalPos;
 
         if (AudioManager.instance != null) AudioManager.instance.changeTheme(creditsSong);
-        
+
         while (time < 60)
         {
-            rt.anchoredPosition = Vector2.Lerp(originalPos, endPos, time/60);
+            rt.anchoredPosition = Vector2.Lerp(originalPos, endPos, time / 60);
             time += Time.deltaTime;
             yield return null;
         }
