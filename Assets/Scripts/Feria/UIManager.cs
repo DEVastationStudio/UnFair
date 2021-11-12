@@ -83,7 +83,7 @@ public class UIManager : MonoBehaviour
     {
         //_playerInput.gameObject.transform.position = new Vector3(-188.84f, 4.9f, 0.4f);
         _playerInput.SwitchCurrentActionMap("UIMap");
-        PlayerPrefs.SetInt("PartidaEmpezada", 1);
+        //PlayerPrefs.SetInt("PartidaEmpezada", 1);
         _titleScreen.SetActive(false);
         _virtualCameras[0].SetActive(true);
         StartCoroutine(WaitXSeconds(4));
@@ -265,14 +265,7 @@ public class UIManager : MonoBehaviour
 
     public void NewGame()
     {
-        if (PlayerPrefs.GetInt("PartidaEmpezada") != 0)
-        {
-            _panelSegundaConfirmacionResetearPartida.SetActive(true);
-            _eventSystem.SetSelectedGameObject(_noButtonNewGame);
-
-        }
-        else
-            StartGame();
+        RemoveData();
     }
 
     public void RemoveData()
@@ -285,6 +278,12 @@ public class UIManager : MonoBehaviour
         int fpsValue = PlayerPrefs.GetInt("fpsValue");
         int vSyncState = PlayerPrefs.GetInt("vSyncState");
 
+        int recordDays = PlayerPrefs.GetInt("RecordDays", 9999999);
+        int recordHours = PlayerPrefs.GetInt("RecordHours", -1);
+        int recordMinutes = PlayerPrefs.GetInt("RecordMinutes", -1);
+        int recordSeconds = PlayerPrefs.GetInt("RecordSeconds", -1);
+        int recordMilliseconds = PlayerPrefs.GetInt("RecordMillis", -1);
+
         PlayerPrefs.DeleteAll();
 
         //Restore settings
@@ -294,6 +293,12 @@ public class UIManager : MonoBehaviour
         PlayerPrefs.SetInt("qualityIndex", qualityIndex);
         PlayerPrefs.SetInt("fpsValue", fpsValue);
         PlayerPrefs.SetInt("vSyncState", vSyncState);
+
+        PlayerPrefs.SetInt("RecordDays", recordDays);
+        PlayerPrefs.SetInt("RecordHours", recordHours);
+        PlayerPrefs.SetInt("RecordMinutes", recordMinutes);
+        PlayerPrefs.SetInt("RecordSeconds", recordSeconds);
+        PlayerPrefs.SetInt("RecordMillis", recordMilliseconds);
 
 
         PlayerPrefs.SetInt("PartidaEmpezada", 2);

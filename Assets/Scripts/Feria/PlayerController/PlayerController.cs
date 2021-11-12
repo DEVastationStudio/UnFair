@@ -116,6 +116,10 @@ public partial class PlayerController : MonoBehaviour
             yield return null;
             FadeController.FinishLoad();
         }
+        if (PlayerPrefs.GetInt("PartidaEmpezada") == 2) {
+            SpeedrunTimer.InitTimer();
+            PlayerPrefs.SetInt("PartidaEmpezada", 1);
+        }
     }
 
     #endregion Metodos

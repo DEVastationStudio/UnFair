@@ -105,6 +105,7 @@ public class HauntedHouseManager : MonoBehaviour
 
     private IEnumerator Credits()
     {
+        SpeedrunTimer.StopTimer();
         float time = 0;
         credits.SetActive(true);
         RectTransform rt = credits.GetComponent<RectTransform>();
@@ -124,5 +125,6 @@ public class HauntedHouseManager : MonoBehaviour
             yield return null;
         }
         rt.anchoredPosition = endPos;
+        SpeedrunTimer.ResetTimer();
     }
 }

@@ -19,6 +19,10 @@ public class GoBackToFair : MonoBehaviour
             FadeController.Fade("Feria");
         }
     }
+    public void ResetTimer()
+    {
+        SpeedrunTimer.ResetTimer();
+    }
     public void ResetTimeScale()
     {
         Time.timeScale = 1;
