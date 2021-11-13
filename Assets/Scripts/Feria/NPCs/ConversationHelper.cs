@@ -235,6 +235,8 @@ public class ConversationHelper : MonoBehaviour
     public void SetAltFinished(int ending)
     {
         PlayerPrefs.SetInt("AltFinal" + ending, 1);
+        if (ending == 1) SpeedrunTimer.CompleteCheck(7);
+        if (ending == 2) SpeedrunTimer.CompleteCheck(6);
     }
     public void CheckAltFinished()
     {
@@ -285,6 +287,7 @@ public class ConversationHelper : MonoBehaviour
         }
         PlayerPrefs.SetInt("EarnedTokens", PlayerPrefs.GetInt("EarnedTokens", 0) - 1);
         PlayerPrefs.SetInt("UsedTokens", PlayerPrefs.GetInt("UsedTokens", 0) + 1);
+        if (PlayerPrefs.GetInt("UsedTokens", 0) == 4) SpeedrunTimer.CompleteCheck(8);
     }
 
     public void TempAudioFade(bool audioPlays)

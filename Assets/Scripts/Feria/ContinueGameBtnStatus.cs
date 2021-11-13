@@ -11,12 +11,12 @@ public class ContinueGameBtnStatus : MonoBehaviour
     
     private void Start()
     {
-        for (int i = 0; i < 3; i++)
+        /*for (int i = 0; i < 3; i++)
         {
             btns[i].position = height[i].position;
         }
         
         btns[3].gameObject.SetActive(false);
-        btns[0].GetComponent<Button>().Select();
+        btns[0].GetComponent<Button>().Select();*/
     }
 }

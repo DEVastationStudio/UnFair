@@ -30,6 +30,12 @@ public class DialogueSkipButton : MonoBehaviour
             StartCoroutine(RemindSkip());
     }
 
+    void OnConversationStart(Transform actor)
+    {
+        skip = false;
+        StopCoroutine(RemindSkip());
+    }
+
     IEnumerator RemindSkip()
     {
         yield return new WaitForSeconds(0.1f);

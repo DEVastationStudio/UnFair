@@ -12,6 +12,8 @@ public class GameProgress : MonoBehaviour
     /// </summary>
     public static void SetStars(int minigame, int stars)
     {
+        int prevStars = GetStars(1) + GetStars(2) + GetStars(3) + GetStars(4);
+        int oldStars = GetStars(minigame);
         if (stars < 0 || stars > 3)
         {
             Debug.LogError("Error: Stars must be between 0 and 3.");
@@ -25,6 +27,29 @@ public class GameProgress : MonoBehaviour
             PlayerPrefs.SetInt("Stars-" + minigame, stars);
             Debug.Log("Set stars of minigame " + minigame + " to " + stars + ".");
         }
+
+        //Check speedrun stats
+        if (oldStars == 0 && stars > 0)
+        {
+            switch (minigame)
+            {
+                case 1:
+                    SpeedrunTimer.CompleteCheck(1);
+                    break;
+                case 2:
+                    SpeedrunTimer.CompleteCheck(3);
+                    break;
+                case 3:
+                    SpeedrunTimer.CompleteCheck(2);
+                    break;
+                case 4:
+                    SpeedrunTimer.CompleteCheck(0);
+                    break;
+            }
+        }
+        int totalStars = GetStars(1) + GetStars(2) + GetStars(3) + GetStars(4);
+        if (totalStars >= 8 && prevStars < 8) SpeedrunTimer.CompleteCheck(4);
+        if (totalStars >= 12 && prevStars < 12) SpeedrunTimer.CompleteCheck(5);
     } 
 
     /// <summary>List of minigames:

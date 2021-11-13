@@ -263,8 +263,9 @@ public class UIManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void NewGame()
+    public void NewGame(bool isHundred)
     {
+        SpeedrunTimer.SetCategory(isHundred);
         RemoveData();
     }
 
@@ -278,11 +279,19 @@ public class UIManager : MonoBehaviour
         int fpsValue = PlayerPrefs.GetInt("fpsValue");
         int vSyncState = PlayerPrefs.GetInt("vSyncState");
 
-        int recordDays = PlayerPrefs.GetInt("RecordDays", 9999999);
-        int recordHours = PlayerPrefs.GetInt("RecordHours", -1);
-        int recordMinutes = PlayerPrefs.GetInt("RecordMinutes", -1);
-        int recordSeconds = PlayerPrefs.GetInt("RecordSeconds", -1);
-        int recordMilliseconds = PlayerPrefs.GetInt("RecordMillis", -1);
+        string pb0 = PlayerPrefs.GetString("PB0", long.MaxValue.ToString());
+        string pb1 = PlayerPrefs.GetString("PB1", long.MaxValue.ToString());
+        int category = PlayerPrefs.GetInt("Category", 0);
+
+        string pbcheck0 = PlayerPrefs.GetString("PBCHECK0", long.MaxValue.ToString());
+        string pbcheck1 = PlayerPrefs.GetString("PBCHECK1", long.MaxValue.ToString());
+        string pbcheck2 = PlayerPrefs.GetString("PBCHECK2", long.MaxValue.ToString());
+        string pbcheck3 = PlayerPrefs.GetString("PBCHECK3", long.MaxValue.ToString());
+        string pbcheck4 = PlayerPrefs.GetString("PBCHECK4", long.MaxValue.ToString());
+        string pbcheck5 = PlayerPrefs.GetString("PBCHECK5", long.MaxValue.ToString());
+        string pbcheck6 = PlayerPrefs.GetString("PBCHECK6", long.MaxValue.ToString());
+        string pbcheck7 = PlayerPrefs.GetString("PBCHECK7", long.MaxValue.ToString());
+        string pbcheck8 = PlayerPrefs.GetString("PBCHECK8", long.MaxValue.ToString());
 
         PlayerPrefs.DeleteAll();
 
@@ -294,15 +303,24 @@ public class UIManager : MonoBehaviour
         PlayerPrefs.SetInt("fpsValue", fpsValue);
         PlayerPrefs.SetInt("vSyncState", vSyncState);
 
-        PlayerPrefs.SetInt("RecordDays", recordDays);
-        PlayerPrefs.SetInt("RecordHours", recordHours);
-        PlayerPrefs.SetInt("RecordMinutes", recordMinutes);
-        PlayerPrefs.SetInt("RecordSeconds", recordSeconds);
-        PlayerPrefs.SetInt("RecordMillis", recordMilliseconds);
+        PlayerPrefs.SetString("PB0", pb0);
+        PlayerPrefs.SetString("PB1", pb1);
+        PlayerPrefs.SetInt("Category", category);
+
+        PlayerPrefs.SetString("PBCHECK0", pbcheck0);
+        PlayerPrefs.SetString("PBCHECK1", pbcheck1);
+        PlayerPrefs.SetString("PBCHECK2", pbcheck2);
+        PlayerPrefs.SetString("PBCHECK3", pbcheck3);
+        PlayerPrefs.SetString("PBCHECK4", pbcheck4);
+        PlayerPrefs.SetString("PBCHECK5", pbcheck5);
+        PlayerPrefs.SetString("PBCHECK6", pbcheck6);
+        PlayerPrefs.SetString("PBCHECK7", pbcheck7);
+        PlayerPrefs.SetString("PBCHECK8", pbcheck8);
 
 
         PlayerPrefs.SetInt("PartidaEmpezada", 2);
         FadeController.Fade("Feria");
+        //UnityEngine.SceneManagement.SceneManager.LoadScene("Feria");
     }
 
     public void SelectStartBtn()
