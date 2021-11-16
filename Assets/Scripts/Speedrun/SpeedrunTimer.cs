@@ -76,23 +76,23 @@ public class SpeedrunTimer : MonoBehaviour
         _startTime = DateTime.Now;
         _timerText.color = Color.white;   
 
-        _cnText.text = TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK0", long.MaxValue.ToString()))));
+        _cnText.text = TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK0" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString()))));
         _cnText.color = Color.white;
-        _tbText.text = TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK1", long.MaxValue.ToString()))));
+        _tbText.text = TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK1" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString()))));
         _tbText.color = Color.white;
-        _paText.text = TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK2", long.MaxValue.ToString()))));
+        _paText.text = TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK2" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString()))));
         _paText.color = Color.white;
-        _cbText.text = TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK3", long.MaxValue.ToString()))));
+        _cbText.text = TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK3" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString()))));
         _cbText.color = Color.white;
-        _8eText.text = TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK4", long.MaxValue.ToString()))));
+        _8eText.text = TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK4" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString()))));
         _8eText.color = Color.white;
-        _12Text.text = TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK5", long.MaxValue.ToString()))));
+        _12Text.text = TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK5" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString()))));
         _12Text.color = Color.white;
-        _ceText.text = TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK6", long.MaxValue.ToString()))));
+        _ceText.text = TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK6" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString()))));
         _ceText.color = Color.white;
-        _ctText.text = TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK7", long.MaxValue.ToString()))));
+        _ctText.text = TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK7" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString()))));
         _ctText.color = Color.white;
-        _zeText.text = TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK8", long.MaxValue.ToString()))));
+        _zeText.text = TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK8" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString()))));
         _zeText.color = Color.white;
     }
     public static bool StopTimer()
@@ -106,23 +106,23 @@ public class SpeedrunTimer : MonoBehaviour
         instance._timerText.color = Color.white;
         
         Color color = Color.white;
-        instance._cnText.text = instance.TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK0", long.MaxValue.ToString()))));
+        instance._cnText.text = instance.TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK0" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString()))));
         instance._cnText.color = color;
-        instance._tbText.text = instance.TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK1", long.MaxValue.ToString()))));
+        instance._tbText.text = instance.TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK1" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString()))));
         instance._tbText.color = color;
-        instance._paText.text = instance.TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK2", long.MaxValue.ToString()))));
+        instance._paText.text = instance.TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK2" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString()))));
         instance._paText.color = color;
-        instance._cbText.text = instance.TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK3", long.MaxValue.ToString()))));
+        instance._cbText.text = instance.TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK3" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString()))));
         instance._cbText.color = color;
-        instance._8eText.text = instance.TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK4", long.MaxValue.ToString()))));
+        instance._8eText.text = instance.TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK4" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString()))));
         instance._8eText.color = color;
-        instance._12Text.text = instance.TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK5", long.MaxValue.ToString()))));
+        instance._12Text.text = instance.TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK5" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString()))));
         instance._12Text.color = color;
-        instance._ceText.text = instance.TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK6", long.MaxValue.ToString()))));
+        instance._ceText.text = instance.TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK6" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString()))));
         instance._ceText.color = color;
-        instance._ctText.text = instance.TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK7", long.MaxValue.ToString()))));
+        instance._ctText.text = instance.TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK7" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString()))));
         instance._ctText.color = color;
-        instance._zeText.text = instance.TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK8", long.MaxValue.ToString()))));
+        instance._zeText.text = instance.TimeSpanToString(new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK8" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString()))));
         instance._zeText.color = color;
     }
     private bool Finish()
@@ -180,17 +180,17 @@ public class SpeedrunTimer : MonoBehaviour
     public static void CompleteCheck(int objective)
     {
         TimeSpan elapsedTime = (instance._started ? DateTime.Now - instance._startTime : TimeSpan.Zero);
-        TimeSpan prevRecord = new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK" + objective, long.MaxValue.ToString())));
+        TimeSpan prevRecord = new TimeSpan(long.Parse(PlayerPrefs.GetString("PBCHECK" + objective + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString())));
         string text = instance.TimeSpanToString(elapsedTime);
         Color color = instance.badColor;
-        print("For record " + ("PBCHECK" + objective) + ":");
+        print("For record " + ("PBCHECK" + objective + PlayerPrefs.GetInt("Category", 0)) + ":");
         print("ELAPSED TIME: " + elapsedTime.Minutes + ":" + elapsedTime.Seconds);
         print("PREV RECORD: " + prevRecord.Minutes + ":" + prevRecord.Seconds);
         if (elapsedTime < prevRecord)
         {
             color = instance.goodColor;
-            PlayerPrefs.SetString("PBCHECK" + objective, elapsedTime.Ticks.ToString());
-            print("Set record " + ("PBCHECK" + objective) + " to: " + elapsedTime.Ticks);
+            PlayerPrefs.SetString("PBCHECK" + objective + PlayerPrefs.GetInt("Category", 0), elapsedTime.Ticks.ToString());
+            print("Set record " + ("PBCHECK" + objective + PlayerPrefs.GetInt("Category", 0)) + " to: " + elapsedTime.Ticks);
         }
         
         switch (objective)

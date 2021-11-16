@@ -283,15 +283,15 @@ public class UIManager : MonoBehaviour
         string pb1 = PlayerPrefs.GetString("PB1", long.MaxValue.ToString());
         int category = PlayerPrefs.GetInt("Category", 0);
 
-        string pbcheck0 = PlayerPrefs.GetString("PBCHECK0", long.MaxValue.ToString());
-        string pbcheck1 = PlayerPrefs.GetString("PBCHECK1", long.MaxValue.ToString());
-        string pbcheck2 = PlayerPrefs.GetString("PBCHECK2", long.MaxValue.ToString());
-        string pbcheck3 = PlayerPrefs.GetString("PBCHECK3", long.MaxValue.ToString());
-        string pbcheck4 = PlayerPrefs.GetString("PBCHECK4", long.MaxValue.ToString());
-        string pbcheck5 = PlayerPrefs.GetString("PBCHECK5", long.MaxValue.ToString());
-        string pbcheck6 = PlayerPrefs.GetString("PBCHECK6", long.MaxValue.ToString());
-        string pbcheck7 = PlayerPrefs.GetString("PBCHECK7", long.MaxValue.ToString());
-        string pbcheck8 = PlayerPrefs.GetString("PBCHECK8", long.MaxValue.ToString());
+        string pbcheck0 = PlayerPrefs.GetString("PBCHECK0" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString());
+        string pbcheck1 = PlayerPrefs.GetString("PBCHECK1" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString());
+        string pbcheck2 = PlayerPrefs.GetString("PBCHECK2" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString());
+        string pbcheck3 = PlayerPrefs.GetString("PBCHECK3" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString());
+        string pbcheck4 = PlayerPrefs.GetString("PBCHECK4" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString());
+        string pbcheck5 = PlayerPrefs.GetString("PBCHECK5" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString());
+        string pbcheck6 = PlayerPrefs.GetString("PBCHECK6" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString());
+        string pbcheck7 = PlayerPrefs.GetString("PBCHECK7" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString());
+        string pbcheck8 = PlayerPrefs.GetString("PBCHECK8" + PlayerPrefs.GetInt("Category", 0), long.MaxValue.ToString());
 
         PlayerPrefs.DeleteAll();
 
@@ -307,15 +307,15 @@ public class UIManager : MonoBehaviour
         PlayerPrefs.SetString("PB1", pb1);
         PlayerPrefs.SetInt("Category", category);
 
-        PlayerPrefs.SetString("PBCHECK0", pbcheck0);
-        PlayerPrefs.SetString("PBCHECK1", pbcheck1);
-        PlayerPrefs.SetString("PBCHECK2", pbcheck2);
-        PlayerPrefs.SetString("PBCHECK3", pbcheck3);
-        PlayerPrefs.SetString("PBCHECK4", pbcheck4);
-        PlayerPrefs.SetString("PBCHECK5", pbcheck5);
-        PlayerPrefs.SetString("PBCHECK6", pbcheck6);
-        PlayerPrefs.SetString("PBCHECK7", pbcheck7);
-        PlayerPrefs.SetString("PBCHECK8", pbcheck8);
+        PlayerPrefs.SetString("PBCHECK0" + PlayerPrefs.GetInt("Category", 0), pbcheck0);
+        PlayerPrefs.SetString("PBCHECK1" + PlayerPrefs.GetInt("Category", 0), pbcheck1);
+        PlayerPrefs.SetString("PBCHECK2" + PlayerPrefs.GetInt("Category", 0), pbcheck2);
+        PlayerPrefs.SetString("PBCHECK3" + PlayerPrefs.GetInt("Category", 0), pbcheck3);
+        PlayerPrefs.SetString("PBCHECK4" + PlayerPrefs.GetInt("Category", 0), pbcheck4);
+        PlayerPrefs.SetString("PBCHECK5" + PlayerPrefs.GetInt("Category", 0), pbcheck5);
+        PlayerPrefs.SetString("PBCHECK6" + PlayerPrefs.GetInt("Category", 0), pbcheck6);
+        PlayerPrefs.SetString("PBCHECK7" + PlayerPrefs.GetInt("Category", 0), pbcheck7);
+        PlayerPrefs.SetString("PBCHECK8" + PlayerPrefs.GetInt("Category", 0), pbcheck8);
 
 
         PlayerPrefs.SetInt("PartidaEmpezada", 2);
