@@ -45,6 +45,7 @@ public class SpeedrunTimer : MonoBehaviour
         else
         {
             _pbText.text = TimeSpanToString(TimeSpan.Zero);
+            _pbText100.text = _pbText.text;
         }
         
         if (elapsedTime > prevRecord) _timerText.color = badColor;
