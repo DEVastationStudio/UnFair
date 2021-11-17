@@ -38383,13 +38383,13 @@ MonoBehaviour:
 
           SetContinueMode(false);
 
-          SetDialoguePanel(true)@59;
+          SetDialoguePanel(true)@5;
 
-          SetContinueMode(true)@59;
+          SetContinueMode(true)@5;
 
-          Delay(59);
+          Delay(5);
 
-          Continue()@59;'
+          Continue()@5;'
         type: 0
         typeString: CustomFieldType_Text
       - title: EventGuid
@@ -38403,7 +38403,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 46
+        originDialogueID: 60
+        destinationConversationID: 46
+        destinationDialogueID: 62
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: 
       onExecute:
@@ -38500,7 +38506,78 @@ MonoBehaviour:
         y: 1427.401
         width: 160
         height: 30
-    canvasScrollPosition: {x: 20.54802, y: 5.479843}
+    - id: 62
+      fields:
+      - title: Title
+        value: New Dialogue Entry
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 24
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 25
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: en
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 'Delay(54);
+
+          Continue()@54;'
+        type: 0
+        typeString: CustomFieldType_Text
+      conversationID: 46
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 473.62518
+        y: 1607.0847
+        width: 160
+        height: 30
+    canvasScrollPosition: {x: 84.931625, y: 1149.3156}
     canvasZoom: 0.73
   - id: 47
     fields:
